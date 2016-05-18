@@ -233,6 +233,119 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/18/ubuntu14-04安装nvm-nodejs-express/" itemprop="url">
+                  ubuntu14.04安装nvm,nodejs,express
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-18T08:13:47+08:00" content="2016-05-18">
+              2016-05-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####安装 curl和git</p>
+<pre><code>sudo apt-get install curl git
+</code></pre><p>####下载并运行NVM安装sh</p>
+<pre><code>weget https://raw.github.com/creationix/nvm/master/install.sh
+sh ./install.sh
+</code></pre><p>安装之后输入nvm还是提示没有这时候需要执行</p>
+<pre><code>source ~/.nvm/nvm.sh
+</code></pre><p>将source /root/nvm/nvm.sh写入~/.bashrc或者其启动脚本中，这样在系统启动的时候会自动执行这条指令。开机就可以使用nvm了；</p>
+<p>####安装Node v4.2.2</p>
+<p>nvm install v4.2.2</p>
+<p>####npm设置淘宝镜像</p>
+<p>淘宝npm镜像是国内最大的，访问速度快的npm镜像，设置方法如下：<br>编辑~/.npmrc文件（没有自己创建）<br>加入以下配置信息：</p>
+<pre><code>registry = http://registry.npm.taobao.org
+</code></pre><p>搞定！</p>
+<p>####npm如何升级自身</p>
+<pre><code>npm install npm -g
+</code></pre><p>#####安装Expres和Express-generator（生成Express工程）</p>
+<pre><code>npm install -g express
+npm install -g express-generator
+</code></pre><p>如此就已经基本安装完成了 </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/18/ubuntu软件管理/" itemprop="url">
                   ubuntu软件管理
                 </a>
@@ -578,7 +691,7 @@ SOCKS 代理里填写 : 127.0.0.1    1089
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -588,7 +701,7 @@ SOCKS 代理里填写 : 127.0.0.1    1089
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
