@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ubuntu 软件," />
+  <meta name="keywords" content="nvm nodejs express," />
 
 
 
@@ -84,55 +84,31 @@
 
 
 
-<meta name="description" content="#apt-get安装
-####安装:
-apt-get install xxx
-####卸载
-apt-get remove --purge softname
-####查找
-apt-cache search softname
-#软件包安装:
-####安装
-dpkg -i xxx.deb
-####卸载
-dpkg -P xxxx
-####查找
-dpkg -l | grep xx">
+<meta name="description" content="安装 curl和gitsudo apt-get install curl git
+下载并运行NVM安装shwget https://raw.github.com/creationix/nvm/master/install.sh
+sh ./install.sh
+安装之后输入nvm还是提示没有这时候需要执行
+source ~/.nvm/nvm.sh
+将source /root/.nvm/nvm.sh写">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu软件管理">
-<meta property="og:url" content="http://yoursite.com/2016/05/18/ubuntu软件管理/index.html">
+<meta property="og:title" content="ubuntu14.04安装nvm,nodejs,express">
+<meta property="og:url" content="http://yoursite.com/2016/06/21/ubuntu14-04安装nvm-nodejs-express/index.html">
 <meta property="og:site_name" content="直观层">
-<meta property="og:description" content="#apt-get安装
-####安装:
-apt-get install xxx
-####卸载
-apt-get remove --purge softname
-####查找
-apt-cache search softname
-#软件包安装:
-####安装
-dpkg -i xxx.deb
-####卸载
-dpkg -P xxxx
-####查找
-dpkg -l | grep xx">
-<meta property="og:updated_time" content="2016-05-18T00:09:49.122Z">
+<meta property="og:description" content="安装 curl和gitsudo apt-get install curl git
+下载并运行NVM安装shwget https://raw.github.com/creationix/nvm/master/install.sh
+sh ./install.sh
+安装之后输入nvm还是提示没有这时候需要执行
+source ~/.nvm/nvm.sh
+将source /root/.nvm/nvm.sh写">
+<meta property="og:updated_time" content="2016-06-21T00:13:26.275Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu软件管理">
-<meta name="twitter:description" content="#apt-get安装
-####安装:
-apt-get install xxx
-####卸载
-apt-get remove --purge softname
-####查找
-apt-cache search softname
-#软件包安装:
-####安装
-dpkg -i xxx.deb
-####卸载
-dpkg -P xxxx
-####查找
-dpkg -l | grep xx">
+<meta name="twitter:title" content="ubuntu14.04安装nvm,nodejs,express">
+<meta name="twitter:description" content="安装 curl和gitsudo apt-get install curl git
+下载并运行NVM安装shwget https://raw.github.com/creationix/nvm/master/install.sh
+sh ./install.sh
+安装之后输入nvm还是提示没有这时候需要执行
+source ~/.nvm/nvm.sh
+将source /root/.nvm/nvm.sh写">
 
 
 
@@ -150,7 +126,7 @@ dpkg -l | grep xx">
   };
 </script>
 
-  <title> ubuntu软件管理 | 直观层 </title>
+  <title> ubuntu14.04安装nvm,nodejs,express | 直观层 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +246,7 @@ dpkg -l | grep xx">
             
             
               
-                ubuntu软件管理
+                ubuntu14.04安装nvm,nodejs,express
               
             
           </h1>
@@ -282,8 +258,8 @@ dpkg -l | grep xx">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-18T08:08:23+08:00" content="2016-05-18">
-              2016-05-18
+            <time itemprop="dateCreated" datetime="2016-06-21T08:13:26+08:00" content="2016-06-21">
+              2016-06-21
             </time>
           </span>
 
@@ -310,21 +286,21 @@ dpkg -l | grep xx">
       
 
       
-        <p>#apt-get安装</p>
-<p>####安装:</p>
-<pre><code>apt-get install xxx
-</code></pre><p>####卸载</p>
-<pre><code>apt-get remove --purge softname
-</code></pre><p>####查找</p>
-<pre><code>apt-cache search softname
-</code></pre><p>#软件包安装:</p>
-<p>####安装</p>
-<pre><code>dpkg -i xxx.deb
-</code></pre><p>####卸载</p>
-<pre><code>dpkg -P xxxx
-</code></pre><p>####查找</p>
-<pre><code>dpkg -l | grep xx
-</code></pre>
+        <h4 id="安装-curl和git"><a href="#安装-curl和git" class="headerlink" title="安装 curl和git"></a>安装 curl和git</h4><pre><code>sudo apt-get install curl git
+</code></pre><h4 id="下载并运行NVM安装sh"><a href="#下载并运行NVM安装sh" class="headerlink" title="下载并运行NVM安装sh"></a>下载并运行NVM安装sh</h4><pre><code>wget https://raw.github.com/creationix/nvm/master/install.sh
+sh ./install.sh
+</code></pre><p>安装之后输入nvm还是提示没有这时候需要执行</p>
+<pre><code>source ~/.nvm/nvm.sh
+</code></pre><p>将source /root/.nvm/nvm.sh写入~/.bashrc或者其启动脚本中，这样在系统启动的时候会自动执行这条指令。开机就可以使用nvm了；</p>
+<h4 id="安装Node-v4-2-2"><a href="#安装Node-v4-2-2" class="headerlink" title="安装Node v4.2.2"></a>安装Node v4.2.2</h4><p>nvm install v4.2.2</p>
+<h4 id="npm设置淘宝镜像"><a href="#npm设置淘宝镜像" class="headerlink" title="npm设置淘宝镜像"></a>npm设置淘宝镜像</h4><p>淘宝npm镜像是国内最大的，访问速度快的npm镜像，设置方法如下：<br>编辑~/.npmrc文件（没有自己创建）<br>加入以下配置信息：</p>
+<pre><code>registry = http://registry.npm.taobao.org
+</code></pre><p>搞定！</p>
+<h4 id="npm如何升级自身"><a href="#npm如何升级自身" class="headerlink" title="npm如何升级自身"></a>npm如何升级自身</h4><pre><code>npm install npm -g
+</code></pre><h5 id="安装Expres和Express-generator（生成Express工程）"><a href="#安装Expres和Express-generator（生成Express工程）" class="headerlink" title="安装Expres和Express-generator（生成Express工程）"></a>安装Expres和Express-generator（生成Express工程）</h5><pre><code>npm install -g express
+npm install -g express-generator
+</code></pre><p>如此就已经基本安装完成了 </p>
+
       
     </div>
 
@@ -345,7 +321,7 @@ dpkg -l | grep xx">
       
         <div class="post-tags">
           
-            <a href="/tags/ubuntu-软件/" rel="tag">#ubuntu 软件</a>
+            <a href="/tags/nvm-nodejs-express/" rel="tag">#nvm nodejs express</a>
           
         </div>
       
@@ -354,16 +330,16 @@ dpkg -l | grep xx">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/14/翻墙/" rel="next" title="翻墙">
-                <i class="fa fa-chevron-left"></i> 翻墙
+              <a href="/2016/06/21/安装composer/" rel="next" title="安装composer">
+                <i class="fa fa-chevron-left"></i> 安装composer
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/18/ubuntu14-04安装nvm-nodejs-express/" rel="prev" title="ubuntu14.04安装nvm,nodejs,express">
-                ubuntu14.04安装nvm,nodejs,express <i class="fa fa-chevron-right"></i>
+              <a href="/2016/06/21/ubuntu软件管理/" rel="prev" title="ubuntu软件管理">
+                ubuntu软件管理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -432,7 +408,7 @@ dpkg -l | grep xx">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -471,7 +447,7 @@ dpkg -l | grep xx">
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-curl和git"><span class="nav-number">1.</span> <span class="nav-text">安装 curl和git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载并运行NVM安装sh"><span class="nav-number">2.</span> <span class="nav-text">下载并运行NVM安装sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Node-v4-2-2"><span class="nav-number">3.</span> <span class="nav-text">安装Node v4.2.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#npm设置淘宝镜像"><span class="nav-number">4.</span> <span class="nav-text">npm设置淘宝镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#npm如何升级自身"><span class="nav-number">5.</span> <span class="nav-text">npm如何升级自身</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装Expres和Express-generator（生成Express工程）"><span class="nav-number">5.1.</span> <span class="nav-text">安装Expres和Express-generator（生成Express工程）</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
