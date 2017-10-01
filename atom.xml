@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>简客-记忆</title>
+  
+  <subtitle>天下事有难易乎？为之，则难者亦易矣；不为，则易者亦难矣。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.jk-kj.com/"/>
+  <updated>2017-10-01T02:23:44.000Z</updated>
+  <id>http://www.jk-kj.com/</id>
+  
+  <author>
+    <name>hottredpen</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用hexo和github搭建blog</title>
+    <link href="http://www.jk-kj.com/2017/10/01/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BAblog/"/>
+    <id>http://www.jk-kj.com/2017/10/01/使用hexo和github搭建blog/</id>
+    <published>2017-10-01T01:30:29.000Z</published>
+    <updated>2017-10-01T02:23:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>继续用hexo</p><p>让自己专注于写作</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;继续用hexo&lt;/p&gt;
+&lt;p&gt;让自己专注于写作&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://www.jk-kj.com/tags/hexo/"/>
+    
+      <category term="github" scheme="http://www.jk-kj.com/tags/github/"/>
+    
+  </entry>
+  
+</feed>
