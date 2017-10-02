@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2017-10-01T02:23:44.000Z</updated>
+  <updated>2017-10-02T12:38:50.000Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vim常用命令</title>
+    <link href="http://www.jk-kj.com/2017/10/02/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://www.jk-kj.com/2017/10/02/vim常用命令/</id>
+    <published>2017-10-02T11:21:53.000Z</published>
+    <updated>2017-10-02T12:38:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><table><thead><tr><th style="text-align:center">快捷键</th><th style="text-align:center">说明</th><th style="text-align:center">常用指数(自己)</th></tr></thead><tbody><tr><td style="text-align:center">a</td><td style="text-align:center">在当前光标后插入文本</td><td style="text-align:center">★★★★</td></tr><tr><td style="text-align:center">A</td><td style="text-align:center">在本行行尾插入文本</td><td style="text-align:center">★★★★★★</td></tr><tr><td style="text-align:center">i</td><td style="text-align:center">在光标前插入文本</td><td style="text-align:center">★★★★★</td></tr><tr><td style="text-align:center">I</td><td style="text-align:center">在本行行首插入文本</td><td style="text-align:center">★★</td></tr><tr><td style="text-align:center">o</td><td style="text-align:center">在光标下插入新行</td><td style="text-align:center">★★</td></tr><tr><td style="text-align:center">O</td><td style="text-align:center">在光标上插入新行</td><td style="text-align:center">★★</td></tr><tr><td style="text-align:center">h</td><td style="text-align:center">左移一个字符</td><td style="text-align:center">★</td></tr><tr><td style="text-align:center">j</td><td style="text-align:center">下移一个字符</td><td style="text-align:center">★</td></tr><tr><td style="text-align:center">k</td><td style="text-align:center">上移一个字符</td><td style="text-align:center">★</td></tr><tr><td style="text-align:center">l</td><td style="text-align:center">右移一个字符</td><td style="text-align:center">★</td></tr><tr><td style="text-align:center">$</td><td style="text-align:center">移动至当前行的行尾</td><td style="text-align:center">★★★★</td></tr><tr><td style="text-align:center">0（数字零）</td><td style="text-align:center">移动至当前行的行首</td><td style="text-align:center">★★★★★★</td></tr><tr><td style="text-align:center">H</td><td style="text-align:center">移动屏幕上端</td><td style="text-align:center">★★★★★</td></tr><tr><td style="text-align:center">M</td><td style="text-align:center">移动屏幕中央</td><td style="text-align:center">★★</td></tr><tr><td style="text-align:center">L</td><td style="text-align:center">移动屏幕下端</td><td style="text-align:center">★★★★★</td></tr><tr><td style="text-align:center">gg</td><td style="text-align:center">到整个文件的第一行</td><td style="text-align:center">★★★★★★★</td></tr><tr><td style="text-align:center">G</td><td style="text-align:center">到整个文件的最后一行</td><td style="text-align:center">★★★★★★★★</td></tr><tr><td style="text-align:center">nG</td><td style="text-align:center">到第n行，如5G到第5行</td><td style="text-align:center">★★★</td></tr><tr><td style="text-align:center">:n</td><td style="text-align:center">到第n行</td><td style="text-align:center">★★★★★★★★</td></tr></tbody></table><h3 id="删除和取消"><a href="#删除和取消" class="headerlink" title="删除和取消"></a>删除和取消</h3><table><thead><tr><th style="text-align:center">快捷键</th><th style="text-align:center">说明</th><th style="text-align:center">常用指数（自己）</th></tr></thead><tbody><tr><td style="text-align:center">x</td><td style="text-align:center">删除光标所在处字符</td><td style="text-align:center">★★★★★</td></tr><tr><td style="text-align:center">nx</td><td style="text-align:center">删除光标所在处n个字符</td><td style="text-align:center">★</td></tr><tr><td style="text-align:center">dd</td><td style="text-align:center">删除光标所在行(+p剪切)</td><td style="text-align:center">★★★★★★★</td></tr><tr><td style="text-align:center">ndd</td><td style="text-align:center">删除n行（+p剪切）</td><td style="text-align:center">★★</td></tr><tr><td style="text-align:center">dG</td><td style="text-align:center">删除光标所在行值末尾</td><td style="text-align:center">★★★★</td></tr><tr><td style="text-align:center">D</td><td style="text-align:center">删除光标所在处至行尾</td><td style="text-align:center">★★★★</td></tr><tr><td style="text-align:center">:n1,n2d</td><td style="text-align:center">删除指定范围的行</td><td style="text-align:center">★★★</td></tr><tr><td style="text-align:center">u</td><td style="text-align:center">取消上一步操作</td><td style="text-align:center">★★★★★★★★★</td></tr></tbody></table><h3 id="复制和粘贴"><a href="#复制和粘贴" class="headerlink" title="复制和粘贴"></a>复制和粘贴</h3><table><thead><tr><th style="text-align:center">快捷键</th><th style="text-align:center">说明</th><th style="text-align:center">常用指数（自己）</th></tr></thead><tbody><tr><td style="text-align:center">yy,Y</td><td style="text-align:center">复制当前行</td><td style="text-align:center">★★★★★</td></tr><tr><td style="text-align:center">nyy,nY</td><td style="text-align:center">复制当前行以下的n行</td><td style="text-align:center">★★★</td></tr><tr><td style="text-align:center">p</td><td style="text-align:center">将内容粘贴所在行的下一行</td><td style="text-align:center">★★★★★★★</td></tr><tr><td style="text-align:center">P</td><td style="text-align:center">将内容粘贴所在行的上一行</td><td style="text-align:center">★</td></tr></tbody></table><h3 id="搜索替换"><a href="#搜索替换" class="headerlink" title="搜索替换"></a>搜索替换</h3><table><thead><tr><th style="text-align:center">快捷键</th><th style="text-align:center">说明</th><th style="text-align:center">常用指数（自己）</th></tr></thead><tbody><tr><td style="text-align:center">/string</td><td style="text-align:center">查找string(+n下一个)</td><td style="text-align:center">★★★★★</td></tr><tr><td style="text-align:center">:%s/old/new/g</td><td style="text-align:center">全文替换，如:%s/123/789/g</td><td style="text-align:center">★★★</td></tr></tbody></table><h3 id="屏幕"><a href="#屏幕" class="headerlink" title="屏幕"></a>屏幕</h3><table><thead><tr><th style="text-align:center">快捷键</th><th style="text-align:center">说明</th><th style="text-align:center">常用指数（自己）</th></tr></thead><tbody><tr><td style="text-align:center">ctrl+u</td><td style="text-align:center">向上滚动半屏</td><td style="text-align:center">★★★★★</td></tr><tr><td style="text-align:center">ctrl+d</td><td style="text-align:center">向下滚动半屏</td><td style="text-align:center">★★★★★</td></tr><tr><td style="text-align:center">ctrl+b</td><td style="text-align:center">向上滚动整屏</td><td style="text-align:center">★★★★★</td></tr><tr><td style="text-align:center">ctrl+f</td><td style="text-align:center">向下滚动整屏</td><td style="text-align:center">★★★★★</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;插入&quot;&gt;&lt;a href=&quot;#插入&quot; class=&quot;headerlink&quot; title=&quot;插入&quot;&gt;&lt;/a&gt;插入&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;快捷键&lt;/th&gt;
+&lt;th style=&quot;te
+      
+    
+    </summary>
+    
+    
+      <category term="vim" scheme="http://www.jk-kj.com/tags/vim/"/>
+    
+  </entry>
   
   <entry>
     <title>使用hexo和github搭建blog</title>
