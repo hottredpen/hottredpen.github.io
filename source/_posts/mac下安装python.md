@@ -45,7 +45,7 @@ vim ~/.zshrc 加入
 #### 验证PATH设置成功
 
 输入`which python`
-如果显示 `/usr/local/bin/python`则说明成功
+如果显示 `/usr/local/opt/python/libexec/bin/python`则说明成功
 
 #### 如何使用系统的python
 
