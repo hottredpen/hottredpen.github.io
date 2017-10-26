@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2017-10-25T23:08:31.000Z</updated>
+  <updated>2017-10-26T23:13:05.000Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue选项数据</title>
+    <link href="http://www.jk-kj.com/2017/10/27/vue%E9%80%89%E9%A1%B9%E6%95%B0%E6%8D%AE/"/>
+    <id>http://www.jk-kj.com/2017/10/27/vue选项数据/</id>
+    <published>2017-10-26T22:47:41.000Z</published>
+    <updated>2017-10-26T23:13:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>初级理解：对象必须是纯粹的对象(含有零个或多个的key/value对)，这里面的数据最好都是在视图层显示的数据（静态变量）<br>中级理解：<br>高级理解：</p><p>其他：<br>如果说不是在视图层展示的变量。可以定义在外面或者放在vm对象上。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">let abc = &apos;&apos;  </div><div class="line">export default &#123;  </div><div class="line">    data() &#123;  </div><div class="line">        return &#123;  </div><div class="line">            bar: &apos;bar&apos;  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    methods: &#123;  </div><div class="line">        testFn() &#123;  </div><div class="line">            // abc  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure><h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><p>初级理解：props 可以是数组或对象，用于接收来自父组件的数据。<br>中级理解：组件实例的作用域是孤立的。这意味着不能 (也不应该) 在子组件的模板内直接引用父组件的数据。父组件的数据需要通过 prop 才能下发到子组件中。<br>高级理解：</p><p>其他：</p><p>子组件要显式地用 props 选项声明它预期的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Vue.component(&apos;child&apos;, &#123;</div><div class="line">  // 声明 props</div><div class="line">  props: [&apos;message&apos;],</div><div class="line">  // 就像 data 一样，prop 也可以在模板中使用</div><div class="line">  // 同样也可以在 vm 实例中通过 this.message 来使用</div><div class="line">  template: &apos;&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p><p>然后我们可以这样向它传入一个普通字符串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;child message=&quot;hello!&quot;&gt;&lt;/child&gt;</div></pre></td></tr></table></figure></p><p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hello!</div></pre></td></tr></table></figure></p><h3 id="propsData"><a href="#propsData" class="headerlink" title="propsData"></a>propsData</h3><p>简单理解:创建实例时传递 props。主要作用是方便测试。(无父级时)</p><h3 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h3><p>简单理解：computed，计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。不过计算属性也用函数来替代。（动态变量）</p><h3 id="methods"><a href="#methods" class="headerlink" title="methods"></a>methods</h3><p> methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;data&quot;&gt;&lt;a href=&quot;#data&quot; class=&quot;headerlink&quot; title=&quot;data&quot;&gt;&lt;/a&gt;data&lt;/h3&gt;&lt;p&gt;初级理解：对象必须是纯粹的对象(含有零个或多个的key/value对)，这里面的数据最好都是在视图层显示的数据（静态变量）&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="vue2" scheme="http://www.jk-kj.com/tags/vue2/"/>
+    
+  </entry>
   
   <entry>
     <title>ab性能测试</title>
@@ -157,9 +180,9 @@
     </summary>
     
     
-      <category term="python" scheme="http://www.jk-kj.com/tags/python/"/>
-    
       <category term="安装" scheme="http://www.jk-kj.com/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="python" scheme="http://www.jk-kj.com/tags/python/"/>
     
       <category term="mac" scheme="http://www.jk-kj.com/tags/mac/"/>
     
