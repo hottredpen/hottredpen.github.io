@@ -71,3 +71,63 @@ hello!
 ### methods
  methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。
 
+### watch
+
+简单理解：监听data里的值的变化
+
+官方例子：
+
+```
+var vm = new Vue({
+  data: {
+    a: 1,
+    b: 2,
+    c: 3,
+    d: 4
+  },
+  watch: {
+    a: function (val, oldVal) {
+      console.log('new: %s, old: %s', val, oldVal)
+    },
+    // 方法名
+    b: 'someMethod',
+    // 深度 watcher
+    c: {
+      handler: function (val, oldVal) { /* ... */ },
+      deep: true
+    },
+    // 该回调将会在侦听开始之后被立即调用
+    d: {
+      handler: function (val, oldVal) { /* ... */ },
+      immediate: true
+    }
+  }
+})
+vm.a = 2 // => new: 2, old: 1
+```
+
+一个时间选择器更改的例子
+```
+    var v_assetManage_controller = new Vue({  
+        el: '.LSee-index',  
+        data: {  
+            trendQueryTimeCtr: {  
+                startTime: '',  
+                endTime: ''  
+            }  
+        },  
+        ready: function() {  
+            //  
+        },  
+        methods: {  
+            queryTrendData: function(){  
+                //do some here  
+            }  
+        },  
+        watch: {  
+            'trendQueryTimeCtr.startTime': 'queryTrendData',  
+            'trendQueryTimeCtr.endTime': 'queryTrendData'  
+        }  
+      
+    });  
+```
