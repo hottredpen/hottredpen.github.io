@@ -254,6 +254,260 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/11/03/GitBash修改默认打开之后的路径/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/03/GitBash修改默认打开之后的路径/" itemprop="url">GitBash修改默认打开之后的路径</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T08:58:26+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>在公司windows下用gitbash，每次打开都要切换到D盘指定目录，非常费时，网上搜了一下果真有对应方法</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://blog.csdn.net/zzfenglin/article/details/54646541" target="_blank" rel="external">http://blog.csdn.net/zzfenglin/article/details/54646541</a></p>
+<h4 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h4><p>在“Git Bash”快捷方式上点击鼠标右键，然后选择“属性”，会弹出如下截图的提示框：</p>
+<p><img src="http://img.blog.csdn.net/20170121165353158"></p>
+<p>我们可以看到在“目标”后面的输入框中有操作的命令，在命令的最后是“–cd-to-home”，就是这条命令在快捷方式打开的时候切换到“/c/Users/Administrator”路径了。</p>
+<p>假如，我们想把默认路径修改为“D:\android_workspace”，那我们需要操作两步：</p>
+<p>1.将“目录”后面输入框中命令结尾部分去掉，即删掉“–cd-to-home”。</p>
+<p>2.将“起始位置”后面的输入框中的内容修改为我们想要的默认路径“D:\android_workspace”（注意：这个路径是根据你自己代码工程的位置而定的）</p>
+<p>修改之后的操作截图如下：</p>
+<p><img src="http://img.blog.csdn.net/20170121165423783"></p>
+<p>修改之后，点击“确定”，然后重新打开“Git Bash”，就会自动切换到我们想要的路径</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/11/01/git提交请求免输入git服务器密码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/01/git提交请求免输入git服务器密码/" itemprop="url">git提交请求免输入git服务器密码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T08:50:58+08:00">
+                2017-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>每次百度这内容，都要话费我不少时间</p>
+<h4 id="客户端初始化"><a href="#客户端初始化" class="headerlink" title="客户端初始化"></a>客户端初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;yourname&quot;  </div><div class="line">git config --global user.email &quot;your@email.com&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;XXX@company.com&quot;</div></pre></td></tr></table></figure>
+<p>在git服务器下的git主目录下面的.ssh文件下添加（修改）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">authorized_keys</div></pre></td></tr></table></figure></p>
+<p>重新启动sshd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service sshd restart</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/11/01/记一次在vue中使用axios，参数没有序列化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -332,6 +586,345 @@
 <p><img src="http://s.kouss.com/wp-content/uploads/2017/01/f413b81288.png"></p>
 <p>这个Form Data后台取不到数据，正常的Form Data数据应该是key：val<br>最终解决方法：使用qs</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var qs = require(&apos;qs&apos;)</div><div class="line">Vue.prototype.$http = axios.create(&#123;</div><div class="line">    baseURL: &apos;http://chaozhi.hk&apos;,</div><div class="line">    timeout: 10000,</div><div class="line">    headers: &#123;&apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded&apos;&#125;,</div><div class="line">    transformRequest: [function (data) &#123;</div><div class="line">        data = qs.stringify(data)</div><div class="line">        return data</div><div class="line">    &#125;]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/27/vue选项生命周期钩子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/27/vue选项生命周期钩子/" itemprop="url">vue选项生命周期钩子</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T13:45:00+08:00">
+                2017-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="生命周期钩子"><a href="#生命周期钩子" class="headerlink" title="生命周期钩子"></a>生命周期钩子</h3><p>所有的生命周期钩子自动绑定 this 上下文到实例中，因此你可以访问数据，对属性和方法进行运算。这意味着 你不能使用箭头函数来定义一个生命周期方法 (例如 created: () =&gt; this.fetchTodos())。这是因为箭头函数绑定了父上下文，因此 this 与你期待的 Vue 实例不同，this.fetchTodos 的行为未定义。<br><img src="https://cn.vuejs.org/images/lifecycle.png"></p>
+<h4 id="beforeCreate"><a href="#beforeCreate" class="headerlink" title="beforeCreate"></a>beforeCreate</h4><pre><code>类型：Function
+</code></pre><p>在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。</p>
+<h4 id="created"><a href="#created" class="headerlink" title="created"></a>created</h4><p>类型：Function</p>
+<p>在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。</p>
+<h4 id="beforeMount"><a href="#beforeMount" class="headerlink" title="beforeMount"></a>beforeMount</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>在挂载开始之前被调用：相关的 render 函数首次被调用。<br>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。如果 root 实例挂载了一个文档内元素，当 mounted 被调用时 vm.$el 也在文档内。</p>
+<p>注意 mounted 不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用 vm.$nextTick 替换掉 mounted：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mounted: function () &#123;</div><div class="line">      this.$nextTick(function () &#123;</div><div class="line">        // Code that will run only after the</div><div class="line">        // entire view has been rendered</div><div class="line">      &#125;)</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>该钩子在服务器端渲染期间不被调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mounted () &#123;</div><div class="line">    this.$nextTick(() =&gt; &#123;</div><div class="line">        var dataComeinBar = echarts.init(document.getElementById(&apos;data_comein_bar&apos;));</div><div class="line"></div><div class="line">        var option = &#123;</div><div class="line">            ......</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        dataComeinBar.setOption(option);</div><div class="line">        window.addEventListener(&apos;resize&apos;, function () &#123;</div><div class="line">            dataComeinBar.resize();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="beforeUpdate"><a href="#beforeUpdate" class="headerlink" title="beforeUpdate"></a>beforeUpdate</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。</p>
+<p>你可以在这个钩子中进一步地更改状态，这不会触发附加的重渲染过程。</p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="updated"><a href="#updated" class="headerlink" title="updated"></a>updated</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。</p>
+<p>当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态。如果要相应状态改变，通常最好使用计算属性或 watcher 取而代之。</p>
+<p>注意 updated 不会承诺所有的子组件也都一起被重绘。如果你希望等到整个视图都重绘完毕，可以用 vm.$nextTick 替换掉 updated：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">updated: function () &#123;</div><div class="line">  this.$nextTick(function () &#123;</div><div class="line">    // Code that will run only after the</div><div class="line">    // entire view has been re-rendered</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="activated"><a href="#activated" class="headerlink" title="activated"></a>activated</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>keep-alive 组件激活时调用。</p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="deactivated"><a href="#deactivated" class="headerlink" title="deactivated"></a>deactivated</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>keep-alive 组件停用时调用。</p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="beforeDestroy"><a href="#beforeDestroy" class="headerlink" title="beforeDestroy"></a>beforeDestroy</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>实例销毁之前调用。在这一步，实例仍然完全可用。</p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="destroyed"><a href="#destroyed" class="headerlink" title="destroyed"></a>destroyed</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="errorCaptured"><a href="#errorCaptured" class="headerlink" title="errorCaptured"></a>errorCaptured</h4><p>2.5.0+ 新增</p>
+<p>类型：(err: Error, vm: Component, info: string) =&gt; ?boolean</p>
+<p>详细：</p>
+<p>当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/27/vue指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/27/vue指令/" itemprop="url">vue指令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T08:16:58+08:00">
+                2017-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="v-text"><a href="#v-text" class="headerlink" title="v-text"></a>v-text</h4><p>预期：string</p>
+<p>更新元素的 textContent。如果要更新部分的 textContent ，需要使用  插值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;span v-text=&quot;msg&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;!-- 和下面的一样 --&gt;</div><div class="line">&lt;span&gt;&#123;&#123;msg&#125;&#125;&lt;/span&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-html"><a href="#v-html" class="headerlink" title="v-html"></a>v-html</h4><p>预期：string</p>
+<p>更新元素的 innerHTML 。注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译 。如果试图使用 v-html 组合模板，可以重新考虑是否通过使用组件来替代。</p>
+<p>在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 XSS 攻击。只在可信内容上使用 v-html，永不用在用户提交的内容上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-html=&quot;html&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h4><p>预期：any</p>
+<p>不同的是带有 v-show 的元素始终会被渲染并保留在 DOM 中。v-show 只是简单地切换元素的 CSS 属性 display。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h4><p>预期：any</p>
+<h4 id="v-else"><a href="#v-else" class="headerlink" title="v-else"></a>v-else</h4><h4 id="v-else-if"><a href="#v-else-if" class="headerlink" title="v-else-if"></a>v-else-if</h4><p>预期：any</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div v-if=&quot;Math.random() &gt; 0.5&quot;&gt;</div><div class="line">  Now you see me</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else&gt;</div><div class="line">  Now you don&apos;t</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div v-if=&quot;type === &apos;A&apos;&quot;&gt;</div><div class="line">  A</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else-if=&quot;type === &apos;B&apos;&quot;&gt;</div><div class="line">  B</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else-if=&quot;type === &apos;C&apos;&quot;&gt;</div><div class="line">  C</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else&gt;</div><div class="line">  Not A/B/C</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h4><p>预期：Array | Object | number | string</p>
+<p>基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 alias in expression ，为当前遍历的元素提供别名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div v-for=&quot;item in items&quot;&gt;</div><div class="line">  &#123;&#123; item.text &#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>另外也可以为数组索引指定别名 (或者用于对象的键)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div v-for=&quot;(item, index) in items&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div v-for=&quot;(val, key) in object&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div v-for=&quot;(val, key, index) in object&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h4><p>缩写：@    【注意可缩写】</p>
+<p>修饰符：</p>
+<pre><code>.stop - 调用 event.stopPropagation()。
+.prevent - 调用 event.preventDefault()。
+.capture - 添加事件侦听器时使用 capture 模式。
+.self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
+.{keyCode | keyAlias} - 只当事件是从特定键触发时才触发回调。
+.native - 监听组件根元素的原生事件。
+.once - 只触发一次回调。
+.left - (2.2.0) 只当点击鼠标左键时触发。
+.right - (2.2.0) 只当点击鼠标右键时触发。
+.middle - (2.2.0) 只当点击鼠标中键时触发。
+.passive - (2.3.0) 以 { passive: true } 模式添加侦听器
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 方法处理器 --&gt;</div><div class="line">&lt;button v-on:click=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 对象语法 (2.4.0+) --&gt;</div><div class="line">&lt;button v-on=&quot;&#123; mousedown: doThis, mouseup: doThat &#125;&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 内联语句 --&gt;</div><div class="line">&lt;button v-on:click=&quot;doThat(&apos;hello&apos;, $event)&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 缩写 --&gt;</div><div class="line">&lt;button @click=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 停止冒泡 --&gt;</div><div class="line">&lt;button @click.stop=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 阻止默认行为 --&gt;</div><div class="line">&lt;button @click.prevent=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 阻止默认行为，没有表达式 --&gt;</div><div class="line">&lt;form @submit.prevent&gt;&lt;/form&gt;</div><div class="line">&lt;!--  串联修饰符 --&gt;</div><div class="line">&lt;button @click.stop.prevent=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 键修饰符，键别名 --&gt;</div><div class="line">&lt;input @keyup.enter=&quot;onEnter&quot;&gt;</div><div class="line">&lt;!-- 键修饰符，键代码 --&gt;</div><div class="line">&lt;input @keyup.13=&quot;onEnter&quot;&gt;</div><div class="line">&lt;!-- 点击回调只会触发一次 --&gt;</div><div class="line">&lt;button v-on:click.once=&quot;doThis&quot;&gt;&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p>在子组件上监听自定义事件 (当子组件触发“my-event”时将调用事件处理器)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;my-component @my-event=&quot;handleThis&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 内联语句 --&gt;</div><div class="line">&lt;my-component @my-event=&quot;handleThis(123, $event)&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 组件中的原生事件 --&gt;</div><div class="line">&lt;my-component @click.native=&quot;onClick&quot;&gt;&lt;/my-component&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h4><p>缩写：:    【注意可缩写】<br>预期：any (with argument) | Object (without argument)</p>
+<p>修饰符：</p>
+<pre><code>.prop - 被用于绑定 DOM 属性 (property)。(差别在哪里？)
+.camel - (2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)
+.sync (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 v-on 侦听器。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 绑定一个属性 --&gt;</div><div class="line">&lt;img v-bind:src=&quot;imageSrc&quot;&gt;</div><div class="line">&lt;!-- 缩写 --&gt;</div><div class="line">&lt;img :src=&quot;imageSrc&quot;&gt;</div><div class="line">&lt;!-- 内联字符串拼接 --&gt;</div><div class="line">&lt;img :src=&quot;&apos;/path/to/images/&apos; + fileName&quot;&gt;</div><div class="line">&lt;!-- class 绑定 --&gt;</div><div class="line">&lt;div :class=&quot;&#123; red: isRed &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :class=&quot;[classA, classB]&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :class=&quot;[classA, &#123; classB: isB, classC: isC &#125;]&quot;&gt;</div><div class="line">&lt;!-- style 绑定 --&gt;</div><div class="line">&lt;div :style=&quot;&#123; fontSize: size + &apos;px&apos; &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :style=&quot;[styleObjectA, styleObjectB]&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- 绑定一个有属性的对象 --&gt;</div><div class="line">&lt;div v-bind=&quot;&#123; id: someProp, &apos;other-attr&apos;: otherProp &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- 通过 prop 修饰符绑定 DOM 属性 --&gt;</div><div class="line">&lt;div v-bind:text-content.prop=&quot;text&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- prop 绑定。“prop”必须在 my-component 中声明。--&gt;</div><div class="line">&lt;my-component :prop=&quot;someThing&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 通过 $props 将父组件的 props 一起传给子组件 --&gt;</div><div class="line">&lt;child-component v-bind=&quot;$props&quot;&gt;&lt;/child-component&gt;</div><div class="line">&lt;!-- XLink --&gt;</div><div class="line">&lt;svg&gt;&lt;a :xlink:special=&quot;foo&quot;&gt;&lt;/a&gt;&lt;/svg&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h4><p>预期：随表单控件类型不同而不同。</p>
+<p>限制：</p>
+<pre><code>&lt;input&gt;
+&lt;select&gt;
+&lt;textarea&gt;
+components
+</code></pre><p>修饰符：</p>
+<pre><code>.lazy - 取代 input 监听 change 事件
+.number - 输入字符串转为数字
+.trim - 输入首尾空格过滤
+</code></pre><h4 id="v-pre"><a href="#v-pre" class="headerlink" title="v-pre"></a>v-pre</h4><p>用法：</p>
+<p>跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。</p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;span v-pre&gt;&#123;&#123; this will not be compiled &#125;&#125;&lt;/span&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="v-cloak"><a href="#v-cloak" class="headerlink" title="v-cloak"></a>v-cloak</h4><p>用法：</p>
+<p>这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。</p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[v-cloak] &#123;</div><div class="line">  display: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div v-cloak&gt;</div><div class="line">  &#123;&#123; message &#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">不会显示，直到编译结束。</div></pre></td></tr></table></figure></p>
+<h4 id="v-once"><a href="#v-once" class="headerlink" title="v-once"></a>v-once</h4><p>只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 单个元素 --&gt;</div><div class="line">&lt;span v-once&gt;This will never change: &#123;&#123;msg&#125;&#125;&lt;/span&gt;</div><div class="line">&lt;!-- 有子元素 --&gt;</div><div class="line">&lt;div v-once&gt;</div><div class="line">  &lt;h1&gt;comment&lt;/h1&gt;</div><div class="line">  &lt;p&gt;&#123;&#123;msg&#125;&#125;&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;!-- 组件 --&gt;</div><div class="line">&lt;my-component v-once :comment=&quot;msg&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- `v-for` 指令--&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li v-for=&quot;i in list&quot; v-once&gt;&#123;&#123;i&#125;&#125;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+
           
         
       
@@ -461,6 +1054,10 @@
 <h3 id="propsData"><a href="#propsData" class="headerlink" title="propsData"></a>propsData</h3><p>简单理解:创建实例时传递 props。主要作用是方便测试。(无父级时)</p>
 <h3 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h3><p>简单理解：computed，计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。不过计算属性也用函数来替代。（动态变量）</p>
 <h3 id="methods"><a href="#methods" class="headerlink" title="methods"></a>methods</h3><p> methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。</p>
+<h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><p>简单理解：监听data里的值的变化</p>
+<p>官方例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">var vm = new Vue(&#123;</div><div class="line">  data: &#123;</div><div class="line">    a: 1,</div><div class="line">    b: 2,</div><div class="line">    c: 3,</div><div class="line">    d: 4</div><div class="line">  &#125;,</div><div class="line">  watch: &#123;</div><div class="line">    a: function (val, oldVal) &#123;</div><div class="line">      console.log(&apos;new: %s, old: %s&apos;, val, oldVal)</div><div class="line">    &#125;,</div><div class="line">    // 方法名</div><div class="line">    b: &apos;someMethod&apos;,</div><div class="line">    // 深度 watcher</div><div class="line">    c: &#123;</div><div class="line">      handler: function (val, oldVal) &#123; /* ... */ &#125;,</div><div class="line">      deep: true</div><div class="line">    &#125;,</div><div class="line">    // 该回调将会在侦听开始之后被立即调用</div><div class="line">    d: &#123;</div><div class="line">      handler: function (val, oldVal) &#123; /* ... */ &#125;,</div><div class="line">      immediate: true</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">vm.a = 2 // =&gt; new: 2, old: 1</div></pre></td></tr></table></figure>
+<p>一个时间选择器更改的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var v_assetManage_controller = new Vue(&#123;  </div><div class="line">    el: &apos;.LSee-index&apos;,  </div><div class="line">    data: &#123;  </div><div class="line">        trendQueryTimeCtr: &#123;  </div><div class="line">            startTime: &apos;&apos;,  </div><div class="line">            endTime: &apos;&apos;  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    ready: function() &#123;  </div><div class="line">        //  </div><div class="line">    &#125;,  </div><div class="line">    methods: &#123;  </div><div class="line">        queryTrendData: function()&#123;  </div><div class="line">            //do some here  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    watch: &#123;  </div><div class="line">        &apos;trendQueryTimeCtr.startTime&apos;: &apos;queryTrendData&apos;,  </div><div class="line">        &apos;trendQueryTimeCtr.endTime&apos;: &apos;queryTrendData&apos;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 
           
         
@@ -1036,512 +1633,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/22/在mac上通过Homebrew安装redis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/22/在mac上通过Homebrew安装redis/" itemprop="url">在mac上通过Homebrew安装redis</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T14:10:57+08:00">
-                2017-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install redis</div></pre></td></tr></table></figure>
-<p>安装完成后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">To have launchd start redis now and restart at login:</div><div class="line">  brew services start redis</div><div class="line">  Or, if you don&apos;t want/need a background service you can just run:</div><div class="line">    redis-server /usr/local/etc/redis.conf</div><div class="line">    ==&gt; Summary</div><div class="line">    🍺  /usr/local/Cellar/redis/4.0.2: 11 files, 2.7MB, built in 23 seconds</div></pre></td></tr></table></figure></p>
-<p>执行提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew services start redis</div></pre></td></tr></table></figure></p>
-<p>完成后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Cloning into &apos;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services&apos;...</div><div class="line">remote: Counting objects: 12, done.</div><div class="line">remote: Compressing objects: 100% (8/8), done.</div><div class="line">remote: Total 12 (delta 0), reused 7 (delta 0), pack-reused 0</div><div class="line">Unpacking objects: 100% (12/12), done.</div><div class="line">Checking connectivity... done.</div><div class="line">Tapped 0 formulae (39 files, 53.5KB)</div><div class="line">==&gt; Successfully started `redis` (label: homebrew.mxcl.redis)</div></pre></td></tr></table></figure></p>
-<p>ok~redis 已经启动</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/07/mac下安装python/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/07/mac下安装python/" itemprop="url">mac下安装python</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T16:29:03+08:00">
-                2017-10-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>知乎上说，不要在mac自带的python里折腾，怕折腾蹦了影响系统</p>
-<p>用brew 安装，且自带pip</p>
-<h3 id="安装python2-amp-python3"><a href="#安装python2-amp-python3" class="headerlink" title="安装python2 &amp; python3"></a>安装python2 &amp; python3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python3</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">This formula installs a python2 executable to /usr/local/bin.</div><div class="line">If you wish to have this formula&apos;s python executable in your PATH then add</div><div class="line">the following to ~/.zshrc:</div><div class="line">  export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</div><div class="line"></div><div class="line">  Pip and setuptools have been installed. To update them</div><div class="line">    pip2 install --upgrade pip setuptools</div><div class="line"></div><div class="line">    You can install Python packages with</div><div class="line">      pip2 install &lt;package&gt;</div><div class="line"></div><div class="line">      They will install into the site-package directory</div><div class="line">        /usr/local/lib/python2.7/site-packages</div><div class="line"></div><div class="line">	See: https://docs.brew.sh/Homebrew-and-Python.html</div></pre></td></tr></table></figure>
-<h4 id="设置PATH"><a href="#设置PATH" class="headerlink" title="设置PATH"></a>设置PATH</h4><p>vim ~/.zshrc 加入<br><code>export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</code></p>
-<h4 id="验证PATH设置成功"><a href="#验证PATH设置成功" class="headerlink" title="验证PATH设置成功"></a>验证PATH设置成功</h4><p>输入<code>which python</code><br>如果显示 <code>/usr/local/opt/python/libexec/bin/python</code>则说明成功</p>
-<h4 id="如何使用系统的python"><a href="#如何使用系统的python" class="headerlink" title="如何使用系统的python"></a>如何使用系统的python</h4><p>如果有需要想使用一下系统的Python，输入<code>/usr/bin/python</code>即可</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/07/python之禅/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/07/python之禅/" itemprop="url">python之禅</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T15:12:09+08:00">
-                2017-10-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>虽然python不是我的入门语言，之前一直抵触它的缩进语法，但通过《python宝典》的入门学习，发现python成为当前最热门的语言不是偶然。</p>
-<p>python社区和语言一起成长，融合了多种语言的特性及优点。</p>
-<p>刚试着用import this 查看了python之禅</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">The Zen of Python, by Tim Peters</div><div class="line"></div><div class="line">Beautiful is better than ugly.</div><div class="line">Explicit is better than implicit.</div><div class="line">Simple is better than complex.</div><div class="line">Complex is better than complicated.</div><div class="line">Flat is better than nested.</div><div class="line">Sparse is better than dense.</div><div class="line">Readability counts.</div><div class="line">Special cases aren&apos;t special enough to break the rules.</div><div class="line">Although practicality beats purity.</div><div class="line">Errors should never pass silently.</div><div class="line">Unless explicitly silenced.</div><div class="line">In the face of ambiguity, refuse the temptation to guess.</div><div class="line">There should be one-- and preferably only one --obvious way to do it.</div><div class="line">Although that way may not be obvious at first unless you&apos;re Dutch.</div><div class="line">Now is better than never.</div><div class="line">Although never is often better than *right* now.</div><div class="line">If the implementation is hard to explain, it&apos;s a bad idea.</div><div class="line">If the implementation is easy to explain, it may be a good idea.</div><div class="line">Namespaces are one honking great idea -- let&apos;s do more of those!</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">python之禅 by Tim Peters</div><div class="line"> </div><div class="line"> 优美胜于丑陋（Python 以编写优美的代码为目标）</div><div class="line"> 明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）</div><div class="line"> 简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）</div><div class="line"> 复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）</div><div class="line"> 扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）</div><div class="line"> 间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）</div><div class="line"> 可读性很重要（优美的代码是可读的）</div><div class="line"> 即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）</div><div class="line">  </div><div class="line">不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 except:pass 风格的代码）</div><div class="line">   </div><div class="line">当存在多种可能，不要尝试去猜测</div><div class="line"></div><div class="line">而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）</div><div class="line"></div><div class="line">虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）</div><div class="line">    </div><div class="line">做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）</div><div class="line">     </div><div class="line">如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）</div><div class="line">      </div><div class="line">命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）</div></pre></td></tr></table></figure>
-<p>上升到开发哲学上，任何语言都是适用的</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/07/为我的x感到骄傲/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/07/为我的x感到骄傲/" itemprop="url">为我的x感到骄傲</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T09:09:18+08:00">
-                2017-10-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>x—–代表一切可以感恩和赞颂的“人”或“事”或“自己”</p>
-<p>某天，我发现自己一直以来都很少去感恩别人，包括自己所取得的一些小成就，也是被自己所否定不认可，总觉得自己（或别人）做的还是不够好，不够完美。可完美的事情真得存在吗？</p>
-<p>感恩自己身边的人和事，才会发现生活原来是如此的美。自然的美，和谐的美，错误的美，成功的美……</p>
-<p>想象着，自己和父母都存在如此的心声，那将是多么幸福的事：</p>
-<p>为我的儿子感到骄傲</p>
-<p>为我的老婆感到骄傲</p>
-<p>为我的公司感到骄傲</p>
-<p>为我的项目感到骄傲</p>
-<p>为我的抉择感到骄傲</p>
-<p>……</p>
-<p>从今天起，试着去骄傲吧!</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1592,7 +1683,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1605,7 +1696,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="简客-记忆">
 <meta property="og:description" content="data初级理解：对象必须是纯粹的对象(含有零个或多个的key/value对)，这里面的数据最好都是在视图层显示的数据（静态变量）中级理解：高级理解： 其他：如果说不是在视图层展示的变量。可以定义在外面或者放在vm对象上。 12345678910111213let abc = &amp;apos;&amp;apos;  export default &amp;#123;      data() &amp;#123;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-26T23:13:05.000Z">
+<meta property="og:updated_time" content="2017-11-05T09:16:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue选项数据">
 <meta name="twitter:description" content="data初级理解：对象必须是纯粹的对象(含有零个或多个的key/value对)，这里面的数据最好都是在视图层显示的数据（静态变量）中级理解：高级理解： 其他：如果说不是在视图层展示的变量。可以定义在外面或者放在vm对象上。 12345678910111213let abc = &amp;apos;&amp;apos;  export default &amp;#123;      data() &amp;#123;">
@@ -333,6 +333,10 @@
 <h3 id="propsData"><a href="#propsData" class="headerlink" title="propsData"></a>propsData</h3><p>简单理解:创建实例时传递 props。主要作用是方便测试。(无父级时)</p>
 <h3 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h3><p>简单理解：computed，计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。不过计算属性也用函数来替代。（动态变量）</p>
 <h3 id="methods"><a href="#methods" class="headerlink" title="methods"></a>methods</h3><p> methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。</p>
+<h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><p>简单理解：监听data里的值的变化</p>
+<p>官方例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">var vm = new Vue(&#123;</div><div class="line">  data: &#123;</div><div class="line">    a: 1,</div><div class="line">    b: 2,</div><div class="line">    c: 3,</div><div class="line">    d: 4</div><div class="line">  &#125;,</div><div class="line">  watch: &#123;</div><div class="line">    a: function (val, oldVal) &#123;</div><div class="line">      console.log(&apos;new: %s, old: %s&apos;, val, oldVal)</div><div class="line">    &#125;,</div><div class="line">    // 方法名</div><div class="line">    b: &apos;someMethod&apos;,</div><div class="line">    // 深度 watcher</div><div class="line">    c: &#123;</div><div class="line">      handler: function (val, oldVal) &#123; /* ... */ &#125;,</div><div class="line">      deep: true</div><div class="line">    &#125;,</div><div class="line">    // 该回调将会在侦听开始之后被立即调用</div><div class="line">    d: &#123;</div><div class="line">      handler: function (val, oldVal) &#123; /* ... */ &#125;,</div><div class="line">      immediate: true</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">vm.a = 2 // =&gt; new: 2, old: 1</div></pre></td></tr></table></figure>
+<p>一个时间选择器更改的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var v_assetManage_controller = new Vue(&#123;  </div><div class="line">    el: &apos;.LSee-index&apos;,  </div><div class="line">    data: &#123;  </div><div class="line">        trendQueryTimeCtr: &#123;  </div><div class="line">            startTime: &apos;&apos;,  </div><div class="line">            endTime: &apos;&apos;  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    ready: function() &#123;  </div><div class="line">        //  </div><div class="line">    &#125;,  </div><div class="line">    methods: &#123;  </div><div class="line">        queryTrendData: function()&#123;  </div><div class="line">            //do some here  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    watch: &#123;  </div><div class="line">        &apos;trendQueryTimeCtr.startTime&apos;: &apos;queryTrendData&apos;,  </div><div class="line">        &apos;trendQueryTimeCtr.endTime&apos;: &apos;queryTrendData&apos;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -373,8 +377,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/01/记一次在vue中使用axios，参数没有序列化/" rel="prev" title="记一次在vue中使用axios，参数没有序列化">
-                记一次在vue中使用axios，参数没有序列化 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/27/vue指令/" rel="prev" title="vue指令">
+                vue指令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -450,7 +454,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -463,7 +467,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -505,7 +509,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#data"><span class="nav-number">1.</span> <span class="nav-text">data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#props"><span class="nav-number">2.</span> <span class="nav-text">props</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#propsData"><span class="nav-number">3.</span> <span class="nav-text">propsData</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed"><span class="nav-number">4.</span> <span class="nav-text">computed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#methods"><span class="nav-number">5.</span> <span class="nav-text">methods</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#data"><span class="nav-number">1.</span> <span class="nav-text">data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#props"><span class="nav-number">2.</span> <span class="nav-text">props</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#propsData"><span class="nav-number">3.</span> <span class="nav-text">propsData</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed"><span class="nav-number">4.</span> <span class="nav-text">computed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#methods"><span class="nav-number">5.</span> <span class="nav-text">methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#watch"><span class="nav-number">6.</span> <span class="nav-text">watch</span></a></li></ol></div>
             
 
           </div>
