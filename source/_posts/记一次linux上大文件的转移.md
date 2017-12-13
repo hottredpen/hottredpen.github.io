@@ -56,3 +56,12 @@ Adding the option “-l 8192″ limits the scp session bandwith up to 8192 Kbit/
 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp
 ```
 开始速度也有6M/s，后面速度一直维持在1M/s，中间无`stalled`
+
+#### 5、解压
+```
+tar -xvf kod.tar
+```
+或者
+```
+tar -zxvf kod.tar.gz
+```
