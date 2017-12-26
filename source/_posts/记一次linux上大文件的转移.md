@@ -51,11 +51,15 @@ Adding the option “-l 8192″ limits the scp session bandwith up to 8192 Kbit/
 ```
 
 #### 4、解决问题
-在原有的命令行上加上了` -l 8192 `
+在原有的命令行上加上了` -l 8192 `可以维持在1M/s
 ```
 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp
 ```
+
 开始速度也有6M/s，后面速度一直维持在1M/s，中间无`stalled`
+
+
+如果是` -l 16000 `则维持在2M/s，以此类推
 
 #### 5、解压
 ```
@@ -65,3 +69,32 @@ tar -xvf kod.tar
 ```
 tar -zxvf kod.tar.gz
 ```
+
+
+#### 6、补充
+因为转移的文件有很多，而且都很大，我们不可能一直开者等待它传完，这就需要后台运行
+
+先输入密码进行传输
+然后用`ctrl+z`,将当前进程挂起到后台暂停运行，执行一些别的操作
+然后用 `bg` 来将挂起的进程放在后台(也可以用 `fg` 来将挂起的进程重新放回前台)继续运行
+```
+[root@pvcent107 build]# scp -l 8192 ./kod.tar root@192.168.60.168:/tmp
+---------ctrl+zx
+[1]+  Stopped                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp
+[root@pvcent107 build]# bg %1
+[1]+ scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &
+[root@pvcent107 build]# jobs
+[1]+  Running                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &
+[root@pvcent107 build]# disown -h %1
+[root@pvcent107 build]# ps -ef |grep kod
+root      5790  5577  1 10:04 pts/3    00:00:00 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp
+root      5824  5577  0 10:05 pts/3    00:00:00 grep kod
+```
+
+#### 7、注意
+有时jobs会有多个，注意自己的文件大小是否正常，我就别坑了1次，没传输完成（完成了一个jobs），以为完成了就进行解压缩了。
+
+
+#### 7、参考
+
+https://linux.cn/article-7170-1.html
