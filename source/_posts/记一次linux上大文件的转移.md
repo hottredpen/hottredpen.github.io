@@ -95,6 +95,46 @@ root      5824  5577  0 10:05 pts/3    00:00:00 grep kod
 有时jobs会有多个，注意自己的文件大小是否正常，我就别坑了1次，没传输完成（完成了一个jobs），以为完成了就进行解压缩了。
 
 
-#### 7、参考
+#### 8、其他
+linux tar 后台运行
+ 例：又一个70G的东西我需要把她解压缩或者是压缩，我不可能老是开着终端，如果老是开着终端，如果传到一半断一下电或者断一下网，你就玩完了，所以我们可以把她放到终端运行：
+
+```
+@#：nohup tar -zxvf /var/www/html.tar.gz & 
+```
+这个命令会产生一个nohup的日志
+
+#### 9、200G个文件打包与解压
+200G的文件需要切分
+
+
+```
+nohup tar -cjf - pinkephp/ |split -b 5m - pinkephp.tar.bz2. >/dev/null 2>&1 &
+```
+会生成
+```
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.aa
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.ab
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.ac
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.ad
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.ae
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.af
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.ag
+```
+后面默认2位，字符逐渐增加
+
+
+解压
+```
+nohup cat pinkephp.tar.bz2.* | tar -xj &
+```
+
+
+
+#### 10、参考
 
 https://linux.cn/article-7170-1.html
+
+http://blog.csdn.net/tdstds/article/details/24870535
+
+http://blog.csdn.net/eroswang/article/details/5555415/
