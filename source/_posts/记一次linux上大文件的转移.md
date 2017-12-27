@@ -109,7 +109,7 @@ linux tar 后台运行
 
 
 ```
-nohup tar -cjf - pinkephp/ |split -b 5m - pinkephp.tar.bz2. >/dev/null 2>&1 &
+nohup tar -cjf - pinkephp/ |split -b 10000m - pinkephp.tar.bz2. >/dev/null 2>&1 &
 ```
 会生成
 ```
