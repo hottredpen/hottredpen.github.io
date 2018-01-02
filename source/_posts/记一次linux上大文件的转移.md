@@ -135,6 +135,7 @@ nohup tar -cjf kod.tar.bz2 ./kod >/dev/null 2>&1 &
 
 #### 400G的传输
 scp 已经无法满足，因为万一中间来个服务器重启，或者其他因素那over了
+网上说用`rsync`
 ```
 rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.14.156:/data/ 
 ```
