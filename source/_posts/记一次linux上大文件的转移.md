@@ -104,34 +104,60 @@ linux tar 后台运行
 ```
 这个命令会产生一个nohup的日志
 
-#### 9、200G个文件打包与解压
-200G的文件需要切分
+#### 9、400G个文件打包与解压
 
+之前想着。。。400G的文件需要切分
 
+-，-！可是用了下面的命令进行切分时，却始终没完整的进行全部打包过，好几次我都相信我的总包才80G
 ```
-nohup tar -cjf - pinkephp/ |split -b 10000m - pinkephp.tar.bz2. >/dev/null 2>&1 &
+nohup tar -cjf - kod/ |split -b 10000m - kod.tar.bz2. >/dev/null 2>&1 &
 ```
-会生成
+它会生成
 ```
--rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.aa
--rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.ab
--rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.ac
--rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.ad
--rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.ae
--rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.af
--rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 pinkephp.tar.bz2.ag
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.aa
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ab
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ac
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ad
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ae
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.af
+-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ag
 ```
 后面默认2位，字符逐渐增加
-
-
-解压
+它的解压
 ```
 nohup cat pinkephp.tar.bz2.* | tar -xj &
 ```
+最后用了整包打包
+```
+nohup tar -cjf kod.tar.bz2 ./kod >/dev/null 2>&1 &
+```
+打完包发现才有400G+.......我的天，整整打包了一天一夜
+
+#### 400G的传输
+scp 已经无法满足，因为万一中间来个服务器重启，或者其他因素那over了
+```
+rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.14.156:/data/ 
+```
+然后输入密码
+再ctrl+z 暂停
+再bg %1  放入后台（假设当前后台允许索引为1）
+然后用jobs查看
+如果你当前退出过当前终端，jobs已经无法查看到后台运行的进程，只能用ps
+```
+ps -ef |grep kod
+```
+会有如下的显示
+```
+root     175100 174758 47 08:10 pts/2    00:15:13 rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.91.176:/data/
+root     183245 174758  0 08:42 pts/2    00:00:00 grep --color=auto kod
+```
+
+#### rsync与scp的差异
+用scp时，这边传多少，另一个服务器就显示文件实时大小
+而用rsync时，另一个服务器不实时显示文件大小，只有将这边的进程暂时kill掉，才能知道到底传了多少（可能我这个办法比较粗暴）
 
 
-
-#### 10、参考
+#### 11、参考
 
 https://linux.cn/article-7170-1.html
 
