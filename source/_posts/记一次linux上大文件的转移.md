@@ -109,7 +109,7 @@ nohup tar -cjf kod.tar.bz2 ./kod >/dev/null 2>&1 &
 
 #### 400G的传输
 scp 已经无法满足，因为万一中间来个服务器重启，或者其他因素那over了，那流量可就白白流失了
-网上说用`rsync`
+最后采用了`rsync`
 ```
 rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.14.156:/data/ 
 ```
@@ -127,6 +127,9 @@ root     175100 174758 47 08:10 pts/2    00:15:13 rsync -P --rsh=ssh ./kod_all.t
 root     183245 174758  0 08:42 pts/2    00:00:00 grep --color=auto kod
 ```
 
+其中`00:15:13`指本次断点续传进行的时间。
+当传输了200G以后，这个时间会有好长一段时间是不更新的（作者认为它在寻找上一次的断点，因为文件大了寻找的时间会久一点），如果你这个时候马上关闭总端，很有可能本次传输就没执行，我就被坑了一次，一觉醒来一点就没传。。。
+
 #### rsync与scp的差异
 用scp时，这边传多少，另一个服务器就显示文件实时大小
 而用rsync时，另一个服务器不实时显示文件大小，只有将这边的进程暂时kill掉，才能知道到底传了多少（可能我这个办法比较粗暴）
@@ -140,7 +143,7 @@ nohup tar -xjf ./kod_all.tar.bz2 > /dev/null 2>&1 &
 ```
 其他查看操作同上面
 
-#### 其他，拆分打包（失败了）
+### 其他，拆分打包（失败了）
 
 ```
 nohup tar -cjf - kod/ |split -b 10000m - kod.tar.bz2. >/dev/null 2>&1 &
@@ -161,7 +164,7 @@ nohup tar -cjf - kod/ |split -b 10000m - kod.tar.bz2. >/dev/null 2>&1 &
 nohup cat pinkephp.tar.bz2.* | tar -xj &
 ```
 
-#### 参考
+### 参考
 
 https://linux.cn/article-7170-1.html
 
