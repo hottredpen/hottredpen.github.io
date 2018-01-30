@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2018-01-30T10:05:04.526Z</updated>
+  <updated>2018-01-25T06:41:16.446Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,31 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>测试</title>
-    <link href="http://www.jk-kj.com/2018/01/30/%E6%B5%8B%E8%AF%95/"/>
-    <id>http://www.jk-kj.com/2018/01/30/测试/</id>
-    <published>2018-01-30T10:01:06.000Z</published>
-    <updated>2018-01-30T10:05:04.526Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="是的发生"><a href="#是的发生" class="headerlink" title="是的发生"></a>是的发生</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function()&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>asdfasdf<br>asdfasdf<br>asdfasdf</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;是的发生&quot;&gt;&lt;a href=&quot;#是的发生&quot; class=&quot;headerlink&quot; title=&quot;是的发生&quot;&gt;&lt;/a&gt;是的发生&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
-      
-    
-    </summary>
-    
-    
-      <category term="测试" scheme="http://www.jk-kj.com/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-      <category term="湿哒哒" scheme="http://www.jk-kj.com/tags/%E6%B9%BF%E5%93%92%E5%93%92/"/>
-    
-  </entry>
   
   <entry>
     <title>brew安装mongodb及php mongodb扩展</title>
@@ -515,6 +490,35 @@
       <category term="mac" scheme="http://www.jk-kj.com/tags/mac/"/>
     
       <category term="redis" scheme="http://www.jk-kj.com/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mac下安装python</title>
+    <link href="http://www.jk-kj.com/2017/10/07/mac%E4%B8%8B%E5%AE%89%E8%A3%85python/"/>
+    <id>http://www.jk-kj.com/2017/10/07/mac下安装python/</id>
+    <published>2017-10-07T08:29:03.000Z</published>
+    <updated>2017-10-07T09:00:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>知乎上说，不要在mac自带的python里折腾，怕折腾蹦了影响系统</p><p>用brew 安装，且自带pip</p><h3 id="安装python2-amp-python3"><a href="#安装python2-amp-python3" class="headerlink" title="安装python2 &amp; python3"></a>安装python2 &amp; python3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python3</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">This formula installs a python2 executable to /usr/local/bin.</div><div class="line">If you wish to have this formula&apos;s python executable in your PATH then add</div><div class="line">the following to ~/.zshrc:</div><div class="line">  export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</div><div class="line"></div><div class="line">  Pip and setuptools have been installed. To update them</div><div class="line">    pip2 install --upgrade pip setuptools</div><div class="line"></div><div class="line">    You can install Python packages with</div><div class="line">      pip2 install &lt;package&gt;</div><div class="line"></div><div class="line">      They will install into the site-package directory</div><div class="line">        /usr/local/lib/python2.7/site-packages</div><div class="line"></div><div class="line">See: https://docs.brew.sh/Homebrew-and-Python.html</div></pre></td></tr></table></figure><h4 id="设置PATH"><a href="#设置PATH" class="headerlink" title="设置PATH"></a>设置PATH</h4><p>vim ~/.zshrc 加入<br><code>export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</code></p><h4 id="验证PATH设置成功"><a href="#验证PATH设置成功" class="headerlink" title="验证PATH设置成功"></a>验证PATH设置成功</h4><p>输入<code>which python</code><br>如果显示 <code>/usr/local/opt/python/libexec/bin/python</code>则说明成功</p><h4 id="如何使用系统的python"><a href="#如何使用系统的python" class="headerlink" title="如何使用系统的python"></a>如何使用系统的python</h4><p>如果有需要想使用一下系统的Python，输入<code>/usr/bin/python</code>即可</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;知乎上说，不要在mac自带的python里折腾，怕折腾蹦了影响系统&lt;/p&gt;
+&lt;p&gt;用brew 安装，且自带pip&lt;/p&gt;
+&lt;h3 id=&quot;安装python2-amp-python3&quot;&gt;&lt;a href=&quot;#安装python2-amp-python3&quot; class=&quot;heade
+      
+    
+    </summary>
+    
+    
+      <category term="安装" scheme="http://www.jk-kj.com/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="python" scheme="http://www.jk-kj.com/tags/python/"/>
+    
+      <category term="mac" scheme="http://www.jk-kj.com/tags/mac/"/>
     
   </entry>
   
