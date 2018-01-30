@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2018-01-16T00:27:49.000Z</updated>
+  <updated>2018-01-30T10:05:04.526Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试</title>
+    <link href="http://www.jk-kj.com/2018/01/30/%E6%B5%8B%E8%AF%95/"/>
+    <id>http://www.jk-kj.com/2018/01/30/测试/</id>
+    <published>2018-01-30T10:01:06.000Z</published>
+    <updated>2018-01-30T10:05:04.526Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="是的发生"><a href="#是的发生" class="headerlink" title="是的发生"></a>是的发生</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function()&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>asdfasdf<br>asdfasdf<br>asdfasdf</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;是的发生&quot;&gt;&lt;a href=&quot;#是的发生&quot; class=&quot;headerlink&quot; title=&quot;是的发生&quot;&gt;&lt;/a&gt;是的发生&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+      
+    
+    </summary>
+    
+    
+      <category term="测试" scheme="http://www.jk-kj.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="湿哒哒" scheme="http://www.jk-kj.com/tags/%E6%B9%BF%E5%93%92%E5%93%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>brew安装mongodb及php mongodb扩展</title>
+    <link href="http://www.jk-kj.com/2018/01/25/brew%E5%AE%89%E8%A3%85mongodb%E5%8F%8Aphp-mongodb%E6%89%A9%E5%B1%95/"/>
+    <id>http://www.jk-kj.com/2018/01/25/brew安装mongodb及php-mongodb扩展/</id>
+    <published>2018-01-25T04:59:34.000Z</published>
+    <updated>2018-01-25T06:41:16.446Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>安装某laravel项目</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://old.ruesin.com/system/mac/mac-mongodb-345.html" target="_blank" rel="external">http://old.ruesin.com/system/mac/mac-mongodb-345.html</a></p><h3 id="安装mongodb服务"><a href="#安装mongodb服务" class="headerlink" title="安装mongodb服务"></a>安装mongodb服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install mongodb</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">==&gt; Installing mongodb</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/mongodb-3.4.10.high_sierra.</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring mongodb-3.4.10.high_sierra.bottle.tar.gz</div><div class="line">==&gt; Caveats</div><div class="line">To have launchd start mongodb now and restart at login:</div><div class="line">  brew services start mongodb</div><div class="line">Or, if you don&apos;t want/need a background service you can just run:</div><div class="line">  mongod --config /usr/local/etc/mongod.conf</div><div class="line">==&gt; Summary</div></pre></td></tr></table></figure><h3 id="php-的-mongodb-扩展"><a href="#php-的-mongodb-扩展" class="headerlink" title="php 的 mongodb 扩展"></a>php 的 mongodb 扩展</h3><p>search一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew search mongo</div></pre></td></tr></table></figure></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install php71-mongo</div></pre></td></tr></table></figure><h4 id="安装出错"><a href="#安装出错" class="headerlink" title="安装出错"></a>安装出错</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">NOTICE: PHP message: PHP Warning:  PHP Startup: mongodb: Unable to initialize module</div><div class="line">Module compiled with build ID=API20160303,NTS</div><div class="line">PHP    compiled with build ID=API20160303,NTS,debug</div><div class="line">These options need to match</div><div class="line"> in Unknown on line 0</div><div class="line">&lt;br /&gt;</div><div class="line">&lt;b&gt;Warning&lt;/b&gt;:  PHP Startup: mongodb: Unable to initialize module</div><div class="line">Module compiled with build ID=API20160303,NTS</div><div class="line">PHP    compiled with build ID=API20160303,NTS,debug</div><div class="line">These options need to match</div><div class="line"> in &lt;b&gt;Unknown&lt;/b&gt; on line &lt;b&gt;0&lt;/b&gt;&lt;br /&gt;</div><div class="line">Unknown(0) : Warning - PHP Startup: mongodb: Unable to initialize module</div><div class="line">Module compiled with build ID=API20160303,NTS</div><div class="line">PHP    compiled with build ID=API20160303,NTS,debug</div><div class="line">These options need to match</div></pre></td></tr></table></figure><p>网上搜是需要重新安装编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew reinstall &lt;formulaname&gt; --build-from-source</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;安装某laravel项目&lt;/p&gt;
+&lt;h3 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参
+      
+    
+    </summary>
+    
+    
+      <category term="brew" scheme="http://www.jk-kj.com/tags/brew/"/>
+    
+      <category term="mongodb" scheme="http://www.jk-kj.com/tags/mongodb/"/>
+    
+      <category term="php拓展" scheme="http://www.jk-kj.com/tags/php%E6%8B%93%E5%B1%95/"/>
+    
+  </entry>
   
   <entry>
     <title>如何提取谷歌chrome浏览器的crx插件</title>
@@ -462,62 +515,6 @@
       <category term="mac" scheme="http://www.jk-kj.com/tags/mac/"/>
     
       <category term="redis" scheme="http://www.jk-kj.com/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mac下安装python</title>
-    <link href="http://www.jk-kj.com/2017/10/07/mac%E4%B8%8B%E5%AE%89%E8%A3%85python/"/>
-    <id>http://www.jk-kj.com/2017/10/07/mac下安装python/</id>
-    <published>2017-10-07T08:29:03.000Z</published>
-    <updated>2017-10-07T09:00:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>知乎上说，不要在mac自带的python里折腾，怕折腾蹦了影响系统</p><p>用brew 安装，且自带pip</p><h3 id="安装python2-amp-python3"><a href="#安装python2-amp-python3" class="headerlink" title="安装python2 &amp; python3"></a>安装python2 &amp; python3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python3</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">This formula installs a python2 executable to /usr/local/bin.</div><div class="line">If you wish to have this formula&apos;s python executable in your PATH then add</div><div class="line">the following to ~/.zshrc:</div><div class="line">  export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</div><div class="line"></div><div class="line">  Pip and setuptools have been installed. To update them</div><div class="line">    pip2 install --upgrade pip setuptools</div><div class="line"></div><div class="line">    You can install Python packages with</div><div class="line">      pip2 install &lt;package&gt;</div><div class="line"></div><div class="line">      They will install into the site-package directory</div><div class="line">        /usr/local/lib/python2.7/site-packages</div><div class="line"></div><div class="line">See: https://docs.brew.sh/Homebrew-and-Python.html</div></pre></td></tr></table></figure><h4 id="设置PATH"><a href="#设置PATH" class="headerlink" title="设置PATH"></a>设置PATH</h4><p>vim ~/.zshrc 加入<br><code>export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</code></p><h4 id="验证PATH设置成功"><a href="#验证PATH设置成功" class="headerlink" title="验证PATH设置成功"></a>验证PATH设置成功</h4><p>输入<code>which python</code><br>如果显示 <code>/usr/local/opt/python/libexec/bin/python</code>则说明成功</p><h4 id="如何使用系统的python"><a href="#如何使用系统的python" class="headerlink" title="如何使用系统的python"></a>如何使用系统的python</h4><p>如果有需要想使用一下系统的Python，输入<code>/usr/bin/python</code>即可</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;知乎上说，不要在mac自带的python里折腾，怕折腾蹦了影响系统&lt;/p&gt;
-&lt;p&gt;用brew 安装，且自带pip&lt;/p&gt;
-&lt;h3 id=&quot;安装python2-amp-python3&quot;&gt;&lt;a href=&quot;#安装python2-amp-python3&quot; class=&quot;heade
-      
-    
-    </summary>
-    
-    
-      <category term="安装" scheme="http://www.jk-kj.com/tags/%E5%AE%89%E8%A3%85/"/>
-    
-      <category term="python" scheme="http://www.jk-kj.com/tags/python/"/>
-    
-      <category term="mac" scheme="http://www.jk-kj.com/tags/mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python之禅</title>
-    <link href="http://www.jk-kj.com/2017/10/07/python%E4%B9%8B%E7%A6%85/"/>
-    <id>http://www.jk-kj.com/2017/10/07/python之禅/</id>
-    <published>2017-10-07T07:12:09.000Z</published>
-    <updated>2017-10-07T07:30:41.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>虽然python不是我的入门语言，之前一直抵触它的缩进语法，但通过《python宝典》的入门学习，发现python成为当前最热门的语言不是偶然。</p><p>python社区和语言一起成长，融合了多种语言的特性及优点。</p><p>刚试着用import this 查看了python之禅</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">The Zen of Python, by Tim Peters</div><div class="line"></div><div class="line">Beautiful is better than ugly.</div><div class="line">Explicit is better than implicit.</div><div class="line">Simple is better than complex.</div><div class="line">Complex is better than complicated.</div><div class="line">Flat is better than nested.</div><div class="line">Sparse is better than dense.</div><div class="line">Readability counts.</div><div class="line">Special cases aren&apos;t special enough to break the rules.</div><div class="line">Although practicality beats purity.</div><div class="line">Errors should never pass silently.</div><div class="line">Unless explicitly silenced.</div><div class="line">In the face of ambiguity, refuse the temptation to guess.</div><div class="line">There should be one-- and preferably only one --obvious way to do it.</div><div class="line">Although that way may not be obvious at first unless you&apos;re Dutch.</div><div class="line">Now is better than never.</div><div class="line">Although never is often better than *right* now.</div><div class="line">If the implementation is hard to explain, it&apos;s a bad idea.</div><div class="line">If the implementation is easy to explain, it may be a good idea.</div><div class="line">Namespaces are one honking great idea -- let&apos;s do more of those!</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">python之禅 by Tim Peters</div><div class="line"> </div><div class="line"> 优美胜于丑陋（Python 以编写优美的代码为目标）</div><div class="line"> 明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）</div><div class="line"> 简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）</div><div class="line"> 复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）</div><div class="line"> 扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）</div><div class="line"> 间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）</div><div class="line"> 可读性很重要（优美的代码是可读的）</div><div class="line"> 即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）</div><div class="line">  </div><div class="line">不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 except:pass 风格的代码）</div><div class="line">   </div><div class="line">当存在多种可能，不要尝试去猜测</div><div class="line"></div><div class="line">而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）</div><div class="line"></div><div class="line">虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）</div><div class="line">    </div><div class="line">做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）</div><div class="line">     </div><div class="line">如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）</div><div class="line">      </div><div class="line">命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）</div></pre></td></tr></table></figure><p>上升到开发哲学上，任何语言都是适用的</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;虽然python不是我的入门语言，之前一直抵触它的缩进语法，但通过《python宝典》的入门学习，发现python成为当前最热门的语言不是偶然。&lt;/p&gt;
-&lt;p&gt;python社区和语言一起成长，融合了多种语言的特性及优点。&lt;/p&gt;
-&lt;p&gt;刚试着用import this 查看了
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://www.jk-kj.com/tags/python/"/>
-    
-      <category term="开发哲学" scheme="http://www.jk-kj.com/tags/%E5%BC%80%E5%8F%91%E5%93%B2%E5%AD%A6/"/>
     
   </entry>
   
