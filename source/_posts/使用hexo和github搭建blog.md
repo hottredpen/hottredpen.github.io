@@ -18,7 +18,15 @@ tags:
 
 ![](http://upload-images.jianshu.io/upload_images/1764427-b97c2df83796c007.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-二、点击Respositories，然后New,新建一个仓库，如下图，注意仓库名必须为 你的用户名.github.io，例如我的用户名imwillxue，仓库名为imwillxue.github.io。
+二、点击Respositories，然后New,新建一个仓库，如下图，注意仓库名必须为 
+```
+<your-name>.github.io
+```
+例如我的用户名hottredpen，仓库名为
+```
+hottredpen.github.io。
+```
+注意:如果此处不注意看，后面都白搭
 
 ![](http://upload-images.jianshu.io/upload_images/1764427-f8fa147884c7f4ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -32,7 +40,7 @@ tags:
     git init
     git add README.md
     git commit -m "first commit"
-    git remote add origin https://github.com/your-user-name/your-user-name.github.io.git
+    git remote add origin https://github.com/your-name/your-name.github.io.git
     git push -u origin master
 ```
 
@@ -53,7 +61,9 @@ tags:
 ```
 npm install hexo -g
 ```
+
 #### 二、初始化一个项目blog（正式）
+
 ```
 hexo init blog
 npm install
@@ -84,6 +94,11 @@ mv .git ../blog
 ```
 cd blog
 ```
+
+#### 二、确保现在所处hexo分支
+```
+git branch
+```
 可以看到现在在hexo分支（如果没有请自行切换成hexo分支）
 查看状态
 ```
@@ -109,7 +124,7 @@ deploy:
   branch: master
 ```
 
-`ps:注意：冒号后面有个空格`
+`ps:冒号后面有个空格`
 
 2.  推送到github的master分支
 ```
@@ -121,7 +136,6 @@ hexo generate -deploy
 ```
 
 此时访问your-name.github.io即可查看生成的站点内容
-
 
 
 ### 后期维护以及博客更新
