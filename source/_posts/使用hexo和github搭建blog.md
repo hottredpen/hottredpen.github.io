@@ -116,7 +116,7 @@ git push origin hexo
 
 #### 三、配置hexo博客的推送git地址
 
-1.  修改_config.yml中的deploy参数；
+##### 1.  修改_config.yml中的deploy参数；
 ```
 deploy:
   type: git
@@ -124,9 +124,9 @@ deploy:
   branch: master
 ```
 
-`ps:冒号后面有个空格`
+ps:冒号后面有个空格
 
-2.  推送到github的master分支
+##### 2.  推送到github的master分支
 ```
 hexo g -d
 ```
@@ -137,6 +137,8 @@ hexo generate -deploy
 
 此时访问your-name.github.io即可查看生成的站点内容
 
+### 更换主题，
+请自行百度主题的更换
 
 ### 后期维护以及博客更新
 
