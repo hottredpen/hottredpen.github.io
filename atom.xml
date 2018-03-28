@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2018-03-28T03:02:38.682Z</updated>
+  <updated>2018-03-28T03:34:36.126Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用阿里云邮件推送实现SMTP发送邮件</title>
+    <link href="http://www.jk-kj.com/2018/03/28/%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%82%AE%E4%BB%B6%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0SMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/"/>
+    <id>http://www.jk-kj.com/2018/03/28/使用阿里云邮件推送实现SMTP发送邮件/</id>
+    <published>2018-03-28T03:05:35.000Z</published>
+    <updated>2018-03-28T03:34:36.126Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>WordPress 使用阿里云邮件推送实现SMTP发送邮件<br><a href="https://www.wpdaxue.com/wordpress-aliyun-smtp.html" target="_blank" rel="external">https://www.wpdaxue.com/wordpress-aliyun-smtp.html</a></p><h3 id="来自第三方的介绍"><a href="#来自第三方的介绍" class="headerlink" title="来自第三方的介绍"></a>来自第三方的介绍</h3><p>6、切换到“发信地址”界面，新建发信地址：<br>现在很多虚拟主机都是默认不支持 mail() 函数发送邮件的，不过一般都提供 smtp 发件支持。要找一个好用的 smtp 发送邮件方可不容易，不是发件数量限制太小，就是经常被判为垃圾邮件。所以倡萌此前一直在服务器搭建邮件发送功能，并想办法优化提高邮件可行度，避免被判为垃圾邮件，但效果还是不太理想。前些天，想起了阿里云的邮件推送服务，并进行了测试，发现真的不错哦。</p><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1、要了解和开通阿里云邮件推送服务，请查看：<a href="https://www.aliyun.com/product/directmail" target="_blank" rel="external">https://www.aliyun.com/product/directmail</a></p><p>2、开通以后，在控制台进入“发信域名”新建域名<br>阿里云里提示最好用二级域名，但是service@email.jk-kj.com类似的邮箱还是会被某些插件不认可。最后我还是用上了service@jk-kj.com<br>3、添加域名后，点击配置，可以查看到域名配置信息<br>4、按照域名配置信息的提示，到你的域名解析后台添加3条解析记录：<br>5、添加完解析记录，回到阿里云后台，点击“验证”，返回“验证通过”说明解析生效：<br>6、切换到“发信地址”界面，新建发信地址：<br>7、选择刚才添加的发信域名，然后输入你要使用的账号，输入回信地址，选择发信类型：批量邮件<br>注：发信类型有：<br>触发邮件：注册确认、订单确认、密码重置、交易通知等<br>批量邮件：自有用户的产品促销、期刊订阅等<br>但是有些用户反馈，触发邮件方式不太稳定，你可以根据自己的实际选择吧，这里我选择的是批量邮件<br>8、添加完返回到界面，点击“验证回信地址”，然后会发送邮件到你的回信地址，到你的邮件箱点击邮件的链接验证通过即可，注意哦，验证邮件可能在垃圾箱里。然后设置SMTP 密码。<br>9、完成上面的步骤后，阿里云的邮件推送的SMTP发送功能就设置好了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。&lt;/p&gt;
+&lt;h3 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="邮件" scheme="http://www.jk-kj.com/tags/%E9%82%AE%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>MySql按周，按月，按日分组统计数据</title>
@@ -475,29 +499,6 @@
     
     
       <category term="vue2" scheme="http://www.jk-kj.com/tags/vue2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ab性能测试</title>
-    <link href="http://www.jk-kj.com/2017/10/25/ab%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
-    <id>http://www.jk-kj.com/2017/10/25/ab性能测试/</id>
-    <published>2017-10-25T07:19:00.000Z</published>
-    <updated>2017-10-25T23:08:31.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>早先在CPK项目时，因为有用户反应页面打不开，后来采用了CDN和静态页，那段时间也用ab测试工具测试过速度,但用了之后就没深入了解（主要是没写笔记做记录，忘记了）<br>之后因为离职去应聘时，一个面试官问过ab测试，且对我当时的一个开源项目进行了简单的压力测试。因为采用了pjax，没用静态页，首页的测试并不理想，之后打算着将TP的静态页部分改进下，满足pjax时也能调用。<br>在laravel，TP5，YII2等框架性能据说都有不错的提升时，自己用TP3.2开源的项目就显得十分的老旧。如何对比速度上的差异，也就只能先记录下TP3.2时的速度，用新框架的速度来进行对比。</p><h3 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a>参考地址</h3><p>作者：橙子酱<br>链接：<a href="http://www.jianshu.com/p/43d04d8baaf7" target="_blank" rel="external">http://www.jianshu.com/p/43d04d8baaf7</a><br>來源：简书</p><h3 id="关于压力测试的概念"><a href="#关于压力测试的概念" class="headerlink" title="关于压力测试的概念"></a>关于压力测试的概念</h3><h4 id="吞吐率（Requests-per-second）"><a href="#吞吐率（Requests-per-second）" class="headerlink" title="吞吐率（Requests per second）"></a>吞吐率（Requests per second）</h4><p>概念：服务器并发处理能力的量化描述，单位是reqs/s，指的是某个并发用户数下单位时间内处理的请求数。某个并发用户数下单位时间内能处理的最大请求数，称之为最大吞吐率。<br>计算公式：总请求数 / 处理完成这些请求数所花费的时间，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Request per second = Complete requests / Time taken for tests</div></pre></td></tr></table></figure></p><p>以100并发 100次请求，各大网站的对比(20171025)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">百度(www.baidu.com)   80~88</div><div class="line">知乎(www.zhihu.com)   75~85</div><div class="line">QQ(www.qq.com)        25~35</div><div class="line">微博（www.weibo.com） 20~25</div></pre></td></tr></table></figure></p><h4 id="并发连接数（The-number-of-concurrent-connections）"><a href="#并发连接数（The-number-of-concurrent-connections）" class="headerlink" title="并发连接数（The number of concurrent connections）"></a>并发连接数（The number of concurrent connections）</h4><p>概念：某个时刻服务器所接受的请求数目，简单的讲，就是一个会话。</p><h4 id="并发用户数（The-number-of-concurrent-users，Concurrency-Level）"><a href="#并发用户数（The-number-of-concurrent-users，Concurrency-Level）" class="headerlink" title="并发用户数（The number of concurrent users，Concurrency Level）"></a>并发用户数（The number of concurrent users，Concurrency Level）</h4><p>概念：要注意区分这个概念和并发连接数之间的区别，一个用户可能同时会产生多个会话，也即连接数。</p><h4 id="用户平均请求等待时间（Time-per-request）"><a href="#用户平均请求等待时间（Time-per-request）" class="headerlink" title="用户平均请求等待时间（Time per request）"></a>用户平均请求等待时间（Time per request）</h4><p>计算公式：处理完成所有请求数所花费的时间/ （总请求数 / 并发用户数），即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time per request = Time taken for tests /（ Complete requests / Concurrency Level）</div></pre></td></tr></table></figure></p><h4 id="服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）"><a href="#服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）" class="headerlink" title="服务器平均请求等待时间（Time per request: across all concurrent requests）"></a>服务器平均请求等待时间（Time per request: across all concurrent requests）</h4><p>计算公式：处理完成所有请求数所花费的时间 / 总请求数，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time taken for / testsComplete requests</div></pre></td></tr></table></figure></p><p>可以看到，它是吞吐率的倒数。<br>同时，它也 等于 用户平均请求等待时间/并发用户数，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time per request / Concurrency Level</div></pre></td></tr></table></figure></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">百度(www.baidu.com)   1100~1300  11.00~13.00</div><div class="line">知乎(www.zhihu.com)   1100~1300  11.00~13.00</div><div class="line">QQ(www.qq.com)        3200~3500  32.00~35.00</div><div class="line">微博（www.weibo.com）  4000~5000  40.00~50.00</div></pre></td></tr></table></figure><hr><h3 id="单次测试结果的说明"><a href="#单次测试结果的说明" class="headerlink" title="单次测试结果的说明"></a>单次测试结果的说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Concurrency Level: 100                 //并发请求数</div><div class="line">Time taken for tests: 50.872 seconds   //整个测试持续的时间</div><div class="line">Complete requests: 1000                //完成的请求数</div><div class="line">Failed requests: 0                     //失败的请求数</div><div class="line"></div><div class="line">Total transferred: 13701482 bytes      //整个场景中的网络传输量</div><div class="line">HTML transferred: 13197000 bytes       //整个场景中的HTML内容传输量</div><div class="line"></div><div class="line">Requests per second: 19.66 [#/sec] (mean)   //吞吐率，大家最关心的指标之一，相当于 LR 中的每秒事务数，后面括号中的 mean 表示这是一个平均值</div><div class="line">Time per request: 5087.180 [ms] (mean)      //用户平均请求等待时间，大家最关心的指标之二，相当于 LR 中的平均事务响应时间，后面括号中的 mean 表示这是一个平均值</div><div class="line">Time per request: 50.872 [ms] (mean, across all concurrent requests)   //服务器平均请求处理时间，大家最关心的指标之三</div><div class="line"></div><div class="line">Transfer rate: 263.02 [Kbytes/sec] received   //平均每秒网络上的流量，可以帮助排除是否存在网络流量过大导致响应时间延长的问题</div></pre></td></tr></table></figure><h3 id="关于登录的问题"><a href="#关于登录的问题" class="headerlink" title="关于登录的问题"></a>关于登录的问题</h3><p>有时候进行压力测试需要用户登录，怎么办？<br>请参考以下步骤：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先用账户和密码登录后，用开发者工具找到标识这个会话的Cookie值（Session ID）记下来</div></pre></td></tr></table></figure></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果只用到一个Cookie，那么只需键入命令：</div><div class="line">ab －n 100 －C key＝value http://test.com/</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果需要多个Cookie，就直接设Header：</div><div class="line">ab -n 100 -H “Cookie: Key1=Value1; Key2=Value2” http://test.com/</div></pre></td></tr></table></figure><h3 id="如何防止别人用ab之类的测试软件恶意请求自己的网站"><a href="#如何防止别人用ab之类的测试软件恶意请求自己的网站" class="headerlink" title="如何防止别人用ab之类的测试软件恶意请求自己的网站"></a>如何防止别人用ab之类的测试软件恶意请求自己的网站</h3><p>网友回答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">目前此类软件可以很真实的模拟浏览器请求，所以在少量的请求下，基本上是屏蔽不了的。</div><div class="line">但是，使用此类软件请求你的网站通常都有其他目的，会产生大量重复的请求。</div><div class="line">可以通过单位时间的请求次数进行控制，相同IP或者相同的userAgint产生的异常请求通过程序判断来禁止。</div><div class="line">但是即便程序做了判断，请求已经进入处理阶段依然会影响性能，所以还要配合其他的处理方式，重复响应最好用缓存的方式来实现，避免过多的消耗CPU；确诊的问题IP应该在防火墙端就进行屏蔽。</div></pre></td></tr></table></figure></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nginx的话可以用HttpLimitReqModule</div><div class="line">此模块能通过特定的客户端标识（如IP，UA等）来限制客户端在一定时间内的访问频次，比你在程序里控制要省资源得多。</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;早先在CPK项目时，因为有用户反应页面打不开，后来采用了CDN和静态页，那段时间也用ab测试工具测试过速度,但用了之后就没深入了解（主要是没
-      
-    
-    </summary>
-    
-    
-      <category term="测试" scheme="http://www.jk-kj.com/tags/%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
