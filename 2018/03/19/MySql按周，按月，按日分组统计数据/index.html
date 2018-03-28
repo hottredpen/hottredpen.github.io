@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mysql,统计," />
 
 
 
@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="一个30岁跨行的老菜鸟程序员">
+<meta name="description" content="背景之前开发微信时，做过类似的简单统计。那时对于mysql的理解比较浅，有些数据都是预先存入数据去实现的。这时就会出现多个时间，比如create_time  create_date。现在开发开单宝的统计，特意搜索了一下关于统计时mysql处理的文章 参考MySql按周，按月，按日分组统计数据https://blog.csdn.net/lqclh502/article/details/5015748">
+<meta name="keywords" content="mysql,统计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySql按周，按月，按日分组统计数据">
 <meta property="og:url" content="http://www.jk-kj.com/2018/03/19/MySql按周，按月，按日分组统计数据/index.html">
 <meta property="og:site_name" content="简客-记忆">
-<meta property="og:description" content="一个30岁跨行的老菜鸟程序员">
+<meta property="og:description" content="背景之前开发微信时，做过类似的简单统计。那时对于mysql的理解比较浅，有些数据都是预先存入数据去实现的。这时就会出现多个时间，比如create_time  create_date。现在开发开单宝的统计，特意搜索了一下关于统计时mysql处理的文章 参考MySql按周，按月，按日分组统计数据https://blog.csdn.net/lqclh502/article/details/5015748">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-19T06:25:08.859Z">
+<meta property="og:updated_time" content="2018-03-28T02:53:22.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql按周，按月，按日分组统计数据">
-<meta name="twitter:description" content="一个30岁跨行的老菜鸟程序员">
+<meta name="twitter:description" content="背景之前开发微信时，做过类似的简单统计。那时对于mysql的理解比较浅，有些数据都是预先存入数据去实现的。这时就会出现多个时间，比如create_time  create_date。现在开发开单宝的统计，特意搜索了一下关于统计时mysql处理的文章 参考MySql按周，按月，按日分组统计数据https://blog.csdn.net/lqclh502/article/details/5015748">
 
 
 
@@ -321,7 +322,18 @@
       
 
       
-        
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前开发微信时，做过类似的简单统计。那时对于mysql的理解比较浅，有些数据都是预先存入数据去实现的。这时就会出现多个时间，比如create_time  create_date。<br>现在开发开单宝的统计，特意搜索了一下关于统计时mysql处理的文章</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>MySql按周，按月，按日分组统计数据<br><a href="https://blog.csdn.net/lqclh502/article/details/50157483" target="_blank" rel="external">https://blog.csdn.net/lqclh502/article/details/50157483</a><br>MySQL中distinct和count(*)的使用方法比较<br><a href="http://www.jb51.net/article/74559.htm" target="_blank" rel="external">http://www.jb51.net/article/74559.htm</a></p>
+<h3 id="几个关键词"><a href="#几个关键词" class="headerlink" title="几个关键词"></a>几个关键词</h3><h4 id="网上的资料"><a href="#网上的资料" class="headerlink" title="网上的资料"></a>网上的资料</h4><p><code>DATE_FORMAT</code></p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">select DATE_FORMAT(create_time,&apos;%Y%u&apos;) weeks,count(caseid) count from tc_case group by weeks;</div><div class="line"></div><div class="line">select DATE_FORMAT(create_time,&apos;%Y%m%d&apos;) days,count(caseid) count from tc_case group by days;</div><div class="line"></div><div class="line">select DATE_FORMAT(create_time,&apos;%Y%m&apos;) months,count(caseid) count from tc_case group by months;</div></pre></td></tr></table></figure></p>
+<p>DATE_FORMAT(date,format)</p>
+<p>根据format字符串格式化date值。下列修饰符可以被用在format字符串中：</p>
+<p>%M 月名字(January……December)<br>%W 星期名字(Sunday……Saturday)<br>%D 有英语前缀的月份的日期(1st, 2nd, 3rd, 等等。）<br>%Y 年, 数字, 4 位<br>%y 年, 数字, 2 位<br>%a 缩写的星期名字(Sun……Sat)<br>%d 月份中的天数, 数字(00……31)<br>%e 月份中的天数, 数字(0……31)<br>%m 月, 数字(01……12)<br>%c 月, 数字(1……12)<br>%b 缩写的月份名字(Jan……Dec)<br>%j 一年中的天数(001……366)<br>%H 小时(00……23)<br>%k 小时(0……23)<br>%h 小时(01……12)<br>%I 小时(01……12)<br>%l 小时(1……12)<br>%i 分钟, 数字(00……59)<br>%r 时间,12 小时(hh:mm:ss [AP]M)<br>%T 时间,24 小时(hh:mm:ss)<br>%S 秒(00……59)<br>%s 秒(00……59)<br>%p AM或PM<br>%w 一个星期中的天数(0=Sunday ……6=Saturday ）<br>%U 星期(0……52), 这里星期天是星期的第一天<br>%u 星期(0……52), 这里星期一是星期的第一天<br>%% 一个文字“%”</p>
+<h4 id="动手实战"><a href="#动手实战" class="headerlink" title="动手实战"></a>动手实战</h4><p>网上写的是DATE类型的字段的处理，可是我习惯用int类型的时间戳保存时间<br>需要改进一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%Y-%m-%d&apos; ) AS  days</div><div class="line">DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%Y-%m&apos; ) AS  months</div><div class="line">DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%u&apos; ) AS  weeks</div></pre></td></tr></table></figure></p>
+<p>接下来只要对 days months weeks进group就OK<br>thinkphp下的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$list = M(&quot;Order&quot;)</div><div class="line">        -&gt;field(&quot; DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%Y-%m-%d&apos; ) AS  days, SUM(total_money) total_money_count , COUNT( DISTINCT customer_id ) AS customer_id_count , COUNT( id ) AS order_count&quot;)</div><div class="line">        -&gt;where($newmap)</div><div class="line">        -&gt;group(&apos; days &apos;)</div><div class="line">        -&gt;select();</div></pre></td></tr></table></figure></p>
+<p>关键词：<code>DISTINCT</code></p>
+<p>上面的代码里就用到了<code>COUNT( DISTINCT customer_id ) AS customer_id_count</code>,有了这个关键词，就不用以前的笨方法了</p>
+
       
     </div>
     
@@ -335,6 +347,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+            <a href="/tags/统计/" rel="tag"># 统计</a>
+          
+        </div>
       
 
       
@@ -403,8 +423,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -436,7 +465,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -468,6 +497,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几个关键词"><span class="nav-number">3.</span> <span class="nav-text">几个关键词</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网上的资料"><span class="nav-number">3.1.</span> <span class="nav-text">网上的资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动手实战"><span class="nav-number">3.2.</span> <span class="nav-text">动手实战</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
