@@ -19,8 +19,8 @@ http://www.jb51.net/article/74559.htm
 ### 几个关键词
 
 #### 网上的资料
-`DATE_FORMAT`
-
+关键词：`DATE_FORMAT`
+对时间进行格式化
 例子：
 ```
 select DATE_FORMAT(create_time,'%Y%u') weeks,count(caseid) count from tc_case group by weeks;
@@ -82,7 +82,7 @@ thinkphp下的代码
 ```
 
 关键词：`DISTINCT`
-
+在count不重复的记录的时候就能用到它，
 上面的代码里就用到了`COUNT( DISTINCT customer_id ) AS customer_id_count`,有了这个关键词，就不用以前的笨方法了
 
 
