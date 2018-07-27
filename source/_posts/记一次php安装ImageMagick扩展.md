@@ -179,6 +179,14 @@ Postscript delegate failed
 
 
 
+我们在Centos安装ImageMagick教程中讲述了如何安装ImageMagick,安装完毕之后发现程序并不支持png和jpeg格式的图片,但是这两种图片又是我们平时所常见的,所以我们还要进一步地配置,是其支持png和jpeg格式.
+
+首先我们安装所需的库文件.
+```
+yum install tcl-devel libpng-devel libjpeg-devel ghostscript-devel
+```
+
+
 
 
 
