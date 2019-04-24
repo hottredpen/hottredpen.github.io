@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.jk-kj.com/2019/04/24/%E8%AE%B0%E4%B8%80%E6%AC%A1ftp%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/</loc>
+    
+    <lastmod>2019-04-24T06:35:16.479Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.jk-kj.com/2018/07/27/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8leftjoin-group%E5%8F%8A%E5%AD%90%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2018-07-27T08:03:21.006Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.jk-kj.com/2018/07/16/%E5%AE%89%E8%A3%85python3/</loc>
+    
+    <lastmod>2018-07-16T06:52:35.888Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.jk-kj.com/2018/03/19/%E8%AE%B0%E4%B8%80%E6%AC%A1php%E5%AE%89%E8%A3%85ImageMagick%E6%89%A9%E5%B1%95/</loc>
+    
+    <lastmod>2018-04-03T13:22:44.671Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.jk-kj.com/2018/03/28/%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%82%AE%E4%BB%B6%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0SMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</loc>
     
     <lastmod>2018-03-28T03:34:36.126Z</lastmod>
@@ -12,13 +40,6 @@
     <loc>http://www.jk-kj.com/2018/03/19/MySql%E6%8C%89%E5%91%A8%EF%BC%8C%E6%8C%89%E6%9C%88%EF%BC%8C%E6%8C%89%E6%97%A5%E5%88%86%E7%BB%84%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE/</loc>
     
     <lastmod>2018-03-28T03:02:38.682Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.jk-kj.com/2018/03/19/%E8%AE%B0%E4%B8%80%E6%AC%A1php%E5%AE%89%E8%A3%85ImageMagick%E6%89%A9%E5%B1%95/</loc>
-    
-    <lastmod>2018-03-21T09:12:47.845Z</lastmod>
     
   </url>
   
@@ -58,7 +79,14 @@
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/2017/11/10/elementui%E5%BC%95%E5%85%A5iconfont/</loc>
+    <loc>http://www.jk-kj.com/2018/01/12/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8F%96%E8%B0%B7%E6%AD%8Cchrome%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84crx%E6%8F%92%E4%BB%B6/</loc>
+    
+    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.jk-kj.com/2017/11/01/git%E6%8F%90%E4%BA%A4%E8%AF%B7%E6%B1%82%E5%85%8D%E8%BE%93%E5%85%A5git%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%86%E7%A0%81/</loc>
     
     <lastmod>2018-01-16T00:27:49.000Z</lastmod>
     
@@ -72,27 +100,6 @@
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/2017/11/09/node-sass%E5%AE%89%E8%A3%85%E4%B8%8D%E6%88%90%E5%8A%9F%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
-    
-    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.jk-kj.com/2018/01/12/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8F%96%E8%B0%B7%E6%AD%8Cchrome%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84crx%E6%8F%92%E4%BB%B6/</loc>
-    
-    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.jk-kj.com/2017/12/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E7%AB%99%E5%AD%97%E4%BD%93%E9%87%87%E7%94%A8%E6%80%9D%E6%BA%90%E5%AD%97%E4%BD%93/</loc>
-    
-    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.jk-kj.com/2017/12/26/zimg%E5%9B%BE%E7%89%87%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     
     <lastmod>2018-01-16T00:27:49.000Z</lastmod>
@@ -100,7 +107,21 @@
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/2017/11/01/git%E6%8F%90%E4%BA%A4%E8%AF%B7%E6%B1%82%E5%85%8D%E8%BE%93%E5%85%A5git%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%86%E7%A0%81/</loc>
+    <loc>http://www.jk-kj.com/2017/11/10/elementui%E5%BC%95%E5%85%A5iconfont/</loc>
+    
+    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.jk-kj.com/2017/11/09/node-sass%E5%AE%89%E8%A3%85%E4%B8%8D%E6%88%90%E5%8A%9F%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.jk-kj.com/2017/12/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E7%AB%99%E5%AD%97%E4%BD%93%E9%87%87%E7%94%A8%E6%80%9D%E6%BA%90%E5%AD%97%E4%BD%93/</loc>
     
     <lastmod>2018-01-16T00:27:49.000Z</lastmod>
     
@@ -121,7 +142,7 @@
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/2017/10/27/vue%E6%8C%87%E4%BB%A4/</loc>
+    <loc>http://www.jk-kj.com/2017/10/27/vue%E9%80%89%E9%A1%B9%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90/</loc>
     
     <lastmod>2017-11-05T09:16:12.000Z</lastmod>
     
@@ -135,7 +156,7 @@
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/2017/10/27/vue%E9%80%89%E9%A1%B9%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90/</loc>
+    <loc>http://www.jk-kj.com/2017/10/27/vue%E6%8C%87%E4%BB%A4/</loc>
     
     <lastmod>2017-11-05T09:16:12.000Z</lastmod>
     
@@ -156,14 +177,14 @@
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/2017/10/24/mysql%E4%B8%AD%E7%9A%84%E8%A7%86%E5%9B%BE%EF%BC%88%E8%BD%AC%EF%BC%89/</loc>
+    <loc>http://www.jk-kj.com/2017/10/24/sublime-%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/</loc>
     
     <lastmod>2017-10-24T22:56:19.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/2017/10/24/sublime-%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/</loc>
+    <loc>http://www.jk-kj.com/2017/10/24/mysql%E4%B8%AD%E7%9A%84%E8%A7%86%E5%9B%BE%EF%BC%88%E8%BD%AC%EF%BC%89/</loc>
     
     <lastmod>2017-10-24T22:56:19.000Z</lastmod>
     

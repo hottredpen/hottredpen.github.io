@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="简客-记忆">
 <meta property="og:description" content="背景将pdf转png图片 参考在wamp server环境下安装php_imagick拓展http://www.smallerpig.com/673.htmlwindows php安装ImageMagick扩展http://blog.csdn.net/livelinux/article/details/50319853Centos 安装ImageMagick 与 imagick for php步骤">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-21T09:12:47.845Z">
+<meta property="og:updated_time" content="2018-04-03T13:22:44.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次php安装ImageMagick扩展">
 <meta name="twitter:description" content="背景将pdf转png图片 参考在wamp server环境下安装php_imagick拓展http://www.smallerpig.com/673.htmlwindows php安装ImageMagick扩展http://blog.csdn.net/livelinux/article/details/50319853Centos 安装ImageMagick 与 imagick for php步骤">
@@ -361,6 +361,8 @@ x86代表适用32位系统,x64代表适用64位系统
 <p>这次因为没有安装GD库，用的png版本太老，<code>Delegates (built-in): fontconfig freetype jng jpeg (png 没显示) x xml zlib</code></p>
 <p>一直提示<br><code>no decode delegate for this image format PNG</code><br>因为没有安装GD库，我在编译<code>ImageMagick-7.0.7-22</code>时没有将<code>png</code>编译进行</p>
 <p>直到手动添加了png库，才最终发现没有安装GD库</p>
+<p>我们在Centos安装ImageMagick教程中讲述了如何安装ImageMagick,安装完毕之后发现程序并不支持png和jpeg格式的图片,但是这两种图片又是我们平时所常见的,所以我们还要进一步地配置,是其支持png和jpeg格式.</p>
+<p>首先我们安装所需的库文件.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install tcl-devel libpng-devel libjpeg-devel ghostscript-devel</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -486,7 +488,7 @@ x86代表适用32位系统,x64代表适用64位系统
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -499,7 +501,7 @@ x86代表适用32位系统,x64代表适用64位系统
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -561,7 +563,7 @@ x86代表适用32位系统,x64代表适用64位系统
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

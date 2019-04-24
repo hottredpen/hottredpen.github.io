@@ -254,6 +254,479 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/27/vue选项生命周期钩子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/27/vue选项生命周期钩子/" itemprop="url">vue选项生命周期钩子</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T13:45:00+08:00">
+                2017-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="生命周期钩子"><a href="#生命周期钩子" class="headerlink" title="生命周期钩子"></a>生命周期钩子</h3><p>所有的生命周期钩子自动绑定 this 上下文到实例中，因此你可以访问数据，对属性和方法进行运算。这意味着 你不能使用箭头函数来定义一个生命周期方法 (例如 created: () =&gt; this.fetchTodos())。这是因为箭头函数绑定了父上下文，因此 this 与你期待的 Vue 实例不同，this.fetchTodos 的行为未定义。<br><img src="https://cn.vuejs.org/images/lifecycle.png"></p>
+<h4 id="beforeCreate"><a href="#beforeCreate" class="headerlink" title="beforeCreate"></a>beforeCreate</h4><pre><code>类型：Function
+</code></pre><p>在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。</p>
+<h4 id="created"><a href="#created" class="headerlink" title="created"></a>created</h4><p>类型：Function</p>
+<p>在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。</p>
+<h4 id="beforeMount"><a href="#beforeMount" class="headerlink" title="beforeMount"></a>beforeMount</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>在挂载开始之前被调用：相关的 render 函数首次被调用。<br>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。如果 root 实例挂载了一个文档内元素，当 mounted 被调用时 vm.$el 也在文档内。</p>
+<p>注意 mounted 不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用 vm.$nextTick 替换掉 mounted：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mounted: function () &#123;</div><div class="line">      this.$nextTick(function () &#123;</div><div class="line">        // Code that will run only after the</div><div class="line">        // entire view has been rendered</div><div class="line">      &#125;)</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>该钩子在服务器端渲染期间不被调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mounted () &#123;</div><div class="line">    this.$nextTick(() =&gt; &#123;</div><div class="line">        var dataComeinBar = echarts.init(document.getElementById(&apos;data_comein_bar&apos;));</div><div class="line"></div><div class="line">        var option = &#123;</div><div class="line">            ......</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        dataComeinBar.setOption(option);</div><div class="line">        window.addEventListener(&apos;resize&apos;, function () &#123;</div><div class="line">            dataComeinBar.resize();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="beforeUpdate"><a href="#beforeUpdate" class="headerlink" title="beforeUpdate"></a>beforeUpdate</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。</p>
+<p>你可以在这个钩子中进一步地更改状态，这不会触发附加的重渲染过程。</p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="updated"><a href="#updated" class="headerlink" title="updated"></a>updated</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。</p>
+<p>当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态。如果要相应状态改变，通常最好使用计算属性或 watcher 取而代之。</p>
+<p>注意 updated 不会承诺所有的子组件也都一起被重绘。如果你希望等到整个视图都重绘完毕，可以用 vm.$nextTick 替换掉 updated：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">updated: function () &#123;</div><div class="line">  this.$nextTick(function () &#123;</div><div class="line">    // Code that will run only after the</div><div class="line">    // entire view has been re-rendered</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="activated"><a href="#activated" class="headerlink" title="activated"></a>activated</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>keep-alive 组件激活时调用。</p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="deactivated"><a href="#deactivated" class="headerlink" title="deactivated"></a>deactivated</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>keep-alive 组件停用时调用。</p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="beforeDestroy"><a href="#beforeDestroy" class="headerlink" title="beforeDestroy"></a>beforeDestroy</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>实例销毁之前调用。在这一步，实例仍然完全可用。</p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="destroyed"><a href="#destroyed" class="headerlink" title="destroyed"></a>destroyed</h4><p>类型：Function</p>
+<p>详细：</p>
+<p>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</p>
+<p>该钩子在服务器端渲染期间不被调用。</p>
+<h4 id="errorCaptured"><a href="#errorCaptured" class="headerlink" title="errorCaptured"></a>errorCaptured</h4><p>2.5.0+ 新增</p>
+<p>类型：(err: Error, vm: Component, info: string) =&gt; ?boolean</p>
+<p>详细：</p>
+<p>当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/27/vue指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/27/vue指令/" itemprop="url">vue指令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T08:16:58+08:00">
+                2017-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="v-text"><a href="#v-text" class="headerlink" title="v-text"></a>v-text</h4><p>预期：string</p>
+<p>更新元素的 textContent。如果要更新部分的 textContent ，需要使用  插值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;span v-text=&quot;msg&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;!-- 和下面的一样 --&gt;</div><div class="line">&lt;span&gt;&#123;&#123;msg&#125;&#125;&lt;/span&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-html"><a href="#v-html" class="headerlink" title="v-html"></a>v-html</h4><p>预期：string</p>
+<p>更新元素的 innerHTML 。注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译 。如果试图使用 v-html 组合模板，可以重新考虑是否通过使用组件来替代。</p>
+<p>在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 XSS 攻击。只在可信内容上使用 v-html，永不用在用户提交的内容上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-html=&quot;html&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h4><p>预期：any</p>
+<p>不同的是带有 v-show 的元素始终会被渲染并保留在 DOM 中。v-show 只是简单地切换元素的 CSS 属性 display。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h4><p>预期：any</p>
+<h4 id="v-else"><a href="#v-else" class="headerlink" title="v-else"></a>v-else</h4><h4 id="v-else-if"><a href="#v-else-if" class="headerlink" title="v-else-if"></a>v-else-if</h4><p>预期：any</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div v-if=&quot;Math.random() &gt; 0.5&quot;&gt;</div><div class="line">  Now you see me</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else&gt;</div><div class="line">  Now you don&apos;t</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div v-if=&quot;type === &apos;A&apos;&quot;&gt;</div><div class="line">  A</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else-if=&quot;type === &apos;B&apos;&quot;&gt;</div><div class="line">  B</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else-if=&quot;type === &apos;C&apos;&quot;&gt;</div><div class="line">  C</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else&gt;</div><div class="line">  Not A/B/C</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h4><p>预期：Array | Object | number | string</p>
+<p>基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 alias in expression ，为当前遍历的元素提供别名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div v-for=&quot;item in items&quot;&gt;</div><div class="line">  &#123;&#123; item.text &#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>另外也可以为数组索引指定别名 (或者用于对象的键)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div v-for=&quot;(item, index) in items&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div v-for=&quot;(val, key) in object&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div v-for=&quot;(val, key, index) in object&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h4><p>缩写：@    【注意可缩写】</p>
+<p>修饰符：</p>
+<pre><code>.stop - 调用 event.stopPropagation()。
+.prevent - 调用 event.preventDefault()。
+.capture - 添加事件侦听器时使用 capture 模式。
+.self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
+.{keyCode | keyAlias} - 只当事件是从特定键触发时才触发回调。
+.native - 监听组件根元素的原生事件。
+.once - 只触发一次回调。
+.left - (2.2.0) 只当点击鼠标左键时触发。
+.right - (2.2.0) 只当点击鼠标右键时触发。
+.middle - (2.2.0) 只当点击鼠标中键时触发。
+.passive - (2.3.0) 以 { passive: true } 模式添加侦听器
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 方法处理器 --&gt;</div><div class="line">&lt;button v-on:click=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 对象语法 (2.4.0+) --&gt;</div><div class="line">&lt;button v-on=&quot;&#123; mousedown: doThis, mouseup: doThat &#125;&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 内联语句 --&gt;</div><div class="line">&lt;button v-on:click=&quot;doThat(&apos;hello&apos;, $event)&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 缩写 --&gt;</div><div class="line">&lt;button @click=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 停止冒泡 --&gt;</div><div class="line">&lt;button @click.stop=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 阻止默认行为 --&gt;</div><div class="line">&lt;button @click.prevent=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 阻止默认行为，没有表达式 --&gt;</div><div class="line">&lt;form @submit.prevent&gt;&lt;/form&gt;</div><div class="line">&lt;!--  串联修饰符 --&gt;</div><div class="line">&lt;button @click.stop.prevent=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 键修饰符，键别名 --&gt;</div><div class="line">&lt;input @keyup.enter=&quot;onEnter&quot;&gt;</div><div class="line">&lt;!-- 键修饰符，键代码 --&gt;</div><div class="line">&lt;input @keyup.13=&quot;onEnter&quot;&gt;</div><div class="line">&lt;!-- 点击回调只会触发一次 --&gt;</div><div class="line">&lt;button v-on:click.once=&quot;doThis&quot;&gt;&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p>在子组件上监听自定义事件 (当子组件触发“my-event”时将调用事件处理器)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;my-component @my-event=&quot;handleThis&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 内联语句 --&gt;</div><div class="line">&lt;my-component @my-event=&quot;handleThis(123, $event)&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 组件中的原生事件 --&gt;</div><div class="line">&lt;my-component @click.native=&quot;onClick&quot;&gt;&lt;/my-component&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h4><p>缩写：:    【注意可缩写】<br>预期：any (with argument) | Object (without argument)</p>
+<p>修饰符：</p>
+<pre><code>.prop - 被用于绑定 DOM 属性 (property)。(差别在哪里？)
+.camel - (2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)
+.sync (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 v-on 侦听器。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 绑定一个属性 --&gt;</div><div class="line">&lt;img v-bind:src=&quot;imageSrc&quot;&gt;</div><div class="line">&lt;!-- 缩写 --&gt;</div><div class="line">&lt;img :src=&quot;imageSrc&quot;&gt;</div><div class="line">&lt;!-- 内联字符串拼接 --&gt;</div><div class="line">&lt;img :src=&quot;&apos;/path/to/images/&apos; + fileName&quot;&gt;</div><div class="line">&lt;!-- class 绑定 --&gt;</div><div class="line">&lt;div :class=&quot;&#123; red: isRed &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :class=&quot;[classA, classB]&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :class=&quot;[classA, &#123; classB: isB, classC: isC &#125;]&quot;&gt;</div><div class="line">&lt;!-- style 绑定 --&gt;</div><div class="line">&lt;div :style=&quot;&#123; fontSize: size + &apos;px&apos; &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :style=&quot;[styleObjectA, styleObjectB]&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- 绑定一个有属性的对象 --&gt;</div><div class="line">&lt;div v-bind=&quot;&#123; id: someProp, &apos;other-attr&apos;: otherProp &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- 通过 prop 修饰符绑定 DOM 属性 --&gt;</div><div class="line">&lt;div v-bind:text-content.prop=&quot;text&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- prop 绑定。“prop”必须在 my-component 中声明。--&gt;</div><div class="line">&lt;my-component :prop=&quot;someThing&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 通过 $props 将父组件的 props 一起传给子组件 --&gt;</div><div class="line">&lt;child-component v-bind=&quot;$props&quot;&gt;&lt;/child-component&gt;</div><div class="line">&lt;!-- XLink --&gt;</div><div class="line">&lt;svg&gt;&lt;a :xlink:special=&quot;foo&quot;&gt;&lt;/a&gt;&lt;/svg&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h4><p>预期：随表单控件类型不同而不同。</p>
+<p>限制：</p>
+<pre><code>&lt;input&gt;
+&lt;select&gt;
+&lt;textarea&gt;
+components
+</code></pre><p>修饰符：</p>
+<pre><code>.lazy - 取代 input 监听 change 事件
+.number - 输入字符串转为数字
+.trim - 输入首尾空格过滤
+</code></pre><h4 id="v-pre"><a href="#v-pre" class="headerlink" title="v-pre"></a>v-pre</h4><p>用法：</p>
+<p>跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。</p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;span v-pre&gt;&#123;&#123; this will not be compiled &#125;&#125;&lt;/span&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="v-cloak"><a href="#v-cloak" class="headerlink" title="v-cloak"></a>v-cloak</h4><p>用法：</p>
+<p>这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。</p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[v-cloak] &#123;</div><div class="line">  display: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div v-cloak&gt;</div><div class="line">  &#123;&#123; message &#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">不会显示，直到编译结束。</div></pre></td></tr></table></figure></p>
+<h4 id="v-once"><a href="#v-once" class="headerlink" title="v-once"></a>v-once</h4><p>只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 单个元素 --&gt;</div><div class="line">&lt;span v-once&gt;This will never change: &#123;&#123;msg&#125;&#125;&lt;/span&gt;</div><div class="line">&lt;!-- 有子元素 --&gt;</div><div class="line">&lt;div v-once&gt;</div><div class="line">  &lt;h1&gt;comment&lt;/h1&gt;</div><div class="line">  &lt;p&gt;&#123;&#123;msg&#125;&#125;&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;!-- 组件 --&gt;</div><div class="line">&lt;my-component v-once :comment=&quot;msg&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- `v-for` 指令--&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li v-for=&quot;i in list&quot; v-once&gt;&#123;&#123;i&#125;&#125;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/27/vue选项数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/27/vue选项数据/" itemprop="url">vue选项数据</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T06:47:41+08:00">
+                2017-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>初级理解：对象必须是纯粹的对象(含有零个或多个的key/value对)，这里面的数据最好都是在视图层显示的数据（静态变量）<br>中级理解：<br>高级理解：</p>
+<p>其他：<br>如果说不是在视图层展示的变量。可以定义在外面或者放在vm对象上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">let abc = &apos;&apos;  </div><div class="line">export default &#123;  </div><div class="line">    data() &#123;  </div><div class="line">        return &#123;  </div><div class="line">            bar: &apos;bar&apos;  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    methods: &#123;  </div><div class="line">        testFn() &#123;  </div><div class="line">            // abc  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><p>初级理解：props 可以是数组或对象，用于接收来自父组件的数据。<br>中级理解：组件实例的作用域是孤立的。这意味着不能 (也不应该) 在子组件的模板内直接引用父组件的数据。父组件的数据需要通过 prop 才能下发到子组件中。<br>高级理解：</p>
+<p>其他：</p>
+<p>子组件要显式地用 props 选项声明它预期的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Vue.component(&apos;child&apos;, &#123;</div><div class="line">  // 声明 props</div><div class="line">  props: [&apos;message&apos;],</div><div class="line">  // 就像 data 一样，prop 也可以在模板中使用</div><div class="line">  // 同样也可以在 vm 实例中通过 this.message 来使用</div><div class="line">  template: &apos;&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>然后我们可以这样向它传入一个普通字符串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;child message=&quot;hello!&quot;&gt;&lt;/child&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hello!</div></pre></td></tr></table></figure></p>
+<h3 id="propsData"><a href="#propsData" class="headerlink" title="propsData"></a>propsData</h3><p>简单理解:创建实例时传递 props。主要作用是方便测试。(无父级时)</p>
+<h3 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h3><p>简单理解：computed，计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。不过计算属性也用函数来替代。（动态变量）</p>
+<h3 id="methods"><a href="#methods" class="headerlink" title="methods"></a>methods</h3><p> methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。</p>
+<h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><p>简单理解：监听data里的值的变化</p>
+<p>官方例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">var vm = new Vue(&#123;</div><div class="line">  data: &#123;</div><div class="line">    a: 1,</div><div class="line">    b: 2,</div><div class="line">    c: 3,</div><div class="line">    d: 4</div><div class="line">  &#125;,</div><div class="line">  watch: &#123;</div><div class="line">    a: function (val, oldVal) &#123;</div><div class="line">      console.log(&apos;new: %s, old: %s&apos;, val, oldVal)</div><div class="line">    &#125;,</div><div class="line">    // 方法名</div><div class="line">    b: &apos;someMethod&apos;,</div><div class="line">    // 深度 watcher</div><div class="line">    c: &#123;</div><div class="line">      handler: function (val, oldVal) &#123; /* ... */ &#125;,</div><div class="line">      deep: true</div><div class="line">    &#125;,</div><div class="line">    // 该回调将会在侦听开始之后被立即调用</div><div class="line">    d: &#123;</div><div class="line">      handler: function (val, oldVal) &#123; /* ... */ &#125;,</div><div class="line">      immediate: true</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">vm.a = 2 // =&gt; new: 2, old: 1</div></pre></td></tr></table></figure>
+<p>一个时间选择器更改的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var v_assetManage_controller = new Vue(&#123;  </div><div class="line">    el: &apos;.LSee-index&apos;,  </div><div class="line">    data: &#123;  </div><div class="line">        trendQueryTimeCtr: &#123;  </div><div class="line">            startTime: &apos;&apos;,  </div><div class="line">            endTime: &apos;&apos;  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    ready: function() &#123;  </div><div class="line">        //  </div><div class="line">    &#125;,  </div><div class="line">    methods: &#123;  </div><div class="line">        queryTrendData: function()&#123;  </div><div class="line">            //do some here  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    watch: &#123;  </div><div class="line">        &apos;trendQueryTimeCtr.startTime&apos;: &apos;queryTrendData&apos;,  </div><div class="line">        &apos;trendQueryTimeCtr.endTime&apos;: &apos;queryTrendData&apos;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/25/ab性能测试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1157,650 +1630,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/07/为我的x感到骄傲/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/07/为我的x感到骄傲/" itemprop="url">为我的x感到骄傲</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T09:09:18+08:00">
-                2017-10-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>x—–代表一切可以感恩和赞颂的“人”或“事”或“自己”</p>
-<p>某天，我发现自己一直以来都很少去感恩别人，包括自己所取得的一些小成就，也是被自己所否定不认可，总觉得自己（或别人）做的还是不够好，不够完美。可完美的事情真得存在吗？</p>
-<p>感恩自己身边的人和事，才会发现生活原来是如此的美。自然的美，和谐的美，错误的美，成功的美……</p>
-<p>想象着，自己和父母都存在如此的心声，那将是多么幸福的事：</p>
-<p>为我的儿子感到骄傲</p>
-<p>为我的老婆感到骄傲</p>
-<p>为我的公司感到骄傲</p>
-<p>为我的项目感到骄傲</p>
-<p>为我的抉择感到骄傲</p>
-<p>……</p>
-<p>从今天起，试着去骄傲吧!</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/02/vim常用命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/02/vim常用命令/" itemprop="url">vim常用命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-02T19:21:53+08:00">
-                2017-10-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">快捷键</th>
-<th style="text-align:center">说明</th>
-<th style="text-align:center">常用指数(自己)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">a</td>
-<td style="text-align:center">在当前光标后插入文本</td>
-<td style="text-align:center">★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">A</td>
-<td style="text-align:center">在本行行尾插入文本</td>
-<td style="text-align:center">★★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">i</td>
-<td style="text-align:center">在光标前插入文本</td>
-<td style="text-align:center">★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">I</td>
-<td style="text-align:center">在本行行首插入文本</td>
-<td style="text-align:center">★★</td>
-</tr>
-<tr>
-<td style="text-align:center">o</td>
-<td style="text-align:center">在光标下插入新行</td>
-<td style="text-align:center">★★</td>
-</tr>
-<tr>
-<td style="text-align:center">O</td>
-<td style="text-align:center">在光标上插入新行</td>
-<td style="text-align:center">★★</td>
-</tr>
-<tr>
-<td style="text-align:center">h</td>
-<td style="text-align:center">左移一个字符</td>
-<td style="text-align:center">★</td>
-</tr>
-<tr>
-<td style="text-align:center">j</td>
-<td style="text-align:center">下移一个字符</td>
-<td style="text-align:center">★</td>
-</tr>
-<tr>
-<td style="text-align:center">k</td>
-<td style="text-align:center">上移一个字符</td>
-<td style="text-align:center">★</td>
-</tr>
-<tr>
-<td style="text-align:center">l</td>
-<td style="text-align:center">右移一个字符</td>
-<td style="text-align:center">★</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:center">移动至当前行的行尾</td>
-<td style="text-align:center">★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">0（数字零）</td>
-<td style="text-align:center">移动至当前行的行首</td>
-<td style="text-align:center">★★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">H</td>
-<td style="text-align:center">移动屏幕上端</td>
-<td style="text-align:center">★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">M</td>
-<td style="text-align:center">移动屏幕中央</td>
-<td style="text-align:center">★★</td>
-</tr>
-<tr>
-<td style="text-align:center">L</td>
-<td style="text-align:center">移动屏幕下端</td>
-<td style="text-align:center">★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">gg</td>
-<td style="text-align:center">到整个文件的第一行</td>
-<td style="text-align:center">★★★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">G</td>
-<td style="text-align:center">到整个文件的最后一行</td>
-<td style="text-align:center">★★★★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">nG</td>
-<td style="text-align:center">到第n行，如5G到第5行</td>
-<td style="text-align:center">★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">:n</td>
-<td style="text-align:center">到第n行</td>
-<td style="text-align:center">★★★★★★★★</td>
-</tr>
-</tbody>
-</table>
-<h3 id="删除和取消"><a href="#删除和取消" class="headerlink" title="删除和取消"></a>删除和取消</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">快捷键</th>
-<th style="text-align:center">说明</th>
-<th style="text-align:center">常用指数（自己）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">x</td>
-<td style="text-align:center">删除光标所在处字符</td>
-<td style="text-align:center">★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">nx</td>
-<td style="text-align:center">删除光标所在处n个字符</td>
-<td style="text-align:center">★</td>
-</tr>
-<tr>
-<td style="text-align:center">dd</td>
-<td style="text-align:center">删除光标所在行(+p剪切)</td>
-<td style="text-align:center">★★★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">ndd</td>
-<td style="text-align:center">删除n行（+p剪切）</td>
-<td style="text-align:center">★★</td>
-</tr>
-<tr>
-<td style="text-align:center">dG</td>
-<td style="text-align:center">删除光标所在行值末尾</td>
-<td style="text-align:center">★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">D</td>
-<td style="text-align:center">删除光标所在处至行尾</td>
-<td style="text-align:center">★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">:n1,n2d</td>
-<td style="text-align:center">删除指定范围的行</td>
-<td style="text-align:center">★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">u</td>
-<td style="text-align:center">取消上一步操作</td>
-<td style="text-align:center">★★★★★★★★★</td>
-</tr>
-</tbody>
-</table>
-<h3 id="复制和粘贴"><a href="#复制和粘贴" class="headerlink" title="复制和粘贴"></a>复制和粘贴</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">快捷键</th>
-<th style="text-align:center">说明</th>
-<th style="text-align:center">常用指数（自己）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">yy,Y</td>
-<td style="text-align:center">复制当前行</td>
-<td style="text-align:center">★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">nyy,nY</td>
-<td style="text-align:center">复制当前行以下的n行</td>
-<td style="text-align:center">★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">p</td>
-<td style="text-align:center">将内容粘贴所在行的下一行</td>
-<td style="text-align:center">★★★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">P</td>
-<td style="text-align:center">将内容粘贴所在行的上一行</td>
-<td style="text-align:center">★</td>
-</tr>
-</tbody>
-</table>
-<h3 id="搜索替换"><a href="#搜索替换" class="headerlink" title="搜索替换"></a>搜索替换</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">快捷键</th>
-<th style="text-align:center">说明</th>
-<th style="text-align:center">常用指数（自己）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">/string</td>
-<td style="text-align:center">查找string(+n下一个)</td>
-<td style="text-align:center">★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">:%s/old/new/g</td>
-<td style="text-align:center">全文替换，如:%s/123/789/g</td>
-<td style="text-align:center">★★★</td>
-</tr>
-</tbody>
-</table>
-<h3 id="屏幕"><a href="#屏幕" class="headerlink" title="屏幕"></a>屏幕</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">快捷键</th>
-<th style="text-align:center">说明</th>
-<th style="text-align:center">常用指数（自己）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">ctrl+u</td>
-<td style="text-align:center">向上滚动半屏</td>
-<td style="text-align:center">★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">ctrl+d</td>
-<td style="text-align:center">向下滚动半屏</td>
-<td style="text-align:center">★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">ctrl+b</td>
-<td style="text-align:center">向上滚动整屏</td>
-<td style="text-align:center">★★★★★</td>
-</tr>
-<tr>
-<td style="text-align:center">ctrl+f</td>
-<td style="text-align:center">向下滚动整屏</td>
-<td style="text-align:center">★★★★★</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/2017/10/01/使用hexo和github搭建blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/01/使用hexo和github搭建blog/" itemprop="url">使用hexo和github搭建blog</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-01T09:30:29+08:00">
-                2017-10-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>继续用hexo</p>
-<p>让自己专注于写作</p>
-<h3 id="github准备"><a href="#github准备" class="headerlink" title="github准备"></a>github准备</h3><p>一、注册github账号并登录进入个人中心。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1764427-b97c2df83796c007.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>二、点击Respositories，然后New,新建一个仓库，如下图，注意仓库名必须为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;your-name&gt;.github.io</div></pre></td></tr></table></figure></p>
-<p>例如我的用户名hottredpen，仓库名为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hottredpen.github.io。</div></pre></td></tr></table></figure></p>
-<p>注意:如果此处不注意看，后面都白搭</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1764427-f8fa147884c7f4ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="本地git"><a href="#本地git" class="headerlink" title="本地git"></a>本地git</h3><p>一、创建blog_tmp文件名(临时用)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mkdir blog_tmp</div><div class="line">cd blog_tmp</div><div class="line">touch README.md</div><div class="line">git init</div><div class="line">git add README.md</div><div class="line">git commit -m &quot;first commit&quot;</div><div class="line">git remote add origin https://github.com/your-name/your-name.github.io.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure></p>
-<p>二、本地建立一个博客源码分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在本地新建一个分支： </div><div class="line">    git branch hexo</div><div class="line">切换到你的新分支: </div><div class="line">    git checkout hexo</div><div class="line">将新分支发布在github上： </div><div class="line">    git push origin hexo</div></pre></td></tr></table></figure></p>
-<h3 id="Hexo创建"><a href="#Hexo创建" class="headerlink" title="Hexo创建"></a>Hexo创建</h3><h4 id="一、全局安装hexo"><a href="#一、全局安装hexo" class="headerlink" title="一、全局安装hexo"></a>一、全局安装hexo</h4><p>只有全局安装了才能用hexo命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo -g</div></pre></td></tr></table></figure></p>
-<h4 id="二、初始化一个项目blog（正式）"><a href="#二、初始化一个项目blog（正式）" class="headerlink" title="二、初始化一个项目blog（正式）"></a>二、初始化一个项目blog（正式）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo init blog</div><div class="line">npm install</div><div class="line">npm install hexo-deployer-git</div><div class="line">hexo g  生成网站</div><div class="line">hexo s  启动本地服务器</div></pre></td></tr></table></figure>
-<p>网站会执行在<a href="http://localhost:port" target="_blank" rel="external">http://localhost:port</a> （port 预设为 4000，可在 _config.yml 设定）</p>
-<h3 id="尝试写一篇博客"><a href="#尝试写一篇博客" class="headerlink" title="尝试写一篇博客"></a>尝试写一篇博客</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &apos;test&apos;</div></pre></td></tr></table></figure>
-<p>随便写点啥,然后运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g </div><div class="line">hexo s</div></pre></td></tr></table></figure></p>
-<h3 id="Hexo和Github关联"><a href="#Hexo和Github关联" class="headerlink" title="Hexo和Github关联"></a>Hexo和Github关联</h3><h4 id="一、将blog-tmp下的git的仓库转移到blog下"><a href="#一、将blog-tmp下的git的仓库转移到blog下" class="headerlink" title="一、将blog_tmp下的git的仓库转移到blog下"></a>一、将blog_tmp下的git的仓库转移到blog下</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd blog_tmp </div><div class="line">mv .git ../blog</div></pre></td></tr></table></figure>
-<p>进入blog目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd blog</div></pre></td></tr></table></figure></p>
-<h4 id="二、确保现在所处hexo分支"><a href="#二、确保现在所处hexo分支" class="headerlink" title="二、确保现在所处hexo分支"></a>二、确保现在所处hexo分支</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch</div></pre></td></tr></table></figure>
-<p>可以看到现在在hexo分支（如果没有请自行切换成hexo分支）<br>查看状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure></p>
-<p>会发现许多红的的未添加文件</p>
-<h4 id="二、将博客源码推送到git的hexo分支上"><a href="#二、将博客源码推送到git的hexo分支上" class="headerlink" title="二、将博客源码推送到git的hexo分支上"></a>二、将博客源码推送到git的hexo分支上</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;init&quot;</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure>
-<h4 id="三、配置hexo博客的推送git地址"><a href="#三、配置hexo博客的推送git地址" class="headerlink" title="三、配置hexo博客的推送git地址"></a>三、配置hexo博客的推送git地址</h4><h5 id="1-修改-config-yml中的deploy参数；"><a href="#1-修改-config-yml中的deploy参数；" class="headerlink" title="1.  修改_config.yml中的deploy参数；"></a>1.  修改_config.yml中的deploy参数；</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/your-name/your-name.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-<p>ps:冒号后面有个空格</p>
-<h5 id="2-推送到github的master分支"><a href="#2-推送到github的master分支" class="headerlink" title="2.  推送到github的master分支"></a>2.  推送到github的master分支</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo generate -deploy</div></pre></td></tr></table></figure></p>
-<p>此时访问your-name.github.io即可查看生成的站点内容</p>
-<h3 id="更换主题，"><a href="#更换主题，" class="headerlink" title="更换主题，"></a>更换主题，</h3><p>请自行百度主题的更换</p>
-<h3 id="后期维护以及博客更新"><a href="#后期维护以及博客更新" class="headerlink" title="后期维护以及博客更新"></a>后期维护以及博客更新</h3><p>在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理。</p>
-<p>依次执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;新博客&quot;</div><div class="line">git status</div><div class="line">git add .</div><div class="line">git commit -m &quot;...&quot;</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure></p>
-<p>然后再执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div></pre></td></tr></table></figure></p>
-<p>发布网站到master分支上。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1850,7 +1684,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1863,7 +1697,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1909,7 +1743,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
