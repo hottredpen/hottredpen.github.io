@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2019-04-24T06:35:16.479Z</updated>
+  <updated>2019-06-05T09:36:25.499Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,6 +15,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次服务器mysql占用过大的排查</title>
+    <link href="http://www.jk-kj.com/2019/06/05/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8mysql%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%A7%E7%9A%84%E6%8E%92%E6%9F%A5/"/>
+    <id>http://www.jk-kj.com/2019/06/05/记一次服务器mysql占用过大的排查/</id>
+    <published>2019-06-05T08:58:15.000Z</published>
+    <updated>2019-06-05T09:36:25.499Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>公司测试服务器上，跑了N多的应用，某天mysql的CPU占用超高，http的请求部分也有超20%以上的。</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>mysql/mariadb知识点总结（24）：慢查询日志<br><a href="http://www.zsythink.net/archives/1260" target="_blank" rel="external">http://www.zsythink.net/archives/1260</a><br>关于MySQL 通用查询日志和慢查询日志分析<br><a href="https://www.jianshu.com/p/ac4f291b806a" target="_blank" rel="external">https://www.jianshu.com/p/ac4f291b806a</a><br>mysql中slow query log慢日志查询分析<br><a href="https://www.cnblogs.com/musings/p/5913186.html" target="_blank" rel="external">https://www.cnblogs.com/musings/p/5913186.html</a></p><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="记录全部的log"><a href="#记录全部的log" class="headerlink" title="记录全部的log"></a>记录全部的log</h4><p>开启全部的sql记录，先看看全局的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">show variables like &apos;%general%&apos;;</div><div class="line"></div><div class="line">+------------------+--------------+</div><div class="line">| Variable_name    | Value        |</div><div class="line">+------------------+--------------+</div><div class="line">| general_log      | OFF          |</div><div class="line">| general_log_file | ecs-248d.log |</div><div class="line">+------------------+--------------+</div><div class="line">2 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p><p>发现没有开，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set global general_log=on;</div></pre></td></tr></table></figure></p><p>我们打算用文件的形式记录下来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show variables like &apos;%log_output%&apos;;</div><div class="line">set global log_output=&apos;FILE&apos;;</div></pre></td></tr></table></figure></p><p>这个时候就可以去查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/var/lib/mysql/ecs-248d.log</div></pre></td></tr></table></figure></p><p>（注意：上述命令只对当前生效，当MySQL重启失效，如果要永久生效，需要配置 my.cnf）</p><h3 id="记录慢查询log"><a href="#记录慢查询log" class="headerlink" title="记录慢查询log"></a>记录慢查询log</h3><p>先查看下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show variables like ‘%quer%’;</div></pre></td></tr></table></figure></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">+-------------------------------+-------------------+</div><div class="line">| Variable_name                 | Value             |</div><div class="line">+-------------------------------+-------------------+</div><div class="line">| expensive_subquery_limit      | 100               |</div><div class="line">| ft_query_expansion_limit      | 20                |</div><div class="line">| have_query_cache              | YES               |</div><div class="line">| log_queries_not_using_indexes | OFF               |</div><div class="line">| log_slow_queries              | ON                |</div><div class="line">| long_query_time               | 10.000000          |</div><div class="line">| query_alloc_block_size        | 8192              |</div><div class="line">| query_cache_limit             | 262144            |</div><div class="line">| query_cache_min_res_unit      | 2048              |</div><div class="line">| query_cache_size              | 1073741824        |</div><div class="line">| query_cache_strip_comments    | OFF               |</div><div class="line">| query_cache_type              | ON                |</div><div class="line">| query_cache_wlock_invalidate  | OFF               |</div><div class="line">| query_prealloc_size           | 8192              |</div><div class="line">| slow_query_log                | OFF                |</div><div class="line">| slow_query_log_file           | ecs-248d-slow.log |</div><div class="line">+-------------------------------+-------------------+</div><div class="line">16 rows in set (0.00 sec)</div></pre></td></tr></table></figure><p>开启慢查询的条件，设置<code>long_query_time</code>为1秒<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set long_query_time=1;</div></pre></td></tr></table></figure></p><p>试一试有没有生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select sleep(2);</div></pre></td></tr></table></figure></p><p>到<code>/var/lib/mysql/ecs-248d-slow.log</code>查看下有没有</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Time: 190605 17:32:20</div><div class="line"># User@Host: root[root] @ localhost []</div><div class="line"># Thread_id: 2223  Schema:   QC_hit: No</div><div class="line"># Query_time: 2.000163  Lock_time: 0.000000  Rows_sent: 1  Rows_examined: 0</div><div class="line">SET timestamp=1559727140;</div><div class="line">select sleep(2);</div></pre></td></tr></table></figure><p>如果太多了，用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqldumpslow -s t /var/lib/mysql/ecs-248d-slow.log</div></pre></td></tr></table></figure></p><p>帮我们统一下</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;公司测试服务器上，跑了N多的应用，某天mysql的CPU占用超高，http的请求部分也有超20%以上的。&lt;/p&gt;
+&lt;h3 id=&quot;参考&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="http://www.jk-kj.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记一次服务器cpu了解</title>
+    <link href="http://www.jk-kj.com/2019/05/30/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8cpu%E4%BA%86%E8%A7%A3/"/>
+    <id>http://www.jk-kj.com/2019/05/30/记一次服务器cpu了解/</id>
+    <published>2019-05-30T01:33:57.000Z</published>
+    <updated>2019-05-30T01:43:58.539Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>自己写的php代码,执行mysql时,占用了很大的CPU,排查问题修改代码后,发现公司服务器已经没有这个问题,连续请求,mysql的内存不会增加。但是客户的机子上,连续请求还是会出现这个问题。</p><p>经排查后，应该是客户服务器上的CPU处理速度跟不上,导致mysql执行效率跟不上,被阻塞住。导致CPU会因为请求数量的累加而上升。而公司服务器因为处理速度快,即使请求速不断累加,其CPU的值也上升很少。</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>在linux 下怎么查看服务器的cpu和内存的硬件信息<br><a href="https://zhidao.baidu.com/question/155943069.html" target="_blank" rel="external">https://zhidao.baidu.com/question/155943069.html</a><br>intel xeon(skylake) platinum 8163 性能评测 阿里云第四代ECS服务器<br><a href="https://yq.aliyun.com/articles/622603" target="_blank" rel="external">https://yq.aliyun.com/articles/622603</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;自己写的php代码,执行mysql时,占用了很大的CPU,排查问题修改代码后,发现公司服务器已经没有这个问题,连续请求,mysql的内存不会
+      
+    
+    </summary>
+    
+    
+      <category term="CPU" scheme="http://www.jk-kj.com/tags/CPU/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cocos入门解读小猫钓鱼</title>
+    <link href="http://www.jk-kj.com/2019/04/25/cocos%E5%85%A5%E9%97%A8%E8%A7%A3%E8%AF%BB%E5%B0%8F%E7%8C%AB%E9%92%93%E9%B1%BC/"/>
+    <id>http://www.jk-kj.com/2019/04/25/cocos入门解读小猫钓鱼/</id>
+    <published>2019-04-25T00:33:31.000Z</published>
+    <updated>2019-04-25T01:13:47.684Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一直想弄一个小游戏出来，但是因为想用框架，在框架的选择上面兜兜转转，用了一遍，cocos是我最早接触的那时，还是叫cocos-js,后来出了个cocos-creator之后就没怎么深入了。2018年下半年又重新去接触微信小游戏，选了白鹭引擎，刚看完文档，有个同事说laya不错，看了一下laya的基础代码，感觉比白鹭简单（入坑）。但随着自己不断的深入已经想了解一些功能的实现时，laya的文档和教程可以几乎没什么帮助。查看github上的项目，也就那么几个。最后又去看白鹭社区，白鹭的开源项目还是很多的，有想重新用回白鹭的冲动，但忍住了。但某天一个简单功能在laya的模拟器跑正常，但到了微信开发工具里却始终无效，看了社区，这个问题据说已经在早几个版本里已经修复（当然不知道mac上面有没有修复），之后彻底对laya失去了希望。<br>重新看了白鹭和cocos-creator，最后发现cocos-creator的设计模式，很符合我的口味，突然有种为什么之前不先考虑cocos的疑惑。</p><p>后来看到了一个“小猫钓鱼”的cocos项目。作者的教程真的写的很详细，果断重新入坑cocos。</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>CocosCreator微信小游戏入门实战《小猫钓鱼》<br><a href="https://blog.csdn.net/zzx023/article/details/83063363" target="_blank" rel="external">https://blog.csdn.net/zzx023/article/details/83063363</a></p><p>### </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;一直想弄一个小游戏出来，但是因为想用框架，在框架的选择上面兜兜转转，用了一遍，cocos是我最早接触的那时，还是叫cocos-js,后来出了
+      
+    
+    </summary>
+    
+    
+      <category term="cocos" scheme="http://www.jk-kj.com/tags/cocos/"/>
+    
+  </entry>
   
   <entry>
     <title>记一次ftp环境的搭建</title>
@@ -427,80 +497,6 @@
       <category term="vscode" scheme="http://www.jk-kj.com/tags/vscode/"/>
     
       <category term="eslint" scheme="http://www.jk-kj.com/tags/eslint/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GitBash修改默认打开之后的路径</title>
-    <link href="http://www.jk-kj.com/2017/11/03/GitBash%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E4%B9%8B%E5%90%8E%E7%9A%84%E8%B7%AF%E5%BE%84/"/>
-    <id>http://www.jk-kj.com/2017/11/03/GitBash修改默认打开之后的路径/</id>
-    <published>2017-11-03T00:58:26.000Z</published>
-    <updated>2017-11-05T09:16:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>在公司windows下用gitbash，每次打开都要切换到D盘指定目录，非常费时，网上搜了一下果真有对应方法</p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://blog.csdn.net/zzfenglin/article/details/54646541" target="_blank" rel="external">http://blog.csdn.net/zzfenglin/article/details/54646541</a></p><h4 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h4><p>在“Git Bash”快捷方式上点击鼠标右键，然后选择“属性”，会弹出如下截图的提示框：</p><p><img src="http://img.blog.csdn.net/20170121165353158"></p><p>我们可以看到在“目标”后面的输入框中有操作的命令，在命令的最后是“–cd-to-home”，就是这条命令在快捷方式打开的时候切换到“/c/Users/Administrator”路径了。</p><p>假如，我们想把默认路径修改为“D:\android_workspace”，那我们需要操作两步：</p><p>1.将“目录”后面输入框中命令结尾部分去掉，即删掉“–cd-to-home”。</p><p>2.将“起始位置”后面的输入框中的内容修改为我们想要的默认路径“D:\android_workspace”（注意：这个路径是根据你自己代码工程的位置而定的）</p><p>修改之后的操作截图如下：</p><p><img src="http://img.blog.csdn.net/20170121165423783"></p><p>修改之后，点击“确定”，然后重新打开“Git Bash”，就会自动切换到我们想要的路径</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h4&gt;&lt;p&gt;在公司windows下用gitbash，每次打开都要切换到D盘指定目录，非常费时，网上搜了一下果真有对应方法&lt;/p&gt;
-&lt;h4 id=&quot;参考&quot;
-      
-    
-    </summary>
-    
-    
-      <category term="git" scheme="http://www.jk-kj.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git提交请求免输入git服务器密码</title>
-    <link href="http://www.jk-kj.com/2017/11/01/git%E6%8F%90%E4%BA%A4%E8%AF%B7%E6%B1%82%E5%85%8D%E8%BE%93%E5%85%A5git%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%86%E7%A0%81/"/>
-    <id>http://www.jk-kj.com/2017/11/01/git提交请求免输入git服务器密码/</id>
-    <published>2017-11-01T00:50:58.000Z</published>
-    <updated>2018-01-16T00:27:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>每次百度这内容，都要花费我不少时间</p><h4 id="客户端初始化"><a href="#客户端初始化" class="headerlink" title="客户端初始化"></a>客户端初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;yourname&quot;  </div><div class="line">git config --global user.email &quot;your@email.com&quot;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;XXX@company.com&quot;</div></pre></td></tr></table></figure><p>在git服务器下的git主目录下面的.ssh文件下添加（修改）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">authorized_keys</div></pre></td></tr></table></figure></p><p>重新启动sshd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service sshd restart</div></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h4&gt;&lt;p&gt;每次百度这内容，都要花费我不少时间&lt;/p&gt;
-&lt;h4 id=&quot;客户端初始化&quot;&gt;&lt;a href=&quot;#客户端初始化&quot; class=&quot;headerl
-      
-    
-    </summary>
-    
-    
-      <category term="git" scheme="http://www.jk-kj.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一次在vue中使用axios，参数没有序列化</title>
-    <link href="http://www.jk-kj.com/2017/11/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9C%A8vue%E4%B8%AD%E4%BD%BF%E7%94%A8axios%EF%BC%8C%E5%8F%82%E6%95%B0%E6%B2%A1%E6%9C%89%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    <id>http://www.jk-kj.com/2017/11/01/记一次在vue中使用axios，参数没有序列化/</id>
-    <published>2017-10-31T23:22:16.000Z</published>
-    <updated>2017-10-31T23:32:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>开始用vue写项目，可是用axios进行get操作没问题，进行post操作时，post的值始终没有传过来</p><p>直到搜索到“qs序列化”关键词，才发现其中的缘由</p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>Kouss博客 <a href="http://kouss.com/3884.html" target="_blank" rel="external">http://kouss.com/3884.html</a></p><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>设置了headers中Content-Type为application/x-www-form-urlencoded数据格式，post发起的请求仍为json类型，并没有序列化。<br>郁闷的是用JSON.stringify无效。</p><p><img src="http://s.kouss.com/wp-content/uploads/2017/01/f413b81288.png"></p><p>这个Form Data后台取不到数据，正常的Form Data数据应该是key：val<br>最终解决方法：使用qs</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var qs = require(&apos;qs&apos;)</div><div class="line">Vue.prototype.$http = axios.create(&#123;</div><div class="line">    baseURL: &apos;http://chaozhi.hk&apos;,</div><div class="line">    timeout: 10000,</div><div class="line">    headers: &#123;&apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded&apos;&#125;,</div><div class="line">    transformRequest: [function (data) &#123;</div><div class="line">        data = qs.stringify(data)</div><div class="line">        return data</div><div class="line">    &#125;]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h4&gt;&lt;p&gt;开始用vue写项目，可是用axios进行get操作没问题，进行post操作时，post的值始终没有传过来&lt;/p&gt;
-&lt;p&gt;直到搜索到“qs序列
-      
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://www.jk-kj.com/tags/vue/"/>
-    
-      <category term="axios" scheme="http://www.jk-kj.com/tags/axios/"/>
     
   </entry>
   
