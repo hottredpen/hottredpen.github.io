@@ -254,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/记一次使用leftjoin-group及子查询的配合使用/">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/使用阿里云邮件推送实现SMTP发送邮件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hottredpen">
@@ -273,253 +273,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/记一次使用leftjoin-group及子查询的配合使用/" itemprop="url">记一次使用leftjoin,group及子查询的配合使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-27T15:47:12+08:00">
-                2018-07-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>库存数据统计</p>
-<p>库存的数量动态的，列出产品的同时，将批次表里的同product_id的cur_num相加，作为该产品的库存</p>
-<h3 id="以前的做法"><a href="#以前的做法" class="headerlink" title="以前的做法"></a>以前的做法</h3><p>先将产品列表取出（一条sql）<br>foreach 每个产品，并查询总数（当前页数*1条sql）</p>
-<h3 id="改进后的做法"><a href="#改进后的做法" class="headerlink" title="改进后的做法"></a>改进后的做法</h3><p>先用子查询获取查询的总数,然后一下group，group后的字段作为leftjoin的关联字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> $storeProductBatchQuery = M(&apos;store_product_batch as spb&apos;)-&gt;field(&apos;SUM(cur_num) as spb_cur_num_count,product_id&apos;)-&gt;group(&apos;product_id&apos;)-&gt;buildSql(); // group的使用</div><div class="line">$list = M(&quot;product as p&quot;)</div><div class="line">        -&gt;join(&apos;left join &apos;.$storeProductBatchQuery.&apos; as spb on spb.product_id = p.id&apos;)</div><div class="line">        -&gt;field(&apos;p.*,spb.spb_cur_num_count&apos;)</div><div class="line">        -&gt;where($newmap)</div><div class="line">        -&gt;order($order)</div><div class="line">        -&gt;limit($offset.&apos;,&apos;.$page_size)</div><div class="line">        -&gt;select(false);</div><div class="line"></div><div class="line">        dump($list);</div><div class="line">        exit();</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装python3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/安装python3/" itemprop="url">安装python3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T13:31:21+08:00">
-                2018-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>安装TensorFlow</p>
-<h3 id="安装python3"><a href="#安装python3" class="headerlink" title="安装python3"></a>安装python3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python3</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Pip, setuptools, and wheel have been installed. To update them</div><div class="line">  pip3 install --upgrade pip setuptools wheel</div><div class="line"></div><div class="line">You can install Python packages with</div><div class="line">  pip3 install &lt;package&gt;</div><div class="line"></div><div class="line">They will install into the site-package directory</div><div class="line">  /usr/local/lib/python3.6/site-packages</div><div class="line"></div><div class="line">See: https://docs.brew.sh/Homebrew-and-Python.html</div><div class="line">==&gt; Summary</div><div class="line">🍺  /usr/local/Cellar/python3/3.6.3: 7,973 files, 111.1MB, built in 19 minutes 38 seconds</div><div class="line">➜  tensorflow python3 --version</div><div class="line">Python 3.6.3</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/使用阿里云邮件推送实现SMTP发送邮件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/使用阿里云邮件推送实现SMTP发送邮件/" itemprop="url">使用阿里云邮件推送实现SMTP发送邮件</a></h1>
+                <a class="post-title-link" href="/跳坑记录/使用阿里云邮件推送实现SMTP发送邮件/" itemprop="url">使用阿里云邮件推送实现SMTP发送邮件</a></h1>
         
 
         <div class="post-meta">
@@ -624,7 +378,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/MySql按周，按月，按日分组统计数据/">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/MySql按周，按月，按日分组统计数据/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hottredpen">
@@ -643,7 +397,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/MySql按周，按月，按日分组统计数据/" itemprop="url">MySql按周，按月，按日分组统计数据</a></h1>
+                <a class="post-title-link" href="/学无止境/MySql按周，按月，按日分组统计数据/" itemprop="url">MySql按周，按月，按日分组统计数据</a></h1>
         
 
         <div class="post-meta">
@@ -752,7 +506,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/Docker入门笔记/">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次php安装ImageMagick扩展/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hottredpen">
@@ -771,126 +525,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Docker入门笔记/" itemprop="url">Docker入门笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T14:24:01+08:00">
-                2018-03-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/记一次php安装ImageMagick扩展/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/记一次php安装ImageMagick扩展/" itemprop="url">记一次php安装ImageMagick扩展</a></h1>
+                <a class="post-title-link" href="/跳坑记录/记一次php安装ImageMagick扩展/" itemprop="url">记一次php安装ImageMagick扩展</a></h1>
         
 
         <div class="post-meta">
@@ -1102,7 +737,8 @@ x86代表适用32位系统,x64代表适用64位系统
       
         
           
-            
+            <p>您的教诲,您的事迹,您的荣誉…不会消逝，一直在我们的心里</p>
+
           
         
       
@@ -1150,7 +786,7 @@ x86代表适用32位系统,x64代表适用64位系统
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/brew安装mongodb及php-mongodb扩展/">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装笔记/brew安装mongodb及php-mongodb扩展/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hottredpen">
@@ -1169,7 +805,7 @@ x86代表适用32位系统,x64代表适用64位系统
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/brew安装mongodb及php-mongodb扩展/" itemprop="url">brew安装mongodb及php mongodb扩展</a></h1>
+                <a class="post-title-link" href="/安装笔记/brew安装mongodb及php-mongodb扩展/" itemprop="url">brew安装mongodb及php mongodb扩展</a></h1>
         
 
         <div class="post-meta">
@@ -1277,7 +913,7 @@ x86代表适用32位系统,x64代表适用64位系统
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/解决使用JWT时报Cannot-handle-token-prior-to的问题/">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/解决使用JWT时报Cannot-handle-token-prior-to的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hottredpen">
@@ -1296,7 +932,7 @@ x86代表适用32位系统,x64代表适用64位系统
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/解决使用JWT时报Cannot-handle-token-prior-to的问题/" itemprop="url">解决使用JWT时报Cannot handle token prior to的问题</a></h1>
+                <a class="post-title-link" href="/跳坑记录/解决使用JWT时报Cannot-handle-token-prior-to的问题/" itemprop="url">解决使用JWT时报Cannot handle token prior to的问题</a></h1>
         
 
         <div class="post-meta">
@@ -1400,7 +1036,7 @@ x86代表适用32位系统,x64代表适用64位系统
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/如何提取谷歌chrome浏览器的crx插件/">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/如何提取谷歌chrome浏览器的crx插件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hottredpen">
@@ -1419,7 +1055,7 @@ x86代表适用32位系统,x64代表适用64位系统
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/如何提取谷歌chrome浏览器的crx插件/" itemprop="url">如何提取谷歌chrome浏览器的crx插件</a></h1>
+                <a class="post-title-link" href="/学无止境/如何提取谷歌chrome浏览器的crx插件/" itemprop="url">如何提取谷歌chrome浏览器的crx插件</a></h1>
         
 
         <div class="post-meta">
@@ -1520,11 +1156,430 @@ x86代表适用32位系统,x64代表适用64位系统
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次linux上大文件的转移/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/记一次linux上大文件的转移/" itemprop="url">记一次linux上大文件的转移</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T12:43:08+08:00">
+                2017-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>服务器的内容转到另一台服务器</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="首先进行了打包"><a href="#首先进行了打包" class="headerlink" title="首先进行了打包"></a>首先进行了打包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -cvf ./kod.tar ./kod3.1</div></pre></td></tr></table></figure>
+<p>打完包，发现有3个多G<br>就尝试打包压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zcvf ./kod2.tar.gz ./kod3.1</div></pre></td></tr></table></figure></p>
+<p>结果还是3G多，只压缩了200M</p>
+<h4 id="进行传输"><a href="#进行传输" class="headerlink" title="进行传输"></a>进行传输</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure>
+<p>开始有5M/s的速度，可慢慢地变得只有800K/s<br>最气人的是在60%时的时候居然出现了<code>stalled</code></p>
+<h4 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">When transferring large files(for example mksysb images) using scp through a firewall, the scp connection stalls.</div><div class="line">Cause:</div><div class="line"></div><div class="line">The reason for scp to stall, is because scp greedily grabs as much bandwith of the network as possible when it transfers files, any delay caused by the network switch of the firewall can easily make the TCP connection stalled.</div><div class="line">Solution:</div><div class="line"></div><div class="line">There’s a solution to this problem: Add “-l 8192″ to the scp command.</div><div class="line"></div><div class="line">Adding the option “-l 8192″ limits the scp session bandwith up to 8192 Kbit/second, which seems to work safe and fast enough (up to 1 MB/second):</div></pre></td></tr></table></figure>
+<h4 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h4><p>在原有的命令行上加上了<code>-l 8192</code>可以维持在1M/s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure></p>
+<p>开始速度也有6M/s，后面速度一直维持在1M/s，中间无<code>stalled</code></p>
+<p>如果是<code>-l 16000</code>则维持在2M/s，以此类推</p>
+<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -xvf kod.tar</div></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf kod.tar.gz</div></pre></td></tr></table></figure></p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>因为转移的文件有很多，而且都很大，我们不可能一直开者等待它传完，这就需要后台运行</p>
+<p>先输入密码进行传输<br>然后用<code>ctrl+z</code>,将当前进程挂起到后台暂停运行，执行一些别的操作<br>然后用 <code>bg</code> 来将挂起的进程放在后台(也可以用 <code>fg</code> 来将挂起的进程重新放回前台)继续运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@pvcent107 build]# scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">---------ctrl+zx</div><div class="line">[1]+  Stopped                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">[root@pvcent107 build]# bg %1</div><div class="line">[1]+ scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# jobs</div><div class="line">[1]+  Running                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# disown -h %1</div><div class="line">[root@pvcent107 build]# ps -ef |grep kod</div><div class="line">root      5790  5577  1 10:04 pts/3    00:00:00 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">root      5824  5577  0 10:05 pts/3    00:00:00 grep kod</div></pre></td></tr></table></figure></p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>有时jobs会有多个，注意自己的文件大小是否正常，我就别坑了1次，没传输完成（完成了一个jobs），以为完成了就进行解压缩了。</p>
+<h4 id="400G个文件打包"><a href="#400G个文件打包" class="headerlink" title="400G个文件打包"></a>400G个文件打包</h4><p>之前想着。。。400G的文件需要切分-，-！可是用了切分时，却始终没有获取完整的包，好几次我都相信我的总包才80G</p>
+<p>最后用了整包打包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf kod.tar.bz2 ./kod &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure></p>
+<p>打完包发现才有400G+…….我的天，整整打包了一天一夜</p>
+<h4 id="400G的传输"><a href="#400G的传输" class="headerlink" title="400G的传输"></a>400G的传输</h4><p>scp 已经无法满足，因为万一中间来个服务器重启，或者其他因素那over了，那流量可就白白流失了<br>最后采用了<code>rsync</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.14.156:/data/</div></pre></td></tr></table></figure></p>
+<p>然后输入密码<br>再ctrl+z 暂停<br>再bg %1  放入后台（假设当前后台允许索引为1）<br>然后用jobs查看<br>如果你当前退出过当前终端，jobs已经无法查看到后台运行的进程，只能用ps<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef |grep kod</div></pre></td></tr></table></figure></p>
+<p>会有如下的显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root     175100 174758 47 08:10 pts/2    00:15:13 rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.91.176:/data/</div><div class="line">root     183245 174758  0 08:42 pts/2    00:00:00 grep --color=auto kod</div></pre></td></tr></table></figure></p>
+<p>其中<code>00:15:13</code>指本次断点续传进行的时间。<br>当传输了200G以后，继续进行断点续传，这个时间会有好长一段时间是不更新的（作者认为它在寻找上一次的断点，因为文件大了寻找的时间会久一点），如果你这个时候马上关闭总端，很有可能本次传输就没执行，我就被坑了一次，一觉醒来一点就没传。。。</p>
+<h4 id="rsync与scp的差异"><a href="#rsync与scp的差异" class="headerlink" title="rsync与scp的差异"></a>rsync与scp的差异</h4><p>用scp时，这边传多少，另一个服务器就显示文件实时大小<br>而用rsync时，另一个服务器不实时显示文件大小，只有将这边的进程暂时kill掉，才能知道到底传了多少（可能我这个办法比较粗暴）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -9 175100</div></pre></td></tr></table></figure></p>
+<h4 id="400G的解压"><a href="#400G的解压" class="headerlink" title="400G的解压"></a>400G的解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -xjf ./kod_all.tar.bz2 &gt; /dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+<p>其他查看操作同上面</p>
+<h3 id="其他，拆分打包（失败了）"><a href="#其他，拆分打包（失败了）" class="headerlink" title="其他，拆分打包（失败了）"></a>其他，拆分打包（失败了）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf - kod/ |split -b 10000m - kod.tar.bz2. &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+<p>它会生成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.aa</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ab</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ac</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ad</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ae</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.af</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ag</div></pre></td></tr></table></figure></p>
+<p>后面默认2位，字符逐渐增加<br>它的解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup cat pinkephp.tar.bz2.* | tar -xj &amp;</div></pre></td></tr></table></figure></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://linux.cn/article-7170-1.html" target="_blank" rel="external">https://linux.cn/article-7170-1.html</a></p>
+<p><a href="http://blog.csdn.net/tdstds/article/details/24870535" target="_blank" rel="external">http://blog.csdn.net/tdstds/article/details/24870535</a></p>
+<p><a href="http://blog.csdn.net/eroswang/article/details/5555415/" target="_blank" rel="external">http://blog.csdn.net/eroswang/article/details/5555415/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次网站字体采用思源字体/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/记一次网站字体采用思源字体/" itemprop="url">记一次网站字体采用思源字体</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T12:46:14+08:00">
+                2017-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>客户想让他的网站都显示思源字体</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>fontsquirrel<br><a href="https://www.fontsquirrel.com" target="_blank" rel="external">https://www.fontsquirrel.com</a><br>CSS @font-face属性实现在网页中嵌入任意字体<br><a href="http://www.jb51.net/css/23073.html" target="_blank" rel="external">http://www.jb51.net/css/23073.html</a></p>
+<p>如何在网页中嵌入自己想要的字体(实例下载)<br><a href="http://blog.csdn.net/sinolzeng/article/details/41802951" target="_blank" rel="external">http://blog.csdn.net/sinolzeng/article/details/41802951</a></p>
+<h3 id="linux安装字体（错误的方法）"><a href="#linux安装字体（错误的方法）" class="headerlink" title="linux安装字体（错误的方法）"></a>linux安装字体（错误的方法）</h3><h4 id="下载字体"><a href="#下载字体" class="headerlink" title="下载字体"></a>下载字体</h4><p>下载思源全套字体（字体文件名称：NotoSansHans）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://pan.baidu.com/s/1uJBBK</div></pre></td></tr></table></figure></p>
+<p>windows的字体比较多，其字体文件位于 C:\WINDOWS\Fonts,如果想额外安装也可以到这里找找</p>
+<p>字体格式有ttf和otf等多重后缀，linux上ttf和oft都可以</p>
+<h4 id="移动文件到服务器指定位置"><a href="#移动文件到服务器指定位置" class="headerlink" title="移动文件到服务器指定位置"></a>移动文件到服务器指定位置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># mkdir /usr/share/fonts/NotoSansHans</div><div class="line"># cp arial*.otf /usr/share/fonts/NotoSansHans/</div><div class="line">或</div><div class="line"># cp arial*.ttf /usr/share/fonts/NotoSansHans/</div></pre></td></tr></table></figure>
+<h4 id="为刚加入的字体设置缓存使之有效"><a href="#为刚加入的字体设置缓存使之有效" class="headerlink" title="为刚加入的字体设置缓存使之有效"></a>为刚加入的字体设置缓存使之有效</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># cd /usr/share/font/NotoSansHans</div><div class="line"># fc-cache -fv</div></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>因为我在windows里先安装了思源字体，并在<code>Noto Sans S Chinese</code>中找到了思源字体，所以font-family中我用<code>Noto Sans S Chinese</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line">    font-family: &quot;Noto Sans S Chinese&quot;, Helvetica, Arial, sans-serif;</div><div class="line">    -webkit-font-smoothing: antialiased;</div><div class="line">    color: #777777;</div><div class="line">    font-size: 14px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>为什么文件名是<code>NotoSansHans</code>，安装后需要<code>Noto Sans S Chinese</code><br>这里有个疑惑</p>
+<h4 id="疑惑解决（2017-12-8）"><a href="#疑惑解决（2017-12-8）" class="headerlink" title="疑惑解决（2017.12.8）"></a>疑惑解决（2017.12.8）</h4><p>自己本地安装了ttf包后，生成了Noto Sans S Chinese字体，可是这个字体不是服务器里的</p>
+<p>也就是说，我在linux上安装的字体只能在linux上使用,浏览器里使用一个是看客户端有没有这个字体，另一个是你的css中引入如ttf之类的字体资源，但是对于中文来说，要把整个字体都方法css上，大概要10M以上（这个肯定不是个办法）</p>
+<h3 id="css-font-face引入-只能引入英文字体"><a href="#css-font-face引入-只能引入英文字体" class="headerlink" title="css font-face引入(只能引入英文字体)"></a>css font-face引入(只能引入英文字体)</h3><p>在<br><a href="https://www.fontsquirrel.com" target="_blank" rel="external">https://www.fontsquirrel.com</a><br>中找到自己需要的字体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">font-family: &apos;fontNameRegular&apos;;</div><div class="line">src: url(&apos;fontName.eot&apos;);</div><div class="line">src: local(&apos;fontName Regular&apos;),</div><div class="line">local(&apos;fontName&apos;),</div><div class="line">url(&apos;fontName.woff&apos;) format(&apos;woff&apos;),</div><div class="line">url(&apos;fontName.ttf&apos;) format(&apos;truetype&apos;),</div><div class="line">url(&apos;fontName.svg#fontName&apos;) format(&apos;svg&apos;);</div><div class="line">&#125;</div><div class="line">/*其中fontName替换为你的字体名称*/</div></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>想在网页中全部使用某不常用的字体，几乎是不可取的方法，除非客户端里大家都安装了该字体</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/elementui引入iconfont/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/学无止境/elementui引入iconfont/" itemprop="url">elementui引入iconfont</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-10T15:58:02+08:00">
+                2017-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>element官方的icon太少</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://blog.csdn.net/b376924098/article/details/78286880#reply" target="_blank" rel="external">http://blog.csdn.net/b376924098/article/details/78286880#reply</a></p>
+<p>CSS3 @font-face [<a href="http://www.w3cplus.com/content/css3-font-face" target="_blank" rel="external">http://www.w3cplus.com/content/css3-font-face</a>]</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ul>
+<li>去阿里巴巴矢量图，地址;<a href="http://www.iconfont.cn/" target="_blank" rel="external">http://www.iconfont.cn/</a></li>
+<li>进入网站登录账户后，新建一个项目</li>
+<li>选择一些自己要用到的图标如上图点击购物车按钮添加到购物车。</li>
+</ul>
+<p> <img src="http://img.blog.csdn.net/20171019170321456?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYjM3NjkyNDA5OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center"></p>
+<ul>
+<li>保存时，以yourprogect-icon命名</li>
+<li>并命名一个自己的字体名称，jkkjFontFamily</li>
+<li>在iconfont.css添加以下代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[class^=&quot;jkkj-icon&quot;], [class*=&quot; jkkj-icon&quot;] &#123;</div><div class="line">  font-family:&quot;jkkjFontFamily&quot; !important;</div><div class="line">  /* 以下内容参照第三方图标库本身的规则 */</div><div class="line">  font-size: 18px;</div><div class="line">  font-style:normal;</div><div class="line">  -webkit-font-smoothing: antialiased;</div><div class="line">  -moz-osx-font-smoothing: grayscale;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>效果类似于下图<br><img src="http://img.blog.csdn.net/20171019171813100?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYjM3NjkyNDA5OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1574,7 +1629,7 @@ x86代表适用32位系统,x64代表适用64位系统
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1587,7 +1642,7 @@ x86代表适用32位系统,x64代表适用64位系统
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="测试," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="简客-记忆" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="背景早先在CPK项目时，因为有用户反应页面打不开，后来采用了CDN和静态页，那段时间也用ab测试工具测试过速度,但用了之后就没深入了解（主要是没写笔记做记录，忘记了）之后因为离职去应聘时，一个面试官问过ab测试，且对我当时的一个开源项目进行了简单的压力测试。因为采用了pjax，没用静态页，首页的测试并不理想，之后打算着将TP的静态页部分改进下，满足pjax时也能调用。在laravel，TP5，YI">
+<meta name="keywords" content="测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ab性能测试">
+<meta property="og:url" content="http://www.jk-kj.com/学无止境/ab性能测试/index.html">
+<meta property="og:site_name" content="简客-记忆">
+<meta property="og:description" content="背景早先在CPK项目时，因为有用户反应页面打不开，后来采用了CDN和静态页，那段时间也用ab测试工具测试过速度,但用了之后就没深入了解（主要是没写笔记做记录，忘记了）之后因为离职去应聘时，一个面试官问过ab测试，且对我当时的一个开源项目进行了简单的压力测试。因为采用了pjax，没用静态页，首页的测试并不理想，之后打算着将TP的静态页部分改进下，满足pjax时也能调用。在laravel，TP5，YI">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-12T03:13:57.633Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ab性能测试">
+<meta name="twitter:description" content="背景早先在CPK项目时，因为有用户反应页面打不开，后来采用了CDN和静态页，那段时间也用ab测试工具测试过速度,但用了之后就没深入了解（主要是没写笔记做记录，忘记了）之后因为离职去应聘时，一个面试官问过ab测试，且对我当时的一个开源项目进行了简单的压力测试。因为采用了pjax，没用静态页，首页的测试并不理想，之后打算着将TP的静态页部分改进下，满足pjax时也能调用。在laravel，TP5，YI">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.jk-kj.com/学无止境/ab性能测试/"/>
+
+
+
+
+
+  <title>ab性能测试 | 简客-记忆</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">简客-记忆</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">抽象的才是永恒的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/ab性能测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ab性能测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T15:19:00+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>早先在CPK项目时，因为有用户反应页面打不开，后来采用了CDN和静态页，那段时间也用ab测试工具测试过速度,但用了之后就没深入了解（主要是没写笔记做记录，忘记了）<br>之后因为离职去应聘时，一个面试官问过ab测试，且对我当时的一个开源项目进行了简单的压力测试。因为采用了pjax，没用静态页，首页的测试并不理想，之后打算着将TP的静态页部分改进下，满足pjax时也能调用。<br>在laravel，TP5，YII2等框架性能据说都有不错的提升时，自己用TP3.2开源的项目就显得十分的老旧。如何对比速度上的差异，也就只能先记录下TP3.2时的速度，用新框架的速度来进行对比。</p>
+<h3 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a>参考地址</h3><p>作者：橙子酱<br>链接：<a href="http://www.jianshu.com/p/43d04d8baaf7" target="_blank" rel="external">http://www.jianshu.com/p/43d04d8baaf7</a><br>來源：简书</p>
+<h3 id="关于压力测试的概念"><a href="#关于压力测试的概念" class="headerlink" title="关于压力测试的概念"></a>关于压力测试的概念</h3><h4 id="吞吐率（Requests-per-second）"><a href="#吞吐率（Requests-per-second）" class="headerlink" title="吞吐率（Requests per second）"></a>吞吐率（Requests per second）</h4><p>概念：服务器并发处理能力的量化描述，单位是reqs/s，指的是某个并发用户数下单位时间内处理的请求数。某个并发用户数下单位时间内能处理的最大请求数，称之为最大吞吐率。<br>计算公式：总请求数 / 处理完成这些请求数所花费的时间，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Request per second = Complete requests / Time taken for tests</div></pre></td></tr></table></figure></p>
+<p>以100并发 100次请求，各大网站的对比(20171025)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">百度(www.baidu.com)   80~88</div><div class="line">知乎(www.zhihu.com)   75~85</div><div class="line">QQ(www.qq.com)        25~35</div><div class="line">微博（www.weibo.com） 20~25</div></pre></td></tr></table></figure></p>
+<h4 id="并发连接数（The-number-of-concurrent-connections）"><a href="#并发连接数（The-number-of-concurrent-connections）" class="headerlink" title="并发连接数（The number of concurrent connections）"></a>并发连接数（The number of concurrent connections）</h4><p>概念：某个时刻服务器所接受的请求数目，简单的讲，就是一个会话。</p>
+<h4 id="并发用户数（The-number-of-concurrent-users，Concurrency-Level）"><a href="#并发用户数（The-number-of-concurrent-users，Concurrency-Level）" class="headerlink" title="并发用户数（The number of concurrent users，Concurrency Level）"></a>并发用户数（The number of concurrent users，Concurrency Level）</h4><p>概念：要注意区分这个概念和并发连接数之间的区别，一个用户可能同时会产生多个会话，也即连接数。</p>
+<h4 id="用户平均请求等待时间（Time-per-request）"><a href="#用户平均请求等待时间（Time-per-request）" class="headerlink" title="用户平均请求等待时间（Time per request）"></a>用户平均请求等待时间（Time per request）</h4><p>计算公式：处理完成所有请求数所花费的时间/ （总请求数 / 并发用户数），即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time per request = Time taken for tests /（ Complete requests / Concurrency Level）</div></pre></td></tr></table></figure></p>
+<h4 id="服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）"><a href="#服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）" class="headerlink" title="服务器平均请求等待时间（Time per request: across all concurrent requests）"></a>服务器平均请求等待时间（Time per request: across all concurrent requests）</h4><p>计算公式：处理完成所有请求数所花费的时间 / 总请求数，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time taken for / testsComplete requests</div></pre></td></tr></table></figure></p>
+<p>可以看到，它是吞吐率的倒数。<br>同时，它也 等于 用户平均请求等待时间/并发用户数，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time per request / Concurrency Level</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">百度(www.baidu.com)   1100~1300  11.00~13.00</div><div class="line">知乎(www.zhihu.com)   1100~1300  11.00~13.00</div><div class="line">QQ(www.qq.com)        3200~3500  32.00~35.00</div><div class="line">微博（www.weibo.com）  4000~5000  40.00~50.00</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="单次测试结果的说明"><a href="#单次测试结果的说明" class="headerlink" title="单次测试结果的说明"></a>单次测试结果的说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Concurrency Level: 100                 //并发请求数</div><div class="line">Time taken for tests: 50.872 seconds   //整个测试持续的时间</div><div class="line">Complete requests: 1000                //完成的请求数</div><div class="line">Failed requests: 0                     //失败的请求数</div><div class="line"></div><div class="line">Total transferred: 13701482 bytes      //整个场景中的网络传输量</div><div class="line">HTML transferred: 13197000 bytes       //整个场景中的HTML内容传输量</div><div class="line"></div><div class="line">Requests per second: 19.66 [#/sec] (mean)   //吞吐率，大家最关心的指标之一，相当于 LR 中的每秒事务数，后面括号中的 mean 表示这是一个平均值</div><div class="line">Time per request: 5087.180 [ms] (mean)      //用户平均请求等待时间，大家最关心的指标之二，相当于 LR 中的平均事务响应时间，后面括号中的 mean 表示这是一个平均值</div><div class="line">Time per request: 50.872 [ms] (mean, across all concurrent requests)   //服务器平均请求处理时间，大家最关心的指标之三</div><div class="line"></div><div class="line">Transfer rate: 263.02 [Kbytes/sec] received   //平均每秒网络上的流量，可以帮助排除是否存在网络流量过大导致响应时间延长的问题</div></pre></td></tr></table></figure>
+<h3 id="关于登录的问题"><a href="#关于登录的问题" class="headerlink" title="关于登录的问题"></a>关于登录的问题</h3><p>有时候进行压力测试需要用户登录，怎么办？<br>请参考以下步骤：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先用账户和密码登录后，用开发者工具找到标识这个会话的Cookie值（Session ID）记下来</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果只用到一个Cookie，那么只需键入命令：</div><div class="line">ab －n 100 －C key＝value http://test.com/</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果需要多个Cookie，就直接设Header：</div><div class="line">ab -n 100 -H “Cookie: Key1=Value1; Key2=Value2” http://test.com/</div></pre></td></tr></table></figure>
+<h3 id="如何防止别人用ab之类的测试软件恶意请求自己的网站"><a href="#如何防止别人用ab之类的测试软件恶意请求自己的网站" class="headerlink" title="如何防止别人用ab之类的测试软件恶意请求自己的网站"></a>如何防止别人用ab之类的测试软件恶意请求自己的网站</h3><p>网友回答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">目前此类软件可以很真实的模拟浏览器请求，所以在少量的请求下，基本上是屏蔽不了的。</div><div class="line">但是，使用此类软件请求你的网站通常都有其他目的，会产生大量重复的请求。</div><div class="line">可以通过单位时间的请求次数进行控制，相同IP或者相同的userAgint产生的异常请求通过程序判断来禁止。</div><div class="line">但是即便程序做了判断，请求已经进入处理阶段依然会影响性能，所以还要配合其他的处理方式，重复响应最好用缓存的方式来实现，避免过多的消耗CPU；确诊的问题IP应该在防火墙端就进行屏蔽。</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nginx的话可以用HttpLimitReqModule</div><div class="line">此模块能通过特定的客户端标识（如IP，UA等）来限制客户端在一定时间内的访问频次，比你在程序里控制要省资源得多。</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/测试/" rel="tag"># 测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/学无止境/mysql中的视图（转）/" rel="next" title="mysql中的视图（转）">
+                <i class="fa fa-chevron-left"></i> mysql中的视图（转）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/跳坑记录/记一次在vue中使用axios，参数没有序列化/" rel="prev" title="记一次在vue中使用axios，参数没有序列化">
+                记一次在vue中使用axios，参数没有序列化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="hottredpen" />
+            
+              <p class="site-author-name" itemprop="name">hottredpen</p>
+              <p class="site-description motion-element" itemprop="description">从教育跨行到IT的开发者</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考地址"><span class="nav-number">2.</span> <span class="nav-text">参考地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于压力测试的概念"><span class="nav-number">3.</span> <span class="nav-text">关于压力测试的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#吞吐率（Requests-per-second）"><span class="nav-number">3.1.</span> <span class="nav-text">吞吐率（Requests per second）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发连接数（The-number-of-concurrent-connections）"><span class="nav-number">3.2.</span> <span class="nav-text">并发连接数（The number of concurrent connections）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发用户数（The-number-of-concurrent-users，Concurrency-Level）"><span class="nav-number">3.3.</span> <span class="nav-text">并发用户数（The number of concurrent users，Concurrency Level）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户平均请求等待时间（Time-per-request）"><span class="nav-number">3.4.</span> <span class="nav-text">用户平均请求等待时间（Time per request）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）"><span class="nav-number">3.5.</span> <span class="nav-text">服务器平均请求等待时间（Time per request: across all concurrent requests）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单次测试结果的说明"><span class="nav-number">4.</span> <span class="nav-text">单次测试结果的说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于登录的问题"><span class="nav-number">5.</span> <span class="nav-text">关于登录的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何防止别人用ab之类的测试软件恶意请求自己的网站"><span class="nav-number">6.</span> <span class="nav-text">如何防止别人用ab之类的测试软件恶意请求自己的网站</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hottredpen</span>
+  <span class="author"><a href="http://www.beian.miit.gov.cn/" target="_blank">浙ICP备13033425号</a></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

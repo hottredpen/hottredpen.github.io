@@ -254,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/vue指令/">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/python之禅/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hottredpen">
@@ -273,1108 +273,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/vue指令/" itemprop="url">vue指令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T08:16:58+08:00">
-                2017-10-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="v-text"><a href="#v-text" class="headerlink" title="v-text"></a>v-text</h4><p>预期：string</p>
-<p>更新元素的 textContent。如果要更新部分的 textContent ，需要使用  插值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;span v-text=&quot;msg&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;!-- 和下面的一样 --&gt;</div><div class="line">&lt;span&gt;&#123;&#123;msg&#125;&#125;&lt;/span&gt;</div></pre></td></tr></table></figure>
-<h4 id="v-html"><a href="#v-html" class="headerlink" title="v-html"></a>v-html</h4><p>预期：string</p>
-<p>更新元素的 innerHTML 。注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译 。如果试图使用 v-html 组合模板，可以重新考虑是否通过使用组件来替代。</p>
-<p>在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 XSS 攻击。只在可信内容上使用 v-html，永不用在用户提交的内容上。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-html=&quot;html&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
-<h4 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h4><p>预期：any</p>
-<p>不同的是带有 v-show 的元素始终会被渲染并保留在 DOM 中。v-show 只是简单地切换元素的 CSS 属性 display。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
-<h4 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h4><p>预期：any</p>
-<h4 id="v-else"><a href="#v-else" class="headerlink" title="v-else"></a>v-else</h4><h4 id="v-else-if"><a href="#v-else-if" class="headerlink" title="v-else-if"></a>v-else-if</h4><p>预期：any</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div v-if=&quot;Math.random() &gt; 0.5&quot;&gt;</div><div class="line">  Now you see me</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else&gt;</div><div class="line">  Now you don&apos;t</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div v-if=&quot;type === &apos;A&apos;&quot;&gt;</div><div class="line">  A</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else-if=&quot;type === &apos;B&apos;&quot;&gt;</div><div class="line">  B</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else-if=&quot;type === &apos;C&apos;&quot;&gt;</div><div class="line">  C</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else&gt;</div><div class="line">  Not A/B/C</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<h4 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h4><p>预期：Array | Object | number | string</p>
-<p>基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 alias in expression ，为当前遍历的元素提供别名：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div v-for=&quot;item in items&quot;&gt;</div><div class="line">  &#123;&#123; item.text &#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<p>另外也可以为数组索引指定别名 (或者用于对象的键)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div v-for=&quot;(item, index) in items&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div v-for=&quot;(val, key) in object&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div v-for=&quot;(val, key, index) in object&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
-<h4 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h4><p>缩写：@    【注意可缩写】</p>
-<p>修饰符：</p>
-<pre><code>.stop - 调用 event.stopPropagation()。
-.prevent - 调用 event.preventDefault()。
-.capture - 添加事件侦听器时使用 capture 模式。
-.self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
-.{keyCode | keyAlias} - 只当事件是从特定键触发时才触发回调。
-.native - 监听组件根元素的原生事件。
-.once - 只触发一次回调。
-.left - (2.2.0) 只当点击鼠标左键时触发。
-.right - (2.2.0) 只当点击鼠标右键时触发。
-.middle - (2.2.0) 只当点击鼠标中键时触发。
-.passive - (2.3.0) 以 { passive: true } 模式添加侦听器
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 方法处理器 --&gt;</div><div class="line">&lt;button v-on:click=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 对象语法 (2.4.0+) --&gt;</div><div class="line">&lt;button v-on=&quot;&#123; mousedown: doThis, mouseup: doThat &#125;&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 内联语句 --&gt;</div><div class="line">&lt;button v-on:click=&quot;doThat(&apos;hello&apos;, $event)&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 缩写 --&gt;</div><div class="line">&lt;button @click=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 停止冒泡 --&gt;</div><div class="line">&lt;button @click.stop=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 阻止默认行为 --&gt;</div><div class="line">&lt;button @click.prevent=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 阻止默认行为，没有表达式 --&gt;</div><div class="line">&lt;form @submit.prevent&gt;&lt;/form&gt;</div><div class="line">&lt;!--  串联修饰符 --&gt;</div><div class="line">&lt;button @click.stop.prevent=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 键修饰符，键别名 --&gt;</div><div class="line">&lt;input @keyup.enter=&quot;onEnter&quot;&gt;</div><div class="line">&lt;!-- 键修饰符，键代码 --&gt;</div><div class="line">&lt;input @keyup.13=&quot;onEnter&quot;&gt;</div><div class="line">&lt;!-- 点击回调只会触发一次 --&gt;</div><div class="line">&lt;button v-on:click.once=&quot;doThis&quot;&gt;&lt;/button&gt;</div></pre></td></tr></table></figure>
-<p>在子组件上监听自定义事件 (当子组件触发“my-event”时将调用事件处理器)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;my-component @my-event=&quot;handleThis&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 内联语句 --&gt;</div><div class="line">&lt;my-component @my-event=&quot;handleThis(123, $event)&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 组件中的原生事件 --&gt;</div><div class="line">&lt;my-component @click.native=&quot;onClick&quot;&gt;&lt;/my-component&gt;</div></pre></td></tr></table></figure>
-<h4 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h4><p>缩写：:    【注意可缩写】<br>预期：any (with argument) | Object (without argument)</p>
-<p>修饰符：</p>
-<pre><code>.prop - 被用于绑定 DOM 属性 (property)。(差别在哪里？)
-.camel - (2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)
-.sync (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 v-on 侦听器。
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 绑定一个属性 --&gt;</div><div class="line">&lt;img v-bind:src=&quot;imageSrc&quot;&gt;</div><div class="line">&lt;!-- 缩写 --&gt;</div><div class="line">&lt;img :src=&quot;imageSrc&quot;&gt;</div><div class="line">&lt;!-- 内联字符串拼接 --&gt;</div><div class="line">&lt;img :src=&quot;&apos;/path/to/images/&apos; + fileName&quot;&gt;</div><div class="line">&lt;!-- class 绑定 --&gt;</div><div class="line">&lt;div :class=&quot;&#123; red: isRed &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :class=&quot;[classA, classB]&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :class=&quot;[classA, &#123; classB: isB, classC: isC &#125;]&quot;&gt;</div><div class="line">&lt;!-- style 绑定 --&gt;</div><div class="line">&lt;div :style=&quot;&#123; fontSize: size + &apos;px&apos; &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :style=&quot;[styleObjectA, styleObjectB]&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- 绑定一个有属性的对象 --&gt;</div><div class="line">&lt;div v-bind=&quot;&#123; id: someProp, &apos;other-attr&apos;: otherProp &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- 通过 prop 修饰符绑定 DOM 属性 --&gt;</div><div class="line">&lt;div v-bind:text-content.prop=&quot;text&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- prop 绑定。“prop”必须在 my-component 中声明。--&gt;</div><div class="line">&lt;my-component :prop=&quot;someThing&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 通过 $props 将父组件的 props 一起传给子组件 --&gt;</div><div class="line">&lt;child-component v-bind=&quot;$props&quot;&gt;&lt;/child-component&gt;</div><div class="line">&lt;!-- XLink --&gt;</div><div class="line">&lt;svg&gt;&lt;a :xlink:special=&quot;foo&quot;&gt;&lt;/a&gt;&lt;/svg&gt;</div></pre></td></tr></table></figure>
-<h4 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h4><p>预期：随表单控件类型不同而不同。</p>
-<p>限制：</p>
-<pre><code>&lt;input&gt;
-&lt;select&gt;
-&lt;textarea&gt;
-components
-</code></pre><p>修饰符：</p>
-<pre><code>.lazy - 取代 input 监听 change 事件
-.number - 输入字符串转为数字
-.trim - 输入首尾空格过滤
-</code></pre><h4 id="v-pre"><a href="#v-pre" class="headerlink" title="v-pre"></a>v-pre</h4><p>用法：</p>
-<p>跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。</p>
-<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;span v-pre&gt;&#123;&#123; this will not be compiled &#125;&#125;&lt;/span&gt;</div></pre></td></tr></table></figure></p>
-<h4 id="v-cloak"><a href="#v-cloak" class="headerlink" title="v-cloak"></a>v-cloak</h4><p>用法：</p>
-<p>这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。</p>
-<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[v-cloak] &#123;</div><div class="line">  display: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div v-cloak&gt;</div><div class="line">  &#123;&#123; message &#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">不会显示，直到编译结束。</div></pre></td></tr></table></figure></p>
-<h4 id="v-once"><a href="#v-once" class="headerlink" title="v-once"></a>v-once</h4><p>只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 单个元素 --&gt;</div><div class="line">&lt;span v-once&gt;This will never change: &#123;&#123;msg&#125;&#125;&lt;/span&gt;</div><div class="line">&lt;!-- 有子元素 --&gt;</div><div class="line">&lt;div v-once&gt;</div><div class="line">  &lt;h1&gt;comment&lt;/h1&gt;</div><div class="line">  &lt;p&gt;&#123;&#123;msg&#125;&#125;&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;!-- 组件 --&gt;</div><div class="line">&lt;my-component v-once :comment=&quot;msg&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- `v-for` 指令--&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li v-for=&quot;i in list&quot; v-once&gt;&#123;&#123;i&#125;&#125;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/vue选项数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/vue选项数据/" itemprop="url">vue选项数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T06:47:41+08:00">
-                2017-10-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>初级理解：对象必须是纯粹的对象(含有零个或多个的key/value对)，这里面的数据最好都是在视图层显示的数据（静态变量）<br>中级理解：<br>高级理解：</p>
-<p>其他：<br>如果说不是在视图层展示的变量。可以定义在外面或者放在vm对象上。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">let abc = &apos;&apos;  </div><div class="line">export default &#123;  </div><div class="line">    data() &#123;  </div><div class="line">        return &#123;  </div><div class="line">            bar: &apos;bar&apos;  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    methods: &#123;  </div><div class="line">        testFn() &#123;  </div><div class="line">            // abc  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><p>初级理解：props 可以是数组或对象，用于接收来自父组件的数据。<br>中级理解：组件实例的作用域是孤立的。这意味着不能 (也不应该) 在子组件的模板内直接引用父组件的数据。父组件的数据需要通过 prop 才能下发到子组件中。<br>高级理解：</p>
-<p>其他：</p>
-<p>子组件要显式地用 props 选项声明它预期的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Vue.component(&apos;child&apos;, &#123;</div><div class="line">  // 声明 props</div><div class="line">  props: [&apos;message&apos;],</div><div class="line">  // 就像 data 一样，prop 也可以在模板中使用</div><div class="line">  // 同样也可以在 vm 实例中通过 this.message 来使用</div><div class="line">  template: &apos;&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>然后我们可以这样向它传入一个普通字符串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;child message=&quot;hello!&quot;&gt;&lt;/child&gt;</div></pre></td></tr></table></figure></p>
-<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hello!</div></pre></td></tr></table></figure></p>
-<h3 id="propsData"><a href="#propsData" class="headerlink" title="propsData"></a>propsData</h3><p>简单理解:创建实例时传递 props。主要作用是方便测试。(无父级时)</p>
-<h3 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h3><p>简单理解：computed，计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。不过计算属性也用函数来替代。（动态变量）</p>
-<h3 id="methods"><a href="#methods" class="headerlink" title="methods"></a>methods</h3><p> methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。</p>
-<h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><p>简单理解：监听data里的值的变化</p>
-<p>官方例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">var vm = new Vue(&#123;</div><div class="line">  data: &#123;</div><div class="line">    a: 1,</div><div class="line">    b: 2,</div><div class="line">    c: 3,</div><div class="line">    d: 4</div><div class="line">  &#125;,</div><div class="line">  watch: &#123;</div><div class="line">    a: function (val, oldVal) &#123;</div><div class="line">      console.log(&apos;new: %s, old: %s&apos;, val, oldVal)</div><div class="line">    &#125;,</div><div class="line">    // 方法名</div><div class="line">    b: &apos;someMethod&apos;,</div><div class="line">    // 深度 watcher</div><div class="line">    c: &#123;</div><div class="line">      handler: function (val, oldVal) &#123; /* ... */ &#125;,</div><div class="line">      deep: true</div><div class="line">    &#125;,</div><div class="line">    // 该回调将会在侦听开始之后被立即调用</div><div class="line">    d: &#123;</div><div class="line">      handler: function (val, oldVal) &#123; /* ... */ &#125;,</div><div class="line">      immediate: true</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">vm.a = 2 // =&gt; new: 2, old: 1</div></pre></td></tr></table></figure>
-<p>一个时间选择器更改的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var v_assetManage_controller = new Vue(&#123;  </div><div class="line">    el: &apos;.LSee-index&apos;,  </div><div class="line">    data: &#123;  </div><div class="line">        trendQueryTimeCtr: &#123;  </div><div class="line">            startTime: &apos;&apos;,  </div><div class="line">            endTime: &apos;&apos;  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    ready: function() &#123;  </div><div class="line">        //  </div><div class="line">    &#125;,  </div><div class="line">    methods: &#123;  </div><div class="line">        queryTrendData: function()&#123;  </div><div class="line">            //do some here  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    watch: &#123;  </div><div class="line">        &apos;trendQueryTimeCtr.startTime&apos;: &apos;queryTrendData&apos;,  </div><div class="line">        &apos;trendQueryTimeCtr.endTime&apos;: &apos;queryTrendData&apos;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/ab性能测试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/ab性能测试/" itemprop="url">ab性能测试</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T15:19:00+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>早先在CPK项目时，因为有用户反应页面打不开，后来采用了CDN和静态页，那段时间也用ab测试工具测试过速度,但用了之后就没深入了解（主要是没写笔记做记录，忘记了）<br>之后因为离职去应聘时，一个面试官问过ab测试，且对我当时的一个开源项目进行了简单的压力测试。因为采用了pjax，没用静态页，首页的测试并不理想，之后打算着将TP的静态页部分改进下，满足pjax时也能调用。<br>在laravel，TP5，YII2等框架性能据说都有不错的提升时，自己用TP3.2开源的项目就显得十分的老旧。如何对比速度上的差异，也就只能先记录下TP3.2时的速度，用新框架的速度来进行对比。</p>
-<h3 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a>参考地址</h3><p>作者：橙子酱<br>链接：<a href="http://www.jianshu.com/p/43d04d8baaf7" target="_blank" rel="external">http://www.jianshu.com/p/43d04d8baaf7</a><br>來源：简书</p>
-<h3 id="关于压力测试的概念"><a href="#关于压力测试的概念" class="headerlink" title="关于压力测试的概念"></a>关于压力测试的概念</h3><h4 id="吞吐率（Requests-per-second）"><a href="#吞吐率（Requests-per-second）" class="headerlink" title="吞吐率（Requests per second）"></a>吞吐率（Requests per second）</h4><p>概念：服务器并发处理能力的量化描述，单位是reqs/s，指的是某个并发用户数下单位时间内处理的请求数。某个并发用户数下单位时间内能处理的最大请求数，称之为最大吞吐率。<br>计算公式：总请求数 / 处理完成这些请求数所花费的时间，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Request per second = Complete requests / Time taken for tests</div></pre></td></tr></table></figure></p>
-<p>以100并发 100次请求，各大网站的对比(20171025)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">百度(www.baidu.com)   80~88</div><div class="line">知乎(www.zhihu.com)   75~85</div><div class="line">QQ(www.qq.com)        25~35</div><div class="line">微博（www.weibo.com） 20~25</div></pre></td></tr></table></figure></p>
-<h4 id="并发连接数（The-number-of-concurrent-connections）"><a href="#并发连接数（The-number-of-concurrent-connections）" class="headerlink" title="并发连接数（The number of concurrent connections）"></a>并发连接数（The number of concurrent connections）</h4><p>概念：某个时刻服务器所接受的请求数目，简单的讲，就是一个会话。</p>
-<h4 id="并发用户数（The-number-of-concurrent-users，Concurrency-Level）"><a href="#并发用户数（The-number-of-concurrent-users，Concurrency-Level）" class="headerlink" title="并发用户数（The number of concurrent users，Concurrency Level）"></a>并发用户数（The number of concurrent users，Concurrency Level）</h4><p>概念：要注意区分这个概念和并发连接数之间的区别，一个用户可能同时会产生多个会话，也即连接数。</p>
-<h4 id="用户平均请求等待时间（Time-per-request）"><a href="#用户平均请求等待时间（Time-per-request）" class="headerlink" title="用户平均请求等待时间（Time per request）"></a>用户平均请求等待时间（Time per request）</h4><p>计算公式：处理完成所有请求数所花费的时间/ （总请求数 / 并发用户数），即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time per request = Time taken for tests /（ Complete requests / Concurrency Level）</div></pre></td></tr></table></figure></p>
-<h4 id="服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）"><a href="#服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）" class="headerlink" title="服务器平均请求等待时间（Time per request: across all concurrent requests）"></a>服务器平均请求等待时间（Time per request: across all concurrent requests）</h4><p>计算公式：处理完成所有请求数所花费的时间 / 总请求数，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time taken for / testsComplete requests</div></pre></td></tr></table></figure></p>
-<p>可以看到，它是吞吐率的倒数。<br>同时，它也 等于 用户平均请求等待时间/并发用户数，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time per request / Concurrency Level</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">百度(www.baidu.com)   1100~1300  11.00~13.00</div><div class="line">知乎(www.zhihu.com)   1100~1300  11.00~13.00</div><div class="line">QQ(www.qq.com)        3200~3500  32.00~35.00</div><div class="line">微博（www.weibo.com）  4000~5000  40.00~50.00</div></pre></td></tr></table></figure>
-<hr>
-<h3 id="单次测试结果的说明"><a href="#单次测试结果的说明" class="headerlink" title="单次测试结果的说明"></a>单次测试结果的说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Concurrency Level: 100                 //并发请求数</div><div class="line">Time taken for tests: 50.872 seconds   //整个测试持续的时间</div><div class="line">Complete requests: 1000                //完成的请求数</div><div class="line">Failed requests: 0                     //失败的请求数</div><div class="line"></div><div class="line">Total transferred: 13701482 bytes      //整个场景中的网络传输量</div><div class="line">HTML transferred: 13197000 bytes       //整个场景中的HTML内容传输量</div><div class="line"></div><div class="line">Requests per second: 19.66 [#/sec] (mean)   //吞吐率，大家最关心的指标之一，相当于 LR 中的每秒事务数，后面括号中的 mean 表示这是一个平均值</div><div class="line">Time per request: 5087.180 [ms] (mean)      //用户平均请求等待时间，大家最关心的指标之二，相当于 LR 中的平均事务响应时间，后面括号中的 mean 表示这是一个平均值</div><div class="line">Time per request: 50.872 [ms] (mean, across all concurrent requests)   //服务器平均请求处理时间，大家最关心的指标之三</div><div class="line"></div><div class="line">Transfer rate: 263.02 [Kbytes/sec] received   //平均每秒网络上的流量，可以帮助排除是否存在网络流量过大导致响应时间延长的问题</div></pre></td></tr></table></figure>
-<h3 id="关于登录的问题"><a href="#关于登录的问题" class="headerlink" title="关于登录的问题"></a>关于登录的问题</h3><p>有时候进行压力测试需要用户登录，怎么办？<br>请参考以下步骤：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先用账户和密码登录后，用开发者工具找到标识这个会话的Cookie值（Session ID）记下来</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果只用到一个Cookie，那么只需键入命令：</div><div class="line">ab －n 100 －C key＝value http://test.com/</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果需要多个Cookie，就直接设Header：</div><div class="line">ab -n 100 -H “Cookie: Key1=Value1; Key2=Value2” http://test.com/</div></pre></td></tr></table></figure>
-<h3 id="如何防止别人用ab之类的测试软件恶意请求自己的网站"><a href="#如何防止别人用ab之类的测试软件恶意请求自己的网站" class="headerlink" title="如何防止别人用ab之类的测试软件恶意请求自己的网站"></a>如何防止别人用ab之类的测试软件恶意请求自己的网站</h3><p>网友回答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">目前此类软件可以很真实的模拟浏览器请求，所以在少量的请求下，基本上是屏蔽不了的。</div><div class="line">但是，使用此类软件请求你的网站通常都有其他目的，会产生大量重复的请求。</div><div class="line">可以通过单位时间的请求次数进行控制，相同IP或者相同的userAgint产生的异常请求通过程序判断来禁止。</div><div class="line">但是即便程序做了判断，请求已经进入处理阶段依然会影响性能，所以还要配合其他的处理方式，重复响应最好用缓存的方式来实现，避免过多的消耗CPU；确诊的问题IP应该在防火墙端就进行屏蔽。</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nginx的话可以用HttpLimitReqModule</div><div class="line">此模块能通过特定的客户端标识（如IP，UA等）来限制客户端在一定时间内的访问频次，比你在程序里控制要省资源得多。</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/sublime-配置代理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/sublime-配置代理/" itemprop="url">sublime 配置代理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T09:45:10+08:00">
-                2017-10-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>今天安装sublime插件时居然出现了，无法连接的错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Package Control: Attempting to use Urllib downloader due to WinINet error: Error downloading channel. Connection refused (errno 12029) during HTTP write phase of downloading https://packagecontrol.io/channel_v3.json.</div><div class="line">Package Control: Error downloading channel. URL error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。 downloading https://packagecontrol.io/channel_v3.json.</div></pre></td></tr></table></figure></p>
-<p>查了一下，需要配置代理（前段时间都可以用的，今天就被墙了？好吧，我配置代理）</p>
-<h4 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h4><p>打开 `Preferences &gt; Package Settings &gt; Package Control &gt; Settings - User 菜单``</p>
-<p>添加两行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&quot;http_proxy&quot;: &quot;http://127.0.0.1:1080&quot;,</div><div class="line">&quot;https_proxy&quot;: &quot;http://127.0.0.1:1080&quot;</div></pre></td></tr></table></figure></p>
-<p>127.0.0.1:1080为我本地的Shadowsocks代理地址</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/mysql中的视图（转）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/mysql中的视图（转）/" itemprop="url">mysql中的视图（转）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T09:22:05+08:00">
-                2017-10-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>上一个项目接手后，在转移数据庫的时候，数据庫的转移失败，那是我第一次接触mysql视图。但是那时没去研究啥是视图。</p>
-<p>今天查看另一个项目时，又发现了mysql视图的存在，需要充电一下了！</p>
-<h4 id="文章来源"><a href="#文章来源" class="headerlink" title="文章来源"></a>文章来源</h4><p>作者：风一样的码农<br>原文地址：<a href="http://www.cnblogs.com/chenpi/p/5133648.html" target="_blank" rel="external">http://www.cnblogs.com/chenpi/p/5133648.html</a></p>
-<h4 id="什么是视图"><a href="#什么是视图" class="headerlink" title="什么是视图"></a>什么是视图</h4><p>通俗的讲，视图就是一条SELECT语句执行后返回的结果集。所以我们在创建视图的时候，主要的工作就落在创建这条SQL查询语句上。</p>
-<h4 id="视图的特性"><a href="#视图的特性" class="headerlink" title="视图的特性"></a>视图的特性</h4><p>视图是对若干张基本表的引用，一张虚表，查询语句执行的结果，不存储具体的数据（基本表数据发生了改变，视图也会跟着改变）；</p>
-<p>可以跟基本表一样，进行增删改查操作(ps:增删改操作有条件限制)；</p>
-<h4 id="视图的作用"><a href="#视图的作用" class="headerlink" title="视图的作用"></a>视图的作用</h4><p>方便操作，特别是查询操作，减少复杂的SQL语句，增强可读性；</p>
-<p>更加安全，数据库授权命令不能限定到特定行和特定列，但是通过合理创建视图，可以把权限限定到行列级别；</p>
-<h4 id="使用场合"><a href="#使用场合" class="headerlink" title="使用场合"></a>使用场合</h4><p>权限控制的时候，不希望用户访问表中某些含敏感信息的列，比如salary…</p>
-<p>关键信息来源于多个复杂关联表，可以创建视图提取我们需要的信息，简化操作；</p>
-<h4 id="视图实例1-创建视图及查询数据操作"><a href="#视图实例1-创建视图及查询数据操作" class="headerlink" title="视图实例1-创建视图及查询数据操作"></a>视图实例1-创建视图及查询数据操作</h4><p>现有三张表：用户(user)、课程(course)、用户课程中间表(user_course)，表结构及数据如下：</p>
-<p>表定义：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for `course`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`course`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`course`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`description`</span> <span class="built_in">varchar</span>(<span class="number">500</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Records of course</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'JAVA'</span>, <span class="string">'JAVA课程'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'C++'</span>, <span class="string">'C++课程'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'C语言'</span>, <span class="string">'C语言课程'</span>);</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for `user`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`account`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`others`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`others2`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Records of user</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'user1'</span>, <span class="string">'小陈'</span>, <span class="string">'美国'</span>, <span class="string">'1'</span>, <span class="string">'1'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'user2'</span>, <span class="string">'小张'</span>, <span class="string">'日本'</span>, <span class="string">'2'</span>, <span class="string">'2'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'user3'</span>, <span class="string">'小王'</span>, <span class="string">'中国'</span>, <span class="string">'3'</span>, <span class="string">'3'</span>);</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for `user_course`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user_course`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user_course`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`userid`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`courseid`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">7</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Records of user_course</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'1'</span>, <span class="string">'2'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'1'</span>, <span class="string">'3'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'2'</span>, <span class="string">'1'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'4'</span>, <span class="string">'2'</span>, <span class="string">'2'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'5'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'6'</span>, <span class="string">'3'</span>, <span class="string">'2'</span>);</div></pre></td></tr></table></figure></p>
-<p>这时，当我们想要查询小张上的所以课程相关信息的时候，需要这样写一条长长的SQL语句，如下：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">    <span class="string">`uc`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</div><div class="line">    <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span>,</div><div class="line">    <span class="string">`c`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`coursename`</span></div><div class="line"><span class="keyword">FROM</span></div><div class="line">    <span class="string">`user`</span> <span class="string">`u`</span></div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`user_course`</span> <span class="string">`uc`</span> <span class="keyword">ON</span> ((<span class="string">`u`</span>.<span class="string">`id`</span> = <span class="string">`uc`</span>.<span class="string">`userid`</span>))</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`course`</span> <span class="string">`c`</span> <span class="keyword">ON</span> ((<span class="string">`uc`</span>.<span class="string">`courseid`</span> = <span class="string">`c`</span>.<span class="string">`id`</span>))</div><div class="line"><span class="keyword">WHERE</span></div><div class="line">    u.<span class="string">`name`</span> = <span class="string">'小张'</span></div></pre></td></tr></table></figure></p>
-<p>但是我们可以通过视图简化操作，例如我们创建视图view_user_course如下：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- View structure for `view_user_course`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span></div><div class="line"><span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`view_user_course`</span>;</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> ALGORITHM = UNDEFINED </div><div class="line">DEFINER = <span class="string">`root`</span>@<span class="string">`localhost`</span> </div><div class="line"><span class="keyword">SQL</span> <span class="keyword">SECURITY</span> DEFINER </div><div class="line"><span class="keyword">VIEW</span> <span class="string">`view_user_course`</span> <span class="keyword">AS</span> (</div><div class="line">    <span class="keyword">SELECT</span></div><div class="line">        <span class="string">`uc`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</div><div class="line">        <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span>,</div><div class="line">        <span class="string">`c`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`coursename`</span></div><div class="line">    <span class="keyword">FROM</span></div><div class="line">        (</div><div class="line">            (</div><div class="line">                <span class="string">`user`</span> <span class="string">`u`</span></div><div class="line">                <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`user_course`</span> <span class="string">`uc`</span> <span class="keyword">ON</span> ((<span class="string">`u`</span>.<span class="string">`id`</span> = <span class="string">`uc`</span>.<span class="string">`userid`</span>))</div><div class="line">            )</div><div class="line">            <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`course`</span> <span class="string">`c`</span> <span class="keyword">ON</span> ((<span class="string">`uc`</span>.<span class="string">`courseid`</span> = <span class="string">`c`</span>.<span class="string">`id`</span>))</div><div class="line">        )</div><div class="line">);</div></pre></td></tr></table></figure></p>
-<p>几点说明（MySQL中的视图在标准SQL的基础之上做了扩展）：</p>
-<p>ALGORITHM=UNDEFINED：指定视图的处理算法；</p>
-<p>DEFINER=<code>root</code>@<code>localhost</code>：指定视图创建者；</p>
-<p>SQL SECURITY DEFINER：指定视图查询数据时的安全验证方式；</p>
-<p>创建好视图之后，我们可以直接用以下SQL语句在视图上查询小张上的所以课程相关信息，同样可以得到所需结果：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">    vuc.username,</div><div class="line">    vuc.coursename</div><div class="line"><span class="keyword">FROM</span></div><div class="line">    view_user_course vuc</div><div class="line"><span class="keyword">WHERE</span></div><div class="line">     vuc.username = <span class="string">'小张'</span></div></pre></td></tr></table></figure></p>
-<h4 id="视图实例2-增删改数据操作"><a href="#视图实例2-增删改数据操作" class="headerlink" title="视图实例2-增删改数据操作"></a>视图实例2-增删改数据操作</h4><p>继续，我们可以尝试在视图view_user_course上做增删改数据操作，如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> username=<span class="string">'test'</span>,coursename=<span class="string">'JAVASCRIPT'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span></div></pre></td></tr></table></figure>
-<p>遗憾的是操作失败，提示错误信息如下：</p>
-<p>[SQL] update view_user_course set username=’test’,coursename=’JAVASCRIPT’ where id=3</p>
-<p>[Err] 1393 - Can not modify more than one base table through a join view ‘demo.view_user_course’</p>
-<p>因为不能在一张由多张关联表连接而成的视图上做同时修改两张表的操作；</p>
-<p>那么哪些操作可以在视图上进行呢？</p>
-<p>视图与表是一对一关系情况：如果没有其它约束（如视图中没有的字段，在基本表中是必填字段情况），是可以进行增删改数据操作；</p>
-<p>如我们创建用户关键信息视图view_user_keyinfo，如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- View structure for `view_user_keyinfo`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span></div><div class="line"><span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`view_user_keyinfo`</span>;</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> ALGORITHM = UNDEFINED DEFINER = <span class="string">`root`</span>@<span class="string">`localhost`</span> <span class="keyword">SQL</span> <span class="keyword">SECURITY</span> DEFINER <span class="keyword">VIEW</span> <span class="string">`view_user_keyinfo`</span> <span class="keyword">AS</span> <span class="keyword">SELECT</span></div><div class="line">    <span class="string">`u`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</div><div class="line">    <span class="string">`u`</span>.<span class="string">`account`</span> <span class="keyword">AS</span> <span class="string">`account`</span>,</div><div class="line">    <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span></div><div class="line"><span class="keyword">FROM</span></div><div class="line">    <span class="string">`user`</span> <span class="string">`u`</span>;</div></pre></td></tr></table></figure>
-<p>进行增删改操作如下，操作成功（注意user表中的其它字段要允许为空，否则操作失败）：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> view_user_keyinfo (<span class="keyword">account</span>, username)</div><div class="line"><span class="keyword">VALUES</span></div><div class="line">    (<span class="string">'test1'</span>, <span class="string">'test1'</span>);</div></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span></div><div class="line"><span class="keyword">FROM</span></div><div class="line">    view_user_keyinfo</div><div class="line"><span class="keyword">WHERE</span></div><div class="line">    username = <span class="string">'test1'</span>;</div></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> view_user_keyinfo</div><div class="line"><span class="keyword">SET</span> username = <span class="string">'updateuser'</span></div><div class="line"><span class="keyword">WHERE</span></div><div class="line">    <span class="keyword">id</span> = <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>视图与表是一对多关系情况：如果只修改一张表的数据，且没有其它约束（如视图中没有的字段，在基本表中是必填字段情况），是可以进行改数据操作，如以下语句，操作成功；</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> coursename=<span class="string">'JAVA'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span>;</div><div class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> username=<span class="string">'test2'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span>;</div></pre></td></tr></table></figure>
-<p>以下操作失败：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> view_user_course <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span>;</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> view_user_course(username, coursename) <span class="keyword">VALUES</span>(<span class="string">'2'</span>,<span class="string">'3'</span>);</div></pre></td></tr></table></figure></p>
-<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><p>视图中的查询语句性能要调到最优；<br>修改操作时要小心，不经意间你已经修改了基本表里的多条数据；</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装phphub5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/安装phphub5/" itemprop="url">安装phphub5</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T19:05:19+08:00">
-                2017-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h4><p>Nginx 1.8+<br>PHP 5.6+<br>Mysql 5.7+<br>Redis 3.0+<br>Memcached 1.4+</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/summerblue/phphub5.git</div></pre></td></tr></table></figure>
-<p>安装扩展包依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer install</div></pre></td></tr></table></figure></p>
-<p>生成配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp .env.example .env</div></pre></td></tr></table></figure></p>
-<p>编辑env<br>选择数据库<br>数据库迁移<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">php artisan migrate</div><div class="line"></div><div class="line">php artisan db:seed</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/在mac上通过Homebrew安装redis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/在mac上通过Homebrew安装redis/" itemprop="url">在mac上通过Homebrew安装redis</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T14:10:57+08:00">
-                2017-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install redis</div></pre></td></tr></table></figure>
-<p>安装完成后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">To have launchd start redis now and restart at login:</div><div class="line">  brew services start redis</div><div class="line">  Or, if you don&apos;t want/need a background service you can just run:</div><div class="line">    redis-server /usr/local/etc/redis.conf</div><div class="line">    ==&gt; Summary</div><div class="line">    🍺  /usr/local/Cellar/redis/4.0.2: 11 files, 2.7MB, built in 23 seconds</div></pre></td></tr></table></figure></p>
-<p>执行提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew services start redis</div></pre></td></tr></table></figure></p>
-<p>完成后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Cloning into &apos;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services&apos;...</div><div class="line">remote: Counting objects: 12, done.</div><div class="line">remote: Compressing objects: 100% (8/8), done.</div><div class="line">remote: Total 12 (delta 0), reused 7 (delta 0), pack-reused 0</div><div class="line">Unpacking objects: 100% (12/12), done.</div><div class="line">Checking connectivity... done.</div><div class="line">Tapped 0 formulae (39 files, 53.5KB)</div><div class="line">==&gt; Successfully started `redis` (label: homebrew.mxcl.redis)</div></pre></td></tr></table></figure></p>
-<p>ok~redis 已经启动</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/mac下安装python/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/mac下安装python/" itemprop="url">mac下安装python</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T16:29:03+08:00">
-                2017-10-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>知乎上说，不要在mac自带的python里折腾，怕折腾蹦了影响系统</p>
-<p>用brew 安装，且自带pip</p>
-<h3 id="安装python2-amp-python3"><a href="#安装python2-amp-python3" class="headerlink" title="安装python2 &amp; python3"></a>安装python2 &amp; python3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python3</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">This formula installs a python2 executable to /usr/local/bin.</div><div class="line">If you wish to have this formula&apos;s python executable in your PATH then add</div><div class="line">the following to ~/.zshrc:</div><div class="line">  export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</div><div class="line"></div><div class="line">  Pip and setuptools have been installed. To update them</div><div class="line">    pip2 install --upgrade pip setuptools</div><div class="line"></div><div class="line">    You can install Python packages with</div><div class="line">      pip2 install &lt;package&gt;</div><div class="line"></div><div class="line">      They will install into the site-package directory</div><div class="line">        /usr/local/lib/python2.7/site-packages</div><div class="line"></div><div class="line">	See: https://docs.brew.sh/Homebrew-and-Python.html</div></pre></td></tr></table></figure>
-<h4 id="设置PATH"><a href="#设置PATH" class="headerlink" title="设置PATH"></a>设置PATH</h4><p>vim ~/.zshrc 加入<br><code>export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</code></p>
-<h4 id="验证PATH设置成功"><a href="#验证PATH设置成功" class="headerlink" title="验证PATH设置成功"></a>验证PATH设置成功</h4><p>输入<code>which python</code><br>如果显示 <code>/usr/local/opt/python/libexec/bin/python</code>则说明成功</p>
-<h4 id="如何使用系统的python"><a href="#如何使用系统的python" class="headerlink" title="如何使用系统的python"></a>如何使用系统的python</h4><p>如果有需要想使用一下系统的Python，输入<code>/usr/bin/python</code>即可</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/python之禅/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/python之禅/" itemprop="url">python之禅</a></h1>
+                <a class="post-title-link" href="/学无止境/python之禅/" itemprop="url">python之禅</a></h1>
         
 
         <div class="post-meta">
@@ -1499,7 +398,7 @@ components
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/为我的x感到骄傲/" itemprop="url">为我的x感到骄傲</a></h1>
+                <a class="post-title-link" href="/为我的x感到骄傲/" itemprop="url">为xxx感到荣幸</a></h1>
         
 
         <div class="post-meta">
@@ -1551,17 +450,526 @@ components
       
         
           
-            <p>x—–代表一切可以感恩和赞颂的“人”或“事”或“自己”</p>
+            <p>xxx—–代表一切可以感恩和赞颂的“人”或“事”或“自己”</p>
 <p>某天，我发现自己一直以来都很少去感恩别人，包括自己所取得的一些小成就，也是被自己所否定不认可，总觉得自己（或别人）做的还是不够好，不够完美。可完美的事情真得存在吗？</p>
 <p>感恩自己身边的人和事，才会发现生活原来是如此的美。自然的美，和谐的美，错误的美，成功的美……</p>
 <p>想象着，自己和父母都存在如此的心声，那将是多么幸福的事：</p>
-<p>为我的儿子感到骄傲</p>
-<p>为我的老婆感到骄傲</p>
-<p>为我的公司感到骄傲</p>
-<p>为我的项目感到骄傲</p>
-<p>为我的抉择感到骄傲</p>
+<p>有这样的儿子感到荣幸</p>
+<p>有这样的老婆感到荣幸</p>
+<p>有这样的公司感到荣幸</p>
+<p>有经历这样的项目感到荣幸</p>
+<p>为我的抉择感到荣幸</p>
 <p>……</p>
-<p>从今天起，试着去骄傲吧!</p>
+<p>从今天起，试着去感恩吧!</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/vim常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/学无止境/vim常用命令/" itemprop="url">vim常用命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-02T19:21:53+08:00">
+                2017-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">常用指数(自己)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">在当前光标后插入文本</td>
+<td style="text-align:center">★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">在本行行尾插入文本</td>
+<td style="text-align:center">★★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:center">在光标前插入文本</td>
+<td style="text-align:center">★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">I</td>
+<td style="text-align:center">在本行行首插入文本</td>
+<td style="text-align:center">★★</td>
+</tr>
+<tr>
+<td style="text-align:center">o</td>
+<td style="text-align:center">在光标下插入新行</td>
+<td style="text-align:center">★★</td>
+</tr>
+<tr>
+<td style="text-align:center">O</td>
+<td style="text-align:center">在光标上插入新行</td>
+<td style="text-align:center">★★</td>
+</tr>
+<tr>
+<td style="text-align:center">h</td>
+<td style="text-align:center">左移一个字符</td>
+<td style="text-align:center">★</td>
+</tr>
+<tr>
+<td style="text-align:center">j</td>
+<td style="text-align:center">下移一个字符</td>
+<td style="text-align:center">★</td>
+</tr>
+<tr>
+<td style="text-align:center">k</td>
+<td style="text-align:center">上移一个字符</td>
+<td style="text-align:center">★</td>
+</tr>
+<tr>
+<td style="text-align:center">l</td>
+<td style="text-align:center">右移一个字符</td>
+<td style="text-align:center">★</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:center">移动至当前行的行尾</td>
+<td style="text-align:center">★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">0（数字零）</td>
+<td style="text-align:center">移动至当前行的行首</td>
+<td style="text-align:center">★★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">H</td>
+<td style="text-align:center">移动屏幕上端</td>
+<td style="text-align:center">★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">M</td>
+<td style="text-align:center">移动屏幕中央</td>
+<td style="text-align:center">★★</td>
+</tr>
+<tr>
+<td style="text-align:center">L</td>
+<td style="text-align:center">移动屏幕下端</td>
+<td style="text-align:center">★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">gg</td>
+<td style="text-align:center">到整个文件的第一行</td>
+<td style="text-align:center">★★★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">G</td>
+<td style="text-align:center">到整个文件的最后一行</td>
+<td style="text-align:center">★★★★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">nG</td>
+<td style="text-align:center">到第n行，如5G到第5行</td>
+<td style="text-align:center">★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">:n</td>
+<td style="text-align:center">到第n行</td>
+<td style="text-align:center">★★★★★★★★</td>
+</tr>
+</tbody>
+</table>
+<h3 id="删除和取消"><a href="#删除和取消" class="headerlink" title="删除和取消"></a>删除和取消</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">常用指数（自己）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x</td>
+<td style="text-align:center">删除光标所在处字符</td>
+<td style="text-align:center">★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">nx</td>
+<td style="text-align:center">删除光标所在处n个字符</td>
+<td style="text-align:center">★</td>
+</tr>
+<tr>
+<td style="text-align:center">dd</td>
+<td style="text-align:center">删除光标所在行(+p剪切)</td>
+<td style="text-align:center">★★★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">ndd</td>
+<td style="text-align:center">删除n行（+p剪切）</td>
+<td style="text-align:center">★★</td>
+</tr>
+<tr>
+<td style="text-align:center">dG</td>
+<td style="text-align:center">删除光标所在行值末尾</td>
+<td style="text-align:center">★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center">删除光标所在处至行尾</td>
+<td style="text-align:center">★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">:n1,n2d</td>
+<td style="text-align:center">删除指定范围的行</td>
+<td style="text-align:center">★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">u</td>
+<td style="text-align:center">取消上一步操作</td>
+<td style="text-align:center">★★★★★★★★★</td>
+</tr>
+</tbody>
+</table>
+<h3 id="复制和粘贴"><a href="#复制和粘贴" class="headerlink" title="复制和粘贴"></a>复制和粘贴</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">常用指数（自己）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">yy,Y</td>
+<td style="text-align:center">复制当前行</td>
+<td style="text-align:center">★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">nyy,nY</td>
+<td style="text-align:center">复制当前行以下的n行</td>
+<td style="text-align:center">★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">p</td>
+<td style="text-align:center">将内容粘贴所在行的下一行</td>
+<td style="text-align:center">★★★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">P</td>
+<td style="text-align:center">将内容粘贴所在行的上一行</td>
+<td style="text-align:center">★</td>
+</tr>
+</tbody>
+</table>
+<h3 id="搜索替换"><a href="#搜索替换" class="headerlink" title="搜索替换"></a>搜索替换</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">常用指数（自己）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">/string</td>
+<td style="text-align:center">查找string(+n下一个)</td>
+<td style="text-align:center">★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">:%s/old/new/g</td>
+<td style="text-align:center">全文替换，如:%s/123/789/g</td>
+<td style="text-align:center">★★★</td>
+</tr>
+</tbody>
+</table>
+<h3 id="屏幕"><a href="#屏幕" class="headerlink" title="屏幕"></a>屏幕</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">常用指数（自己）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ctrl+u</td>
+<td style="text-align:center">向上滚动半屏</td>
+<td style="text-align:center">★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">ctrl+d</td>
+<td style="text-align:center">向下滚动半屏</td>
+<td style="text-align:center">★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">ctrl+b</td>
+<td style="text-align:center">向上滚动整屏</td>
+<td style="text-align:center">★★★★★</td>
+</tr>
+<tr>
+<td style="text-align:center">ctrl+f</td>
+<td style="text-align:center">向下滚动整屏</td>
+<td style="text-align:center">★★★★★</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/使用hexo和github搭建blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/学无止境/使用hexo和github搭建blog/" itemprop="url">使用hexo和github搭建blog</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-01T09:30:29+08:00">
+                2017-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>继续用hexo</p>
+<p>让自己专注于写作</p>
+<h3 id="github准备"><a href="#github准备" class="headerlink" title="github准备"></a>github准备</h3><p>一、注册github账号并登录进入个人中心。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1764427-b97c2df83796c007.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>二、点击Respositories，然后New,新建一个仓库，如下图，注意仓库名必须为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;your-name&gt;.github.io</div></pre></td></tr></table></figure></p>
+<p>例如我的用户名hottredpen，仓库名为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hottredpen.github.io。</div></pre></td></tr></table></figure></p>
+<p>注意:如果此处不注意看，后面都白搭</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1764427-f8fa147884c7f4ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="本地git"><a href="#本地git" class="headerlink" title="本地git"></a>本地git</h3><p>一、创建blog_tmp文件名(临时用)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mkdir blog_tmp</div><div class="line">cd blog_tmp</div><div class="line">touch README.md</div><div class="line">git init</div><div class="line">git add README.md</div><div class="line">git commit -m &quot;first commit&quot;</div><div class="line">git remote add origin https://github.com/your-name/your-name.github.io.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure></p>
+<p>二、本地建立一个博客源码分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在本地新建一个分支： </div><div class="line">    git branch hexo</div><div class="line">切换到你的新分支: </div><div class="line">    git checkout hexo</div><div class="line">将新分支发布在github上： </div><div class="line">    git push origin hexo</div></pre></td></tr></table></figure></p>
+<h3 id="Hexo创建"><a href="#Hexo创建" class="headerlink" title="Hexo创建"></a>Hexo创建</h3><h4 id="一、全局安装hexo"><a href="#一、全局安装hexo" class="headerlink" title="一、全局安装hexo"></a>一、全局安装hexo</h4><p>只有全局安装了才能用hexo命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo -g</div></pre></td></tr></table></figure></p>
+<h4 id="二、初始化一个项目blog（正式）"><a href="#二、初始化一个项目blog（正式）" class="headerlink" title="二、初始化一个项目blog（正式）"></a>二、初始化一个项目blog（正式）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo init blog</div><div class="line">npm install</div><div class="line">npm install hexo-deployer-git</div><div class="line">hexo g  生成网站</div><div class="line">hexo s  启动本地服务器</div></pre></td></tr></table></figure>
+<p>网站会执行在<a href="http://localhost:port" target="_blank" rel="external">http://localhost:port</a> （port 预设为 4000，可在 _config.yml 设定）</p>
+<h3 id="尝试写一篇博客"><a href="#尝试写一篇博客" class="headerlink" title="尝试写一篇博客"></a>尝试写一篇博客</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &apos;test&apos;</div></pre></td></tr></table></figure>
+<p>随便写点啥,然后运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g </div><div class="line">hexo s</div></pre></td></tr></table></figure></p>
+<h3 id="Hexo和Github关联"><a href="#Hexo和Github关联" class="headerlink" title="Hexo和Github关联"></a>Hexo和Github关联</h3><h4 id="一、将blog-tmp下的git的仓库转移到blog下"><a href="#一、将blog-tmp下的git的仓库转移到blog下" class="headerlink" title="一、将blog_tmp下的git的仓库转移到blog下"></a>一、将blog_tmp下的git的仓库转移到blog下</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd blog_tmp </div><div class="line">mv .git ../blog</div></pre></td></tr></table></figure>
+<p>进入blog目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd blog</div></pre></td></tr></table></figure></p>
+<h4 id="二、确保现在所处hexo分支"><a href="#二、确保现在所处hexo分支" class="headerlink" title="二、确保现在所处hexo分支"></a>二、确保现在所处hexo分支</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch</div></pre></td></tr></table></figure>
+<p>可以看到现在在hexo分支（如果没有请自行切换成hexo分支）<br>查看状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure></p>
+<p>会发现许多红的的未添加文件</p>
+<h4 id="二、将博客源码推送到git的hexo分支上"><a href="#二、将博客源码推送到git的hexo分支上" class="headerlink" title="二、将博客源码推送到git的hexo分支上"></a>二、将博客源码推送到git的hexo分支上</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;init&quot;</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure>
+<h4 id="三、配置hexo博客的推送git地址"><a href="#三、配置hexo博客的推送git地址" class="headerlink" title="三、配置hexo博客的推送git地址"></a>三、配置hexo博客的推送git地址</h4><h5 id="1-修改-config-yml中的deploy参数；"><a href="#1-修改-config-yml中的deploy参数；" class="headerlink" title="1.  修改_config.yml中的deploy参数；"></a>1.  修改_config.yml中的deploy参数；</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/your-name/your-name.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+<p>ps:冒号后面有个空格</p>
+<h5 id="2-推送到github的master分支"><a href="#2-推送到github的master分支" class="headerlink" title="2.  推送到github的master分支"></a>2.  推送到github的master分支</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo generate -deploy</div></pre></td></tr></table></figure></p>
+<p>此时访问your-name.github.io即可查看生成的站点内容</p>
+<h3 id="更换主题，"><a href="#更换主题，" class="headerlink" title="更换主题，"></a>更换主题，</h3><p>请自行百度主题的更换</p>
+<h3 id="后期维护以及博客更新"><a href="#后期维护以及博客更新" class="headerlink" title="后期维护以及博客更新"></a>后期维护以及博客更新</h3><p>在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理。</p>
+<p>依次执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;新博客&quot;</div><div class="line">git status</div><div class="line">git add .</div><div class="line">git commit -m &quot;...&quot;</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure></p>
+<p>然后再执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div></pre></td></tr></table></figure></p>
+<p>发布网站到master分支上。</p>
 
           
         
@@ -1601,7 +1009,7 @@ components
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
   </nav>
 
 
@@ -1651,7 +1059,7 @@ components
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1664,7 +1072,7 @@ components
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
