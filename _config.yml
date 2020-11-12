@@ -5,7 +5,7 @@
 # Site
 title: 简客-记忆
 subtitle: 抽象的才是永恒的
-description: 一个30岁跨行的老菜鸟程序员
+description: 一个教育跨行到IT的开发者
 author: hottredpen
 language: zh-Hans
 timezone: Asia/Shanghai
@@ -14,7 +14,7 @@ timezone: Asia/Shanghai
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://www.jk-kj.com
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 
 # Directory
@@ -81,3 +81,9 @@ deploy:
   repo: https://github.com/hottredpen/hottredpen.github.io.git
   branch: master
 
+# mermaid chart
+mermaid: ## mermaid url https://github.com/knsv/mermaid
+  enable: true  # default true
+  version: "7.1.2" # default v7.1.2
+  options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
+    #startOnload: true  // default true
