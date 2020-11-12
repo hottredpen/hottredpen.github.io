@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2020-11-12T01:13:28.944Z</updated>
+  <updated>2020-11-12T01:42:07.151Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>(一)、“仙剑出鞘”---玩法的设计</title>
+    <link href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%80)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%8E%A9%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
+    <id>http://www.jk-kj.com/游戏开发/(一)、“仙剑出鞘”---玩法的设计/</id>
+    <published>2020-11-12T00:26:10.000Z</published>
+    <updated>2020-11-12T01:42:07.151Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="主要玩法："><a href="#主要玩法：" class="headerlink" title="主要玩法："></a>主要玩法：</h3><p>1、用户上划屏幕，将飞剑“出鞘”，飞到之前的瞄准准心处。</p><p>2、瞄准准心左右移动，飞剑到达准心后，垂直下落。</p><p>3、用户控制左右“飞剑轮盘”，将飞剑进行“二次打击”。</p><p>4、飞剑出鞘后如果没有进行“二次打击”，将回到主角身边</p><p>5、敌方发出攻击，需要“飞剑”进行防御，只有飞剑停留在“防御点”，飞剑还能进行“二次打击”，否则将回到主角身边</p><h3 id="cocos知识点"><a href="#cocos知识点" class="headerlink" title="cocos知识点"></a>cocos知识点</h3><p>暂无</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;主要玩法：&quot;&gt;&lt;a href=&quot;#主要玩法：&quot; class=&quot;headerlink&quot; title=&quot;主要玩法：&quot;&gt;&lt;/a&gt;主要玩法：&lt;/h3&gt;&lt;p&gt;1、用户上划屏幕，将飞剑“出鞘”，飞到之前的瞄准准心处。&lt;/p&gt;
+&lt;p&gt;2、瞄准准心左右移动，飞剑到达准心后，垂直下
+      
+    
+    </summary>
+    
+    
+      <category term="-cocos -微信小游戏 -仙剑" scheme="http://www.jk-kj.com/tags/cocos-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E6%B8%B8%E6%88%8F-%E4%BB%99%E5%89%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>(二)、“仙剑出鞘”---界面的设计</title>
+    <link href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%8C)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%95%8C%E9%9D%A2%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
+    <id>http://www.jk-kj.com/游戏开发/(二)、“仙剑出鞘”---界面的设计/</id>
+    <published>2020-11-12T00:26:10.000Z</published>
+    <updated>2020-11-12T01:44:47.963Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="第一版设计"><a href="#第一版设计" class="headerlink" title="第一版设计"></a>第一版设计</h3><p><img src="http://image.jk-kj.com/mweb/2020/11/12/1605145436331640ab7c21f06b5a78a963a52c27f58a37.png" alt="40ab7c21f06b5a78a963a52c27f58a37"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;第一版设计&quot;&gt;&lt;a href=&quot;#第一版设计&quot; class=&quot;headerlink&quot; title=&quot;第一版设计&quot;&gt;&lt;/a&gt;第一版设计&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://image.jk-kj.com/mweb/2020/11/12/160514543
+      
+    
+    </summary>
+    
+    
+      <category term="-cocos -微信小游戏 -仙剑" scheme="http://www.jk-kj.com/tags/cocos-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E6%B8%B8%E6%88%8F-%E4%BB%99%E5%89%91/"/>
+    
+  </entry>
   
   <entry>
     <title>使用mweb+hexo发布博客</title>
@@ -30,30 +77,6 @@
       
       
         &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;使用mweb&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="-mweb -hexo" scheme="http://www.jk-kj.com/tags/mweb-hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>(一)、“仙剑出鞘”---玩法的设计</title>
-    <link href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%80)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%8E%A9%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
-    <id>http://www.jk-kj.com/游戏开发/(一)、“仙剑出鞘”---玩法的设计/</id>
-    <published>2020-11-12T00:26:10.000Z</published>
-    <updated>2020-11-12T01:15:27.178Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>仙剑出鞘</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;仙剑出鞘&lt;/p&gt;
 
       
     
@@ -468,32 +491,6 @@
       <category term="打包" scheme="http://www.jk-kj.com/tags/%E6%89%93%E5%8C%85/"/>
     
       <category term="断点续传" scheme="http://www.jk-kj.com/tags/%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一次网站字体采用思源字体</title>
-    <link href="http://www.jk-kj.com/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E7%AB%99%E5%AD%97%E4%BD%93%E9%87%87%E7%94%A8%E6%80%9D%E6%BA%90%E5%AD%97%E4%BD%93/"/>
-    <id>http://www.jk-kj.com/记一次网站字体采用思源字体/</id>
-    <published>2017-12-07T04:46:14.000Z</published>
-    <updated>2018-01-16T00:27:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>客户想让他的网站都显示思源字体</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>fontsquirrel<br><a href="https://www.fontsquirrel.com" target="_blank" rel="external">https://www.fontsquirrel.com</a><br>CSS @font-face属性实现在网页中嵌入任意字体<br><a href="http://www.jb51.net/css/23073.html" target="_blank" rel="external">http://www.jb51.net/css/23073.html</a></p><p>如何在网页中嵌入自己想要的字体(实例下载)<br><a href="http://blog.csdn.net/sinolzeng/article/details/41802951" target="_blank" rel="external">http://blog.csdn.net/sinolzeng/article/details/41802951</a></p><h3 id="linux安装字体（错误的方法）"><a href="#linux安装字体（错误的方法）" class="headerlink" title="linux安装字体（错误的方法）"></a>linux安装字体（错误的方法）</h3><h4 id="下载字体"><a href="#下载字体" class="headerlink" title="下载字体"></a>下载字体</h4><p>下载思源全套字体（字体文件名称：NotoSansHans）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://pan.baidu.com/s/1uJBBK</div></pre></td></tr></table></figure></p><p>windows的字体比较多，其字体文件位于 C:\WINDOWS\Fonts,如果想额外安装也可以到这里找找</p><p>字体格式有ttf和otf等多重后缀，linux上ttf和oft都可以</p><h4 id="移动文件到服务器指定位置"><a href="#移动文件到服务器指定位置" class="headerlink" title="移动文件到服务器指定位置"></a>移动文件到服务器指定位置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># mkdir /usr/share/fonts/NotoSansHans</div><div class="line"># cp arial*.otf /usr/share/fonts/NotoSansHans/</div><div class="line">或</div><div class="line"># cp arial*.ttf /usr/share/fonts/NotoSansHans/</div></pre></td></tr></table></figure><h4 id="为刚加入的字体设置缓存使之有效"><a href="#为刚加入的字体设置缓存使之有效" class="headerlink" title="为刚加入的字体设置缓存使之有效"></a>为刚加入的字体设置缓存使之有效</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># cd /usr/share/font/NotoSansHans</div><div class="line"># fc-cache -fv</div></pre></td></tr></table></figure><h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>因为我在windows里先安装了思源字体，并在<code>Noto Sans S Chinese</code>中找到了思源字体，所以font-family中我用<code>Noto Sans S Chinese</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line">    font-family: &quot;Noto Sans S Chinese&quot;, Helvetica, Arial, sans-serif;</div><div class="line">    -webkit-font-smoothing: antialiased;</div><div class="line">    color: #777777;</div><div class="line">    font-size: 14px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>为什么文件名是<code>NotoSansHans</code>，安装后需要<code>Noto Sans S Chinese</code><br>这里有个疑惑</p><h4 id="疑惑解决（2017-12-8）"><a href="#疑惑解决（2017-12-8）" class="headerlink" title="疑惑解决（2017.12.8）"></a>疑惑解决（2017.12.8）</h4><p>自己本地安装了ttf包后，生成了Noto Sans S Chinese字体，可是这个字体不是服务器里的</p><p>也就是说，我在linux上安装的字体只能在linux上使用,浏览器里使用一个是看客户端有没有这个字体，另一个是你的css中引入如ttf之类的字体资源，但是对于中文来说，要把整个字体都方法css上，大概要10M以上（这个肯定不是个办法）</p><h3 id="css-font-face引入-只能引入英文字体"><a href="#css-font-face引入-只能引入英文字体" class="headerlink" title="css font-face引入(只能引入英文字体)"></a>css font-face引入(只能引入英文字体)</h3><p>在<br><a href="https://www.fontsquirrel.com" target="_blank" rel="external">https://www.fontsquirrel.com</a><br>中找到自己需要的字体</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">font-family: &apos;fontNameRegular&apos;;</div><div class="line">src: url(&apos;fontName.eot&apos;);</div><div class="line">src: local(&apos;fontName Regular&apos;),</div><div class="line">local(&apos;fontName&apos;),</div><div class="line">url(&apos;fontName.woff&apos;) format(&apos;woff&apos;),</div><div class="line">url(&apos;fontName.ttf&apos;) format(&apos;truetype&apos;),</div><div class="line">url(&apos;fontName.svg#fontName&apos;) format(&apos;svg&apos;);</div><div class="line">&#125;</div><div class="line">/*其中fontName替换为你的字体名称*/</div></pre></td></tr></table></figure><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>想在网页中全部使用某不常用的字体，几乎是不可取的方法，除非客户端里大家都安装了该字体</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;客户想让他的网站都显示思源字体&lt;/p&gt;
-&lt;h3 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title
-      
-    
-    </summary>
-    
-    
-      <category term="css字体" scheme="http://www.jk-kj.com/tags/css%E5%AD%97%E4%BD%93/"/>
-    
-      <category term="字体" scheme="http://www.jk-kj.com/tags/%E5%AD%97%E4%BD%93/"/>
     
   </entry>
   
