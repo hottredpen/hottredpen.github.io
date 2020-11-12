@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2020-11-12T01:42:07.151Z</updated>
+  <updated>2020-11-12T01:13:28.944Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,53 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>(一)、“仙剑出鞘”---玩法的设计</title>
-    <link href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%80)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%8E%A9%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
-    <id>http://www.jk-kj.com/游戏开发/(一)、“仙剑出鞘”---玩法的设计/</id>
-    <published>2020-11-12T00:26:10.000Z</published>
-    <updated>2020-11-12T01:42:07.151Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="主要玩法："><a href="#主要玩法：" class="headerlink" title="主要玩法："></a>主要玩法：</h3><p>1、用户上划屏幕，将飞剑“出鞘”，飞到之前的瞄准准心处。</p><p>2、瞄准准心左右移动，飞剑到达准心后，垂直下落。</p><p>3、用户控制左右“飞剑轮盘”，将飞剑进行“二次打击”。</p><p>4、飞剑出鞘后如果没有进行“二次打击”，将回到主角身边</p><p>5、敌方发出攻击，需要“飞剑”进行防御，只有飞剑停留在“防御点”，飞剑还能进行“二次打击”，否则将回到主角身边</p><h3 id="cocos知识点"><a href="#cocos知识点" class="headerlink" title="cocos知识点"></a>cocos知识点</h3><p>暂无</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;主要玩法：&quot;&gt;&lt;a href=&quot;#主要玩法：&quot; class=&quot;headerlink&quot; title=&quot;主要玩法：&quot;&gt;&lt;/a&gt;主要玩法：&lt;/h3&gt;&lt;p&gt;1、用户上划屏幕，将飞剑“出鞘”，飞到之前的瞄准准心处。&lt;/p&gt;
-&lt;p&gt;2、瞄准准心左右移动，飞剑到达准心后，垂直下
-      
-    
-    </summary>
-    
-    
-      <category term="-cocos -微信小游戏 -仙剑" scheme="http://www.jk-kj.com/tags/cocos-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E6%B8%B8%E6%88%8F-%E4%BB%99%E5%89%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>(二)、“仙剑出鞘”---界面的设计</title>
-    <link href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%8C)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%95%8C%E9%9D%A2%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
-    <id>http://www.jk-kj.com/游戏开发/(二)、“仙剑出鞘”---界面的设计/</id>
-    <published>2020-11-12T00:26:10.000Z</published>
-    <updated>2020-11-12T01:44:47.963Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="第一版设计"><a href="#第一版设计" class="headerlink" title="第一版设计"></a>第一版设计</h3><p><img src="http://image.jk-kj.com/mweb/2020/11/12/1605145436331640ab7c21f06b5a78a963a52c27f58a37.png" alt="40ab7c21f06b5a78a963a52c27f58a37"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;第一版设计&quot;&gt;&lt;a href=&quot;#第一版设计&quot; class=&quot;headerlink&quot; title=&quot;第一版设计&quot;&gt;&lt;/a&gt;第一版设计&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://image.jk-kj.com/mweb/2020/11/12/160514543
-      
-    
-    </summary>
-    
-    
-      <category term="-cocos -微信小游戏 -仙剑" scheme="http://www.jk-kj.com/tags/cocos-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E6%B8%B8%E6%88%8F-%E4%BB%99%E5%89%91/"/>
-    
-  </entry>
   
   <entry>
     <title>使用mweb+hexo发布博客</title>
@@ -84,6 +37,53 @@
     
     
       <category term="-mweb -hexo" scheme="http://www.jk-kj.com/tags/mweb-hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>(二)、“仙剑出鞘”---界面的设计</title>
+    <link href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%8C)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%95%8C%E9%9D%A2%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
+    <id>http://www.jk-kj.com/游戏开发/(二)、“仙剑出鞘”---界面的设计/</id>
+    <published>2020-10-30T00:26:10.000Z</published>
+    <updated>2020-11-12T01:56:49.313Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="第一版设计"><a href="#第一版设计" class="headerlink" title="第一版设计"></a>第一版设计</h3><p><img src="http://image.jk-kj.com/mweb/2020/11/12/1605145436331640ab7c21f06b5a78a963a52c27f58a37.png" alt="40ab7c21f06b5a78a963a52c27f58a37"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;第一版设计&quot;&gt;&lt;a href=&quot;#第一版设计&quot; class=&quot;headerlink&quot; title=&quot;第一版设计&quot;&gt;&lt;/a&gt;第一版设计&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://image.jk-kj.com/mweb/2020/11/12/160514543
+      
+    
+    </summary>
+    
+    
+      <category term="-cocos -微信小游戏 -仙剑" scheme="http://www.jk-kj.com/tags/cocos-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E6%B8%B8%E6%88%8F-%E4%BB%99%E5%89%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>(一)、“仙剑出鞘”---玩法的设计</title>
+    <link href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%80)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%8E%A9%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
+    <id>http://www.jk-kj.com/游戏开发/(一)、“仙剑出鞘”---玩法的设计/</id>
+    <published>2020-10-27T00:26:10.000Z</published>
+    <updated>2020-11-12T01:55:57.635Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="主要玩法："><a href="#主要玩法：" class="headerlink" title="主要玩法："></a>主要玩法：</h3><p>1、用户上划屏幕，将飞剑“出鞘”，飞到之前的瞄准准心处。</p><p>2、瞄准准心左右移动，飞剑到达准心后，垂直下落。</p><p>3、用户控制左右“飞剑轮盘”，将飞剑进行“二次打击”。</p><p>4、飞剑出鞘后如果没有进行“二次打击”，将回到主角身边</p><p>5、敌方发出攻击，需要“飞剑”进行防御，只有飞剑停留在“防御点”，飞剑还能进行“二次打击”，否则将回到主角身边</p><h3 id="cocos知识点"><a href="#cocos知识点" class="headerlink" title="cocos知识点"></a>cocos知识点</h3><p>暂无</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;主要玩法：&quot;&gt;&lt;a href=&quot;#主要玩法：&quot; class=&quot;headerlink&quot; title=&quot;主要玩法：&quot;&gt;&lt;/a&gt;主要玩法：&lt;/h3&gt;&lt;p&gt;1、用户上划屏幕，将飞剑“出鞘”，飞到之前的瞄准准心处。&lt;/p&gt;
+&lt;p&gt;2、瞄准准心左右移动，飞剑到达准心后，垂直下
+      
+    
+    </summary>
+    
+    
+      <category term="-cocos -微信小游戏 -仙剑" scheme="http://www.jk-kj.com/tags/cocos-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E6%B8%B8%E6%88%8F-%E4%BB%99%E5%89%91/"/>
     
   </entry>
   
