@@ -254,6 +254,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/记一次linux上大文件的转移/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/记一次linux上大文件的转移/" itemprop="url">记一次linux上大文件的转移</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T12:43:08+08:00">
+                2017-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>服务器的内容转到另一台服务器</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="首先进行了打包"><a href="#首先进行了打包" class="headerlink" title="首先进行了打包"></a>首先进行了打包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -cvf ./kod.tar ./kod3.1</div></pre></td></tr></table></figure>
+<p>打完包，发现有3个多G<br>就尝试打包压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zcvf ./kod2.tar.gz ./kod3.1</div></pre></td></tr></table></figure></p>
+<p>结果还是3G多，只压缩了200M</p>
+<h4 id="进行传输"><a href="#进行传输" class="headerlink" title="进行传输"></a>进行传输</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure>
+<p>开始有5M/s的速度，可慢慢地变得只有800K/s<br>最气人的是在60%时的时候居然出现了<code>stalled</code></p>
+<h4 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">When transferring large files(for example mksysb images) using scp through a firewall, the scp connection stalls.</div><div class="line">Cause:</div><div class="line"></div><div class="line">The reason for scp to stall, is because scp greedily grabs as much bandwith of the network as possible when it transfers files, any delay caused by the network switch of the firewall can easily make the TCP connection stalled.</div><div class="line">Solution:</div><div class="line"></div><div class="line">There’s a solution to this problem: Add “-l 8192″ to the scp command.</div><div class="line"></div><div class="line">Adding the option “-l 8192″ limits the scp session bandwith up to 8192 Kbit/second, which seems to work safe and fast enough (up to 1 MB/second):</div></pre></td></tr></table></figure>
+<h4 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h4><p>在原有的命令行上加上了<code>-l 8192</code>可以维持在1M/s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure></p>
+<p>开始速度也有6M/s，后面速度一直维持在1M/s，中间无<code>stalled</code></p>
+<p>如果是<code>-l 16000</code>则维持在2M/s，以此类推</p>
+<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -xvf kod.tar</div></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf kod.tar.gz</div></pre></td></tr></table></figure></p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>因为转移的文件有很多，而且都很大，我们不可能一直开者等待它传完，这就需要后台运行</p>
+<p>先输入密码进行传输<br>然后用<code>ctrl+z</code>,将当前进程挂起到后台暂停运行，执行一些别的操作<br>然后用 <code>bg</code> 来将挂起的进程放在后台(也可以用 <code>fg</code> 来将挂起的进程重新放回前台)继续运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@pvcent107 build]# scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">---------ctrl+zx</div><div class="line">[1]+  Stopped                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">[root@pvcent107 build]# bg %1</div><div class="line">[1]+ scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# jobs</div><div class="line">[1]+  Running                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# disown -h %1</div><div class="line">[root@pvcent107 build]# ps -ef |grep kod</div><div class="line">root      5790  5577  1 10:04 pts/3    00:00:00 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">root      5824  5577  0 10:05 pts/3    00:00:00 grep kod</div></pre></td></tr></table></figure></p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>有时jobs会有多个，注意自己的文件大小是否正常，我就别坑了1次，没传输完成（完成了一个jobs），以为完成了就进行解压缩了。</p>
+<h4 id="400G个文件打包"><a href="#400G个文件打包" class="headerlink" title="400G个文件打包"></a>400G个文件打包</h4><p>之前想着。。。400G的文件需要切分-，-！可是用了切分时，却始终没有获取完整的包，好几次我都相信我的总包才80G</p>
+<p>最后用了整包打包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf kod.tar.bz2 ./kod &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure></p>
+<p>打完包发现才有400G+…….我的天，整整打包了一天一夜</p>
+<h4 id="400G的传输"><a href="#400G的传输" class="headerlink" title="400G的传输"></a>400G的传输</h4><p>scp 已经无法满足，因为万一中间来个服务器重启，或者其他因素那over了，那流量可就白白流失了<br>最后采用了<code>rsync</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.14.156:/data/</div></pre></td></tr></table></figure></p>
+<p>然后输入密码<br>再ctrl+z 暂停<br>再bg %1  放入后台（假设当前后台允许索引为1）<br>然后用jobs查看<br>如果你当前退出过当前终端，jobs已经无法查看到后台运行的进程，只能用ps<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef |grep kod</div></pre></td></tr></table></figure></p>
+<p>会有如下的显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root     175100 174758 47 08:10 pts/2    00:15:13 rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.91.176:/data/</div><div class="line">root     183245 174758  0 08:42 pts/2    00:00:00 grep --color=auto kod</div></pre></td></tr></table></figure></p>
+<p>其中<code>00:15:13</code>指本次断点续传进行的时间。<br>当传输了200G以后，继续进行断点续传，这个时间会有好长一段时间是不更新的（作者认为它在寻找上一次的断点，因为文件大了寻找的时间会久一点），如果你这个时候马上关闭总端，很有可能本次传输就没执行，我就被坑了一次，一觉醒来一点就没传。。。</p>
+<h4 id="rsync与scp的差异"><a href="#rsync与scp的差异" class="headerlink" title="rsync与scp的差异"></a>rsync与scp的差异</h4><p>用scp时，这边传多少，另一个服务器就显示文件实时大小<br>而用rsync时，另一个服务器不实时显示文件大小，只有将这边的进程暂时kill掉，才能知道到底传了多少（可能我这个办法比较粗暴）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -9 175100</div></pre></td></tr></table></figure></p>
+<h4 id="400G的解压"><a href="#400G的解压" class="headerlink" title="400G的解压"></a>400G的解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -xjf ./kod_all.tar.bz2 &gt; /dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+<p>其他查看操作同上面</p>
+<h3 id="其他，拆分打包（失败了）"><a href="#其他，拆分打包（失败了）" class="headerlink" title="其他，拆分打包（失败了）"></a>其他，拆分打包（失败了）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf - kod/ |split -b 10000m - kod.tar.bz2. &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+<p>它会生成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.aa</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ab</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ac</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ad</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ae</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.af</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ag</div></pre></td></tr></table></figure></p>
+<p>后面默认2位，字符逐渐增加<br>它的解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup cat pinkephp.tar.bz2.* | tar -xj &amp;</div></pre></td></tr></table></figure></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://linux.cn/article-7170-1.html" target="_blank" rel="external">https://linux.cn/article-7170-1.html</a></p>
+<p><a href="http://blog.csdn.net/tdstds/article/details/24870535" target="_blank" rel="external">http://blog.csdn.net/tdstds/article/details/24870535</a></p>
+<p><a href="http://blog.csdn.net/eroswang/article/details/5555415/" target="_blank" rel="external">http://blog.csdn.net/eroswang/article/details/5555415/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/记一次网站字体采用思源字体/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1476,145 +1626,11 @@ components
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/vue选项数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/vue选项数据/" itemprop="url">vue选项数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T06:47:41+08:00">
-                2017-10-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>初级理解：对象必须是纯粹的对象(含有零个或多个的key/value对)，这里面的数据最好都是在视图层显示的数据（静态变量）<br>中级理解：<br>高级理解：</p>
-<p>其他：<br>如果说不是在视图层展示的变量。可以定义在外面或者放在vm对象上。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">let abc = &apos;&apos;  </div><div class="line">export default &#123;  </div><div class="line">    data() &#123;  </div><div class="line">        return &#123;  </div><div class="line">            bar: &apos;bar&apos;  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    methods: &#123;  </div><div class="line">        testFn() &#123;  </div><div class="line">            // abc  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><p>初级理解：props 可以是数组或对象，用于接收来自父组件的数据。<br>中级理解：组件实例的作用域是孤立的。这意味着不能 (也不应该) 在子组件的模板内直接引用父组件的数据。父组件的数据需要通过 prop 才能下发到子组件中。<br>高级理解：</p>
-<p>其他：</p>
-<p>子组件要显式地用 props 选项声明它预期的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Vue.component(&apos;child&apos;, &#123;</div><div class="line">  // 声明 props</div><div class="line">  props: [&apos;message&apos;],</div><div class="line">  // 就像 data 一样，prop 也可以在模板中使用</div><div class="line">  // 同样也可以在 vm 实例中通过 this.message 来使用</div><div class="line">  template: &apos;&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>然后我们可以这样向它传入一个普通字符串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;child message=&quot;hello!&quot;&gt;&lt;/child&gt;</div></pre></td></tr></table></figure></p>
-<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hello!</div></pre></td></tr></table></figure></p>
-<h3 id="propsData"><a href="#propsData" class="headerlink" title="propsData"></a>propsData</h3><p>简单理解:创建实例时传递 props。主要作用是方便测试。(无父级时)</p>
-<h3 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h3><p>简单理解：computed，计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。不过计算属性也用函数来替代。（动态变量）</p>
-<h3 id="methods"><a href="#methods" class="headerlink" title="methods"></a>methods</h3><p> methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。</p>
-<h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><p>简单理解：监听data里的值的变化</p>
-<p>官方例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">var vm = new Vue(&#123;</div><div class="line">  data: &#123;</div><div class="line">    a: 1,</div><div class="line">    b: 2,</div><div class="line">    c: 3,</div><div class="line">    d: 4</div><div class="line">  &#125;,</div><div class="line">  watch: &#123;</div><div class="line">    a: function (val, oldVal) &#123;</div><div class="line">      console.log(&apos;new: %s, old: %s&apos;, val, oldVal)</div><div class="line">    &#125;,</div><div class="line">    // 方法名</div><div class="line">    b: &apos;someMethod&apos;,</div><div class="line">    // 深度 watcher</div><div class="line">    c: &#123;</div><div class="line">      handler: function (val, oldVal) &#123; /* ... */ &#125;,</div><div class="line">      deep: true</div><div class="line">    &#125;,</div><div class="line">    // 该回调将会在侦听开始之后被立即调用</div><div class="line">    d: &#123;</div><div class="line">      handler: function (val, oldVal) &#123; /* ... */ &#125;,</div><div class="line">      immediate: true</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">vm.a = 2 // =&gt; new: 2, old: 1</div></pre></td></tr></table></figure>
-<p>一个时间选择器更改的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var v_assetManage_controller = new Vue(&#123;  </div><div class="line">    el: &apos;.LSee-index&apos;,  </div><div class="line">    data: &#123;  </div><div class="line">        trendQueryTimeCtr: &#123;  </div><div class="line">            startTime: &apos;&apos;,  </div><div class="line">            endTime: &apos;&apos;  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    ready: function() &#123;  </div><div class="line">        //  </div><div class="line">    &#125;,  </div><div class="line">    methods: &#123;  </div><div class="line">        queryTrendData: function()&#123;  </div><div class="line">            //do some here  </div><div class="line">        &#125;  </div><div class="line">    &#125;,  </div><div class="line">    watch: &#123;  </div><div class="line">        &apos;trendQueryTimeCtr.startTime&apos;: &apos;queryTrendData&apos;,  </div><div class="line">        &apos;trendQueryTimeCtr.endTime&apos;: &apos;queryTrendData&apos;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1664,7 +1680,7 @@ components
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1677,7 +1693,7 @@ components
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

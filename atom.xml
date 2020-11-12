@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2020-11-12T01:13:28.944Z</updated>
+  <updated>2020-11-12T02:38:39.098Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>生活哥-项目结构</title>
+    <link href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/%E7%94%9F%E6%B4%BB%E5%93%A5-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/"/>
+    <id>http://www.jk-kj.com/项目/生活哥-项目结构/</id>
+    <published>2020-11-12T02:38:10.000Z</published>
+    <updated>2020-11-12T02:38:39.098Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">graph LR</div><div class="line">展合二手车--&gt; 首页</div><div class="line">首页--&gt;  首页搜索</div><div class="line"></div><div class="line">展合二手车--&gt; 列表</div><div class="line">列表--&gt; 搜索</div><div class="line"></div><div class="line">展合二手车--&gt; 发布</div><div class="line">发布--&gt; d</div><div class="line"></div><div class="line">展合二手车--&gt; 发现</div><div class="line">发现--&gt; d</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;结构图&quot;&gt;&lt;a href=&quot;#结构图&quot; class=&quot;headerlink&quot; title=&quot;结构图&quot;&gt;&lt;/a&gt;结构图&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;d
+      
+    
+    </summary>
+    
+    
+      <category term="-项目" scheme="http://www.jk-kj.com/tags/%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>使用mweb+hexo发布博客</title>
@@ -459,38 +482,6 @@
       <category term="图片裁剪" scheme="http://www.jk-kj.com/tags/%E5%9B%BE%E7%89%87%E8%A3%81%E5%89%AA/"/>
     
       <category term="图片服务器" scheme="http://www.jk-kj.com/tags/%E5%9B%BE%E7%89%87%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一次linux上大文件的转移</title>
-    <link href="http://www.jk-kj.com/%E8%AE%B0%E4%B8%80%E6%AC%A1linux%E4%B8%8A%E5%A4%A7%E6%96%87%E4%BB%B6%E7%9A%84%E8%BD%AC%E7%A7%BB/"/>
-    <id>http://www.jk-kj.com/记一次linux上大文件的转移/</id>
-    <published>2017-12-13T04:43:08.000Z</published>
-    <updated>2018-01-16T00:27:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>服务器的内容转到另一台服务器</p><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="首先进行了打包"><a href="#首先进行了打包" class="headerlink" title="首先进行了打包"></a>首先进行了打包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -cvf ./kod.tar ./kod3.1</div></pre></td></tr></table></figure><p>打完包，发现有3个多G<br>就尝试打包压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zcvf ./kod2.tar.gz ./kod3.1</div></pre></td></tr></table></figure></p><p>结果还是3G多，只压缩了200M</p><h4 id="进行传输"><a href="#进行传输" class="headerlink" title="进行传输"></a>进行传输</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure><p>开始有5M/s的速度，可慢慢地变得只有800K/s<br>最气人的是在60%时的时候居然出现了<code>stalled</code></p><h4 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">When transferring large files(for example mksysb images) using scp through a firewall, the scp connection stalls.</div><div class="line">Cause:</div><div class="line"></div><div class="line">The reason for scp to stall, is because scp greedily grabs as much bandwith of the network as possible when it transfers files, any delay caused by the network switch of the firewall can easily make the TCP connection stalled.</div><div class="line">Solution:</div><div class="line"></div><div class="line">There’s a solution to this problem: Add “-l 8192″ to the scp command.</div><div class="line"></div><div class="line">Adding the option “-l 8192″ limits the scp session bandwith up to 8192 Kbit/second, which seems to work safe and fast enough (up to 1 MB/second):</div></pre></td></tr></table></figure><h4 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h4><p>在原有的命令行上加上了<code>-l 8192</code>可以维持在1M/s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure></p><p>开始速度也有6M/s，后面速度一直维持在1M/s，中间无<code>stalled</code></p><p>如果是<code>-l 16000</code>则维持在2M/s，以此类推</p><h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -xvf kod.tar</div></pre></td></tr></table></figure><p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf kod.tar.gz</div></pre></td></tr></table></figure></p><h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>因为转移的文件有很多，而且都很大，我们不可能一直开者等待它传完，这就需要后台运行</p><p>先输入密码进行传输<br>然后用<code>ctrl+z</code>,将当前进程挂起到后台暂停运行，执行一些别的操作<br>然后用 <code>bg</code> 来将挂起的进程放在后台(也可以用 <code>fg</code> 来将挂起的进程重新放回前台)继续运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@pvcent107 build]# scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">---------ctrl+zx</div><div class="line">[1]+  Stopped                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">[root@pvcent107 build]# bg %1</div><div class="line">[1]+ scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# jobs</div><div class="line">[1]+  Running                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# disown -h %1</div><div class="line">[root@pvcent107 build]# ps -ef |grep kod</div><div class="line">root      5790  5577  1 10:04 pts/3    00:00:00 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">root      5824  5577  0 10:05 pts/3    00:00:00 grep kod</div></pre></td></tr></table></figure></p><h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>有时jobs会有多个，注意自己的文件大小是否正常，我就别坑了1次，没传输完成（完成了一个jobs），以为完成了就进行解压缩了。</p><h4 id="400G个文件打包"><a href="#400G个文件打包" class="headerlink" title="400G个文件打包"></a>400G个文件打包</h4><p>之前想着。。。400G的文件需要切分-，-！可是用了切分时，却始终没有获取完整的包，好几次我都相信我的总包才80G</p><p>最后用了整包打包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf kod.tar.bz2 ./kod &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure></p><p>打完包发现才有400G+…….我的天，整整打包了一天一夜</p><h4 id="400G的传输"><a href="#400G的传输" class="headerlink" title="400G的传输"></a>400G的传输</h4><p>scp 已经无法满足，因为万一中间来个服务器重启，或者其他因素那over了，那流量可就白白流失了<br>最后采用了<code>rsync</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.14.156:/data/</div></pre></td></tr></table></figure></p><p>然后输入密码<br>再ctrl+z 暂停<br>再bg %1  放入后台（假设当前后台允许索引为1）<br>然后用jobs查看<br>如果你当前退出过当前终端，jobs已经无法查看到后台运行的进程，只能用ps<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef |grep kod</div></pre></td></tr></table></figure></p><p>会有如下的显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root     175100 174758 47 08:10 pts/2    00:15:13 rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.91.176:/data/</div><div class="line">root     183245 174758  0 08:42 pts/2    00:00:00 grep --color=auto kod</div></pre></td></tr></table></figure></p><p>其中<code>00:15:13</code>指本次断点续传进行的时间。<br>当传输了200G以后，继续进行断点续传，这个时间会有好长一段时间是不更新的（作者认为它在寻找上一次的断点，因为文件大了寻找的时间会久一点），如果你这个时候马上关闭总端，很有可能本次传输就没执行，我就被坑了一次，一觉醒来一点就没传。。。</p><h4 id="rsync与scp的差异"><a href="#rsync与scp的差异" class="headerlink" title="rsync与scp的差异"></a>rsync与scp的差异</h4><p>用scp时，这边传多少，另一个服务器就显示文件实时大小<br>而用rsync时，另一个服务器不实时显示文件大小，只有将这边的进程暂时kill掉，才能知道到底传了多少（可能我这个办法比较粗暴）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -9 175100</div></pre></td></tr></table></figure></p><h4 id="400G的解压"><a href="#400G的解压" class="headerlink" title="400G的解压"></a>400G的解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -xjf ./kod_all.tar.bz2 &gt; /dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure><p>其他查看操作同上面</p><h3 id="其他，拆分打包（失败了）"><a href="#其他，拆分打包（失败了）" class="headerlink" title="其他，拆分打包（失败了）"></a>其他，拆分打包（失败了）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf - kod/ |split -b 10000m - kod.tar.bz2. &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure><p>它会生成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.aa</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ab</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ac</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ad</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ae</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.af</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ag</div></pre></td></tr></table></figure></p><p>后面默认2位，字符逐渐增加<br>它的解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup cat pinkephp.tar.bz2.* | tar -xj &amp;</div></pre></td></tr></table></figure></p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://linux.cn/article-7170-1.html" target="_blank" rel="external">https://linux.cn/article-7170-1.html</a></p><p><a href="http://blog.csdn.net/tdstds/article/details/24870535" target="_blank" rel="external">http://blog.csdn.net/tdstds/article/details/24870535</a></p><p><a href="http://blog.csdn.net/eroswang/article/details/5555415/" target="_blank" rel="external">http://blog.csdn.net/eroswang/article/details/5555415/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;服务器的内容转到另一台服务器&lt;/p&gt;
-&lt;h3 id=&quot;过程&quot;&gt;&lt;a href=&quot;#过程&quot; class=&quot;headerlink&quot; title=
-      
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://www.jk-kj.com/tags/linux/"/>
-    
-      <category term="scp" scheme="http://www.jk-kj.com/tags/scp/"/>
-    
-      <category term="rsync" scheme="http://www.jk-kj.com/tags/rsync/"/>
-    
-      <category term="打包" scheme="http://www.jk-kj.com/tags/%E6%89%93%E5%8C%85/"/>
-    
-      <category term="断点续传" scheme="http://www.jk-kj.com/tags/%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/"/>
     
   </entry>
   

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/%E7%94%9F%E6%B4%BB%E5%93%A5-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/</loc>
+    
+    <lastmod>2020-11-12T02:38:39.098Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%8C)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%95%8C%E9%9D%A2%E7%9A%84%E8%AE%BE%E8%AE%A1/</loc>
     
     <lastmod>2020-11-12T01:56:49.313Z</lastmod>
@@ -128,21 +135,7 @@
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/%E8%AE%B0%E4%B8%80%E6%AC%A1linux%E4%B8%8A%E5%A4%A7%E6%96%87%E4%BB%B6%E7%9A%84%E8%BD%AC%E7%A7%BB/</loc>
-    
-    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.jk-kj.com/zimg%E5%9B%BE%E7%89%87%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    
-    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.jk-kj.com/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E7%AB%99%E5%AD%97%E4%BD%93%E9%87%87%E7%94%A8%E6%80%9D%E6%BA%90%E5%AD%97%E4%BD%93/</loc>
+    <loc>http://www.jk-kj.com/vscode%E9%85%8D%E7%BD%AEeslint/</loc>
     
     <lastmod>2018-01-16T00:27:49.000Z</lastmod>
     
@@ -156,21 +149,7 @@
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/vscode%E9%85%8D%E7%BD%AEeslint/</loc>
-    
-    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.jk-kj.com/elementui%E5%BC%95%E5%85%A5iconfont/</loc>
-    
-    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.jk-kj.com/node-sass%E5%AE%89%E8%A3%85%E4%B8%8D%E6%88%90%E5%8A%9F%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
+    <loc>http://www.jk-kj.com/zimg%E5%9B%BE%E7%89%87%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     
     <lastmod>2018-01-16T00:27:49.000Z</lastmod>
     
@@ -184,14 +163,42 @@
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/GitBash%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E4%B9%8B%E5%90%8E%E7%9A%84%E8%B7%AF%E5%BE%84/</loc>
+    <loc>http://www.jk-kj.com/elementui%E5%BC%95%E5%85%A5iconfont/</loc>
+    
+    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.jk-kj.com/%E8%AE%B0%E4%B8%80%E6%AC%A1linux%E4%B8%8A%E5%A4%A7%E6%96%87%E4%BB%B6%E7%9A%84%E8%BD%AC%E7%A7%BB/</loc>
+    
+    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.jk-kj.com/node-sass%E5%AE%89%E8%A3%85%E4%B8%8D%E6%88%90%E5%8A%9F%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.jk-kj.com/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E7%AB%99%E5%AD%97%E4%BD%93%E9%87%87%E7%94%A8%E6%80%9D%E6%BA%90%E5%AD%97%E4%BD%93/</loc>
+    
+    <lastmod>2018-01-16T00:27:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.jk-kj.com/vue%E9%80%89%E9%A1%B9%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90/</loc>
     
     <lastmod>2017-11-05T09:16:12.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.jk-kj.com/vue%E9%80%89%E9%A1%B9%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90/</loc>
+    <loc>http://www.jk-kj.com/GitBash%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E4%B9%8B%E5%90%8E%E7%9A%84%E8%B7%AF%E5%BE%84/</loc>
     
     <lastmod>2017-11-05T09:16:12.000Z</lastmod>
     
