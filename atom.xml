@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2020-11-12T01:15:27.178Z</updated>
+  <updated>2020-11-12T01:13:28.944Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,30 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>(一)、“仙剑出鞘”---玩法的设计</title>
-    <link href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%80)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%8E%A9%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
-    <id>http://www.jk-kj.com/游戏开发/(一)、“仙剑出鞘”---玩法的设计/</id>
-    <published>2020-11-12T00:26:10.000Z</published>
-    <updated>2020-11-12T01:15:27.178Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>仙剑出鞘</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;仙剑出鞘&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="-mweb -hexo" scheme="http://www.jk-kj.com/tags/mweb-hexo/"/>
-    
-  </entry>
   
   <entry>
     <title>使用mweb+hexo发布博客</title>
@@ -54,6 +30,30 @@
       
       
         &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;使用mweb&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="-mweb -hexo" scheme="http://www.jk-kj.com/tags/mweb-hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>(一)、“仙剑出鞘”---玩法的设计</title>
+    <link href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%80)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%8E%A9%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
+    <id>http://www.jk-kj.com/游戏开发/(一)、“仙剑出鞘”---玩法的设计/</id>
+    <published>2020-11-12T00:26:10.000Z</published>
+    <updated>2020-11-12T01:15:27.178Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>仙剑出鞘</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;仙剑出鞘&lt;/p&gt;
 
       
     
