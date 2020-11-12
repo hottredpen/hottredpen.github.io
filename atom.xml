@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2020-11-12T02:38:39.098Z</updated>
+  <updated>2020-11-12T02:54:35.490Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -17,19 +17,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>生活哥-项目结构</title>
-    <link href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/%E7%94%9F%E6%B4%BB%E5%93%A5-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/"/>
-    <id>http://www.jk-kj.com/项目/生活哥-项目结构/</id>
-    <published>2020-11-12T02:38:10.000Z</published>
-    <updated>2020-11-12T02:38:39.098Z</updated>
+    <title>Hexo中使用mermaid</title>
+    <link href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/Hexo%E4%B8%AD%E4%BD%BF%E7%94%A8mermaid/"/>
+    <id>http://www.jk-kj.com/学无止境/Hexo中使用mermaid/</id>
+    <published>2020-11-12T02:49:15.000Z</published>
+    <updated>2020-11-12T02:54:35.490Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">graph LR</div><div class="line">展合二手车--&gt; 首页</div><div class="line">首页--&gt;  首页搜索</div><div class="line"></div><div class="line">展合二手车--&gt; 列表</div><div class="line">列表--&gt; 搜索</div><div class="line"></div><div class="line">展合二手车--&gt; 发布</div><div class="line">发布--&gt; d</div><div class="line"></div><div class="line">展合二手车--&gt; 发现</div><div class="line">发现--&gt; d</div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/Olivia_Vang/article/details/92987859" target="_blank" rel="external">https://blog.csdn.net/Olivia_Vang/article/details/92987859</a></p><h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-filter-mermaid-diagrams</div></pre></td></tr></table></figure><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在hexo的_config.yml文件（根目录的并非主题的）中，添加以下内容：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># mermaid chart</div><div class="line">mermaid: ## mermaid url https://github.com/knsv/mermaid</div><div class="line">  enable: true  # default true</div><div class="line">  version: "7.1.2" # default v7.1.2</div><div class="line">  options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js</div><div class="line">    #startOnload: true  // default true</div></pre></td></tr></table></figure></p><h3 id="js文件修改"><a href="#js文件修改" class="headerlink" title="js文件修改"></a>js文件修改</h3><p><code>themes/next/layout/_partials/footer.swig</code></p><p>以下是在next的footer.swig添加的内容。其他格式参考github: hexo-filter-mermaid-diagrams<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;% <span class="keyword">if</span> theme.mermaid.enable %&#125;</div><div class="line">  &lt;script src=<span class="string">'https://unpkg.com/mermaid@&#123;&#123; theme.mermaid.version &#125;&#125;/dist/mermaid.min.js'</span>&gt;&lt;/script&gt;</div><div class="line">  &lt;script&gt;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.mermaid) &#123;</div><div class="line">      mermaid.initialize(&#123;&#123; <span class="built_in">JSON</span>.stringify(theme.mermaid.options) &#125;&#125;);</div><div class="line">    &#125;</div><div class="line">  &lt;<span class="regexp">/script&gt;</span></div><div class="line"><span class="regexp">&#123;% endif %&#125;</span></div></pre></td></tr></table></figure></p><p>效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">` ` `mermaid</div><div class="line">graph TD;</div><div class="line">    A--&gt;B;</div><div class="line">    A--&gt;C;</div><div class="line">    B--&gt;D;</div><div class="line">    C--&gt;D;</div><div class="line">` ` `</div></pre></td></tr></table></figure></p><pre class="mermaid">graph TD;    A-->B;    A-->C;    B-->D;    C-->D;</pre>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;结构图&quot;&gt;&lt;a href=&quot;#结构图&quot; class=&quot;headerlink&quot; title=&quot;结构图&quot;&gt;&lt;/a&gt;结构图&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;d
+        &lt;h3 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/Olivia_Vang/article/details/92987859&quot; t
+      
+    
+    </summary>
+    
+    
+      <category term="-hexo -mermaid" scheme="http://www.jk-kj.com/tags/hexo-mermaid/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>生活哥-项目结构</title>
+    <link href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/%E7%94%9F%E6%B4%BB%E5%93%A5-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/"/>
+    <id>http://www.jk-kj.com/项目/生活哥-项目结构/</id>
+    <published>2020-11-12T02:38:10.000Z</published>
+    <updated>2020-11-12T02:46:38.342Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><pre class="mermaid">    graph LR    生活哥--> 首页    首页-->  首页搜索    生活哥--> 列表    列表--> 搜索    生活哥--> 发布    发布--> d    生活哥--> 发现    发现--> d</pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;结构图&quot;&gt;&lt;a href=&quot;#结构图&quot; class=&quot;headerlink&quot; title=&quot;结构图&quot;&gt;&lt;/a&gt;结构图&lt;/h3&gt;&lt;pre class=&quot;mermaid&quot;&gt;    graph LR
+    生活哥--&gt; 首页
+    首页--&gt;  首页搜索
+
+    
       
     
     </summary>
@@ -454,34 +481,6 @@
     
     
       <category term="chrome插件" scheme="http://www.jk-kj.com/tags/chrome%E6%8F%92%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>zimg图片服务器</title>
-    <link href="http://www.jk-kj.com/zimg%E5%9B%BE%E7%89%87%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>http://www.jk-kj.com/zimg图片服务器/</id>
-    <published>2017-12-26T03:06:18.000Z</published>
-    <updated>2018-01-16T00:27:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>公司转移图片服务器，让我负责<br>一直没去弄明白图片服务器的问题，有幸运</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h4&gt;&lt;p&gt;公司转移图片服务器，让我负责&lt;br&gt;一直没去弄明白图片服务器的问题，有幸运&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="zimg" scheme="http://www.jk-kj.com/tags/zimg/"/>
-    
-      <category term="图片裁剪" scheme="http://www.jk-kj.com/tags/%E5%9B%BE%E7%89%87%E8%A3%81%E5%89%AA/"/>
-    
-      <category term="图片服务器" scheme="http://www.jk-kj.com/tags/%E5%9B%BE%E7%89%87%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
   </entry>
   
