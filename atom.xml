@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2020-11-12T03:02:15.849Z</updated>
+  <updated>2020-11-12T03:31:29.144Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用浏览器插件diigo作为笔记备注</title>
+    <link href="http://www.jk-kj.com/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E4%BD%BF%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6diigo%E4%BD%9C%E4%B8%BA%E7%AC%94%E8%AE%B0%E5%A4%87%E6%B3%A8/"/>
+    <id>http://www.jk-kj.com/安装笔记/使用浏览器插件diigo作为笔记备注/</id>
+    <published>2020-11-12T03:24:21.000Z</published>
+    <updated>2020-11-12T03:31:29.144Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在入IT行业时，自己就像做一个类似的备注工具，当时的想法是给自己备注一些教程用了。<br>那时是自己建一个站点，将教程或者好文章扒到自己网站下面，然后，对其进行备注修改等。比较费时，且效果不理想。</p><h3 id="diigo介绍"><a href="#diigo介绍" class="headerlink" title="diigo介绍"></a>diigo介绍</h3><blockquote><p>diigo是一个可以在网页上做笔记的浏览器插件，也就是说直接在网页上使得某一行高亮，或者添加注释，并且关闭后重新打开笔记不会消失！！diigo可以收藏网页、在网页上做笔记，用浏览器打开pdf，还可以在pdf上做笔记，做好的笔记也可以分享给他人。但是有个缺点就是需要翻墙。。我觉得这个插件的适合人群是一些需要翻阅国外文档的程序员。</p></blockquote><h3 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h3><p>到应用商店下载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://chrome.google.com/webstore/detail/diigo-web-collector-captu/pnhplgjpclknigjpccbcnmicgcieojbh?hl=zh-CN</div></pre></td></tr></table></figure></p><h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="http://image.jk-kj.com/mweb/2020/11/12/1605151869083920180914172811191.png" alt="20180914172811191"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;在入IT行业时，自己就像做一个类似的备注工具，当时的想法是给自己备注一些教程用了。&lt;br&gt;那时是自己建一个站点，将教程或者好文章扒到自己网站
+      
+    
+    </summary>
+    
+    
+      <category term="-浏览器插件" scheme="http://www.jk-kj.com/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo中使用mermaid</title>
@@ -485,32 +508,6 @@
       <category term="css字体" scheme="http://www.jk-kj.com/tags/css%E5%AD%97%E4%BD%93/"/>
     
       <category term="字体" scheme="http://www.jk-kj.com/tags/%E5%AD%97%E4%BD%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>elementui引入iconfont</title>
-    <link href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/elementui%E5%BC%95%E5%85%A5iconfont/"/>
-    <id>http://www.jk-kj.com/学无止境/elementui引入iconfont/</id>
-    <published>2017-11-10T07:58:02.000Z</published>
-    <updated>2020-11-12T03:14:55.068Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>element官方的icon太少</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://blog.csdn.net/b376924098/article/details/78286880#reply" target="_blank" rel="external">http://blog.csdn.net/b376924098/article/details/78286880#reply</a></p><p>CSS3 @font-face [<a href="http://www.w3cplus.com/content/css3-font-face" target="_blank" rel="external">http://www.w3cplus.com/content/css3-font-face</a>]</p><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ul><li>去阿里巴巴矢量图，地址;<a href="http://www.iconfont.cn/" target="_blank" rel="external">http://www.iconfont.cn/</a></li><li>进入网站登录账户后，新建一个项目</li><li>选择一些自己要用到的图标如上图点击购物车按钮添加到购物车。</li></ul><p> <img src="http://img.blog.csdn.net/20171019170321456?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYjM3NjkyNDA5OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center"></p><ul><li>保存时，以yourprogect-icon命名</li><li>并命名一个自己的字体名称，jkkjFontFamily</li><li>在iconfont.css添加以下代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[class^=&quot;jkkj-icon&quot;], [class*=&quot; jkkj-icon&quot;] &#123;</div><div class="line">  font-family:&quot;jkkjFontFamily&quot; !important;</div><div class="line">  /* 以下内容参照第三方图标库本身的规则 */</div><div class="line">  font-size: 18px;</div><div class="line">  font-style:normal;</div><div class="line">  -webkit-font-smoothing: antialiased;</div><div class="line">  -moz-osx-font-smoothing: grayscale;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li></ul><p>效果类似于下图<br><img src="http://img.blog.csdn.net/20171019171813100?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYjM3NjkyNDA5OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;element官方的icon太少&lt;/p&gt;
-&lt;h3 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; titl
-      
-    
-    </summary>
-    
-    
-      <category term="elementui" scheme="http://www.jk-kj.com/tags/elementui/"/>
-    
-      <category term="iconfont" scheme="http://www.jk-kj.com/tags/iconfont/"/>
     
   </entry>
   
