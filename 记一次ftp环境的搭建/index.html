@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ftp vsftp," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="简客-记忆" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="背景给客户的服务器上安装ftp环境 参考链接Linux下如何进行FTP设置:vsftphttps://www.cnblogs.com/eagling/articles/4848669.htmlFTP主动模式和被动模式的区别https://www.cnblogs.com/dancheblog/p/3799448.htmlLinux Vsftpd 连接超时解决方法（被动模式）https://blog.">
+<meta name="keywords" content="ftp vsftp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次ftp环境的搭建">
+<meta property="og:url" content="http://www.jk-kj.com/记一次ftp环境的搭建/index.html">
+<meta property="og:site_name" content="简客-记忆">
+<meta property="og:description" content="背景给客户的服务器上安装ftp环境 参考链接Linux下如何进行FTP设置:vsftphttps://www.cnblogs.com/eagling/articles/4848669.htmlFTP主动模式和被动模式的区别https://www.cnblogs.com/dancheblog/p/3799448.htmlLinux Vsftpd 连接超时解决方法（被动模式）https://blog.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-24T06:35:16.479Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次ftp环境的搭建">
+<meta name="twitter:description" content="背景给客户的服务器上安装ftp环境 参考链接Linux下如何进行FTP设置:vsftphttps://www.cnblogs.com/eagling/articles/4848669.htmlFTP主动模式和被动模式的区别https://www.cnblogs.com/dancheblog/p/3799448.htmlLinux Vsftpd 连接超时解决方法（被动模式）https://blog.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.jk-kj.com/记一次ftp环境的搭建/"/>
+
+
+
+
+
+  <title>记一次ftp环境的搭建 | 简客-记忆</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">简客-记忆</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">抽象的才是永恒的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/记一次ftp环境的搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">记一次ftp环境的搭建</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-24T13:59:27+08:00">
+                2019-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>给客户的服务器上安装ftp环境</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>Linux下如何进行FTP设置:vsftp<br><a href="https://www.cnblogs.com/eagling/articles/4848669.html" target="_blank" rel="external">https://www.cnblogs.com/eagling/articles/4848669.html</a><br>FTP主动模式和被动模式的区别<br><a href="https://www.cnblogs.com/dancheblog/p/3799448.html" target="_blank" rel="external">https://www.cnblogs.com/dancheblog/p/3799448.html</a><br>Linux Vsftpd 连接超时解决方法（被动模式）<br><a href="https://blog.51cto.com/5468755/1594648" target="_blank" rel="external">https://blog.51cto.com/5468755/1594648</a></p>
+<h3 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h3><p>vsftpd安装，执行以下命令： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install vsftpd</div></pre></td></tr></table></figure>
+<p>我们选择了“vsftp配置虚拟用户”<br>使用vsftpd虚拟用户登录FTP服务器进行常见的操作。<br>首先安装FTP 虚拟用户需要用到的软件及认证模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum  install  pam*  libdb-utils libdb* –skip-broken  –y （Centos7）</div><div class="line"></div><div class="line">yum install db4* -y （Centos6）</div></pre></td></tr></table></figure></p>
+<p>编辑<code>vim /etc/vsftpd/ftpusers.txt</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">user001</div><div class="line">user001</div></pre></td></tr></table></figure></p>
+<p>第一行为FTP虚拟用户，登录用户名，第二行为密码，第三行为用户名，依次类推。</p>
+<p>创建并生成vsftpd数据库文件，生成数据库文件命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">db_load -T -t hash -f /etc/vsftpd/ftpusers.txt /etc/vsftpd/vsftpd_login.db</div><div class="line"></div><div class="line">chmod 700 /etc/vsftpd/vsftpd_login.db</div></pre></td></tr></table></figure>
+<p>配置PAM验证文件：</p>
+<p>在配置文件vi  /etc/pam.d/vsftpd 行首加入如下两行认证语句：（如果是32位，lib64需改成lib，如果RedHat，加入的语句不一样，需注意）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">auth        sufficient      /lib64/security/pam_userdb.so     db=/etc/vsftpd/vsftpd_login</div><div class="line"></div><div class="line">account     sufficient      /lib64/security/pam_userdb.so     db=/etc/vsftpd/vsftpd_login</div></pre></td></tr></table></figure></p>
+<p>创建vsftpd映射本地用户：</p>
+<p>所有的FTP虚拟用户需要使用一个系统用户，这个系统用户不需要密码，也不需要登录。主要用来做虚拟用户映射使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">useradd -s /sbin/nologin ftpuser</div></pre></td></tr></table></figure>
+<p>修改vsftpd.conf配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">anonymous_enable=NO</div><div class="line"></div><div class="line">local_enable=YES</div><div class="line"></div><div class="line">write_enable=YES</div><div class="line"></div><div class="line">local_umask=022</div><div class="line"></div><div class="line">dirmessage_enable=YES</div><div class="line"></div><div class="line">xferlog_enable=YES</div><div class="line"></div><div class="line">connect_from_port_20=YES</div><div class="line"></div><div class="line">xferlog_file=/var/log/vsftpd.log</div><div class="line"></div><div class="line">xferlog_std_format=YES</div><div class="line"></div><div class="line">ascii_upload_enable=YES</div><div class="line"></div><div class="line">ascii_download_enable=YES</div><div class="line"></div><div class="line">listen=YES</div><div class="line"></div><div class="line">guest_enable=YES</div><div class="line"></div><div class="line">guest_username=ftpuser</div><div class="line"></div><div class="line">pam_service_name=vsftpd</div><div class="line"></div><div class="line">user_config_dir=/etc/vsftpd/vsftpd_user_conf</div></pre></td></tr></table></figure></p>
+<p>保存重启,service  vsftpd restart 即可使用虚拟用户登录，这时候所有的虚拟用户共同使用/home/ftpuser目录上传下载，如果想使用自己独立的目录，可以在/etc/vsftpd/vsftpd_user_conf目录创建各自的配置文件，如给admin创建独立的配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">mkdir -p /etc/vsftpd/vsftpd_user_conf</div><div class="line"></div><div class="line">vim  /etc/vsftpd/vsftpd_user_conf/user001，内容如下，建立自己的FTP目录。</div><div class="line"></div><div class="line">local_root=/home/ftpuser/user001</div><div class="line"></div><div class="line">write_enable=YES</div><div class="line"></div><div class="line">anon_world_readable_only=YES</div><div class="line"></div><div class="line">anon_upload_enable=YES</div><div class="line"></div><div class="line">anon_mkdir_write_enable=YES</div><div class="line"></div><div class="line">anon_other_write_enable=YES</div></pre></td></tr></table></figure></p>
+<p>以上内容是参照其他博文做的，到这个时候，我以为已经大功告成，结果<br>结果出现各种<br>500 Illegal PORT command<br>227 Entering Passive Mode…</p>
+<p>一大堆问题，总之引出了 “主动和被动的问题”</p>
+<p>看了半天，主动和被动的关系，决定采用“主动模式”（开始入坑）<br>当初为什么选主动，因为博文里说了主动，服务器安全些。而且在配置21端口和20端口的时候，移动云的虚拟防火墙把我坑了一把。<br>可是无论我怎么配，都搞不定。。。登录成功目录出不来</p>
+<p>在最后发现了第三篇博文，被动模式（本想直接跳过去的，但看见他报的错误和我一模一样，抱着转被动试试看）</p>
+<p>1,vi /etc/vsftpd/vsftpd.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">pasv_enable=YES</div><div class="line">pasv_min_port=61001    (注意端口和客户端的保持一致)</div><div class="line">pasv_max_port=62000</div><div class="line">anon_max_rate=1000000</div><div class="line">local_max_rate=2000000</div><div class="line">max_clients=10</div><div class="line">max_per_ip=100</div></pre></td></tr></table></figure></p>
+<p>2、加载内核 ip_conntrack_ftp 和 ip_nat_ftp（终端执行）</p>
+<p>modprobe ip_conntrack_ftp<br>modprobe ip_nat_ftp</p>
+<p>3.配置 iptables 开放 61001 到 62000 端口</p>
+<p>vi /etc/sysconfig/iptables  在*filter下加入下</p>
+<p>-A OUTPUT -p tcp –sport 61001:62000 -j ACCEPT<br>-A INPUT -p tcp –dport 61001:62000 -j ACCEPT</p>
+<h3 id="过程遇到的坑"><a href="#过程遇到的坑" class="headerlink" title="过程遇到的坑"></a>过程遇到的坑</h3><p>1、坑1—移动运的虚拟<br>21端口  在安全组里加了 没在虚拟防火墙中配置</p>
+<p>2、坑2—主动模式的选择</p>
+<p>3、坑3— -A OUTPUT -p tcp –sport 61001:62000 -j ACCEPT 没有配置</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ftp-vsftp/" rel="tag"># ftp vsftp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/记一次使用leftjoin-group及子查询的配合使用/" rel="next" title="记一次使用leftjoin,group及子查询的配合使用">
+                <i class="fa fa-chevron-left"></i> 记一次使用leftjoin,group及子查询的配合使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/cocos入门解读小猫钓鱼/" rel="prev" title="cocos入门解读小猫钓鱼">
+                cocos入门解读小猫钓鱼 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="hottredpen" />
+            
+              <p class="site-author-name" itemprop="name">hottredpen</p>
+              <p class="site-description motion-element" itemprop="description">一个教育跨行到IT的开发者</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接"><span class="nav-number">2.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置过程"><span class="nav-number">3.</span> <span class="nav-text">配置过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程遇到的坑"><span class="nav-number">4.</span> <span class="nav-text">过程遇到的坑</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hottredpen</span>
+  <span class="author"><a href="http://www.beian.miit.gov.cn/" target="_blank">浙ICP备13033425号</a></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

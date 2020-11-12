@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue2," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="简客-记忆" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="v-text预期：string 更新元素的 textContent。如果要更新部分的 textContent ，需要使用  插值。 123&amp;lt;span v-text=&amp;quot;msg&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;!-- 和下面的一样 --&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;msg&amp;#125;&amp;#125;&amp;lt;/span&amp;gt; v-html预期：">
+<meta name="keywords" content="vue2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue指令">
+<meta property="og:url" content="http://www.jk-kj.com/vue指令/index.html">
+<meta property="og:site_name" content="简客-记忆">
+<meta property="og:description" content="v-text预期：string 更新元素的 textContent。如果要更新部分的 textContent ，需要使用  插值。 123&amp;lt;span v-text=&amp;quot;msg&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;!-- 和下面的一样 --&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;msg&amp;#125;&amp;#125;&amp;lt;/span&amp;gt; v-html预期：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-05T09:16:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue指令">
+<meta name="twitter:description" content="v-text预期：string 更新元素的 textContent。如果要更新部分的 textContent ，需要使用  插值。 123&amp;lt;span v-text=&amp;quot;msg&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;!-- 和下面的一样 --&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;msg&amp;#125;&amp;#125;&amp;lt;/span&amp;gt; v-html预期：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.jk-kj.com/vue指令/"/>
+
+
+
+
+
+  <title>vue指令 | 简客-记忆</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">简客-记忆</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">抽象的才是永恒的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/vue指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue指令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T08:16:58+08:00">
+                2017-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="v-text"><a href="#v-text" class="headerlink" title="v-text"></a>v-text</h4><p>预期：string</p>
+<p>更新元素的 textContent。如果要更新部分的 textContent ，需要使用  插值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;span v-text=&quot;msg&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;!-- 和下面的一样 --&gt;</div><div class="line">&lt;span&gt;&#123;&#123;msg&#125;&#125;&lt;/span&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-html"><a href="#v-html" class="headerlink" title="v-html"></a>v-html</h4><p>预期：string</p>
+<p>更新元素的 innerHTML 。注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译 。如果试图使用 v-html 组合模板，可以重新考虑是否通过使用组件来替代。</p>
+<p>在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 XSS 攻击。只在可信内容上使用 v-html，永不用在用户提交的内容上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-html=&quot;html&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h4><p>预期：any</p>
+<p>不同的是带有 v-show 的元素始终会被渲染并保留在 DOM 中。v-show 只是简单地切换元素的 CSS 属性 display。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h4><p>预期：any</p>
+<h4 id="v-else"><a href="#v-else" class="headerlink" title="v-else"></a>v-else</h4><h4 id="v-else-if"><a href="#v-else-if" class="headerlink" title="v-else-if"></a>v-else-if</h4><p>预期：any</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div v-if=&quot;Math.random() &gt; 0.5&quot;&gt;</div><div class="line">  Now you see me</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else&gt;</div><div class="line">  Now you don&apos;t</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div v-if=&quot;type === &apos;A&apos;&quot;&gt;</div><div class="line">  A</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else-if=&quot;type === &apos;B&apos;&quot;&gt;</div><div class="line">  B</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else-if=&quot;type === &apos;C&apos;&quot;&gt;</div><div class="line">  C</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-else&gt;</div><div class="line">  Not A/B/C</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h4><p>预期：Array | Object | number | string</p>
+<p>基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 alias in expression ，为当前遍历的元素提供别名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div v-for=&quot;item in items&quot;&gt;</div><div class="line">  &#123;&#123; item.text &#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>另外也可以为数组索引指定别名 (或者用于对象的键)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div v-for=&quot;(item, index) in items&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div v-for=&quot;(val, key) in object&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div v-for=&quot;(val, key, index) in object&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h4><p>缩写：@    【注意可缩写】</p>
+<p>修饰符：</p>
+<pre><code>.stop - 调用 event.stopPropagation()。
+.prevent - 调用 event.preventDefault()。
+.capture - 添加事件侦听器时使用 capture 模式。
+.self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
+.{keyCode | keyAlias} - 只当事件是从特定键触发时才触发回调。
+.native - 监听组件根元素的原生事件。
+.once - 只触发一次回调。
+.left - (2.2.0) 只当点击鼠标左键时触发。
+.right - (2.2.0) 只当点击鼠标右键时触发。
+.middle - (2.2.0) 只当点击鼠标中键时触发。
+.passive - (2.3.0) 以 { passive: true } 模式添加侦听器
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 方法处理器 --&gt;</div><div class="line">&lt;button v-on:click=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 对象语法 (2.4.0+) --&gt;</div><div class="line">&lt;button v-on=&quot;&#123; mousedown: doThis, mouseup: doThat &#125;&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 内联语句 --&gt;</div><div class="line">&lt;button v-on:click=&quot;doThat(&apos;hello&apos;, $event)&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 缩写 --&gt;</div><div class="line">&lt;button @click=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 停止冒泡 --&gt;</div><div class="line">&lt;button @click.stop=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 阻止默认行为 --&gt;</div><div class="line">&lt;button @click.prevent=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 阻止默认行为，没有表达式 --&gt;</div><div class="line">&lt;form @submit.prevent&gt;&lt;/form&gt;</div><div class="line">&lt;!--  串联修饰符 --&gt;</div><div class="line">&lt;button @click.stop.prevent=&quot;doThis&quot;&gt;&lt;/button&gt;</div><div class="line">&lt;!-- 键修饰符，键别名 --&gt;</div><div class="line">&lt;input @keyup.enter=&quot;onEnter&quot;&gt;</div><div class="line">&lt;!-- 键修饰符，键代码 --&gt;</div><div class="line">&lt;input @keyup.13=&quot;onEnter&quot;&gt;</div><div class="line">&lt;!-- 点击回调只会触发一次 --&gt;</div><div class="line">&lt;button v-on:click.once=&quot;doThis&quot;&gt;&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p>在子组件上监听自定义事件 (当子组件触发“my-event”时将调用事件处理器)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;my-component @my-event=&quot;handleThis&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 内联语句 --&gt;</div><div class="line">&lt;my-component @my-event=&quot;handleThis(123, $event)&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 组件中的原生事件 --&gt;</div><div class="line">&lt;my-component @click.native=&quot;onClick&quot;&gt;&lt;/my-component&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h4><p>缩写：:    【注意可缩写】<br>预期：any (with argument) | Object (without argument)</p>
+<p>修饰符：</p>
+<pre><code>.prop - 被用于绑定 DOM 属性 (property)。(差别在哪里？)
+.camel - (2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)
+.sync (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 v-on 侦听器。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 绑定一个属性 --&gt;</div><div class="line">&lt;img v-bind:src=&quot;imageSrc&quot;&gt;</div><div class="line">&lt;!-- 缩写 --&gt;</div><div class="line">&lt;img :src=&quot;imageSrc&quot;&gt;</div><div class="line">&lt;!-- 内联字符串拼接 --&gt;</div><div class="line">&lt;img :src=&quot;&apos;/path/to/images/&apos; + fileName&quot;&gt;</div><div class="line">&lt;!-- class 绑定 --&gt;</div><div class="line">&lt;div :class=&quot;&#123; red: isRed &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :class=&quot;[classA, classB]&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :class=&quot;[classA, &#123; classB: isB, classC: isC &#125;]&quot;&gt;</div><div class="line">&lt;!-- style 绑定 --&gt;</div><div class="line">&lt;div :style=&quot;&#123; fontSize: size + &apos;px&apos; &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div :style=&quot;[styleObjectA, styleObjectB]&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- 绑定一个有属性的对象 --&gt;</div><div class="line">&lt;div v-bind=&quot;&#123; id: someProp, &apos;other-attr&apos;: otherProp &#125;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- 通过 prop 修饰符绑定 DOM 属性 --&gt;</div><div class="line">&lt;div v-bind:text-content.prop=&quot;text&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- prop 绑定。“prop”必须在 my-component 中声明。--&gt;</div><div class="line">&lt;my-component :prop=&quot;someThing&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- 通过 $props 将父组件的 props 一起传给子组件 --&gt;</div><div class="line">&lt;child-component v-bind=&quot;$props&quot;&gt;&lt;/child-component&gt;</div><div class="line">&lt;!-- XLink --&gt;</div><div class="line">&lt;svg&gt;&lt;a :xlink:special=&quot;foo&quot;&gt;&lt;/a&gt;&lt;/svg&gt;</div></pre></td></tr></table></figure>
+<h4 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h4><p>预期：随表单控件类型不同而不同。</p>
+<p>限制：</p>
+<pre><code>&lt;input&gt;
+&lt;select&gt;
+&lt;textarea&gt;
+components
+</code></pre><p>修饰符：</p>
+<pre><code>.lazy - 取代 input 监听 change 事件
+.number - 输入字符串转为数字
+.trim - 输入首尾空格过滤
+</code></pre><h4 id="v-pre"><a href="#v-pre" class="headerlink" title="v-pre"></a>v-pre</h4><p>用法：</p>
+<p>跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。</p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;span v-pre&gt;&#123;&#123; this will not be compiled &#125;&#125;&lt;/span&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="v-cloak"><a href="#v-cloak" class="headerlink" title="v-cloak"></a>v-cloak</h4><p>用法：</p>
+<p>这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。</p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[v-cloak] &#123;</div><div class="line">  display: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div v-cloak&gt;</div><div class="line">  &#123;&#123; message &#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">不会显示，直到编译结束。</div></pre></td></tr></table></figure></p>
+<h4 id="v-once"><a href="#v-once" class="headerlink" title="v-once"></a>v-once</h4><p>只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 单个元素 --&gt;</div><div class="line">&lt;span v-once&gt;This will never change: &#123;&#123;msg&#125;&#125;&lt;/span&gt;</div><div class="line">&lt;!-- 有子元素 --&gt;</div><div class="line">&lt;div v-once&gt;</div><div class="line">  &lt;h1&gt;comment&lt;/h1&gt;</div><div class="line">  &lt;p&gt;&#123;&#123;msg&#125;&#125;&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;!-- 组件 --&gt;</div><div class="line">&lt;my-component v-once :comment=&quot;msg&quot;&gt;&lt;/my-component&gt;</div><div class="line">&lt;!-- `v-for` 指令--&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li v-for=&quot;i in list&quot; v-once&gt;&#123;&#123;i&#125;&#125;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue2/" rel="tag"># vue2</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/vue选项数据/" rel="next" title="vue选项数据">
+                <i class="fa fa-chevron-left"></i> vue选项数据
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/vue选项生命周期钩子/" rel="prev" title="vue选项生命周期钩子">
+                vue选项生命周期钩子 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="hottredpen" />
+            
+              <p class="site-author-name" itemprop="name">hottredpen</p>
+              <p class="site-description motion-element" itemprop="description">一个教育跨行到IT的开发者</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#v-text"><span class="nav-number">1.</span> <span class="nav-text">v-text</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-html"><span class="nav-number">2.</span> <span class="nav-text">v-html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-show"><span class="nav-number">3.</span> <span class="nav-text">v-show</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-if"><span class="nav-number">4.</span> <span class="nav-text">v-if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-else"><span class="nav-number">5.</span> <span class="nav-text">v-else</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-else-if"><span class="nav-number">6.</span> <span class="nav-text">v-else-if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-for"><span class="nav-number">7.</span> <span class="nav-text">v-for</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-on"><span class="nav-number">8.</span> <span class="nav-text">v-on</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-bind"><span class="nav-number">9.</span> <span class="nav-text">v-bind</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-model"><span class="nav-number">10.</span> <span class="nav-text">v-model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-pre"><span class="nav-number">11.</span> <span class="nav-text">v-pre</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-cloak"><span class="nav-number">12.</span> <span class="nav-text">v-cloak</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#v-once"><span class="nav-number">13.</span> <span class="nav-text">v-once</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hottredpen</span>
+  <span class="author"><a href="http://www.beian.miit.gov.cn/" target="_blank">浙ICP备13033425号</a></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
