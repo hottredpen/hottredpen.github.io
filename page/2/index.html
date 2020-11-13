@@ -254,6 +254,1162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/Hexo中使用mermaid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/学无止境/Hexo中使用mermaid/" itemprop="url">Hexo中使用mermaid</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-12T10:49:15+08:00">
+                2020-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/Olivia_Vang/article/details/92987859" target="_blank" rel="external">https://blog.csdn.net/Olivia_Vang/article/details/92987859</a></p>
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-filter-mermaid-diagrams</div></pre></td></tr></table></figure>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在hexo的_config.yml文件（根目录的并非主题的）中，添加以下内容：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># mermaid chart</div><div class="line">mermaid: ## mermaid url https://github.com/knsv/mermaid</div><div class="line">  enable: true  # default true</div><div class="line">  version: "7.1.2" # default v7.1.2</div><div class="line">  options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js</div><div class="line">    #startOnload: true  // default true</div></pre></td></tr></table></figure></p>
+<h3 id="js文件修改"><a href="#js文件修改" class="headerlink" title="js文件修改"></a>js文件修改</h3><p><code>themes/next/layout/_partials/footer.swig</code></p>
+<p>以下是在next的footer.swig添加的内容。其他格式参考github: hexo-filter-mermaid-diagrams<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;% <span class="keyword">if</span> theme.mermaid.enable %&#125;</div><div class="line">  &lt;script src=<span class="string">'https://unpkg.com/mermaid@&#123;&#123; theme.mermaid.version &#125;&#125;/dist/mermaid.min.js'</span>&gt;&lt;/script&gt;</div><div class="line">  &lt;script&gt;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.mermaid) &#123;</div><div class="line">      mermaid.initialize(&#123;&#123; <span class="built_in">JSON</span>.stringify(theme.mermaid.options) &#125;&#125;);</div><div class="line">    &#125;</div><div class="line">  &lt;<span class="regexp">/script&gt;</span></div><div class="line"><span class="regexp">&#123;% endif %&#125;</span></div></pre></td></tr></table></figure></p>
+<p>效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">` ` `mermaid</div><div class="line">graph TD;</div><div class="line">    A--&gt;B;</div><div class="line">    A--&gt;C;</div><div class="line">    B--&gt;D;</div><div class="line">    C--&gt;D;</div><div class="line">` ` `</div></pre></td></tr></table></figure></p>
+<pre class="mermaid">graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;</pre>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/项目/生活哥-项目结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/项目/生活哥-项目结构/" itemprop="url">生活哥-项目结构</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-12T10:38:10+08:00">
+                2020-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><pre class="mermaid">    graph LR
+    生活哥--> 首页
+    首页-->  首页搜索
+
+    生活哥--> 列表
+    列表--> 搜索
+
+    生活哥--> 发布
+    发布--> d
+
+    生活哥--> 发现
+    发现--> d</pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/游戏开发/(二)、“仙剑出鞘”---界面的设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/游戏开发/(二)、“仙剑出鞘”---界面的设计/" itemprop="url">(二)、“仙剑出鞘”---界面的设计</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-30T08:26:10+08:00">
+                2020-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="第一版设计"><a href="#第一版设计" class="headerlink" title="第一版设计"></a>第一版设计</h3><p><img src="http://image.jk-kj.com/mweb/2020/11/12/1605145436331640ab7c21f06b5a78a963a52c27f58a37.png" alt="40ab7c21f06b5a78a963a52c27f58a37"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/游戏开发/(一)、“仙剑出鞘”---玩法的设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/游戏开发/(一)、“仙剑出鞘”---玩法的设计/" itemprop="url">(一)、“仙剑出鞘”---玩法的设计</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-27T08:26:10+08:00">
+                2020-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="主要玩法："><a href="#主要玩法：" class="headerlink" title="主要玩法："></a>主要玩法：</h3><p>1、用户上划屏幕，将飞剑“出鞘”，飞到之前的瞄准准心处。</p>
+<p>2、瞄准准心左右移动，飞剑到达准心后，垂直下落。</p>
+<p>3、用户控制左右“飞剑轮盘”，将飞剑进行“二次打击”。</p>
+<p>4、飞剑出鞘后如果没有进行“二次打击”，将回到主角身边</p>
+<p>5、敌方发出攻击，需要“飞剑”进行防御，只有飞剑停留在“防御点”，飞剑还能进行“二次打击”，否则将回到主角身边</p>
+<h3 id="cocos知识点"><a href="#cocos知识点" class="headerlink" title="cocos知识点"></a>cocos知识点</h3><p>暂无</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次服务器mysql占用过大的排查/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/记一次服务器mysql占用过大的排查/" itemprop="url">记一次服务器mysql占用过大的排查</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-05T16:58:15+08:00">
+                2019-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>公司测试服务器上，跑了N多的应用，某天mysql的CPU占用超高，http的请求部分也有超20%以上的。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>mysql/mariadb知识点总结（24）：慢查询日志<br><a href="http://www.zsythink.net/archives/1260" target="_blank" rel="external">http://www.zsythink.net/archives/1260</a><br>关于MySQL 通用查询日志和慢查询日志分析<br><a href="https://www.jianshu.com/p/ac4f291b806a" target="_blank" rel="external">https://www.jianshu.com/p/ac4f291b806a</a><br>mysql中slow query log慢日志查询分析<br><a href="https://www.cnblogs.com/musings/p/5913186.html" target="_blank" rel="external">https://www.cnblogs.com/musings/p/5913186.html</a></p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="记录全部的log"><a href="#记录全部的log" class="headerlink" title="记录全部的log"></a>记录全部的log</h4><p>开启全部的sql记录，先看看全局的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">show variables like &apos;%general%&apos;;</div><div class="line"></div><div class="line">+------------------+--------------+</div><div class="line">| Variable_name    | Value        |</div><div class="line">+------------------+--------------+</div><div class="line">| general_log      | OFF          |</div><div class="line">| general_log_file | ecs-248d.log |</div><div class="line">+------------------+--------------+</div><div class="line">2 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>发现没有开，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set global general_log=on;</div></pre></td></tr></table></figure></p>
+<p>我们打算用文件的形式记录下来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show variables like &apos;%log_output%&apos;;</div><div class="line">set global log_output=&apos;FILE&apos;;</div></pre></td></tr></table></figure></p>
+<p>这个时候就可以去查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/var/lib/mysql/ecs-248d.log</div></pre></td></tr></table></figure></p>
+<p>（注意：上述命令只对当前生效，当MySQL重启失效，如果要永久生效，需要配置 my.cnf）</p>
+<h3 id="记录慢查询log"><a href="#记录慢查询log" class="headerlink" title="记录慢查询log"></a>记录慢查询log</h3><p>先查看下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show variables like ‘%quer%’;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">+-------------------------------+-------------------+</div><div class="line">| Variable_name                 | Value             |</div><div class="line">+-------------------------------+-------------------+</div><div class="line">| expensive_subquery_limit      | 100               |</div><div class="line">| ft_query_expansion_limit      | 20                |</div><div class="line">| have_query_cache              | YES               |</div><div class="line">| log_queries_not_using_indexes | OFF               |</div><div class="line">| log_slow_queries              | ON                |</div><div class="line">| long_query_time               | 10.000000          |</div><div class="line">| query_alloc_block_size        | 8192              |</div><div class="line">| query_cache_limit             | 262144            |</div><div class="line">| query_cache_min_res_unit      | 2048              |</div><div class="line">| query_cache_size              | 1073741824        |</div><div class="line">| query_cache_strip_comments    | OFF               |</div><div class="line">| query_cache_type              | ON                |</div><div class="line">| query_cache_wlock_invalidate  | OFF               |</div><div class="line">| query_prealloc_size           | 8192              |</div><div class="line">| slow_query_log                | OFF                |</div><div class="line">| slow_query_log_file           | ecs-248d-slow.log |</div><div class="line">+-------------------------------+-------------------+</div><div class="line">16 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+<p>开启慢查询的条件，设置<code>long_query_time</code>为1秒<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set long_query_time=1;</div></pre></td></tr></table></figure></p>
+<p>试一试有没有生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select sleep(2);</div></pre></td></tr></table></figure></p>
+<p>到<code>/var/lib/mysql/ecs-248d-slow.log</code>查看下有没有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Time: 190605 17:32:20</div><div class="line"># User@Host: root[root] @ localhost []</div><div class="line"># Thread_id: 2223  Schema:   QC_hit: No</div><div class="line"># Query_time: 2.000163  Lock_time: 0.000000  Rows_sent: 1  Rows_examined: 0</div><div class="line">SET timestamp=1559727140;</div><div class="line">select sleep(2);</div></pre></td></tr></table></figure>
+<p>如果太多了，用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqldumpslow -s t /var/lib/mysql/ecs-248d-slow.log</div></pre></td></tr></table></figure></p>
+<p>帮我们统一下</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次服务器cpu了解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/记一次服务器cpu了解/" itemprop="url">记一次服务器cpu了解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-30T09:33:57+08:00">
+                2019-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>自己写的php代码,执行mysql时,占用了很大的CPU,排查问题修改代码后,发现公司服务器已经没有这个问题,连续请求,mysql的内存不会增加。但是客户的机子上,连续请求还是会出现这个问题。</p>
+<p>经排查后，应该是客户服务器上的CPU处理速度跟不上,导致mysql执行效率跟不上,被阻塞住。导致CPU会因为请求数量的累加而上升。而公司服务器因为处理速度快,即使请求速不断累加,其CPU的值也上升很少。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>在linux 下怎么查看服务器的cpu和内存的硬件信息<br><a href="https://zhidao.baidu.com/question/155943069.html" target="_blank" rel="external">https://zhidao.baidu.com/question/155943069.html</a><br>intel xeon(skylake) platinum 8163 性能评测 阿里云第四代ECS服务器<br><a href="https://yq.aliyun.com/articles/622603" target="_blank" rel="external">https://yq.aliyun.com/articles/622603</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/游戏开发/cocos入门解读小猫钓鱼/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/游戏开发/cocos入门解读小猫钓鱼/" itemprop="url">cocos入门解读小猫钓鱼</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-25T08:33:31+08:00">
+                2019-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一直想弄一个小游戏出来，但是因为想用框架，在框架的选择上面兜兜转转，用了一遍，cocos是我最早接触的那时，还是叫cocos-js,后来出了个cocos-creator之后就没怎么深入了。2018年下半年又重新去接触微信小游戏，选了白鹭引擎，刚看完文档，有个同事说laya不错，看了一下laya的基础代码，感觉比白鹭简单（入坑）。但随着自己不断的深入已经想了解一些功能的实现时，laya的文档和教程可以几乎没什么帮助。查看github上的项目，也就那么几个。最后又去看白鹭社区，白鹭的开源项目还是很多的，有想重新用回白鹭的冲动，但忍住了。但某天一个简单功能在laya的模拟器跑正常，但到了微信开发工具里却始终无效，看了社区，这个问题据说已经在早几个版本里已经修复（当然不知道mac上面有没有修复），之后彻底对laya失去了希望。<br>重新看了白鹭和cocos-creator，最后发现cocos-creator的设计模式，很符合我的口味，突然有种为什么之前不先考虑cocos的疑惑。</p>
+<p>后来看到了一个“小猫钓鱼”的cocos项目。作者的教程真的写的很详细，果断重新入坑cocos。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>CocosCreator微信小游戏入门实战《小猫钓鱼》<br><a href="https://blog.csdn.net/zzx023/article/details/83063363" target="_blank" rel="external">https://blog.csdn.net/zzx023/article/details/83063363</a></p>
+<p>### </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次ftp环境的搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/记一次ftp环境的搭建/" itemprop="url">记一次ftp环境的搭建</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-24T13:59:27+08:00">
+                2019-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>给客户的服务器上安装ftp环境</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>Linux下如何进行FTP设置:vsftp<br><a href="https://www.cnblogs.com/eagling/articles/4848669.html" target="_blank" rel="external">https://www.cnblogs.com/eagling/articles/4848669.html</a><br>FTP主动模式和被动模式的区别<br><a href="https://www.cnblogs.com/dancheblog/p/3799448.html" target="_blank" rel="external">https://www.cnblogs.com/dancheblog/p/3799448.html</a><br>Linux Vsftpd 连接超时解决方法（被动模式）<br><a href="https://blog.51cto.com/5468755/1594648" target="_blank" rel="external">https://blog.51cto.com/5468755/1594648</a></p>
+<h3 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h3><p>vsftpd安装，执行以下命令： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install vsftpd</div></pre></td></tr></table></figure>
+<p>我们选择了“vsftp配置虚拟用户”<br>使用vsftpd虚拟用户登录FTP服务器进行常见的操作。<br>首先安装FTP 虚拟用户需要用到的软件及认证模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum  install  pam*  libdb-utils libdb* –skip-broken  –y （Centos7）</div><div class="line"></div><div class="line">yum install db4* -y （Centos6）</div></pre></td></tr></table></figure></p>
+<p>编辑<code>vim /etc/vsftpd/ftpusers.txt</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">user001</div><div class="line">user001</div></pre></td></tr></table></figure></p>
+<p>第一行为FTP虚拟用户，登录用户名，第二行为密码，第三行为用户名，依次类推。</p>
+<p>创建并生成vsftpd数据库文件，生成数据库文件命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">db_load -T -t hash -f /etc/vsftpd/ftpusers.txt /etc/vsftpd/vsftpd_login.db</div><div class="line"></div><div class="line">chmod 700 /etc/vsftpd/vsftpd_login.db</div></pre></td></tr></table></figure>
+<p>配置PAM验证文件：</p>
+<p>在配置文件vi  /etc/pam.d/vsftpd 行首加入如下两行认证语句：（如果是32位，lib64需改成lib，如果RedHat，加入的语句不一样，需注意）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">auth        sufficient      /lib64/security/pam_userdb.so     db=/etc/vsftpd/vsftpd_login</div><div class="line"></div><div class="line">account     sufficient      /lib64/security/pam_userdb.so     db=/etc/vsftpd/vsftpd_login</div></pre></td></tr></table></figure></p>
+<p>创建vsftpd映射本地用户：</p>
+<p>所有的FTP虚拟用户需要使用一个系统用户，这个系统用户不需要密码，也不需要登录。主要用来做虚拟用户映射使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">useradd -s /sbin/nologin ftpuser</div></pre></td></tr></table></figure>
+<p>修改vsftpd.conf配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">anonymous_enable=NO</div><div class="line"></div><div class="line">local_enable=YES</div><div class="line"></div><div class="line">write_enable=YES</div><div class="line"></div><div class="line">local_umask=022</div><div class="line"></div><div class="line">dirmessage_enable=YES</div><div class="line"></div><div class="line">xferlog_enable=YES</div><div class="line"></div><div class="line">connect_from_port_20=YES</div><div class="line"></div><div class="line">xferlog_file=/var/log/vsftpd.log</div><div class="line"></div><div class="line">xferlog_std_format=YES</div><div class="line"></div><div class="line">ascii_upload_enable=YES</div><div class="line"></div><div class="line">ascii_download_enable=YES</div><div class="line"></div><div class="line">listen=YES</div><div class="line"></div><div class="line">guest_enable=YES</div><div class="line"></div><div class="line">guest_username=ftpuser</div><div class="line"></div><div class="line">pam_service_name=vsftpd</div><div class="line"></div><div class="line">user_config_dir=/etc/vsftpd/vsftpd_user_conf</div></pre></td></tr></table></figure></p>
+<p>保存重启,service  vsftpd restart 即可使用虚拟用户登录，这时候所有的虚拟用户共同使用/home/ftpuser目录上传下载，如果想使用自己独立的目录，可以在/etc/vsftpd/vsftpd_user_conf目录创建各自的配置文件，如给admin创建独立的配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">mkdir -p /etc/vsftpd/vsftpd_user_conf</div><div class="line"></div><div class="line">vim  /etc/vsftpd/vsftpd_user_conf/user001，内容如下，建立自己的FTP目录。</div><div class="line"></div><div class="line">local_root=/home/ftpuser/user001</div><div class="line"></div><div class="line">write_enable=YES</div><div class="line"></div><div class="line">anon_world_readable_only=YES</div><div class="line"></div><div class="line">anon_upload_enable=YES</div><div class="line"></div><div class="line">anon_mkdir_write_enable=YES</div><div class="line"></div><div class="line">anon_other_write_enable=YES</div></pre></td></tr></table></figure></p>
+<p>以上内容是参照其他博文做的，到这个时候，我以为已经大功告成，结果<br>结果出现各种<br>500 Illegal PORT command<br>227 Entering Passive Mode…</p>
+<p>一大堆问题，总之引出了 “主动和被动的问题”</p>
+<p>看了半天，主动和被动的关系，决定采用“主动模式”（开始入坑）<br>当初为什么选主动，因为博文里说了主动，服务器安全些。而且在配置21端口和20端口的时候，移动云的虚拟防火墙把我坑了一把。<br>可是无论我怎么配，都搞不定。。。登录成功目录出不来</p>
+<p>在最后发现了第三篇博文，被动模式（本想直接跳过去的，但看见他报的错误和我一模一样，抱着转被动试试看）</p>
+<p>1,vi /etc/vsftpd/vsftpd.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">pasv_enable=YES</div><div class="line">pasv_min_port=61001    (注意端口和客户端的保持一致)</div><div class="line">pasv_max_port=62000</div><div class="line">anon_max_rate=1000000</div><div class="line">local_max_rate=2000000</div><div class="line">max_clients=10</div><div class="line">max_per_ip=100</div></pre></td></tr></table></figure></p>
+<p>2、加载内核 ip_conntrack_ftp 和 ip_nat_ftp（终端执行）</p>
+<p>modprobe ip_conntrack_ftp<br>modprobe ip_nat_ftp</p>
+<p>3.配置 iptables 开放 61001 到 62000 端口</p>
+<p>vi /etc/sysconfig/iptables  在*filter下加入下</p>
+<p>-A OUTPUT -p tcp –sport 61001:62000 -j ACCEPT<br>-A INPUT -p tcp –dport 61001:62000 -j ACCEPT</p>
+<h3 id="过程遇到的坑"><a href="#过程遇到的坑" class="headerlink" title="过程遇到的坑"></a>过程遇到的坑</h3><p>1、坑1—移动运的虚拟<br>21端口  在安全组里加了 没在虚拟防火墙中配置</p>
+<p>2、坑2—主动模式的选择</p>
+<p>3、坑3— -A OUTPUT -p tcp –sport 61001:62000 -j ACCEPT 没有配置</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次使用leftjoin-group及子查询的配合使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/记一次使用leftjoin-group及子查询的配合使用/" itemprop="url">记一次使用leftjoin,group及子查询的配合使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-27T15:47:12+08:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>库存数据统计</p>
+<p>库存的数量动态的，列出产品的同时，将批次表里的同product_id的cur_num相加，作为该产品的库存</p>
+<h3 id="以前的做法"><a href="#以前的做法" class="headerlink" title="以前的做法"></a>以前的做法</h3><p>先将产品列表取出（一条sql）<br>foreach 每个产品，并查询总数（当前页数*1条sql）</p>
+<h3 id="改进后的做法"><a href="#改进后的做法" class="headerlink" title="改进后的做法"></a>改进后的做法</h3><p>先用子查询获取查询的总数,然后一下group，group后的字段作为leftjoin的关联字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> $storeProductBatchQuery = M(&apos;store_product_batch as spb&apos;)-&gt;field(&apos;SUM(cur_num) as spb_cur_num_count,product_id&apos;)-&gt;group(&apos;product_id&apos;)-&gt;buildSql(); // group的使用</div><div class="line">$list = M(&quot;product as p&quot;)</div><div class="line">        -&gt;join(&apos;left join &apos;.$storeProductBatchQuery.&apos; as spb on spb.product_id = p.id&apos;)</div><div class="line">        -&gt;field(&apos;p.*,spb.spb_cur_num_count&apos;)</div><div class="line">        -&gt;where($newmap)</div><div class="line">        -&gt;order($order)</div><div class="line">        -&gt;limit($offset.&apos;,&apos;.$page_size)</div><div class="line">        -&gt;select(false);</div><div class="line"></div><div class="line">        dump($list);</div><div class="line">        exit();</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装笔记/安装python3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -363,1210 +1519,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/使用阿里云邮件推送实现SMTP发送邮件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/跳坑记录/使用阿里云邮件推送实现SMTP发送邮件/" itemprop="url">使用阿里云邮件推送实现SMTP发送邮件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T11:05:35+08:00">
-                2018-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>WordPress 使用阿里云邮件推送实现SMTP发送邮件<br><a href="https://www.wpdaxue.com/wordpress-aliyun-smtp.html" target="_blank" rel="external">https://www.wpdaxue.com/wordpress-aliyun-smtp.html</a></p>
-<h3 id="来自第三方的介绍"><a href="#来自第三方的介绍" class="headerlink" title="来自第三方的介绍"></a>来自第三方的介绍</h3><p>6、切换到“发信地址”界面，新建发信地址：<br>现在很多虚拟主机都是默认不支持 mail() 函数发送邮件的，不过一般都提供 smtp 发件支持。要找一个好用的 smtp 发送邮件方可不容易，不是发件数量限制太小，就是经常被判为垃圾邮件。所以倡萌此前一直在服务器搭建邮件发送功能，并想办法优化提高邮件可行度，避免被判为垃圾邮件，但效果还是不太理想。前些天，想起了阿里云的邮件推送服务，并进行了测试，发现真的不错哦。</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1、要了解和开通阿里云邮件推送服务，请查看：<a href="https://www.aliyun.com/product/directmail" target="_blank" rel="external">https://www.aliyun.com/product/directmail</a></p>
-<p>2、开通以后，在控制台进入“发信域名”新建域名<br>阿里云里提示最好用二级域名，但是service@email.jk-kj.com类似的邮箱还是会被某些插件不认可。最后我还是用上了service@jk-kj.com<br>3、添加域名后，点击配置，可以查看到域名配置信息<br>4、按照域名配置信息的提示，到你的域名解析后台添加3条解析记录：<br>5、添加完解析记录，回到阿里云后台，点击“验证”，返回“验证通过”说明解析生效：<br>6、切换到“发信地址”界面，新建发信地址：<br>7、选择刚才添加的发信域名，然后输入你要使用的账号，输入回信地址，选择发信类型：批量邮件<br>注：发信类型有：<br>触发邮件：注册确认、订单确认、密码重置、交易通知等<br>批量邮件：自有用户的产品促销、期刊订阅等<br>但是有些用户反馈，触发邮件方式不太稳定，你可以根据自己的实际选择吧，这里我选择的是批量邮件<br>8、添加完返回到界面，点击“验证回信地址”，然后会发送邮件到你的回信地址，到你的邮件箱点击邮件的链接验证通过即可，注意哦，验证邮件可能在垃圾箱里。然后设置SMTP 密码。<br>9、完成上面的步骤后，阿里云的邮件推送的SMTP发送功能就设置好了</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/MySql按周，按月，按日分组统计数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/学无止境/MySql按周，按月，按日分组统计数据/" itemprop="url">MySql按周，按月，按日分组统计数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T14:25:08+08:00">
-                2018-03-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前开发微信时，做过类似的简单统计。那时对于mysql的理解比较浅，有些数据都是预先存入数据去实现的。这时就会出现多个时间，比如create_time  create_date。<br>现在开发开单宝的统计，特意搜索了一下关于统计时mysql处理的文章</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>MySql按周，按月，按日分组统计数据<br><a href="https://blog.csdn.net/lqclh502/article/details/50157483" target="_blank" rel="external">https://blog.csdn.net/lqclh502/article/details/50157483</a><br>MySQL中distinct和count(*)的使用方法比较<br><a href="http://www.jb51.net/article/74559.htm" target="_blank" rel="external">http://www.jb51.net/article/74559.htm</a></p>
-<h3 id="几个关键词"><a href="#几个关键词" class="headerlink" title="几个关键词"></a>几个关键词</h3><h4 id="网上的资料"><a href="#网上的资料" class="headerlink" title="网上的资料"></a>网上的资料</h4><p>关键词：<code>DATE_FORMAT</code><br>对时间进行格式化<br>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">select DATE_FORMAT(create_time,&apos;%Y%u&apos;) weeks,count(caseid) count from tc_case group by weeks;</div><div class="line"></div><div class="line">select DATE_FORMAT(create_time,&apos;%Y%m%d&apos;) days,count(caseid) count from tc_case group by days;</div><div class="line"></div><div class="line">select DATE_FORMAT(create_time,&apos;%Y%m&apos;) months,count(caseid) count from tc_case group by months;</div></pre></td></tr></table></figure></p>
-<p>DATE_FORMAT(date,format)</p>
-<p>根据format字符串格式化date值。下列修饰符可以被用在format字符串中：</p>
-<p>%M 月名字(January……December)<br>%W 星期名字(Sunday……Saturday)<br>%D 有英语前缀的月份的日期(1st, 2nd, 3rd, 等等。）<br>%Y 年, 数字, 4 位<br>%y 年, 数字, 2 位<br>%a 缩写的星期名字(Sun……Sat)<br>%d 月份中的天数, 数字(00……31)<br>%e 月份中的天数, 数字(0……31)<br>%m 月, 数字(01……12)<br>%c 月, 数字(1……12)<br>%b 缩写的月份名字(Jan……Dec)<br>%j 一年中的天数(001……366)<br>%H 小时(00……23)<br>%k 小时(0……23)<br>%h 小时(01……12)<br>%I 小时(01……12)<br>%l 小时(1……12)<br>%i 分钟, 数字(00……59)<br>%r 时间,12 小时(hh:mm:ss [AP]M)<br>%T 时间,24 小时(hh:mm:ss)<br>%S 秒(00……59)<br>%s 秒(00……59)<br>%p AM或PM<br>%w 一个星期中的天数(0=Sunday ……6=Saturday ）<br>%U 星期(0……52), 这里星期天是星期的第一天<br>%u 星期(0……52), 这里星期一是星期的第一天<br>%% 一个文字“%”</p>
-<h4 id="动手实战"><a href="#动手实战" class="headerlink" title="动手实战"></a>动手实战</h4><p>网上写的是DATE类型的字段的处理，可是我习惯用int类型的时间戳保存时间<br>需要改进一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%Y-%m-%d&apos; ) AS  days</div><div class="line">DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%Y-%m&apos; ) AS  months</div><div class="line">DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%u&apos; ) AS  weeks</div></pre></td></tr></table></figure></p>
-<p>接下来只要对 days months weeks进group就OK<br>thinkphp下的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$list = M(&quot;Order&quot;)</div><div class="line">        -&gt;field(&quot; DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%Y-%m-%d&apos; ) AS  days, SUM(total_money) total_money_count , COUNT( DISTINCT customer_id ) AS customer_id_count , COUNT( id ) AS order_count&quot;)</div><div class="line">        -&gt;where($newmap)</div><div class="line">        -&gt;group(&apos; days &apos;)</div><div class="line">        -&gt;select();</div></pre></td></tr></table></figure></p>
-<p>关键词：<code>DISTINCT</code><br>在count不重复的记录的时候就能用到它，<br>上面的代码里就用到了<code>COUNT( DISTINCT customer_id ) AS customer_id_count</code>,有了这个关键词，就不用以前的笨方法了</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次php安装ImageMagick扩展/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/跳坑记录/记一次php安装ImageMagick扩展/" itemprop="url">记一次php安装ImageMagick扩展</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T14:01:27+08:00">
-                2018-03-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>将pdf转png图片</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>在wamp server环境下安装php_imagick拓展<br><a href="http://www.smallerpig.com/673.html" target="_blank" rel="external">http://www.smallerpig.com/673.html</a><br>windows php安装ImageMagick扩展<br><a href="http://blog.csdn.net/livelinux/article/details/50319853" target="_blank" rel="external">http://blog.csdn.net/livelinux/article/details/50319853</a><br>Centos 安装ImageMagick 与 imagick for php步骤详解<br><a href="https://www.cnblogs.com/xingmeng/p/4268043.html#undefined" target="_blank" rel="external">https://www.cnblogs.com/xingmeng/p/4268043.html#undefined</a></p>
-<h3 id="本机wamp下安装php-imagick拓展"><a href="#本机wamp下安装php-imagick拓展" class="headerlink" title="本机wamp下安装php_imagick拓展"></a>本机wamp下安装php_imagick拓展</h3><h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p>1.在php安装目录的ext文件夹下新建imagick文件夹<br>2.将该文件夹的路径添加到系统路径(path值).<br>3.从网址<a href="http://windows.php.net/downloads/pecl/releases/imagick/下载对应php版本的imagick(phpinfo中看php" target="_blank" rel="external">http://windows.php.net/downloads/pecl/releases/imagick/下载对应php版本的imagick(phpinfo中看php</a> version,Compiler ，Architecture，这三个属性)<br>4.这里需要注意的是下载的文件区别,我们从文件名中来区分,例如php_imagick-3.2.0b2-5.5-nts-vc11-x86.zip</p>
-<pre><code>其中5.5是对应的php版本.
-nts值代表该文件适用于IIS,ts代表该文件适用于Apache,
-VC11和VC9是编译器的版本.我们可以适用phpinfo()命令来查看我们机器上php适用的是哪个版本(如图1)
-x86代表适用32位系统,x64代表适用64位系统
-</code></pre><p>5.下载好对应的zip文件后,将所有文件解压到我们第一步新建的imagick文件夹!</p>
-<p>6.添加php_imagick.dll的完整路径到php.ini文件中.例如:extension=C:\wamp\bin\php\php5.5.12\ext\ext\imagick\php_imagick.dll</p>
-<p>7.重启wamp服务器</p>
-<p>8.运行phpinfo看看是不是已经成功添加拓展了</p>
-<p>9.查看phpinfo中，查看ImageMagick supported formats内的值</p>
-<p>输入phpinfo()看到imagick，就算装成功了，但这个时候还不能用，你会看到ImageMagick number of supported formats 为0，ImageMagick supported formats no value，还要安装ImageMagick ，phpinfo里面会写出要安装那个版本的，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ImageMagick 6.9.3-7 Q16 x64 2016-03-27 http://www.imagemagick.org</div></pre></td></tr></table></figure></p>
-<p>然后去下载这个ImageMagick 6.9.3-7 Q16 x64 版本的安装</p>
-<p>记得版本要对得上号，要不然就会出现ImageMagick supported formats no value</p>
-<p>安装完后重启，再输入phpinfo,就会看到ImageMagick supported formats不是空的了，这个时候就算安全成功</p>
-<h3 id="Centos-安装ImageMagick"><a href="#Centos-安装ImageMagick" class="headerlink" title="Centos 安装ImageMagick"></a>Centos 安装ImageMagick</h3><h4 id="1-依次运行以下命令"><a href="#1-依次运行以下命令" class="headerlink" title="1. 依次运行以下命令"></a>1. 依次运行以下命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">yum install ImageMagick</div><div class="line"></div><div class="line">yum install ImageMagick-devel</div><div class="line"></div><div class="line">yum install php-pear [for PECL]</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install php-devel</div></pre></td></tr></table></figure>
-<h4 id="2-安装C编译器"><a href="#2-安装C编译器" class="headerlink" title="2. 安装C编译器"></a>2. 安装C编译器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install gcc</div></pre></td></tr></table></figure>
-<p>如果装不了gcc就用这个命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install gcc gcc-c++ autoconf automake</div></pre></td></tr></table></figure></p>
-<h4 id="3-安装imagick"><a href="#3-安装imagick" class="headerlink" title="3. 安装imagick"></a>3. 安装imagick</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pecl install imagick</div></pre></td></tr></table></figure>
-<h4 id="4-加载imagick到php"><a href="#4-加载imagick到php" class="headerlink" title="4. 加载imagick到php"></a>4. 加载imagick到php</h4><p>在/etc/php.ini 加上extension=imagick.so</p>
-<h4 id="5-重启service-httpd-restart"><a href="#5-重启service-httpd-restart" class="headerlink" title="5. 重启service httpd restart"></a>5. 重启service httpd restart</h4><h4 id="6-使用-phpinfo-或运行-php-m-grep-imagick-来查看是否安装成功"><a href="#6-使用-phpinfo-或运行-php-m-grep-imagick-来查看是否安装成功" class="headerlink" title="6. 使用 phpinfo() 或运行 php -m | grep imagick 来查看是否安装成功"></a>6. 使用 phpinfo() 或运行 php -m | grep imagick 来查看是否安装成功</h4><h3 id="mac-上安装"><a href="#mac-上安装" class="headerlink" title="mac 上安装"></a>mac 上安装</h3><h4 id="安装php的imagick拓展"><a href="#安装php的imagick拓展" class="headerlink" title="安装php的imagick拓展"></a>安装php的imagick拓展</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew reinstall php56-imagick --build-from-source</div></pre></td></tr></table></figure>
-<h4 id="安装ghostscript"><a href="#安装ghostscript" class="headerlink" title="安装ghostscript"></a>安装ghostscript</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install ghostscript</div></pre></td></tr></table></figure>
-<h3 id="linux上安装"><a href="#linux上安装" class="headerlink" title="linux上安装"></a>linux上安装</h3><p>这次被坑惨了，linux是最近新的服务器里面没有安装过GD库，这个导致我后面多个坑</p>
-<p>第一次安装走的是<br><a href="https://www.cnblogs.com/xingmeng/p/4268043.html#undefined" target="_blank" rel="external">https://www.cnblogs.com/xingmeng/p/4268043.html#undefined</a><br>里面的方法，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">yum install ImageMagick</div><div class="line">yum install ImageMagick-devel</div><div class="line">yum install php-pear</div><div class="line">yum -y install php-devel</div><div class="line">yum install gcc</div><div class="line">yum install gcc gcc-c++ autoconf automake</div><div class="line">pecl install imagick</div></pre></td></tr></table></figure></p>
-<p>加载imagick到php<br>在/etc/php.ini 加上extension=imagick.so</p>
-<p>重启service httpd restart</p>
-<p>使用 phpinfo() 或运行 php -m | grep imagick 来查看是否安装成功</p>
-<p>这次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Imagick, ImagickDraw, ImagickPixel, ImagickPixelIterator,(ImagickKernel  不知道为什么没有这个，本机和mac上都有)</div></pre></td></tr></table></figure></p>
-<p>结果提示错误，具体忘记了，估计是因为GD库没有引起的<br>之后照着<br><a href="http://blog.csdn.net/snow_small/article/details/79173575" target="_blank" rel="external">http://blog.csdn.net/snow_small/article/details/79173575</a><br>进行了编译安装<br>1、安装ImageMagic<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@localhost download]# wget http://www.imagemagick.org/download/ImageMagick.tar.gz  </div><div class="line"></div><div class="line">[root@localhost download]# tar -xzvf ImageMagick  </div><div class="line">[root@localhost download]# cd ImageMagick-7.0.7-22/  </div><div class="line">[root@localhost ImageMagick-7.0.7-22]# ./configure --prefix=/usr/local/imagemagick  </div><div class="line">[root@localhost ImageMagick-7.0.7-22]# make  </div><div class="line">[root@localhost ImageMagick-7.0.7-22]# make install</div></pre></td></tr></table></figure></p>
-<p>2、检查是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@localhost ImageMagick-7.0.7-22]# /usr/local/imagemagick/bin/convert -version  </div><div class="line">Version: ImageMagick 7.0.7-22 Q16 x86_64 2018-01-26 http://www.imagemagick.org  </div><div class="line">Copyright: © 1999-2018 ImageMagick Studio LLC  </div><div class="line">License: http://www.imagemagick.org/script/license.php  </div><div class="line">Features: Cipher DPC HDRI OpenMP   </div><div class="line">Delegates (built-in): fontconfig freetype jng jpeg png x xml zlib</div></pre></td></tr></table></figure>
-<h3 id="我的坑"><a href="#我的坑" class="headerlink" title="我的坑"></a>我的坑</h3><p>但是报下面这个错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Postscript delegate failed</div></pre></td></tr></table></figure></p>
-<p>是<code>ghostscript</code>没安装，可实际是安装的在<code>/usr/bin/gs</code>中，但apache死活说找不到（是权限问题），网上有个解决方案是把’/usr/local/bin/gs’做软连接到<code>/usr/bin/gs</code>,可是我这边的情况刚好是倒过来的。</p>
-<p>一狠心把<code>ghostscript</code>给卸载了，重新编译安装了gs，这次真出现在了<code>/usr/local/bin/gs</code>,建立了个软连接，真把这个问题解决了。</p>
-<p>这次因为没有安装GD库，用的png版本太老，<code>Delegates (built-in): fontconfig freetype jng jpeg (png 没显示) x xml zlib</code></p>
-<p>一直提示<br><code>no decode delegate for this image format PNG</code><br>因为没有安装GD库，我在编译<code>ImageMagick-7.0.7-22</code>时没有将<code>png</code>编译进行</p>
-<p>直到手动添加了png库，才最终发现没有安装GD库</p>
-<p>我们在Centos安装ImageMagick教程中讲述了如何安装ImageMagick,安装完毕之后发现程序并不支持png和jpeg格式的图片,但是这两种图片又是我们平时所常见的,所以我们还要进一步地配置,是其支持png和jpeg格式.</p>
-<p>首先我们安装所需的库文件.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install tcl-devel libpng-devel libjpeg-devel ghostscript-devel</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/爷爷走好/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/爷爷走好/" itemprop="url">爷爷走好</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T08:43:13+08:00">
-                2018-02-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>您的教诲,您的事迹,您的荣誉…不会消逝，一直在我们的心里</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装笔记/brew安装mongodb及php-mongodb扩展/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/安装笔记/brew安装mongodb及php-mongodb扩展/" itemprop="url">brew安装mongodb及php mongodb扩展</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T12:59:34+08:00">
-                2018-01-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>安装某laravel项目</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://old.ruesin.com/system/mac/mac-mongodb-345.html" target="_blank" rel="external">http://old.ruesin.com/system/mac/mac-mongodb-345.html</a></p>
-<h3 id="安装mongodb服务"><a href="#安装mongodb服务" class="headerlink" title="安装mongodb服务"></a>安装mongodb服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install mongodb</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">==&gt; Installing mongodb</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/mongodb-3.4.10.high_sierra.</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring mongodb-3.4.10.high_sierra.bottle.tar.gz</div><div class="line">==&gt; Caveats</div><div class="line">To have launchd start mongodb now and restart at login:</div><div class="line">  brew services start mongodb</div><div class="line">Or, if you don&apos;t want/need a background service you can just run:</div><div class="line">  mongod --config /usr/local/etc/mongod.conf</div><div class="line">==&gt; Summary</div></pre></td></tr></table></figure>
-<h3 id="php-的-mongodb-扩展"><a href="#php-的-mongodb-扩展" class="headerlink" title="php 的 mongodb 扩展"></a>php 的 mongodb 扩展</h3><p>search一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew search mongo</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install php71-mongo</div></pre></td></tr></table></figure>
-<h4 id="安装出错"><a href="#安装出错" class="headerlink" title="安装出错"></a>安装出错</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">NOTICE: PHP message: PHP Warning:  PHP Startup: mongodb: Unable to initialize module</div><div class="line">Module compiled with build ID=API20160303,NTS</div><div class="line">PHP    compiled with build ID=API20160303,NTS,debug</div><div class="line">These options need to match</div><div class="line"> in Unknown on line 0</div><div class="line">&lt;br /&gt;</div><div class="line">&lt;b&gt;Warning&lt;/b&gt;:  PHP Startup: mongodb: Unable to initialize module</div><div class="line">Module compiled with build ID=API20160303,NTS</div><div class="line">PHP    compiled with build ID=API20160303,NTS,debug</div><div class="line">These options need to match</div><div class="line"> in &lt;b&gt;Unknown&lt;/b&gt; on line &lt;b&gt;0&lt;/b&gt;&lt;br /&gt;</div><div class="line">Unknown(0) : Warning - PHP Startup: mongodb: Unable to initialize module</div><div class="line">Module compiled with build ID=API20160303,NTS</div><div class="line">PHP    compiled with build ID=API20160303,NTS,debug</div><div class="line">These options need to match</div></pre></td></tr></table></figure>
-<p>网上搜是需要重新安装编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew reinstall &lt;formulaname&gt; --build-from-source</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/解决使用JWT时报Cannot-handle-token-prior-to的问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/跳坑记录/解决使用JWT时报Cannot-handle-token-prior-to的问题/" itemprop="url">解决使用JWT时报Cannot handle token prior to的问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T13:28:56+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>使用JWT时，因为本地时间和服务器上的时间不一致，导致的请求发送失败</p>
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>在<code>vendor\firebase\php-jwt\src\JWT.php</code>中的第113行左右添加如下的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo &apos;&lt;br /&gt; payload-&gt;iat = &apos;. $payload-&gt;iat . &apos;&lt;br /&gt;and time() = &apos;.time() . &quot;&lt;br /&gt;leeway= &quot;. self::$leeway;</div></pre></td></tr></table></figure></p>
-<p>会打印出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">payload-&gt;iat = 1447702275  </div><div class="line">and time() = 1447702211  </div><div class="line">leeway= 0</div></pre></td></tr></table></figure></p>
-<p>通过时间差计算出和服务器的差值，并调整本地的时间</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/如何提取谷歌chrome浏览器的crx插件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/学无止境/如何提取谷歌chrome浏览器的crx插件/" itemprop="url">如何提取谷歌chrome浏览器的crx插件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T09:29:21+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>自己有翻墙工具，而其他人没有，无法获取到插件</p>
-<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><pre><code>访问Chrome扩展商店
-
-搜索需要提取的扩展
-
-点击进入扩展详情
-
-复制地址栏连接
-
-打开chrome-extension-downloader.com
-
-粘贴地址
-
-点击下载即可
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次linux上大文件的转移/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/跳坑记录/记一次linux上大文件的转移/" itemprop="url">记一次linux上大文件的转移</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T12:43:08+08:00">
-                2017-12-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>服务器的内容转到另一台服务器</p>
-<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="首先进行了打包"><a href="#首先进行了打包" class="headerlink" title="首先进行了打包"></a>首先进行了打包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -cvf ./kod.tar ./kod3.1</div></pre></td></tr></table></figure>
-<p>打完包，发现有3个多G<br>就尝试打包压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zcvf ./kod2.tar.gz ./kod3.1</div></pre></td></tr></table></figure></p>
-<p>结果还是3G多，只压缩了200M</p>
-<h4 id="进行传输"><a href="#进行传输" class="headerlink" title="进行传输"></a>进行传输</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure>
-<p>开始有5M/s的速度，可慢慢地变得只有800K/s<br>最气人的是在60%时的时候居然出现了<code>stalled</code></p>
-<h4 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">When transferring large files(for example mksysb images) using scp through a firewall, the scp connection stalls.</div><div class="line">Cause:</div><div class="line"></div><div class="line">The reason for scp to stall, is because scp greedily grabs as much bandwith of the network as possible when it transfers files, any delay caused by the network switch of the firewall can easily make the TCP connection stalled.</div><div class="line">Solution:</div><div class="line"></div><div class="line">There’s a solution to this problem: Add “-l 8192″ to the scp command.</div><div class="line"></div><div class="line">Adding the option “-l 8192″ limits the scp session bandwith up to 8192 Kbit/second, which seems to work safe and fast enough (up to 1 MB/second):</div></pre></td></tr></table></figure>
-<h4 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h4><p>在原有的命令行上加上了<code>-l 8192</code>可以维持在1M/s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure></p>
-<p>开始速度也有6M/s，后面速度一直维持在1M/s，中间无<code>stalled</code></p>
-<p>如果是<code>-l 16000</code>则维持在2M/s，以此类推</p>
-<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -xvf kod.tar</div></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf kod.tar.gz</div></pre></td></tr></table></figure></p>
-<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>因为转移的文件有很多，而且都很大，我们不可能一直开者等待它传完，这就需要后台运行</p>
-<p>先输入密码进行传输<br>然后用<code>ctrl+z</code>,将当前进程挂起到后台暂停运行，执行一些别的操作<br>然后用 <code>bg</code> 来将挂起的进程放在后台(也可以用 <code>fg</code> 来将挂起的进程重新放回前台)继续运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@pvcent107 build]# scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">---------ctrl+zx</div><div class="line">[1]+  Stopped                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">[root@pvcent107 build]# bg %1</div><div class="line">[1]+ scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# jobs</div><div class="line">[1]+  Running                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# disown -h %1</div><div class="line">[root@pvcent107 build]# ps -ef |grep kod</div><div class="line">root      5790  5577  1 10:04 pts/3    00:00:00 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">root      5824  5577  0 10:05 pts/3    00:00:00 grep kod</div></pre></td></tr></table></figure></p>
-<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>有时jobs会有多个，注意自己的文件大小是否正常，我就别坑了1次，没传输完成（完成了一个jobs），以为完成了就进行解压缩了。</p>
-<h4 id="400G个文件打包"><a href="#400G个文件打包" class="headerlink" title="400G个文件打包"></a>400G个文件打包</h4><p>之前想着。。。400G的文件需要切分-，-！可是用了切分时，却始终没有获取完整的包，好几次我都相信我的总包才80G</p>
-<p>最后用了整包打包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf kod.tar.bz2 ./kod &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure></p>
-<p>打完包发现才有400G+…….我的天，整整打包了一天一夜</p>
-<h4 id="400G的传输"><a href="#400G的传输" class="headerlink" title="400G的传输"></a>400G的传输</h4><p>scp 已经无法满足，因为万一中间来个服务器重启，或者其他因素那over了，那流量可就白白流失了<br>最后采用了<code>rsync</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.14.156:/data/</div></pre></td></tr></table></figure></p>
-<p>然后输入密码<br>再ctrl+z 暂停<br>再bg %1  放入后台（假设当前后台允许索引为1）<br>然后用jobs查看<br>如果你当前退出过当前终端，jobs已经无法查看到后台运行的进程，只能用ps<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef |grep kod</div></pre></td></tr></table></figure></p>
-<p>会有如下的显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root     175100 174758 47 08:10 pts/2    00:15:13 rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.91.176:/data/</div><div class="line">root     183245 174758  0 08:42 pts/2    00:00:00 grep --color=auto kod</div></pre></td></tr></table></figure></p>
-<p>其中<code>00:15:13</code>指本次断点续传进行的时间。<br>当传输了200G以后，继续进行断点续传，这个时间会有好长一段时间是不更新的（作者认为它在寻找上一次的断点，因为文件大了寻找的时间会久一点），如果你这个时候马上关闭总端，很有可能本次传输就没执行，我就被坑了一次，一觉醒来一点就没传。。。</p>
-<h4 id="rsync与scp的差异"><a href="#rsync与scp的差异" class="headerlink" title="rsync与scp的差异"></a>rsync与scp的差异</h4><p>用scp时，这边传多少，另一个服务器就显示文件实时大小<br>而用rsync时，另一个服务器不实时显示文件大小，只有将这边的进程暂时kill掉，才能知道到底传了多少（可能我这个办法比较粗暴）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -9 175100</div></pre></td></tr></table></figure></p>
-<h4 id="400G的解压"><a href="#400G的解压" class="headerlink" title="400G的解压"></a>400G的解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -xjf ./kod_all.tar.bz2 &gt; /dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
-<p>其他查看操作同上面</p>
-<h3 id="其他，拆分打包（失败了）"><a href="#其他，拆分打包（失败了）" class="headerlink" title="其他，拆分打包（失败了）"></a>其他，拆分打包（失败了）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf - kod/ |split -b 10000m - kod.tar.bz2. &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
-<p>它会生成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.aa</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ab</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ac</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ad</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ae</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.af</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ag</div></pre></td></tr></table></figure></p>
-<p>后面默认2位，字符逐渐增加<br>它的解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup cat pinkephp.tar.bz2.* | tar -xj &amp;</div></pre></td></tr></table></figure></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://linux.cn/article-7170-1.html" target="_blank" rel="external">https://linux.cn/article-7170-1.html</a></p>
-<p><a href="http://blog.csdn.net/tdstds/article/details/24870535" target="_blank" rel="external">http://blog.csdn.net/tdstds/article/details/24870535</a></p>
-<p><a href="http://blog.csdn.net/eroswang/article/details/5555415/" target="_blank" rel="external">http://blog.csdn.net/eroswang/article/details/5555415/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次网站字体采用思源字体/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/跳坑记录/记一次网站字体采用思源字体/" itemprop="url">记一次网站字体采用思源字体</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T12:46:14+08:00">
-                2017-12-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>客户想让他的网站都显示思源字体</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>fontsquirrel<br><a href="https://www.fontsquirrel.com" target="_blank" rel="external">https://www.fontsquirrel.com</a><br>CSS @font-face属性实现在网页中嵌入任意字体<br><a href="http://www.jb51.net/css/23073.html" target="_blank" rel="external">http://www.jb51.net/css/23073.html</a></p>
-<p>如何在网页中嵌入自己想要的字体(实例下载)<br><a href="http://blog.csdn.net/sinolzeng/article/details/41802951" target="_blank" rel="external">http://blog.csdn.net/sinolzeng/article/details/41802951</a></p>
-<h3 id="linux安装字体（错误的方法）"><a href="#linux安装字体（错误的方法）" class="headerlink" title="linux安装字体（错误的方法）"></a>linux安装字体（错误的方法）</h3><h4 id="下载字体"><a href="#下载字体" class="headerlink" title="下载字体"></a>下载字体</h4><p>下载思源全套字体（字体文件名称：NotoSansHans）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://pan.baidu.com/s/1uJBBK</div></pre></td></tr></table></figure></p>
-<p>windows的字体比较多，其字体文件位于 C:\WINDOWS\Fonts,如果想额外安装也可以到这里找找</p>
-<p>字体格式有ttf和otf等多重后缀，linux上ttf和oft都可以</p>
-<h4 id="移动文件到服务器指定位置"><a href="#移动文件到服务器指定位置" class="headerlink" title="移动文件到服务器指定位置"></a>移动文件到服务器指定位置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># mkdir /usr/share/fonts/NotoSansHans</div><div class="line"># cp arial*.otf /usr/share/fonts/NotoSansHans/</div><div class="line">或</div><div class="line"># cp arial*.ttf /usr/share/fonts/NotoSansHans/</div></pre></td></tr></table></figure>
-<h4 id="为刚加入的字体设置缓存使之有效"><a href="#为刚加入的字体设置缓存使之有效" class="headerlink" title="为刚加入的字体设置缓存使之有效"></a>为刚加入的字体设置缓存使之有效</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># cd /usr/share/font/NotoSansHans</div><div class="line"># fc-cache -fv</div></pre></td></tr></table></figure>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>因为我在windows里先安装了思源字体，并在<code>Noto Sans S Chinese</code>中找到了思源字体，所以font-family中我用<code>Noto Sans S Chinese</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line">    font-family: &quot;Noto Sans S Chinese&quot;, Helvetica, Arial, sans-serif;</div><div class="line">    -webkit-font-smoothing: antialiased;</div><div class="line">    color: #777777;</div><div class="line">    font-size: 14px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>为什么文件名是<code>NotoSansHans</code>，安装后需要<code>Noto Sans S Chinese</code><br>这里有个疑惑</p>
-<h4 id="疑惑解决（2017-12-8）"><a href="#疑惑解决（2017-12-8）" class="headerlink" title="疑惑解决（2017.12.8）"></a>疑惑解决（2017.12.8）</h4><p>自己本地安装了ttf包后，生成了Noto Sans S Chinese字体，可是这个字体不是服务器里的</p>
-<p>也就是说，我在linux上安装的字体只能在linux上使用,浏览器里使用一个是看客户端有没有这个字体，另一个是你的css中引入如ttf之类的字体资源，但是对于中文来说，要把整个字体都方法css上，大概要10M以上（这个肯定不是个办法）</p>
-<h3 id="css-font-face引入-只能引入英文字体"><a href="#css-font-face引入-只能引入英文字体" class="headerlink" title="css font-face引入(只能引入英文字体)"></a>css font-face引入(只能引入英文字体)</h3><p>在<br><a href="https://www.fontsquirrel.com" target="_blank" rel="external">https://www.fontsquirrel.com</a><br>中找到自己需要的字体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">font-family: &apos;fontNameRegular&apos;;</div><div class="line">src: url(&apos;fontName.eot&apos;);</div><div class="line">src: local(&apos;fontName Regular&apos;),</div><div class="line">local(&apos;fontName&apos;),</div><div class="line">url(&apos;fontName.woff&apos;) format(&apos;woff&apos;),</div><div class="line">url(&apos;fontName.ttf&apos;) format(&apos;truetype&apos;),</div><div class="line">url(&apos;fontName.svg#fontName&apos;) format(&apos;svg&apos;);</div><div class="line">&#125;</div><div class="line">/*其中fontName替换为你的字体名称*/</div></pre></td></tr></table></figure>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>想在网页中全部使用某不常用的字体，几乎是不可取的方法，除非客户端里大家都安装了该字体</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1616,12 +1573,21 @@ x86代表适用32位系统,x64代表适用64位系统
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
             
 
             

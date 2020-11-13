@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="简客-记忆">
 <meta property="og:description" content="背景库存数据统计 库存的数量动态的，列出产品的同时，将批次表里的同product_id的cur_num相加，作为该产品的库存 以前的做法先将产品列表取出（一条sql）foreach 每个产品，并查询总数（当前页数*1条sql） 改进后的做法先用子查询获取查询的总数,然后一下group，group后的字段作为leftjoin的关联字段 1234567891011 $storeProductBatch">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-12T03:05:32.481Z">
+<meta property="og:updated_time" content="2020-11-12T12:29:21.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次使用leftjoin,group及子查询的配合使用">
 <meta name="twitter:description" content="背景库存数据统计 库存的数量动态的，列出产品的同时，将批次表里的同product_id的cur_num相加，作为该产品的库存 以前的做法先将产品列表取出（一条sql）foreach 每个产品，并查询总数（当前页数*1条sql） 改进后的做法先用子查询获取查询的总数,然后一下group，group后的字段作为leftjoin的关联字段 1234567891011 $storeProductBatch">
@@ -448,12 +448,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
             
 
             

@@ -254,6 +254,1205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/使用阿里云邮件推送实现SMTP发送邮件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/使用阿里云邮件推送实现SMTP发送邮件/" itemprop="url">使用阿里云邮件推送实现SMTP发送邮件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T11:05:35+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>WordPress 使用阿里云邮件推送实现SMTP发送邮件<br><a href="https://www.wpdaxue.com/wordpress-aliyun-smtp.html" target="_blank" rel="external">https://www.wpdaxue.com/wordpress-aliyun-smtp.html</a></p>
+<h3 id="来自第三方的介绍"><a href="#来自第三方的介绍" class="headerlink" title="来自第三方的介绍"></a>来自第三方的介绍</h3><p>6、切换到“发信地址”界面，新建发信地址：<br>现在很多虚拟主机都是默认不支持 mail() 函数发送邮件的，不过一般都提供 smtp 发件支持。要找一个好用的 smtp 发送邮件方可不容易，不是发件数量限制太小，就是经常被判为垃圾邮件。所以倡萌此前一直在服务器搭建邮件发送功能，并想办法优化提高邮件可行度，避免被判为垃圾邮件，但效果还是不太理想。前些天，想起了阿里云的邮件推送服务，并进行了测试，发现真的不错哦。</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1、要了解和开通阿里云邮件推送服务，请查看：<a href="https://www.aliyun.com/product/directmail" target="_blank" rel="external">https://www.aliyun.com/product/directmail</a></p>
+<p>2、开通以后，在控制台进入“发信域名”新建域名<br>阿里云里提示最好用二级域名，但是service@email.jk-kj.com类似的邮箱还是会被某些插件不认可。最后我还是用上了service@jk-kj.com<br>3、添加域名后，点击配置，可以查看到域名配置信息<br>4、按照域名配置信息的提示，到你的域名解析后台添加3条解析记录：<br>5、添加完解析记录，回到阿里云后台，点击“验证”，返回“验证通过”说明解析生效：<br>6、切换到“发信地址”界面，新建发信地址：<br>7、选择刚才添加的发信域名，然后输入你要使用的账号，输入回信地址，选择发信类型：批量邮件<br>注：发信类型有：<br>触发邮件：注册确认、订单确认、密码重置、交易通知等<br>批量邮件：自有用户的产品促销、期刊订阅等<br>但是有些用户反馈，触发邮件方式不太稳定，你可以根据自己的实际选择吧，这里我选择的是批量邮件<br>8、添加完返回到界面，点击“验证回信地址”，然后会发送邮件到你的回信地址，到你的邮件箱点击邮件的链接验证通过即可，注意哦，验证邮件可能在垃圾箱里。然后设置SMTP 密码。<br>9、完成上面的步骤后，阿里云的邮件推送的SMTP发送功能就设置好了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/MySql按周，按月，按日分组统计数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/学无止境/MySql按周，按月，按日分组统计数据/" itemprop="url">MySql按周，按月，按日分组统计数据</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T14:25:08+08:00">
+                2018-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前开发微信时，做过类似的简单统计。那时对于mysql的理解比较浅，有些数据都是预先存入数据去实现的。这时就会出现多个时间，比如create_time  create_date。<br>现在开发开单宝的统计，特意搜索了一下关于统计时mysql处理的文章</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>MySql按周，按月，按日分组统计数据<br><a href="https://blog.csdn.net/lqclh502/article/details/50157483" target="_blank" rel="external">https://blog.csdn.net/lqclh502/article/details/50157483</a><br>MySQL中distinct和count(*)的使用方法比较<br><a href="http://www.jb51.net/article/74559.htm" target="_blank" rel="external">http://www.jb51.net/article/74559.htm</a></p>
+<h3 id="几个关键词"><a href="#几个关键词" class="headerlink" title="几个关键词"></a>几个关键词</h3><h4 id="网上的资料"><a href="#网上的资料" class="headerlink" title="网上的资料"></a>网上的资料</h4><p>关键词：<code>DATE_FORMAT</code><br>对时间进行格式化<br>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">select DATE_FORMAT(create_time,&apos;%Y%u&apos;) weeks,count(caseid) count from tc_case group by weeks;</div><div class="line"></div><div class="line">select DATE_FORMAT(create_time,&apos;%Y%m%d&apos;) days,count(caseid) count from tc_case group by days;</div><div class="line"></div><div class="line">select DATE_FORMAT(create_time,&apos;%Y%m&apos;) months,count(caseid) count from tc_case group by months;</div></pre></td></tr></table></figure></p>
+<p>DATE_FORMAT(date,format)</p>
+<p>根据format字符串格式化date值。下列修饰符可以被用在format字符串中：</p>
+<p>%M 月名字(January……December)<br>%W 星期名字(Sunday……Saturday)<br>%D 有英语前缀的月份的日期(1st, 2nd, 3rd, 等等。）<br>%Y 年, 数字, 4 位<br>%y 年, 数字, 2 位<br>%a 缩写的星期名字(Sun……Sat)<br>%d 月份中的天数, 数字(00……31)<br>%e 月份中的天数, 数字(0……31)<br>%m 月, 数字(01……12)<br>%c 月, 数字(1……12)<br>%b 缩写的月份名字(Jan……Dec)<br>%j 一年中的天数(001……366)<br>%H 小时(00……23)<br>%k 小时(0……23)<br>%h 小时(01……12)<br>%I 小时(01……12)<br>%l 小时(1……12)<br>%i 分钟, 数字(00……59)<br>%r 时间,12 小时(hh:mm:ss [AP]M)<br>%T 时间,24 小时(hh:mm:ss)<br>%S 秒(00……59)<br>%s 秒(00……59)<br>%p AM或PM<br>%w 一个星期中的天数(0=Sunday ……6=Saturday ）<br>%U 星期(0……52), 这里星期天是星期的第一天<br>%u 星期(0……52), 这里星期一是星期的第一天<br>%% 一个文字“%”</p>
+<h4 id="动手实战"><a href="#动手实战" class="headerlink" title="动手实战"></a>动手实战</h4><p>网上写的是DATE类型的字段的处理，可是我习惯用int类型的时间戳保存时间<br>需要改进一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%Y-%m-%d&apos; ) AS  days</div><div class="line">DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%Y-%m&apos; ) AS  months</div><div class="line">DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%u&apos; ) AS  weeks</div></pre></td></tr></table></figure></p>
+<p>接下来只要对 days months weeks进group就OK<br>thinkphp下的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$list = M(&quot;Order&quot;)</div><div class="line">        -&gt;field(&quot; DATE_FORMAT( FROM_UNIXTIME(create_time),&apos;%Y-%m-%d&apos; ) AS  days, SUM(total_money) total_money_count , COUNT( DISTINCT customer_id ) AS customer_id_count , COUNT( id ) AS order_count&quot;)</div><div class="line">        -&gt;where($newmap)</div><div class="line">        -&gt;group(&apos; days &apos;)</div><div class="line">        -&gt;select();</div></pre></td></tr></table></figure></p>
+<p>关键词：<code>DISTINCT</code><br>在count不重复的记录的时候就能用到它，<br>上面的代码里就用到了<code>COUNT( DISTINCT customer_id ) AS customer_id_count</code>,有了这个关键词，就不用以前的笨方法了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次php安装ImageMagick扩展/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/记一次php安装ImageMagick扩展/" itemprop="url">记一次php安装ImageMagick扩展</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T14:01:27+08:00">
+                2018-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>将pdf转png图片</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>在wamp server环境下安装php_imagick拓展<br><a href="http://www.smallerpig.com/673.html" target="_blank" rel="external">http://www.smallerpig.com/673.html</a><br>windows php安装ImageMagick扩展<br><a href="http://blog.csdn.net/livelinux/article/details/50319853" target="_blank" rel="external">http://blog.csdn.net/livelinux/article/details/50319853</a><br>Centos 安装ImageMagick 与 imagick for php步骤详解<br><a href="https://www.cnblogs.com/xingmeng/p/4268043.html#undefined" target="_blank" rel="external">https://www.cnblogs.com/xingmeng/p/4268043.html#undefined</a></p>
+<h3 id="本机wamp下安装php-imagick拓展"><a href="#本机wamp下安装php-imagick拓展" class="headerlink" title="本机wamp下安装php_imagick拓展"></a>本机wamp下安装php_imagick拓展</h3><h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p>1.在php安装目录的ext文件夹下新建imagick文件夹<br>2.将该文件夹的路径添加到系统路径(path值).<br>3.从网址<a href="http://windows.php.net/downloads/pecl/releases/imagick/下载对应php版本的imagick(phpinfo中看php" target="_blank" rel="external">http://windows.php.net/downloads/pecl/releases/imagick/下载对应php版本的imagick(phpinfo中看php</a> version,Compiler ，Architecture，这三个属性)<br>4.这里需要注意的是下载的文件区别,我们从文件名中来区分,例如php_imagick-3.2.0b2-5.5-nts-vc11-x86.zip</p>
+<pre><code>其中5.5是对应的php版本.
+nts值代表该文件适用于IIS,ts代表该文件适用于Apache,
+VC11和VC9是编译器的版本.我们可以适用phpinfo()命令来查看我们机器上php适用的是哪个版本(如图1)
+x86代表适用32位系统,x64代表适用64位系统
+</code></pre><p>5.下载好对应的zip文件后,将所有文件解压到我们第一步新建的imagick文件夹!</p>
+<p>6.添加php_imagick.dll的完整路径到php.ini文件中.例如:extension=C:\wamp\bin\php\php5.5.12\ext\ext\imagick\php_imagick.dll</p>
+<p>7.重启wamp服务器</p>
+<p>8.运行phpinfo看看是不是已经成功添加拓展了</p>
+<p>9.查看phpinfo中，查看ImageMagick supported formats内的值</p>
+<p>输入phpinfo()看到imagick，就算装成功了，但这个时候还不能用，你会看到ImageMagick number of supported formats 为0，ImageMagick supported formats no value，还要安装ImageMagick ，phpinfo里面会写出要安装那个版本的，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ImageMagick 6.9.3-7 Q16 x64 2016-03-27 http://www.imagemagick.org</div></pre></td></tr></table></figure></p>
+<p>然后去下载这个ImageMagick 6.9.3-7 Q16 x64 版本的安装</p>
+<p>记得版本要对得上号，要不然就会出现ImageMagick supported formats no value</p>
+<p>安装完后重启，再输入phpinfo,就会看到ImageMagick supported formats不是空的了，这个时候就算安全成功</p>
+<h3 id="Centos-安装ImageMagick"><a href="#Centos-安装ImageMagick" class="headerlink" title="Centos 安装ImageMagick"></a>Centos 安装ImageMagick</h3><h4 id="1-依次运行以下命令"><a href="#1-依次运行以下命令" class="headerlink" title="1. 依次运行以下命令"></a>1. 依次运行以下命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">yum install ImageMagick</div><div class="line"></div><div class="line">yum install ImageMagick-devel</div><div class="line"></div><div class="line">yum install php-pear [for PECL]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install php-devel</div></pre></td></tr></table></figure>
+<h4 id="2-安装C编译器"><a href="#2-安装C编译器" class="headerlink" title="2. 安装C编译器"></a>2. 安装C编译器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install gcc</div></pre></td></tr></table></figure>
+<p>如果装不了gcc就用这个命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install gcc gcc-c++ autoconf automake</div></pre></td></tr></table></figure></p>
+<h4 id="3-安装imagick"><a href="#3-安装imagick" class="headerlink" title="3. 安装imagick"></a>3. 安装imagick</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pecl install imagick</div></pre></td></tr></table></figure>
+<h4 id="4-加载imagick到php"><a href="#4-加载imagick到php" class="headerlink" title="4. 加载imagick到php"></a>4. 加载imagick到php</h4><p>在/etc/php.ini 加上extension=imagick.so</p>
+<h4 id="5-重启service-httpd-restart"><a href="#5-重启service-httpd-restart" class="headerlink" title="5. 重启service httpd restart"></a>5. 重启service httpd restart</h4><h4 id="6-使用-phpinfo-或运行-php-m-grep-imagick-来查看是否安装成功"><a href="#6-使用-phpinfo-或运行-php-m-grep-imagick-来查看是否安装成功" class="headerlink" title="6. 使用 phpinfo() 或运行 php -m | grep imagick 来查看是否安装成功"></a>6. 使用 phpinfo() 或运行 php -m | grep imagick 来查看是否安装成功</h4><h3 id="mac-上安装"><a href="#mac-上安装" class="headerlink" title="mac 上安装"></a>mac 上安装</h3><h4 id="安装php的imagick拓展"><a href="#安装php的imagick拓展" class="headerlink" title="安装php的imagick拓展"></a>安装php的imagick拓展</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew reinstall php56-imagick --build-from-source</div></pre></td></tr></table></figure>
+<h4 id="安装ghostscript"><a href="#安装ghostscript" class="headerlink" title="安装ghostscript"></a>安装ghostscript</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install ghostscript</div></pre></td></tr></table></figure>
+<h3 id="linux上安装"><a href="#linux上安装" class="headerlink" title="linux上安装"></a>linux上安装</h3><p>这次被坑惨了，linux是最近新的服务器里面没有安装过GD库，这个导致我后面多个坑</p>
+<p>第一次安装走的是<br><a href="https://www.cnblogs.com/xingmeng/p/4268043.html#undefined" target="_blank" rel="external">https://www.cnblogs.com/xingmeng/p/4268043.html#undefined</a><br>里面的方法，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">yum install ImageMagick</div><div class="line">yum install ImageMagick-devel</div><div class="line">yum install php-pear</div><div class="line">yum -y install php-devel</div><div class="line">yum install gcc</div><div class="line">yum install gcc gcc-c++ autoconf automake</div><div class="line">pecl install imagick</div></pre></td></tr></table></figure></p>
+<p>加载imagick到php<br>在/etc/php.ini 加上extension=imagick.so</p>
+<p>重启service httpd restart</p>
+<p>使用 phpinfo() 或运行 php -m | grep imagick 来查看是否安装成功</p>
+<p>这次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Imagick, ImagickDraw, ImagickPixel, ImagickPixelIterator,(ImagickKernel  不知道为什么没有这个，本机和mac上都有)</div></pre></td></tr></table></figure></p>
+<p>结果提示错误，具体忘记了，估计是因为GD库没有引起的<br>之后照着<br><a href="http://blog.csdn.net/snow_small/article/details/79173575" target="_blank" rel="external">http://blog.csdn.net/snow_small/article/details/79173575</a><br>进行了编译安装<br>1、安装ImageMagic<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@localhost download]# wget http://www.imagemagick.org/download/ImageMagick.tar.gz  </div><div class="line"></div><div class="line">[root@localhost download]# tar -xzvf ImageMagick  </div><div class="line">[root@localhost download]# cd ImageMagick-7.0.7-22/  </div><div class="line">[root@localhost ImageMagick-7.0.7-22]# ./configure --prefix=/usr/local/imagemagick  </div><div class="line">[root@localhost ImageMagick-7.0.7-22]# make  </div><div class="line">[root@localhost ImageMagick-7.0.7-22]# make install</div></pre></td></tr></table></figure></p>
+<p>2、检查是否安装成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@localhost ImageMagick-7.0.7-22]# /usr/local/imagemagick/bin/convert -version  </div><div class="line">Version: ImageMagick 7.0.7-22 Q16 x86_64 2018-01-26 http://www.imagemagick.org  </div><div class="line">Copyright: © 1999-2018 ImageMagick Studio LLC  </div><div class="line">License: http://www.imagemagick.org/script/license.php  </div><div class="line">Features: Cipher DPC HDRI OpenMP   </div><div class="line">Delegates (built-in): fontconfig freetype jng jpeg png x xml zlib</div></pre></td></tr></table></figure>
+<h3 id="我的坑"><a href="#我的坑" class="headerlink" title="我的坑"></a>我的坑</h3><p>但是报下面这个错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Postscript delegate failed</div></pre></td></tr></table></figure></p>
+<p>是<code>ghostscript</code>没安装，可实际是安装的在<code>/usr/bin/gs</code>中，但apache死活说找不到（是权限问题），网上有个解决方案是把’/usr/local/bin/gs’做软连接到<code>/usr/bin/gs</code>,可是我这边的情况刚好是倒过来的。</p>
+<p>一狠心把<code>ghostscript</code>给卸载了，重新编译安装了gs，这次真出现在了<code>/usr/local/bin/gs</code>,建立了个软连接，真把这个问题解决了。</p>
+<p>这次因为没有安装GD库，用的png版本太老，<code>Delegates (built-in): fontconfig freetype jng jpeg (png 没显示) x xml zlib</code></p>
+<p>一直提示<br><code>no decode delegate for this image format PNG</code><br>因为没有安装GD库，我在编译<code>ImageMagick-7.0.7-22</code>时没有将<code>png</code>编译进行</p>
+<p>直到手动添加了png库，才最终发现没有安装GD库</p>
+<p>我们在Centos安装ImageMagick教程中讲述了如何安装ImageMagick,安装完毕之后发现程序并不支持png和jpeg格式的图片,但是这两种图片又是我们平时所常见的,所以我们还要进一步地配置,是其支持png和jpeg格式.</p>
+<p>首先我们安装所需的库文件.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install tcl-devel libpng-devel libjpeg-devel ghostscript-devel</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/随笔/爷爷走好/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/随笔/爷爷走好/" itemprop="url">爷爷走好</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T08:43:13+08:00">
+                2018-02-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>您的教诲,您的事迹,您的荣誉…不会消逝，一直在我们的心里</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装笔记/brew安装mongodb及php-mongodb扩展/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/安装笔记/brew安装mongodb及php-mongodb扩展/" itemprop="url">brew安装mongodb及php mongodb扩展</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T12:59:34+08:00">
+                2018-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>安装某laravel项目</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://old.ruesin.com/system/mac/mac-mongodb-345.html" target="_blank" rel="external">http://old.ruesin.com/system/mac/mac-mongodb-345.html</a></p>
+<h3 id="安装mongodb服务"><a href="#安装mongodb服务" class="headerlink" title="安装mongodb服务"></a>安装mongodb服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install mongodb</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">==&gt; Installing mongodb</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/mongodb-3.4.10.high_sierra.</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring mongodb-3.4.10.high_sierra.bottle.tar.gz</div><div class="line">==&gt; Caveats</div><div class="line">To have launchd start mongodb now and restart at login:</div><div class="line">  brew services start mongodb</div><div class="line">Or, if you don&apos;t want/need a background service you can just run:</div><div class="line">  mongod --config /usr/local/etc/mongod.conf</div><div class="line">==&gt; Summary</div></pre></td></tr></table></figure>
+<h3 id="php-的-mongodb-扩展"><a href="#php-的-mongodb-扩展" class="headerlink" title="php 的 mongodb 扩展"></a>php 的 mongodb 扩展</h3><p>search一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew search mongo</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install php71-mongo</div></pre></td></tr></table></figure>
+<h4 id="安装出错"><a href="#安装出错" class="headerlink" title="安装出错"></a>安装出错</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">NOTICE: PHP message: PHP Warning:  PHP Startup: mongodb: Unable to initialize module</div><div class="line">Module compiled with build ID=API20160303,NTS</div><div class="line">PHP    compiled with build ID=API20160303,NTS,debug</div><div class="line">These options need to match</div><div class="line"> in Unknown on line 0</div><div class="line">&lt;br /&gt;</div><div class="line">&lt;b&gt;Warning&lt;/b&gt;:  PHP Startup: mongodb: Unable to initialize module</div><div class="line">Module compiled with build ID=API20160303,NTS</div><div class="line">PHP    compiled with build ID=API20160303,NTS,debug</div><div class="line">These options need to match</div><div class="line"> in &lt;b&gt;Unknown&lt;/b&gt; on line &lt;b&gt;0&lt;/b&gt;&lt;br /&gt;</div><div class="line">Unknown(0) : Warning - PHP Startup: mongodb: Unable to initialize module</div><div class="line">Module compiled with build ID=API20160303,NTS</div><div class="line">PHP    compiled with build ID=API20160303,NTS,debug</div><div class="line">These options need to match</div></pre></td></tr></table></figure>
+<p>网上搜是需要重新安装编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew reinstall &lt;formulaname&gt; --build-from-source</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/解决使用JWT时报Cannot-handle-token-prior-to的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/解决使用JWT时报Cannot-handle-token-prior-to的问题/" itemprop="url">解决使用JWT时报Cannot handle token prior to的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T13:28:56+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>使用JWT时，因为本地时间和服务器上的时间不一致，导致的请求发送失败</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>在<code>vendor\firebase\php-jwt\src\JWT.php</code>中的第113行左右添加如下的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo &apos;&lt;br /&gt; payload-&gt;iat = &apos;. $payload-&gt;iat . &apos;&lt;br /&gt;and time() = &apos;.time() . &quot;&lt;br /&gt;leeway= &quot;. self::$leeway;</div></pre></td></tr></table></figure></p>
+<p>会打印出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">payload-&gt;iat = 1447702275  </div><div class="line">and time() = 1447702211  </div><div class="line">leeway= 0</div></pre></td></tr></table></figure></p>
+<p>通过时间差计算出和服务器的差值，并调整本地的时间</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/如何提取谷歌chrome浏览器的crx插件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/学无止境/如何提取谷歌chrome浏览器的crx插件/" itemprop="url">如何提取谷歌chrome浏览器的crx插件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T09:29:21+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>自己有翻墙工具，而其他人没有，无法获取到插件</p>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><pre><code>访问Chrome扩展商店
+
+搜索需要提取的扩展
+
+点击进入扩展详情
+
+复制地址栏连接
+
+打开chrome-extension-downloader.com
+
+粘贴地址
+
+点击下载即可
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次linux上大文件的转移/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/记一次linux上大文件的转移/" itemprop="url">记一次linux上大文件的转移</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T12:43:08+08:00">
+                2017-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>服务器的内容转到另一台服务器</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="首先进行了打包"><a href="#首先进行了打包" class="headerlink" title="首先进行了打包"></a>首先进行了打包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -cvf ./kod.tar ./kod3.1</div></pre></td></tr></table></figure>
+<p>打完包，发现有3个多G<br>就尝试打包压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zcvf ./kod2.tar.gz ./kod3.1</div></pre></td></tr></table></figure></p>
+<p>结果还是3G多，只压缩了200M</p>
+<h4 id="进行传输"><a href="#进行传输" class="headerlink" title="进行传输"></a>进行传输</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure>
+<p>开始有5M/s的速度，可慢慢地变得只有800K/s<br>最气人的是在60%时的时候居然出现了<code>stalled</code></p>
+<h4 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">When transferring large files(for example mksysb images) using scp through a firewall, the scp connection stalls.</div><div class="line">Cause:</div><div class="line"></div><div class="line">The reason for scp to stall, is because scp greedily grabs as much bandwith of the network as possible when it transfers files, any delay caused by the network switch of the firewall can easily make the TCP connection stalled.</div><div class="line">Solution:</div><div class="line"></div><div class="line">There’s a solution to this problem: Add “-l 8192″ to the scp command.</div><div class="line"></div><div class="line">Adding the option “-l 8192″ limits the scp session bandwith up to 8192 Kbit/second, which seems to work safe and fast enough (up to 1 MB/second):</div></pre></td></tr></table></figure>
+<h4 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h4><p>在原有的命令行上加上了<code>-l 8192</code>可以维持在1M/s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure></p>
+<p>开始速度也有6M/s，后面速度一直维持在1M/s，中间无<code>stalled</code></p>
+<p>如果是<code>-l 16000</code>则维持在2M/s，以此类推</p>
+<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -xvf kod.tar</div></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf kod.tar.gz</div></pre></td></tr></table></figure></p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>因为转移的文件有很多，而且都很大，我们不可能一直开者等待它传完，这就需要后台运行</p>
+<p>先输入密码进行传输<br>然后用<code>ctrl+z</code>,将当前进程挂起到后台暂停运行，执行一些别的操作<br>然后用 <code>bg</code> 来将挂起的进程放在后台(也可以用 <code>fg</code> 来将挂起的进程重新放回前台)继续运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@pvcent107 build]# scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">---------ctrl+zx</div><div class="line">[1]+  Stopped                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">[root@pvcent107 build]# bg %1</div><div class="line">[1]+ scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# jobs</div><div class="line">[1]+  Running                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# disown -h %1</div><div class="line">[root@pvcent107 build]# ps -ef |grep kod</div><div class="line">root      5790  5577  1 10:04 pts/3    00:00:00 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">root      5824  5577  0 10:05 pts/3    00:00:00 grep kod</div></pre></td></tr></table></figure></p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>有时jobs会有多个，注意自己的文件大小是否正常，我就别坑了1次，没传输完成（完成了一个jobs），以为完成了就进行解压缩了。</p>
+<h4 id="400G个文件打包"><a href="#400G个文件打包" class="headerlink" title="400G个文件打包"></a>400G个文件打包</h4><p>之前想着。。。400G的文件需要切分-，-！可是用了切分时，却始终没有获取完整的包，好几次我都相信我的总包才80G</p>
+<p>最后用了整包打包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf kod.tar.bz2 ./kod &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure></p>
+<p>打完包发现才有400G+…….我的天，整整打包了一天一夜</p>
+<h4 id="400G的传输"><a href="#400G的传输" class="headerlink" title="400G的传输"></a>400G的传输</h4><p>scp 已经无法满足，因为万一中间来个服务器重启，或者其他因素那over了，那流量可就白白流失了<br>最后采用了<code>rsync</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.14.156:/data/</div></pre></td></tr></table></figure></p>
+<p>然后输入密码<br>再ctrl+z 暂停<br>再bg %1  放入后台（假设当前后台允许索引为1）<br>然后用jobs查看<br>如果你当前退出过当前终端，jobs已经无法查看到后台运行的进程，只能用ps<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef |grep kod</div></pre></td></tr></table></figure></p>
+<p>会有如下的显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root     175100 174758 47 08:10 pts/2    00:15:13 rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.91.176:/data/</div><div class="line">root     183245 174758  0 08:42 pts/2    00:00:00 grep --color=auto kod</div></pre></td></tr></table></figure></p>
+<p>其中<code>00:15:13</code>指本次断点续传进行的时间。<br>当传输了200G以后，继续进行断点续传，这个时间会有好长一段时间是不更新的（作者认为它在寻找上一次的断点，因为文件大了寻找的时间会久一点），如果你这个时候马上关闭总端，很有可能本次传输就没执行，我就被坑了一次，一觉醒来一点就没传。。。</p>
+<h4 id="rsync与scp的差异"><a href="#rsync与scp的差异" class="headerlink" title="rsync与scp的差异"></a>rsync与scp的差异</h4><p>用scp时，这边传多少，另一个服务器就显示文件实时大小<br>而用rsync时，另一个服务器不实时显示文件大小，只有将这边的进程暂时kill掉，才能知道到底传了多少（可能我这个办法比较粗暴）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -9 175100</div></pre></td></tr></table></figure></p>
+<h4 id="400G的解压"><a href="#400G的解压" class="headerlink" title="400G的解压"></a>400G的解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -xjf ./kod_all.tar.bz2 &gt; /dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+<p>其他查看操作同上面</p>
+<h3 id="其他，拆分打包（失败了）"><a href="#其他，拆分打包（失败了）" class="headerlink" title="其他，拆分打包（失败了）"></a>其他，拆分打包（失败了）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf - kod/ |split -b 10000m - kod.tar.bz2. &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+<p>它会生成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.aa</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ab</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ac</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ad</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ae</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.af</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ag</div></pre></td></tr></table></figure></p>
+<p>后面默认2位，字符逐渐增加<br>它的解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup cat pinkephp.tar.bz2.* | tar -xj &amp;</div></pre></td></tr></table></figure></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://linux.cn/article-7170-1.html" target="_blank" rel="external">https://linux.cn/article-7170-1.html</a></p>
+<p><a href="http://blog.csdn.net/tdstds/article/details/24870535" target="_blank" rel="external">http://blog.csdn.net/tdstds/article/details/24870535</a></p>
+<p><a href="http://blog.csdn.net/eroswang/article/details/5555415/" target="_blank" rel="external">http://blog.csdn.net/eroswang/article/details/5555415/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次网站字体采用思源字体/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/跳坑记录/记一次网站字体采用思源字体/" itemprop="url">记一次网站字体采用思源字体</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T12:46:14+08:00">
+                2017-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>客户想让他的网站都显示思源字体</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>fontsquirrel<br><a href="https://www.fontsquirrel.com" target="_blank" rel="external">https://www.fontsquirrel.com</a><br>CSS @font-face属性实现在网页中嵌入任意字体<br><a href="http://www.jb51.net/css/23073.html" target="_blank" rel="external">http://www.jb51.net/css/23073.html</a></p>
+<p>如何在网页中嵌入自己想要的字体(实例下载)<br><a href="http://blog.csdn.net/sinolzeng/article/details/41802951" target="_blank" rel="external">http://blog.csdn.net/sinolzeng/article/details/41802951</a></p>
+<h3 id="linux安装字体（错误的方法）"><a href="#linux安装字体（错误的方法）" class="headerlink" title="linux安装字体（错误的方法）"></a>linux安装字体（错误的方法）</h3><h4 id="下载字体"><a href="#下载字体" class="headerlink" title="下载字体"></a>下载字体</h4><p>下载思源全套字体（字体文件名称：NotoSansHans）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://pan.baidu.com/s/1uJBBK</div></pre></td></tr></table></figure></p>
+<p>windows的字体比较多，其字体文件位于 C:\WINDOWS\Fonts,如果想额外安装也可以到这里找找</p>
+<p>字体格式有ttf和otf等多重后缀，linux上ttf和oft都可以</p>
+<h4 id="移动文件到服务器指定位置"><a href="#移动文件到服务器指定位置" class="headerlink" title="移动文件到服务器指定位置"></a>移动文件到服务器指定位置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># mkdir /usr/share/fonts/NotoSansHans</div><div class="line"># cp arial*.otf /usr/share/fonts/NotoSansHans/</div><div class="line">或</div><div class="line"># cp arial*.ttf /usr/share/fonts/NotoSansHans/</div></pre></td></tr></table></figure>
+<h4 id="为刚加入的字体设置缓存使之有效"><a href="#为刚加入的字体设置缓存使之有效" class="headerlink" title="为刚加入的字体设置缓存使之有效"></a>为刚加入的字体设置缓存使之有效</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># cd /usr/share/font/NotoSansHans</div><div class="line"># fc-cache -fv</div></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>因为我在windows里先安装了思源字体，并在<code>Noto Sans S Chinese</code>中找到了思源字体，所以font-family中我用<code>Noto Sans S Chinese</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line">    font-family: &quot;Noto Sans S Chinese&quot;, Helvetica, Arial, sans-serif;</div><div class="line">    -webkit-font-smoothing: antialiased;</div><div class="line">    color: #777777;</div><div class="line">    font-size: 14px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>为什么文件名是<code>NotoSansHans</code>，安装后需要<code>Noto Sans S Chinese</code><br>这里有个疑惑</p>
+<h4 id="疑惑解决（2017-12-8）"><a href="#疑惑解决（2017-12-8）" class="headerlink" title="疑惑解决（2017.12.8）"></a>疑惑解决（2017.12.8）</h4><p>自己本地安装了ttf包后，生成了Noto Sans S Chinese字体，可是这个字体不是服务器里的</p>
+<p>也就是说，我在linux上安装的字体只能在linux上使用,浏览器里使用一个是看客户端有没有这个字体，另一个是你的css中引入如ttf之类的字体资源，但是对于中文来说，要把整个字体都方法css上，大概要10M以上（这个肯定不是个办法）</p>
+<h3 id="css-font-face引入-只能引入英文字体"><a href="#css-font-face引入-只能引入英文字体" class="headerlink" title="css font-face引入(只能引入英文字体)"></a>css font-face引入(只能引入英文字体)</h3><p>在<br><a href="https://www.fontsquirrel.com" target="_blank" rel="external">https://www.fontsquirrel.com</a><br>中找到自己需要的字体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">font-family: &apos;fontNameRegular&apos;;</div><div class="line">src: url(&apos;fontName.eot&apos;);</div><div class="line">src: local(&apos;fontName Regular&apos;),</div><div class="line">local(&apos;fontName&apos;),</div><div class="line">url(&apos;fontName.woff&apos;) format(&apos;woff&apos;),</div><div class="line">url(&apos;fontName.ttf&apos;) format(&apos;truetype&apos;),</div><div class="line">url(&apos;fontName.svg#fontName&apos;) format(&apos;svg&apos;);</div><div class="line">&#125;</div><div class="line">/*其中fontName替换为你的字体名称*/</div></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>想在网页中全部使用某不常用的字体，几乎是不可取的方法，除非客户端里大家都安装了该字体</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/elementui引入iconfont/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -376,1178 +1575,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/node-sass安装不成功的解决方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/跳坑记录/node-sass安装不成功的解决方法/" itemprop="url">node-sass安装不成功的解决方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T15:55:24+08:00">
-                2017-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>每次安装node-sass都被墙导致安装不成功</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://blog.csdn.net/qq_35440678/article/details/51909327" target="_blank" rel="external">http://blog.csdn.net/qq_35440678/article/details/51909327</a></p>
-<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>直接用淘宝的镜像安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div><div class="line">cnpm install node-sass</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/vscode配置eslint/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/学无止境/vscode配置eslint/" itemprop="url">vscode配置eslint</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T09:08:31+08:00">
-                2017-11-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>公司开始了新项目用了vue，因为用了某人开源的基础架构，所以被动的被用上了eslint，刚开始用sublime写vue，结果各种规法错误，很是恼火。最后按网上教程用了vscode+eslint插件，一键格式化错误，牛X死了</p>
-<h4 id="安装eslint插件"><a href="#安装eslint插件" class="headerlink" title="安装eslint插件"></a>安装eslint插件</h4><p>安装并配置完成 ESLint 后，我们继续回到 VSCode 进行扩展设置，依次点击 文件 &gt; 首选项 &gt; 设置 打开 VSCode 配置文件,添加如下配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&quot;eslint.autoFixOnSave&quot;: true,</div><div class="line">&quot;files.autoSave&quot;:&quot;off&quot;,</div><div class="line">&quot;eslint.validate&quot;: [</div><div class="line">   &quot;javascript&quot;,</div><div class="line">   &quot;javascriptreact&quot;,</div><div class="line">   &quot;html&quot;,</div><div class="line">   &#123; &quot;language&quot;: &quot;vue&quot;, &quot;autoFix&quot;: true &#125;</div><div class="line"> ],</div><div class="line"> &quot;eslint.options&quot;: &#123;</div><div class="line">    &quot;plugins&quot;: [&quot;html&quot;]</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<p>这样每次保存的时候就可以根据根目录下.eslintrc.js你配置的eslint规则来检查和做一些简单的fix。</p>
-<p>当前eslint规则</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">    root: true,</div><div class="line">    parser: &apos;babel-eslint&apos;,</div><div class="line">    parserOptions: &#123;</div><div class="line">        sourceType: &apos;module&apos;</div><div class="line">    &#125;,</div><div class="line">    env: &#123;</div><div class="line">        browser: true,</div><div class="line">        node: true,</div><div class="line">        es6: true,</div><div class="line">    &#125;,</div><div class="line">    extends: &apos;eslint:recommended&apos;,</div><div class="line">    // required to lint *.vue files</div><div class="line">    plugins: [</div><div class="line">        &apos;html&apos;</div><div class="line">    ],</div><div class="line">    // check if imports actually resolve</div><div class="line">    &apos;settings&apos;: &#123;</div><div class="line">        &apos;import/resolver&apos;: &#123;</div><div class="line">            &apos;webpack&apos;: &#123;</div><div class="line">                &apos;config&apos;: &apos;build/webpack.base.conf.js&apos;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    // add your custom rules here</div><div class="line">    //it is base on https://github.com/vuejs/eslint-config-vue</div><div class="line">    &apos;rules&apos;: &#123;</div><div class="line">        &apos;accessor-pairs&apos;: 2,</div><div class="line">        &apos;arrow-spacing&apos;: [2, &#123; &apos;before&apos;: true, &apos;after&apos;: true &#125;],</div><div class="line">        &apos;block-spacing&apos;: [2, &apos;always&apos;],</div><div class="line">        &apos;brace-style&apos;: [2, &apos;1tbs&apos;, &#123; &apos;allowSingleLine&apos;: true &#125;],</div><div class="line">        &apos;camelcase&apos;: [0, &#123; &apos;properties&apos;: &apos;always&apos; &#125;],</div><div class="line">        &apos;comma-dangle&apos;: [2, &apos;never&apos;],</div><div class="line">        &apos;comma-spacing&apos;: [2, &#123; &apos;before&apos;: false, &apos;after&apos;: true &#125;],</div><div class="line">        &apos;comma-style&apos;: [2, &apos;last&apos;],</div><div class="line">        &apos;constructor-super&apos;: 2,</div><div class="line">        &apos;curly&apos;: [2, &apos;multi-line&apos;],</div><div class="line">        &apos;dot-location&apos;: [2, &apos;property&apos;],</div><div class="line">        &apos;eol-last&apos;: 2,</div><div class="line">        &apos;eqeqeq&apos;: [2, &apos;allow-null&apos;],</div><div class="line">        &apos;generator-star-spacing&apos;: [2, &#123; &apos;before&apos;: true, &apos;after&apos;: true &#125;],</div><div class="line">        &apos;handle-callback-err&apos;: [2, &apos;^(err|error)$&apos; ],</div><div class="line">        &apos;indent&apos;: [2, 2, &#123; &apos;SwitchCase&apos;: 1 &#125;],</div><div class="line">        &apos;jsx-quotes&apos;: [2, &apos;prefer-single&apos;],</div><div class="line">        &apos;key-spacing&apos;: [2, &#123; &apos;beforeColon&apos;: false, &apos;afterColon&apos;: true &#125;],</div><div class="line">        &apos;keyword-spacing&apos;: [2, &#123; &apos;before&apos;: true, &apos;after&apos;: true &#125;],</div><div class="line">        &apos;new-cap&apos;: [2, &#123; &apos;newIsCap&apos;: true, &apos;capIsNew&apos;: false &#125;],</div><div class="line">        &apos;new-parens&apos;: 2,</div><div class="line">        &apos;no-array-constructor&apos;: 2,</div><div class="line">        &apos;no-caller&apos;: 2,</div><div class="line">        &apos;no-console&apos;: &apos;off&apos;,</div><div class="line">        &apos;no-class-assign&apos;: 2,</div><div class="line">        &apos;no-cond-assign&apos;: 2,</div><div class="line">        &apos;no-const-assign&apos;: 2,</div><div class="line">        &apos;no-control-regex&apos;: 2,</div><div class="line">        &apos;no-delete-var&apos;: 2,</div><div class="line">        &apos;no-dupe-args&apos;: 2,</div><div class="line">        &apos;no-dupe-class-members&apos;: 2,</div><div class="line">        &apos;no-dupe-keys&apos;: 2,</div><div class="line">        &apos;no-duplicate-case&apos;: 2,</div><div class="line">        &apos;no-empty-character-class&apos;: 2,</div><div class="line">        &apos;no-empty-pattern&apos;: 2,</div><div class="line">        &apos;no-eval&apos;: 2,</div><div class="line">        &apos;no-ex-assign&apos;: 2,</div><div class="line">        &apos;no-extend-native&apos;: 2,</div><div class="line">        &apos;no-extra-bind&apos;: 2,</div><div class="line">        &apos;no-extra-boolean-cast&apos;: 2,</div><div class="line">        &apos;no-extra-parens&apos;: [2, &apos;functions&apos;],</div><div class="line">        &apos;no-fallthrough&apos;: 2,</div><div class="line">        &apos;no-floating-decimal&apos;: 2,</div><div class="line">        &apos;no-func-assign&apos;: 2,</div><div class="line">        &apos;no-implied-eval&apos;: 2,</div><div class="line">        &apos;no-inner-declarations&apos;: [2, &apos;functions&apos;],</div><div class="line">        &apos;no-invalid-regexp&apos;: 2,</div><div class="line">        &apos;no-irregular-whitespace&apos;: 2,</div><div class="line">        &apos;no-iterator&apos;: 2,</div><div class="line">        &apos;no-label-var&apos;: 2,</div><div class="line">        &apos;no-labels&apos;: [2, &#123; &apos;allowLoop&apos;: false, &apos;allowSwitch&apos;: false &#125;],</div><div class="line">        &apos;no-lone-blocks&apos;: 2,</div><div class="line">        &apos;no-mixed-spaces-and-tabs&apos;: 2,</div><div class="line">        &apos;no-multi-spaces&apos;: 2,</div><div class="line">        &apos;no-multi-str&apos;: 2,</div><div class="line">        &apos;no-multiple-empty-lines&apos;: [2, &#123; &apos;max&apos;: 1 &#125;],</div><div class="line">        &apos;no-native-reassign&apos;: 2,</div><div class="line">        &apos;no-negated-in-lhs&apos;: 2,</div><div class="line">        &apos;no-new-object&apos;: 2,</div><div class="line">        &apos;no-new-require&apos;: 2,</div><div class="line">        &apos;no-new-symbol&apos;: 2,</div><div class="line">        &apos;no-new-wrappers&apos;: 2,</div><div class="line">        &apos;no-obj-calls&apos;: 2,</div><div class="line">        &apos;no-octal&apos;: 2,</div><div class="line">        &apos;no-octal-escape&apos;: 2,</div><div class="line">        &apos;no-path-concat&apos;: 2,</div><div class="line">        &apos;no-proto&apos;: 2,</div><div class="line">        &apos;no-redeclare&apos;: 2,</div><div class="line">        &apos;no-regex-spaces&apos;: 2,</div><div class="line">        &apos;no-return-assign&apos;: [2, &apos;except-parens&apos;],</div><div class="line">        &apos;no-self-assign&apos;: 2,</div><div class="line">        &apos;no-self-compare&apos;: 2,</div><div class="line">        &apos;no-sequences&apos;: 2,</div><div class="line">        &apos;no-shadow-restricted-names&apos;: 2,</div><div class="line">        &apos;no-spaced-func&apos;: 2,</div><div class="line">        &apos;no-sparse-arrays&apos;: 2,</div><div class="line">        &apos;no-this-before-super&apos;: 2,</div><div class="line">        &apos;no-throw-literal&apos;: 2,</div><div class="line">        &apos;no-trailing-spaces&apos;: 2,</div><div class="line">        &apos;no-undef&apos;: 2,</div><div class="line">        &apos;no-undef-init&apos;: 2,</div><div class="line">        &apos;no-unexpected-multiline&apos;: 2,</div><div class="line">        &apos;no-unmodified-loop-condition&apos;: 2,</div><div class="line">        &apos;no-unneeded-ternary&apos;: [2, &#123; &apos;defaultAssignment&apos;: false &#125;],</div><div class="line">        &apos;no-unreachable&apos;: 2,</div><div class="line">        &apos;no-unsafe-finally&apos;: 2,</div><div class="line">        &apos;no-unused-vars&apos;: [2, &#123; &apos;vars&apos;: &apos;all&apos;, &apos;args&apos;: &apos;none&apos; &#125;],</div><div class="line">        &apos;no-useless-call&apos;: 2,</div><div class="line">        &apos;no-useless-computed-key&apos;: 2,</div><div class="line">        &apos;no-useless-constructor&apos;: 2,</div><div class="line">        &apos;no-useless-escape&apos;: 0,</div><div class="line">        &apos;no-whitespace-before-property&apos;: 2,</div><div class="line">        &apos;no-with&apos;: 2,</div><div class="line">        &apos;one-var&apos;: [2, &#123; &apos;initialized&apos;: &apos;never&apos; &#125;],</div><div class="line">        &apos;operator-linebreak&apos;: [2, &apos;after&apos;, &#123; &apos;overrides&apos;: &#123; &apos;?&apos;: &apos;before&apos;, &apos;:&apos;: &apos;before&apos; &#125; &#125;],</div><div class="line">        &apos;padded-blocks&apos;: [2, &apos;never&apos;],</div><div class="line">        &apos;quotes&apos;: [2, &apos;single&apos;, &#123; &apos;avoidEscape&apos;: true, &apos;allowTemplateLiterals&apos;: true &#125;],</div><div class="line">        &apos;semi&apos;: [2, &apos;never&apos;],</div><div class="line">        &apos;semi-spacing&apos;: [2, &#123; &apos;before&apos;: false, &apos;after&apos;: true &#125;],</div><div class="line">        &apos;space-before-blocks&apos;: [2, &apos;always&apos;],</div><div class="line">        &apos;space-before-function-paren&apos;: [2, &apos;never&apos;],</div><div class="line">        &apos;space-in-parens&apos;: [2, &apos;never&apos;],</div><div class="line">        &apos;space-infix-ops&apos;: 2,</div><div class="line">        &apos;space-unary-ops&apos;: [2, &#123; &apos;words&apos;: true, &apos;nonwords&apos;: false &#125;],</div><div class="line">        &apos;spaced-comment&apos;: [2, &apos;always&apos;, &#123; &apos;markers&apos;: [&apos;global&apos;, &apos;globals&apos;, &apos;eslint&apos;, &apos;eslint-disable&apos;, &apos;*package&apos;, &apos;!&apos;, &apos;,&apos;] &#125;],</div><div class="line">        &apos;template-curly-spacing&apos;: [2, &apos;never&apos;],</div><div class="line">        &apos;use-isnan&apos;: 2,</div><div class="line">        &apos;valid-typeof&apos;: 2,</div><div class="line">        &apos;wrap-iife&apos;: [2, &apos;any&apos;],</div><div class="line">        &apos;yield-star-spacing&apos;: [2, &apos;both&apos;],</div><div class="line">        &apos;yoda&apos;: [2, &apos;never&apos;],</div><div class="line">        &apos;prefer-const&apos;: 2,</div><div class="line">        &apos;no-debugger&apos;: process.env.NODE_ENV === &apos;production&apos; ? 2 : 0,</div><div class="line">        &apos;object-curly-spacing&apos;: [2, &apos;always&apos;, &#123; objectsInObjects: false &#125;],</div><div class="line">        &apos;array-bracket-spacing&apos;: [2, &apos;never&apos;]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p><code>shift+ctrl+p</code>    =&gt; 选择 <code>eslint fix all auto-fixable problems</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/GitBash修改默认打开之后的路径/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/学无止境/GitBash修改默认打开之后的路径/" itemprop="url">GitBash修改默认打开之后的路径</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T08:58:26+08:00">
-                2017-11-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>在公司windows下用gitbash，每次打开都要切换到D盘指定目录，非常费时，网上搜了一下果真有对应方法</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://blog.csdn.net/zzfenglin/article/details/54646541" target="_blank" rel="external">http://blog.csdn.net/zzfenglin/article/details/54646541</a></p>
-<h4 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h4><p>在“Git Bash”快捷方式上点击鼠标右键，然后选择“属性”，会弹出如下截图的提示框：</p>
-<p><img src="http://img.blog.csdn.net/20170121165353158"></p>
-<p>我们可以看到在“目标”后面的输入框中有操作的命令，在命令的最后是“–cd-to-home”，就是这条命令在快捷方式打开的时候切换到“/c/Users/Administrator”路径了。</p>
-<p>假如，我们想把默认路径修改为“D:\android_workspace”，那我们需要操作两步：</p>
-<p>1.将“目录”后面输入框中命令结尾部分去掉，即删掉“–cd-to-home”。</p>
-<p>2.将“起始位置”后面的输入框中的内容修改为我们想要的默认路径“D:\android_workspace”（注意：这个路径是根据你自己代码工程的位置而定的）</p>
-<p>修改之后的操作截图如下：</p>
-<p><img src="http://img.blog.csdn.net/20170121165423783"></p>
-<p>修改之后，点击“确定”，然后重新打开“Git Bash”，就会自动切换到我们想要的路径</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/git提交请求免输入git服务器密码/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/学无止境/git提交请求免输入git服务器密码/" itemprop="url">git提交请求免输入git服务器密码</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T08:50:58+08:00">
-                2017-11-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>每次百度这内容，都要花费我不少时间</p>
-<h4 id="客户端初始化"><a href="#客户端初始化" class="headerlink" title="客户端初始化"></a>客户端初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;yourname&quot;  </div><div class="line">git config --global user.email &quot;your@email.com&quot;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;XXX@company.com&quot;</div></pre></td></tr></table></figure>
-<p>在git服务器下的git主目录下面的.ssh文件下添加（修改）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">authorized_keys</div></pre></td></tr></table></figure></p>
-<p>重新启动sshd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service sshd restart</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次在vue中使用axios，参数没有序列化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/跳坑记录/记一次在vue中使用axios，参数没有序列化/" itemprop="url">记一次在vue中使用axios，参数没有序列化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T07:22:16+08:00">
-                2017-11-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>开始用vue写项目，可是用axios进行get操作没问题，进行post操作时，post的值始终没有传过来</p>
-<p>直到搜索到“qs序列化”关键词，才发现其中的缘由</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>Kouss博客 <a href="http://kouss.com/3884.html" target="_blank" rel="external">http://kouss.com/3884.html</a></p>
-<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>设置了headers中Content-Type为application/x-www-form-urlencoded数据格式，post发起的请求仍为json类型，并没有序列化。<br>郁闷的是用JSON.stringify无效。</p>
-<p><img src="http://s.kouss.com/wp-content/uploads/2017/01/f413b81288.png"></p>
-<p>这个Form Data后台取不到数据，正常的Form Data数据应该是key：val<br>最终解决方法：使用qs</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var qs = require(&apos;qs&apos;)</div><div class="line">Vue.prototype.$http = axios.create(&#123;</div><div class="line">    baseURL: &apos;http://chaozhi.hk&apos;,</div><div class="line">    timeout: 10000,</div><div class="line">    headers: &#123;&apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded&apos;&#125;,</div><div class="line">    transformRequest: [function (data) &#123;</div><div class="line">        data = qs.stringify(data)</div><div class="line">        return data</div><div class="line">    &#125;]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/ab性能测试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/学无止境/ab性能测试/" itemprop="url">ab性能测试</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T15:19:00+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>早先在CPK项目时，因为有用户反应页面打不开，后来采用了CDN和静态页，那段时间也用ab测试工具测试过速度,但用了之后就没深入了解（主要是没写笔记做记录，忘记了）<br>之后因为离职去应聘时，一个面试官问过ab测试，且对我当时的一个开源项目进行了简单的压力测试。因为采用了pjax，没用静态页，首页的测试并不理想，之后打算着将TP的静态页部分改进下，满足pjax时也能调用。<br>在laravel，TP5，YII2等框架性能据说都有不错的提升时，自己用TP3.2开源的项目就显得十分的老旧。如何对比速度上的差异，也就只能先记录下TP3.2时的速度，用新框架的速度来进行对比。</p>
-<h3 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a>参考地址</h3><p>作者：橙子酱<br>链接：<a href="http://www.jianshu.com/p/43d04d8baaf7" target="_blank" rel="external">http://www.jianshu.com/p/43d04d8baaf7</a><br>來源：简书</p>
-<h3 id="关于压力测试的概念"><a href="#关于压力测试的概念" class="headerlink" title="关于压力测试的概念"></a>关于压力测试的概念</h3><h4 id="吞吐率（Requests-per-second）"><a href="#吞吐率（Requests-per-second）" class="headerlink" title="吞吐率（Requests per second）"></a>吞吐率（Requests per second）</h4><p>概念：服务器并发处理能力的量化描述，单位是reqs/s，指的是某个并发用户数下单位时间内处理的请求数。某个并发用户数下单位时间内能处理的最大请求数，称之为最大吞吐率。<br>计算公式：总请求数 / 处理完成这些请求数所花费的时间，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Request per second = Complete requests / Time taken for tests</div></pre></td></tr></table></figure></p>
-<p>以100并发 100次请求，各大网站的对比(20171025)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">百度(www.baidu.com)   80~88</div><div class="line">知乎(www.zhihu.com)   75~85</div><div class="line">QQ(www.qq.com)        25~35</div><div class="line">微博（www.weibo.com） 20~25</div></pre></td></tr></table></figure></p>
-<h4 id="并发连接数（The-number-of-concurrent-connections）"><a href="#并发连接数（The-number-of-concurrent-connections）" class="headerlink" title="并发连接数（The number of concurrent connections）"></a>并发连接数（The number of concurrent connections）</h4><p>概念：某个时刻服务器所接受的请求数目，简单的讲，就是一个会话。</p>
-<h4 id="并发用户数（The-number-of-concurrent-users，Concurrency-Level）"><a href="#并发用户数（The-number-of-concurrent-users，Concurrency-Level）" class="headerlink" title="并发用户数（The number of concurrent users，Concurrency Level）"></a>并发用户数（The number of concurrent users，Concurrency Level）</h4><p>概念：要注意区分这个概念和并发连接数之间的区别，一个用户可能同时会产生多个会话，也即连接数。</p>
-<h4 id="用户平均请求等待时间（Time-per-request）"><a href="#用户平均请求等待时间（Time-per-request）" class="headerlink" title="用户平均请求等待时间（Time per request）"></a>用户平均请求等待时间（Time per request）</h4><p>计算公式：处理完成所有请求数所花费的时间/ （总请求数 / 并发用户数），即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time per request = Time taken for tests /（ Complete requests / Concurrency Level）</div></pre></td></tr></table></figure></p>
-<h4 id="服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）"><a href="#服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）" class="headerlink" title="服务器平均请求等待时间（Time per request: across all concurrent requests）"></a>服务器平均请求等待时间（Time per request: across all concurrent requests）</h4><p>计算公式：处理完成所有请求数所花费的时间 / 总请求数，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time taken for / testsComplete requests</div></pre></td></tr></table></figure></p>
-<p>可以看到，它是吞吐率的倒数。<br>同时，它也 等于 用户平均请求等待时间/并发用户数，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time per request / Concurrency Level</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">百度(www.baidu.com)   1100~1300  11.00~13.00</div><div class="line">知乎(www.zhihu.com)   1100~1300  11.00~13.00</div><div class="line">QQ(www.qq.com)        3200~3500  32.00~35.00</div><div class="line">微博（www.weibo.com）  4000~5000  40.00~50.00</div></pre></td></tr></table></figure>
-<hr>
-<h3 id="单次测试结果的说明"><a href="#单次测试结果的说明" class="headerlink" title="单次测试结果的说明"></a>单次测试结果的说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Concurrency Level: 100                 //并发请求数</div><div class="line">Time taken for tests: 50.872 seconds   //整个测试持续的时间</div><div class="line">Complete requests: 1000                //完成的请求数</div><div class="line">Failed requests: 0                     //失败的请求数</div><div class="line"></div><div class="line">Total transferred: 13701482 bytes      //整个场景中的网络传输量</div><div class="line">HTML transferred: 13197000 bytes       //整个场景中的HTML内容传输量</div><div class="line"></div><div class="line">Requests per second: 19.66 [#/sec] (mean)   //吞吐率，大家最关心的指标之一，相当于 LR 中的每秒事务数，后面括号中的 mean 表示这是一个平均值</div><div class="line">Time per request: 5087.180 [ms] (mean)      //用户平均请求等待时间，大家最关心的指标之二，相当于 LR 中的平均事务响应时间，后面括号中的 mean 表示这是一个平均值</div><div class="line">Time per request: 50.872 [ms] (mean, across all concurrent requests)   //服务器平均请求处理时间，大家最关心的指标之三</div><div class="line"></div><div class="line">Transfer rate: 263.02 [Kbytes/sec] received   //平均每秒网络上的流量，可以帮助排除是否存在网络流量过大导致响应时间延长的问题</div></pre></td></tr></table></figure>
-<h3 id="关于登录的问题"><a href="#关于登录的问题" class="headerlink" title="关于登录的问题"></a>关于登录的问题</h3><p>有时候进行压力测试需要用户登录，怎么办？<br>请参考以下步骤：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先用账户和密码登录后，用开发者工具找到标识这个会话的Cookie值（Session ID）记下来</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果只用到一个Cookie，那么只需键入命令：</div><div class="line">ab －n 100 －C key＝value http://test.com/</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果需要多个Cookie，就直接设Header：</div><div class="line">ab -n 100 -H “Cookie: Key1=Value1; Key2=Value2” http://test.com/</div></pre></td></tr></table></figure>
-<h3 id="如何防止别人用ab之类的测试软件恶意请求自己的网站"><a href="#如何防止别人用ab之类的测试软件恶意请求自己的网站" class="headerlink" title="如何防止别人用ab之类的测试软件恶意请求自己的网站"></a>如何防止别人用ab之类的测试软件恶意请求自己的网站</h3><p>网友回答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">目前此类软件可以很真实的模拟浏览器请求，所以在少量的请求下，基本上是屏蔽不了的。</div><div class="line">但是，使用此类软件请求你的网站通常都有其他目的，会产生大量重复的请求。</div><div class="line">可以通过单位时间的请求次数进行控制，相同IP或者相同的userAgint产生的异常请求通过程序判断来禁止。</div><div class="line">但是即便程序做了判断，请求已经进入处理阶段依然会影响性能，所以还要配合其他的处理方式，重复响应最好用缓存的方式来实现，避免过多的消耗CPU；确诊的问题IP应该在防火墙端就进行屏蔽。</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nginx的话可以用HttpLimitReqModule</div><div class="line">此模块能通过特定的客户端标识（如IP，UA等）来限制客户端在一定时间内的访问频次，比你在程序里控制要省资源得多。</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/mysql中的视图（转）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/学无止境/mysql中的视图（转）/" itemprop="url">mysql中的视图（转）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T09:22:05+08:00">
-                2017-10-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>上一个项目接手后，在转移数据庫的时候，数据庫的转移失败，那是我第一次接触mysql视图。但是那时没去研究啥是视图。</p>
-<p>今天查看另一个项目时，又发现了mysql视图的存在，需要充电一下了！</p>
-<h4 id="文章来源"><a href="#文章来源" class="headerlink" title="文章来源"></a>文章来源</h4><p>作者：风一样的码农<br>原文地址：<a href="http://www.cnblogs.com/chenpi/p/5133648.html" target="_blank" rel="external">http://www.cnblogs.com/chenpi/p/5133648.html</a></p>
-<h4 id="什么是视图"><a href="#什么是视图" class="headerlink" title="什么是视图"></a>什么是视图</h4><p>通俗的讲，视图就是一条SELECT语句执行后返回的结果集。所以我们在创建视图的时候，主要的工作就落在创建这条SQL查询语句上。</p>
-<h4 id="视图的特性"><a href="#视图的特性" class="headerlink" title="视图的特性"></a>视图的特性</h4><p>视图是对若干张基本表的引用，一张虚表，查询语句执行的结果，不存储具体的数据（基本表数据发生了改变，视图也会跟着改变）；</p>
-<p>可以跟基本表一样，进行增删改查操作(ps:增删改操作有条件限制)；</p>
-<h4 id="视图的作用"><a href="#视图的作用" class="headerlink" title="视图的作用"></a>视图的作用</h4><p>方便操作，特别是查询操作，减少复杂的SQL语句，增强可读性；</p>
-<p>更加安全，数据库授权命令不能限定到特定行和特定列，但是通过合理创建视图，可以把权限限定到行列级别；</p>
-<h4 id="使用场合"><a href="#使用场合" class="headerlink" title="使用场合"></a>使用场合</h4><p>权限控制的时候，不希望用户访问表中某些含敏感信息的列，比如salary…</p>
-<p>关键信息来源于多个复杂关联表，可以创建视图提取我们需要的信息，简化操作；</p>
-<h4 id="视图实例1-创建视图及查询数据操作"><a href="#视图实例1-创建视图及查询数据操作" class="headerlink" title="视图实例1-创建视图及查询数据操作"></a>视图实例1-创建视图及查询数据操作</h4><p>现有三张表：用户(user)、课程(course)、用户课程中间表(user_course)，表结构及数据如下：</p>
-<p>表定义：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for `course`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`course`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`course`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`description`</span> <span class="built_in">varchar</span>(<span class="number">500</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Records of course</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'JAVA'</span>, <span class="string">'JAVA课程'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'C++'</span>, <span class="string">'C++课程'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'C语言'</span>, <span class="string">'C语言课程'</span>);</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for `user`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`account`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`others`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`others2`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Records of user</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'user1'</span>, <span class="string">'小陈'</span>, <span class="string">'美国'</span>, <span class="string">'1'</span>, <span class="string">'1'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'user2'</span>, <span class="string">'小张'</span>, <span class="string">'日本'</span>, <span class="string">'2'</span>, <span class="string">'2'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'user3'</span>, <span class="string">'小王'</span>, <span class="string">'中国'</span>, <span class="string">'3'</span>, <span class="string">'3'</span>);</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for `user_course`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user_course`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user_course`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`userid`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`courseid`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">7</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Records of user_course</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'1'</span>, <span class="string">'2'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'1'</span>, <span class="string">'3'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'2'</span>, <span class="string">'1'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'4'</span>, <span class="string">'2'</span>, <span class="string">'2'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'5'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'6'</span>, <span class="string">'3'</span>, <span class="string">'2'</span>);</div></pre></td></tr></table></figure></p>
-<p>这时，当我们想要查询小张上的所以课程相关信息的时候，需要这样写一条长长的SQL语句，如下：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">    <span class="string">`uc`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</div><div class="line">    <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span>,</div><div class="line">    <span class="string">`c`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`coursename`</span></div><div class="line"><span class="keyword">FROM</span></div><div class="line">    <span class="string">`user`</span> <span class="string">`u`</span></div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`user_course`</span> <span class="string">`uc`</span> <span class="keyword">ON</span> ((<span class="string">`u`</span>.<span class="string">`id`</span> = <span class="string">`uc`</span>.<span class="string">`userid`</span>))</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`course`</span> <span class="string">`c`</span> <span class="keyword">ON</span> ((<span class="string">`uc`</span>.<span class="string">`courseid`</span> = <span class="string">`c`</span>.<span class="string">`id`</span>))</div><div class="line"><span class="keyword">WHERE</span></div><div class="line">    u.<span class="string">`name`</span> = <span class="string">'小张'</span></div></pre></td></tr></table></figure></p>
-<p>但是我们可以通过视图简化操作，例如我们创建视图view_user_course如下：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- View structure for `view_user_course`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span></div><div class="line"><span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`view_user_course`</span>;</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> ALGORITHM = UNDEFINED </div><div class="line">DEFINER = <span class="string">`root`</span>@<span class="string">`localhost`</span> </div><div class="line"><span class="keyword">SQL</span> <span class="keyword">SECURITY</span> DEFINER </div><div class="line"><span class="keyword">VIEW</span> <span class="string">`view_user_course`</span> <span class="keyword">AS</span> (</div><div class="line">    <span class="keyword">SELECT</span></div><div class="line">        <span class="string">`uc`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</div><div class="line">        <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span>,</div><div class="line">        <span class="string">`c`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`coursename`</span></div><div class="line">    <span class="keyword">FROM</span></div><div class="line">        (</div><div class="line">            (</div><div class="line">                <span class="string">`user`</span> <span class="string">`u`</span></div><div class="line">                <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`user_course`</span> <span class="string">`uc`</span> <span class="keyword">ON</span> ((<span class="string">`u`</span>.<span class="string">`id`</span> = <span class="string">`uc`</span>.<span class="string">`userid`</span>))</div><div class="line">            )</div><div class="line">            <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`course`</span> <span class="string">`c`</span> <span class="keyword">ON</span> ((<span class="string">`uc`</span>.<span class="string">`courseid`</span> = <span class="string">`c`</span>.<span class="string">`id`</span>))</div><div class="line">        )</div><div class="line">);</div></pre></td></tr></table></figure></p>
-<p>几点说明（MySQL中的视图在标准SQL的基础之上做了扩展）：</p>
-<p>ALGORITHM=UNDEFINED：指定视图的处理算法；</p>
-<p>DEFINER=<code>root</code>@<code>localhost</code>：指定视图创建者；</p>
-<p>SQL SECURITY DEFINER：指定视图查询数据时的安全验证方式；</p>
-<p>创建好视图之后，我们可以直接用以下SQL语句在视图上查询小张上的所以课程相关信息，同样可以得到所需结果：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">    vuc.username,</div><div class="line">    vuc.coursename</div><div class="line"><span class="keyword">FROM</span></div><div class="line">    view_user_course vuc</div><div class="line"><span class="keyword">WHERE</span></div><div class="line">     vuc.username = <span class="string">'小张'</span></div></pre></td></tr></table></figure></p>
-<h4 id="视图实例2-增删改数据操作"><a href="#视图实例2-增删改数据操作" class="headerlink" title="视图实例2-增删改数据操作"></a>视图实例2-增删改数据操作</h4><p>继续，我们可以尝试在视图view_user_course上做增删改数据操作，如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> username=<span class="string">'test'</span>,coursename=<span class="string">'JAVASCRIPT'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span></div></pre></td></tr></table></figure>
-<p>遗憾的是操作失败，提示错误信息如下：</p>
-<p>[SQL] update view_user_course set username=’test’,coursename=’JAVASCRIPT’ where id=3</p>
-<p>[Err] 1393 - Can not modify more than one base table through a join view ‘demo.view_user_course’</p>
-<p>因为不能在一张由多张关联表连接而成的视图上做同时修改两张表的操作；</p>
-<p>那么哪些操作可以在视图上进行呢？</p>
-<p>视图与表是一对一关系情况：如果没有其它约束（如视图中没有的字段，在基本表中是必填字段情况），是可以进行增删改数据操作；</p>
-<p>如我们创建用户关键信息视图view_user_keyinfo，如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- View structure for `view_user_keyinfo`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span></div><div class="line"><span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`view_user_keyinfo`</span>;</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> ALGORITHM = UNDEFINED DEFINER = <span class="string">`root`</span>@<span class="string">`localhost`</span> <span class="keyword">SQL</span> <span class="keyword">SECURITY</span> DEFINER <span class="keyword">VIEW</span> <span class="string">`view_user_keyinfo`</span> <span class="keyword">AS</span> <span class="keyword">SELECT</span></div><div class="line">    <span class="string">`u`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</div><div class="line">    <span class="string">`u`</span>.<span class="string">`account`</span> <span class="keyword">AS</span> <span class="string">`account`</span>,</div><div class="line">    <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span></div><div class="line"><span class="keyword">FROM</span></div><div class="line">    <span class="string">`user`</span> <span class="string">`u`</span>;</div></pre></td></tr></table></figure>
-<p>进行增删改操作如下，操作成功（注意user表中的其它字段要允许为空，否则操作失败）：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> view_user_keyinfo (<span class="keyword">account</span>, username)</div><div class="line"><span class="keyword">VALUES</span></div><div class="line">    (<span class="string">'test1'</span>, <span class="string">'test1'</span>);</div></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span></div><div class="line"><span class="keyword">FROM</span></div><div class="line">    view_user_keyinfo</div><div class="line"><span class="keyword">WHERE</span></div><div class="line">    username = <span class="string">'test1'</span>;</div></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> view_user_keyinfo</div><div class="line"><span class="keyword">SET</span> username = <span class="string">'updateuser'</span></div><div class="line"><span class="keyword">WHERE</span></div><div class="line">    <span class="keyword">id</span> = <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>视图与表是一对多关系情况：如果只修改一张表的数据，且没有其它约束（如视图中没有的字段，在基本表中是必填字段情况），是可以进行改数据操作，如以下语句，操作成功；</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> coursename=<span class="string">'JAVA'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span>;</div><div class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> username=<span class="string">'test2'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span>;</div></pre></td></tr></table></figure>
-<p>以下操作失败：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> view_user_course <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span>;</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> view_user_course(username, coursename) <span class="keyword">VALUES</span>(<span class="string">'2'</span>,<span class="string">'3'</span>);</div></pre></td></tr></table></figure></p>
-<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><p>视图中的查询语句性能要调到最优；<br>修改操作时要小心，不经意间你已经修改了基本表里的多条数据；</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装笔记/安装phphub5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/安装笔记/安装phphub5/" itemprop="url">安装phphub5</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T19:05:19+08:00">
-                2017-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h4><p>Nginx 1.8+<br>PHP 5.6+<br>Mysql 5.7+<br>Redis 3.0+<br>Memcached 1.4+</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/summerblue/phphub5.git</div></pre></td></tr></table></figure>
-<p>安装扩展包依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer install</div></pre></td></tr></table></figure></p>
-<p>生成配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp .env.example .env</div></pre></td></tr></table></figure></p>
-<p>编辑env<br>选择数据库<br>数据库迁移<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">php artisan migrate</div><div class="line"></div><div class="line">php artisan db:seed</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装笔记/在mac上通过Homebrew安装redis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/安装笔记/在mac上通过Homebrew安装redis/" itemprop="url">在mac上通过Homebrew安装redis</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T14:10:57+08:00">
-                2017-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install redis</div></pre></td></tr></table></figure>
-<p>安装完成后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">To have launchd start redis now and restart at login:</div><div class="line">  brew services start redis</div><div class="line">  Or, if you don&apos;t want/need a background service you can just run:</div><div class="line">    redis-server /usr/local/etc/redis.conf</div><div class="line">    ==&gt; Summary</div><div class="line">    🍺  /usr/local/Cellar/redis/4.0.2: 11 files, 2.7MB, built in 23 seconds</div></pre></td></tr></table></figure></p>
-<p>执行提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew services start redis</div></pre></td></tr></table></figure></p>
-<p>完成后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Cloning into &apos;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services&apos;...</div><div class="line">remote: Counting objects: 12, done.</div><div class="line">remote: Compressing objects: 100% (8/8), done.</div><div class="line">remote: Total 12 (delta 0), reused 7 (delta 0), pack-reused 0</div><div class="line">Unpacking objects: 100% (12/12), done.</div><div class="line">Checking connectivity... done.</div><div class="line">Tapped 0 formulae (39 files, 53.5KB)</div><div class="line">==&gt; Successfully started `redis` (label: homebrew.mxcl.redis)</div></pre></td></tr></table></figure></p>
-<p>ok~redis 已经启动</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1597,12 +1629,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
             
 
             
