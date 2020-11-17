@@ -254,6 +254,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/游戏开发/(四)、“仙剑出鞘”---准心的周期运行/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/游戏开发/(四)、“仙剑出鞘”---准心的周期运行/" itemprop="url">(四)、“仙剑出鞘”---准心的周期运行</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-13T15:34:01+08:00">
+                2020-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/游戏开发/" itemprop="url" rel="index">
+                    <span itemprop="name">游戏开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@property</span>(cc.Node)</div><div class="line">mZhunXinHengTiao: cc.Node = <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="meta">@property</span>(cc.Node)</div><div class="line">mZhunXin: cc.Node = <span class="literal">null</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@property</span>(cc.Integer)</div><div class="line">time_speed:<span class="built_in">Number</span> = <span class="number">1</span>; <span class="comment">// 时间流逝倍率</span></div><div class="line"><span class="meta">@property</span>(cc.Integer)</div><div class="line">cycle_time:<span class="built_in">Number</span> = <span class="number">5</span>; <span class="comment">// 一个周期所用时间</span></div><div class="line"></div><div class="line">max_x:<span class="built_in">Number</span> = <span class="number">0</span>; <span class="comment">// 最大偏移</span></div><div class="line">total_move_time:<span class="built_in">Number</span> = <span class="number">0</span>; <span class="comment">// 总移动时间</span></div><div class="line">per_move_time:<span class="built_in">Number</span> = <span class="number">0</span>; <span class="comment">// 每帧移动时间</span></div><div class="line"></div><div class="line"></div><div class="line">start () &#123;</div><div class="line">    <span class="keyword">this</span>.max_x = <span class="keyword">this</span>.mZhunXinHengTiao.width/<span class="number">2</span></div><div class="line">    <span class="keyword">this</span>.total_move_time = <span class="number">0</span></div><div class="line">&#125;</div><div class="line">update (dt) &#123;</div><div class="line">    <span class="keyword">let</span> PI = <span class="number">3.14159</span>    </div><div class="line">    <span class="keyword">this</span>.per_move_time  = dt*<span class="built_in">Number</span>(<span class="keyword">this</span>.time_speed) <span class="comment">// 每帧移动时间</span></div><div class="line">    <span class="keyword">this</span>.total_move_time = <span class="built_in">Number</span>(<span class="keyword">this</span>.total_move_time) + <span class="built_in">Number</span>(<span class="keyword">this</span>.per_move_time) <span class="comment">// 总移动时间</span></div><div class="line">    <span class="keyword">this</span>.mZhunXin.x = <span class="built_in">Number</span>(<span class="keyword">this</span>.max_x)*<span class="built_in">Math</span>.sin(<span class="number">2</span>*PI*(<span class="built_in">Number</span>(<span class="keyword">this</span>.total_move_time)/<span class="built_in">Number</span>(<span class="keyword">this</span>.cycle_time))) <span class="comment">// 准心的偏移量</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="主要涉及的cocos函数"><a href="#主要涉及的cocos函数" class="headerlink" title="主要涉及的cocos函数"></a>主要涉及的cocos函数</h3><h4 id="1、Math-sin"><a href="#1、Math-sin" class="headerlink" title="1、Math.sin"></a>1、Math.sin</h4><p>正弦余弦</p>
+<h4 id="2、update（dt）"><a href="#2、update（dt）" class="headerlink" title="2、update（dt）"></a>2、update（dt）</h4><p>dt代表的每帧所用时间</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/游戏开发/(三)、“仙剑出鞘”---剑阵盘的控制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1054,17 +1198,63 @@
         
           
             <h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><pre class="mermaid">    graph LR
-    生活哥--> 首页
-    首页-->  首页搜索
 
-    生活哥--> 列表
-    列表--> 搜索
+商城配置 --> 商城信息
+商城配置 --> 会员配置
+商城配置 --> 分享配置
+商城配置 --> 积分配置
+商城配置 --> 提现配置
+商城配置 --> 订单配置
+商城配置 --> 第三方服务</pre>
+<pre class="mermaid">    graph LR
+店铺装修 --> 模板管理
+店铺装修 --> 设计师模板
+店铺装修 --> 自定义页面</pre>
+<pre class="mermaid">    graph LR
+订单中心 --> 订单管理
+订单中心 --> 售后/退货</pre>
+<pre class="mermaid">    graph LR
+商品管理 --> 商品分类-是否需要商家类目
+商品管理 --> 宝贝管理
+商品管理 --> 服务标签
+商品管理 --> 商品评价</pre>
+<pre class="mermaid">    graph LR
+活动中心 --> 营销活动
+活动中心 --> 拼团列表</pre>
+<pre class="mermaid">    graph LR
+应用 --> 积分商城
+应用 --> 小程序直播</pre>
 
-    生活哥--> 发布
-    发布--> d
+<pre class="mermaid">    graph LR
+配送设置 --> 发货模板
+配送设置 --> 快递公司</pre>
 
-    生活哥--> 发现
-    发现--> d</pre>
+<pre class="mermaid">    graph LR
+微信管理 --> 粉丝管理
+微信管理 --> 菜单管理
+微信管理 --> 自动回复
+微信管理 --> 素材管理</pre>
+<pre class="mermaid">    graph LR
+消息通知 --> 消息配置</pre>
+
+<pre class="mermaid">    graph LR
+ 其他 --> 用户提现
+ 其他 --> 意见反馈
+ 其他 --> 优惠券</pre>
+
+<pre class="mermaid">    graph LR
+ 门店管理 --> 门店列表</pre>
+
+<pre class="mermaid">    graph LR
+ 用户管理 --> 用户列表
+ 用户管理 --> 用户分组</pre>
+
+<pre class="mermaid">    graph LR
+ 资料管理 --> 富文本
+ 资料管理 --> 页面链接
+ 资料管理 --> 省市区数据
+ 资料管理 --> 常用问题
+ 资料管理 --> 虚拟用户</pre>
           
         
       
@@ -1478,128 +1668,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次服务器cpu了解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/跳坑记录/记一次服务器cpu了解/" itemprop="url">记一次服务器cpu了解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-30T09:33:57+08:00">
-                2019-05-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>自己写的php代码,执行mysql时,占用了很大的CPU,排查问题修改代码后,发现公司服务器已经没有这个问题,连续请求,mysql的内存不会增加。但是客户的机子上,连续请求还是会出现这个问题。</p>
-<p>经排查后，应该是客户服务器上的CPU处理速度跟不上,导致mysql执行效率跟不上,被阻塞住。导致CPU会因为请求数量的累加而上升。而公司服务器因为处理速度快,即使请求速不断累加,其CPU的值也上升很少。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>在linux 下怎么查看服务器的cpu和内存的硬件信息<br><a href="https://zhidao.baidu.com/question/155943069.html" target="_blank" rel="external">https://zhidao.baidu.com/question/155943069.html</a><br>intel xeon(skylake) platinum 8163 性能评测 阿里云第四代ECS服务器<br><a href="https://yq.aliyun.com/articles/622603" target="_blank" rel="external">https://yq.aliyun.com/articles/622603</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1654,7 +1722,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1665,7 +1733,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -1676,7 +1744,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
