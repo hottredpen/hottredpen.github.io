@@ -254,6 +254,537 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/mysql中的视图（转）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/学无止境/mysql中的视图（转）/" itemprop="url">mysql中的视图（转）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T09:22:05+08:00">
+                2017-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>上一个项目接手后，在转移数据庫的时候，数据庫的转移失败，那是我第一次接触mysql视图。但是那时没去研究啥是视图。</p>
+<p>今天查看另一个项目时，又发现了mysql视图的存在，需要充电一下了！</p>
+<h4 id="文章来源"><a href="#文章来源" class="headerlink" title="文章来源"></a>文章来源</h4><p>作者：风一样的码农<br>原文地址：<a href="http://www.cnblogs.com/chenpi/p/5133648.html" target="_blank" rel="external">http://www.cnblogs.com/chenpi/p/5133648.html</a></p>
+<h4 id="什么是视图"><a href="#什么是视图" class="headerlink" title="什么是视图"></a>什么是视图</h4><p>通俗的讲，视图就是一条SELECT语句执行后返回的结果集。所以我们在创建视图的时候，主要的工作就落在创建这条SQL查询语句上。</p>
+<h4 id="视图的特性"><a href="#视图的特性" class="headerlink" title="视图的特性"></a>视图的特性</h4><p>视图是对若干张基本表的引用，一张虚表，查询语句执行的结果，不存储具体的数据（基本表数据发生了改变，视图也会跟着改变）；</p>
+<p>可以跟基本表一样，进行增删改查操作(ps:增删改操作有条件限制)；</p>
+<h4 id="视图的作用"><a href="#视图的作用" class="headerlink" title="视图的作用"></a>视图的作用</h4><p>方便操作，特别是查询操作，减少复杂的SQL语句，增强可读性；</p>
+<p>更加安全，数据库授权命令不能限定到特定行和特定列，但是通过合理创建视图，可以把权限限定到行列级别；</p>
+<h4 id="使用场合"><a href="#使用场合" class="headerlink" title="使用场合"></a>使用场合</h4><p>权限控制的时候，不希望用户访问表中某些含敏感信息的列，比如salary…</p>
+<p>关键信息来源于多个复杂关联表，可以创建视图提取我们需要的信息，简化操作；</p>
+<h4 id="视图实例1-创建视图及查询数据操作"><a href="#视图实例1-创建视图及查询数据操作" class="headerlink" title="视图实例1-创建视图及查询数据操作"></a>视图实例1-创建视图及查询数据操作</h4><p>现有三张表：用户(user)、课程(course)、用户课程中间表(user_course)，表结构及数据如下：</p>
+<p>表定义：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for `course`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`course`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`course`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`description`</span> <span class="built_in">varchar</span>(<span class="number">500</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Records of course</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'JAVA'</span>, <span class="string">'JAVA课程'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'C++'</span>, <span class="string">'C++课程'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'C语言'</span>, <span class="string">'C语言课程'</span>);</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for `user`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`account`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`others`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`others2`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Records of user</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'user1'</span>, <span class="string">'小陈'</span>, <span class="string">'美国'</span>, <span class="string">'1'</span>, <span class="string">'1'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'user2'</span>, <span class="string">'小张'</span>, <span class="string">'日本'</span>, <span class="string">'2'</span>, <span class="string">'2'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'user3'</span>, <span class="string">'小王'</span>, <span class="string">'中国'</span>, <span class="string">'3'</span>, <span class="string">'3'</span>);</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for `user_course`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user_course`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user_course`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`userid`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`courseid`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">7</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Records of user_course</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'1'</span>, <span class="string">'1'</span>, <span class="string">'2'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'2'</span>, <span class="string">'1'</span>, <span class="string">'3'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'3'</span>, <span class="string">'2'</span>, <span class="string">'1'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'4'</span>, <span class="string">'2'</span>, <span class="string">'2'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'5'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">'6'</span>, <span class="string">'3'</span>, <span class="string">'2'</span>);</div></pre></td></tr></table></figure></p>
+<p>这时，当我们想要查询小张上的所以课程相关信息的时候，需要这样写一条长长的SQL语句，如下：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">    <span class="string">`uc`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</div><div class="line">    <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span>,</div><div class="line">    <span class="string">`c`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`coursename`</span></div><div class="line"><span class="keyword">FROM</span></div><div class="line">    <span class="string">`user`</span> <span class="string">`u`</span></div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`user_course`</span> <span class="string">`uc`</span> <span class="keyword">ON</span> ((<span class="string">`u`</span>.<span class="string">`id`</span> = <span class="string">`uc`</span>.<span class="string">`userid`</span>))</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`course`</span> <span class="string">`c`</span> <span class="keyword">ON</span> ((<span class="string">`uc`</span>.<span class="string">`courseid`</span> = <span class="string">`c`</span>.<span class="string">`id`</span>))</div><div class="line"><span class="keyword">WHERE</span></div><div class="line">    u.<span class="string">`name`</span> = <span class="string">'小张'</span></div></pre></td></tr></table></figure></p>
+<p>但是我们可以通过视图简化操作，例如我们创建视图view_user_course如下：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- View structure for `view_user_course`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span></div><div class="line"><span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`view_user_course`</span>;</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> ALGORITHM = UNDEFINED </div><div class="line">DEFINER = <span class="string">`root`</span>@<span class="string">`localhost`</span> </div><div class="line"><span class="keyword">SQL</span> <span class="keyword">SECURITY</span> DEFINER </div><div class="line"><span class="keyword">VIEW</span> <span class="string">`view_user_course`</span> <span class="keyword">AS</span> (</div><div class="line">    <span class="keyword">SELECT</span></div><div class="line">        <span class="string">`uc`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</div><div class="line">        <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span>,</div><div class="line">        <span class="string">`c`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`coursename`</span></div><div class="line">    <span class="keyword">FROM</span></div><div class="line">        (</div><div class="line">            (</div><div class="line">                <span class="string">`user`</span> <span class="string">`u`</span></div><div class="line">                <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`user_course`</span> <span class="string">`uc`</span> <span class="keyword">ON</span> ((<span class="string">`u`</span>.<span class="string">`id`</span> = <span class="string">`uc`</span>.<span class="string">`userid`</span>))</div><div class="line">            )</div><div class="line">            <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`course`</span> <span class="string">`c`</span> <span class="keyword">ON</span> ((<span class="string">`uc`</span>.<span class="string">`courseid`</span> = <span class="string">`c`</span>.<span class="string">`id`</span>))</div><div class="line">        )</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>几点说明（MySQL中的视图在标准SQL的基础之上做了扩展）：</p>
+<p>ALGORITHM=UNDEFINED：指定视图的处理算法；</p>
+<p>DEFINER=<code>root</code>@<code>localhost</code>：指定视图创建者；</p>
+<p>SQL SECURITY DEFINER：指定视图查询数据时的安全验证方式；</p>
+<p>创建好视图之后，我们可以直接用以下SQL语句在视图上查询小张上的所以课程相关信息，同样可以得到所需结果：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">    vuc.username,</div><div class="line">    vuc.coursename</div><div class="line"><span class="keyword">FROM</span></div><div class="line">    view_user_course vuc</div><div class="line"><span class="keyword">WHERE</span></div><div class="line">     vuc.username = <span class="string">'小张'</span></div></pre></td></tr></table></figure></p>
+<h4 id="视图实例2-增删改数据操作"><a href="#视图实例2-增删改数据操作" class="headerlink" title="视图实例2-增删改数据操作"></a>视图实例2-增删改数据操作</h4><p>继续，我们可以尝试在视图view_user_course上做增删改数据操作，如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> username=<span class="string">'test'</span>,coursename=<span class="string">'JAVASCRIPT'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span></div></pre></td></tr></table></figure>
+<p>遗憾的是操作失败，提示错误信息如下：</p>
+<p>[SQL] update view_user_course set username=’test’,coursename=’JAVASCRIPT’ where id=3</p>
+<p>[Err] 1393 - Can not modify more than one base table through a join view ‘demo.view_user_course’</p>
+<p>因为不能在一张由多张关联表连接而成的视图上做同时修改两张表的操作；</p>
+<p>那么哪些操作可以在视图上进行呢？</p>
+<p>视图与表是一对一关系情况：如果没有其它约束（如视图中没有的字段，在基本表中是必填字段情况），是可以进行增删改数据操作；</p>
+<p>如我们创建用户关键信息视图view_user_keyinfo，如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- View structure for `view_user_keyinfo`</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span></div><div class="line"><span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`view_user_keyinfo`</span>;</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> ALGORITHM = UNDEFINED DEFINER = <span class="string">`root`</span>@<span class="string">`localhost`</span> <span class="keyword">SQL</span> <span class="keyword">SECURITY</span> DEFINER <span class="keyword">VIEW</span> <span class="string">`view_user_keyinfo`</span> <span class="keyword">AS</span> <span class="keyword">SELECT</span></div><div class="line">    <span class="string">`u`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</div><div class="line">    <span class="string">`u`</span>.<span class="string">`account`</span> <span class="keyword">AS</span> <span class="string">`account`</span>,</div><div class="line">    <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span></div><div class="line"><span class="keyword">FROM</span></div><div class="line">    <span class="string">`user`</span> <span class="string">`u`</span>;</div></pre></td></tr></table></figure>
+<p>进行增删改操作如下，操作成功（注意user表中的其它字段要允许为空，否则操作失败）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> view_user_keyinfo (<span class="keyword">account</span>, username)</div><div class="line"><span class="keyword">VALUES</span></div><div class="line">    (<span class="string">'test1'</span>, <span class="string">'test1'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span></div><div class="line"><span class="keyword">FROM</span></div><div class="line">    view_user_keyinfo</div><div class="line"><span class="keyword">WHERE</span></div><div class="line">    username = <span class="string">'test1'</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> view_user_keyinfo</div><div class="line"><span class="keyword">SET</span> username = <span class="string">'updateuser'</span></div><div class="line"><span class="keyword">WHERE</span></div><div class="line">    <span class="keyword">id</span> = <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>视图与表是一对多关系情况：如果只修改一张表的数据，且没有其它约束（如视图中没有的字段，在基本表中是必填字段情况），是可以进行改数据操作，如以下语句，操作成功；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> coursename=<span class="string">'JAVA'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span>;</div><div class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> username=<span class="string">'test2'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span>;</div></pre></td></tr></table></figure>
+<p>以下操作失败：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> view_user_course <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span>;</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> view_user_course(username, coursename) <span class="keyword">VALUES</span>(<span class="string">'2'</span>,<span class="string">'3'</span>);</div></pre></td></tr></table></figure></p>
+<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><p>视图中的查询语句性能要调到最优；<br>修改操作时要小心，不经意间你已经修改了基本表里的多条数据；</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装笔记/安装phphub5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/安装笔记/安装phphub5/" itemprop="url">安装phphub5</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T19:05:19+08:00">
+                2017-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h4><p>Nginx 1.8+<br>PHP 5.6+<br>Mysql 5.7+<br>Redis 3.0+<br>Memcached 1.4+</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/summerblue/phphub5.git</div></pre></td></tr></table></figure>
+<p>安装扩展包依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer install</div></pre></td></tr></table></figure></p>
+<p>生成配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp .env.example .env</div></pre></td></tr></table></figure></p>
+<p>编辑env<br>选择数据库<br>数据库迁移<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">php artisan migrate</div><div class="line"></div><div class="line">php artisan db:seed</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装笔记/在mac上通过Homebrew安装redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/安装笔记/在mac上通过Homebrew安装redis/" itemprop="url">在mac上通过Homebrew安装redis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T14:10:57+08:00">
+                2017-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install redis</div></pre></td></tr></table></figure>
+<p>安装完成后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">To have launchd start redis now and restart at login:</div><div class="line">  brew services start redis</div><div class="line">  Or, if you don&apos;t want/need a background service you can just run:</div><div class="line">    redis-server /usr/local/etc/redis.conf</div><div class="line">    ==&gt; Summary</div><div class="line">    🍺  /usr/local/Cellar/redis/4.0.2: 11 files, 2.7MB, built in 23 seconds</div></pre></td></tr></table></figure></p>
+<p>执行提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew services start redis</div></pre></td></tr></table></figure></p>
+<p>完成后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Cloning into &apos;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services&apos;...</div><div class="line">remote: Counting objects: 12, done.</div><div class="line">remote: Compressing objects: 100% (8/8), done.</div><div class="line">remote: Total 12 (delta 0), reused 7 (delta 0), pack-reused 0</div><div class="line">Unpacking objects: 100% (12/12), done.</div><div class="line">Checking connectivity... done.</div><div class="line">Tapped 0 formulae (39 files, 53.5KB)</div><div class="line">==&gt; Successfully started `redis` (label: homebrew.mxcl.redis)</div></pre></td></tr></table></figure></p>
+<p>ok~redis 已经启动</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/安装笔记/mac下安装python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/安装笔记/mac下安装python/" itemprop="url">mac下安装python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T16:29:03+08:00">
+                2017-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>知乎上说，不要在mac自带的python里折腾，怕折腾蹦了影响系统</p>
+<p>用brew 安装，且自带pip</p>
+<h3 id="安装python2-amp-python3"><a href="#安装python2-amp-python3" class="headerlink" title="安装python2 &amp; python3"></a>安装python2 &amp; python3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python3</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">This formula installs a python2 executable to /usr/local/bin.</div><div class="line">If you wish to have this formula&apos;s python executable in your PATH then add</div><div class="line">the following to ~/.zshrc:</div><div class="line">  export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</div><div class="line"></div><div class="line">  Pip and setuptools have been installed. To update them</div><div class="line">    pip2 install --upgrade pip setuptools</div><div class="line"></div><div class="line">    You can install Python packages with</div><div class="line">      pip2 install &lt;package&gt;</div><div class="line"></div><div class="line">      They will install into the site-package directory</div><div class="line">        /usr/local/lib/python2.7/site-packages</div><div class="line"></div><div class="line">	See: https://docs.brew.sh/Homebrew-and-Python.html</div></pre></td></tr></table></figure>
+<h4 id="设置PATH"><a href="#设置PATH" class="headerlink" title="设置PATH"></a>设置PATH</h4><p>vim ~/.zshrc 加入<br><code>export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</code></p>
+<h4 id="验证PATH设置成功"><a href="#验证PATH设置成功" class="headerlink" title="验证PATH设置成功"></a>验证PATH设置成功</h4><p>输入<code>which python</code><br>如果显示 <code>/usr/local/opt/python/libexec/bin/python</code>则说明成功</p>
+<h4 id="如何使用系统的python"><a href="#如何使用系统的python" class="headerlink" title="如何使用系统的python"></a>如何使用系统的python</h4><p>如果有需要想使用一下系统的Python，输入<code>/usr/bin/python</code>即可</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/学无止境/python之禅/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -820,6 +1351,7 @@
 </tr>
 </tbody>
 </table>
+<h3 id="归纳图片"><a href="#归纳图片" class="headerlink" title="归纳图片"></a>归纳图片</h3><p><img src="http://image.jk-kj.com/mweb/2020/08/19/1597825362205420160712110935064.png" alt="20160712110935064"></p>
 
           
         
@@ -1059,7 +1591,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1070,7 +1602,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -1081,7 +1613,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
