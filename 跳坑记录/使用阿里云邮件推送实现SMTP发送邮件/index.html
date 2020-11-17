@@ -1,132 +1,55 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.jk-kj.com","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
 
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="邮件," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="简客-记忆" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="背景一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。 参考WordPress 使用阿里云邮件推送实现SMTP发送邮件https://www.wpdaxue.com/wordpress-aliyun-smtp.html 来自第三方的介绍6、切换到“发信地址”界面，新建发信地址：现在很多虚拟主机都是默认不支持 mail() 函数发送邮件的，不过一般都提供 smtp 发件支持。要找一个好">
-<meta name="keywords" content="邮件">
+  <meta name="description" content="背景一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。 参考WordPress 使用阿里云邮件推送实现SMTP发送邮件https:&#x2F;&#x2F;www.wpdaxue.com&#x2F;wordpress-aliyun-smtp.html 来自第三方的介绍6、切换到“发信地址”界面，新建发信地址：现在很多虚拟主机都是默认不支持 mail() 函数发送邮件的，不过一般都提供 smtp 发件支持。要找一个好">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用阿里云邮件推送实现SMTP发送邮件">
-<meta property="og:url" content="http://www.jk-kj.com/跳坑记录/使用阿里云邮件推送实现SMTP发送邮件/index.html">
+<meta property="og:url" content="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%82%AE%E4%BB%B6%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0SMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/index.html">
 <meta property="og:site_name" content="简客-记忆">
-<meta property="og:description" content="背景一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。 参考WordPress 使用阿里云邮件推送实现SMTP发送邮件https://www.wpdaxue.com/wordpress-aliyun-smtp.html 来自第三方的介绍6、切换到“发信地址”界面，新建发信地址：现在很多虚拟主机都是默认不支持 mail() 函数发送邮件的，不过一般都提供 smtp 发件支持。要找一个好">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-12T12:29:21.532Z">
+<meta property="og:description" content="背景一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。 参考WordPress 使用阿里云邮件推送实现SMTP发送邮件https:&#x2F;&#x2F;www.wpdaxue.com&#x2F;wordpress-aliyun-smtp.html 来自第三方的介绍6、切换到“发信地址”界面，新建发信地址：现在很多虚拟主机都是默认不支持 mail() 函数发送邮件的，不过一般都提供 smtp 发件支持。要找一个好">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-28T03:05:35.000Z">
+<meta property="article:modified_time" content="2020-11-12T12:29:21.532Z">
+<meta property="article:author" content="hottredpen">
+<meta property="article:tag" content="邮件">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用阿里云邮件推送实现SMTP发送邮件">
-<meta name="twitter:description" content="背景一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。 参考WordPress 使用阿里云邮件推送实现SMTP发送邮件https://www.wpdaxue.com/wordpress-aliyun-smtp.html 来自第三方的介绍6、切换到“发信地址”界面，新建发信地址：现在很多虚拟主机都是默认不支持 mail() 函数发送邮件的，不过一般都提供 smtp 发件支持。要找一个好">
 
 
+<link rel="canonical" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%82%AE%E4%BB%B6%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0SMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/">
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://www.jk-kj.com/跳坑记录/使用阿里云邮件推送实现SMTP发送邮件/"/>
-
-
-
-
 
   <title>使用阿里云邮件推送实现SMTP发送邮件 | 简客-记忆</title>
   
@@ -136,463 +59,366 @@
 
 
 
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
 
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">简客-记忆</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle">抽象的才是永恒的</p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">简客-记忆</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">抽象的才是永恒的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
-  
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A5%E8%87%AA%E7%AC%AC%E4%B8%89%E6%96%B9%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.</span> <span class="nav-text">来自第三方的介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.</span> <span class="nav-text">步骤</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hottredpen"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">hottredpen</p>
+  <div class="site-description" itemprop="description">找回指尖灵动的感觉</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/使用阿里云邮件推送实现SMTP发送邮件/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%82%AE%E4%BB%B6%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0SMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="找回指尖灵动的感觉">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="简客-记忆">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用阿里云邮件推送实现SMTP发送邮件
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">使用阿里云邮件推送实现SMTP发送邮件</h1>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T11:05:35+08:00">
-                2018-03-28
-              </time>
-            
+      <time title="创建时间：2018-03-28 11:05:35" itemprop="dateCreated datePublished" datetime="2018-03-28T11:05:35+08:00">2018-03-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>WordPress 使用阿里云邮件推送实现SMTP发送邮件<br><a href="https://www.wpdaxue.com/wordpress-aliyun-smtp.html" target="_blank" rel="external">https://www.wpdaxue.com/wordpress-aliyun-smtp.html</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>WordPress 使用阿里云邮件推送实现SMTP发送邮件<br><a target="_blank" rel="noopener" href="https://www.wpdaxue.com/wordpress-aliyun-smtp.html">https://www.wpdaxue.com/wordpress-aliyun-smtp.html</a></p>
 <h3 id="来自第三方的介绍"><a href="#来自第三方的介绍" class="headerlink" title="来自第三方的介绍"></a>来自第三方的介绍</h3><p>6、切换到“发信地址”界面，新建发信地址：<br>现在很多虚拟主机都是默认不支持 mail() 函数发送邮件的，不过一般都提供 smtp 发件支持。要找一个好用的 smtp 发送邮件方可不容易，不是发件数量限制太小，就是经常被判为垃圾邮件。所以倡萌此前一直在服务器搭建邮件发送功能，并想办法优化提高邮件可行度，避免被判为垃圾邮件，但效果还是不太理想。前些天，想起了阿里云的邮件推送服务，并进行了测试，发现真的不错哦。</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1、要了解和开通阿里云邮件推送服务，请查看：<a href="https://www.aliyun.com/product/directmail" target="_blank" rel="external">https://www.aliyun.com/product/directmail</a></p>
-<p>2、开通以后，在控制台进入“发信域名”新建域名<br>阿里云里提示最好用二级域名，但是service@email.jk-kj.com类似的邮箱还是会被某些插件不认可。最后我还是用上了service@jk-kj.com<br>3、添加域名后，点击配置，可以查看到域名配置信息<br>4、按照域名配置信息的提示，到你的域名解析后台添加3条解析记录：<br>5、添加完解析记录，回到阿里云后台，点击“验证”，返回“验证通过”说明解析生效：<br>6、切换到“发信地址”界面，新建发信地址：<br>7、选择刚才添加的发信域名，然后输入你要使用的账号，输入回信地址，选择发信类型：批量邮件<br>注：发信类型有：<br>触发邮件：注册确认、订单确认、密码重置、交易通知等<br>批量邮件：自有用户的产品促销、期刊订阅等<br>但是有些用户反馈，触发邮件方式不太稳定，你可以根据自己的实际选择吧，这里我选择的是批量邮件<br>8、添加完返回到界面，点击“验证回信地址”，然后会发送邮件到你的回信地址，到你的邮件箱点击邮件的链接验证通过即可，注意哦，验证邮件可能在垃圾箱里。然后设置SMTP 密码。<br>9、完成上面的步骤后，阿里云的邮件推送的SMTP发送功能就设置好了</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1、要了解和开通阿里云邮件推送服务，请查看：<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/directmail">https://www.aliyun.com/product/directmail</a></p>
+<p>2、开通以后，在控制台进入“发信域名”新建域名<br>阿里云里提示最好用二级域名，但是<a href="mailto:&#x73;&#x65;&#114;&#118;&#x69;&#x63;&#x65;&#64;&#101;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x6a;&#107;&#45;&#107;&#x6a;&#46;&#99;&#111;&#109;">&#x73;&#x65;&#114;&#118;&#x69;&#x63;&#x65;&#64;&#101;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x6a;&#107;&#45;&#107;&#x6a;&#46;&#99;&#111;&#109;</a>类似的邮箱还是会被某些插件不认可。最后我还是用上了<a href="mailto:&#x73;&#101;&#114;&#x76;&#105;&#99;&#x65;&#x40;&#106;&#107;&#x2d;&#x6b;&#x6a;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#101;&#114;&#x76;&#105;&#99;&#x65;&#x40;&#106;&#107;&#x2d;&#x6b;&#x6a;&#x2e;&#x63;&#x6f;&#x6d;</a><br>3、添加域名后，点击配置，可以查看到域名配置信息<br>4、按照域名配置信息的提示，到你的域名解析后台添加3条解析记录：<br>5、添加完解析记录，回到阿里云后台，点击“验证”，返回“验证通过”说明解析生效：<br>6、切换到“发信地址”界面，新建发信地址：<br>7、选择刚才添加的发信域名，然后输入你要使用的账号，输入回信地址，选择发信类型：批量邮件<br>注：发信类型有：<br>触发邮件：注册确认、订单确认、密码重置、交易通知等<br>批量邮件：自有用户的产品促销、期刊订阅等<br>但是有些用户反馈，触发邮件方式不太稳定，你可以根据自己的实际选择吧，这里我选择的是批量邮件<br>8、添加完返回到界面，点击“验证回信地址”，然后会发送邮件到你的回信地址，到你的邮件箱点击邮件的链接验证通过即可，注意哦，验证邮件可能在垃圾箱里。然后设置SMTP 密码。<br>9、完成上面的步骤后，阿里云的邮件推送的SMTP发送功能就设置好了</p>
 
-      
     </div>
-    
-    
-    
 
     
-
     
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/邮件/" rel="tag"># 邮件</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/学无止境/MySql按周，按月，按日分组统计数据/" rel="next" title="MySql按周，按月，按日分组统计数据">
-                <i class="fa fa-chevron-left"></i> MySql按周，按月，按日分组统计数据
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/%E9%82%AE%E4%BB%B6/" rel="tag"># 邮件</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/安装笔记/安装python3/" rel="prev" title="安装python3">
-                安装python3 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.png"
-                alt="hottredpen" />
-            
-              <p class="site-author-name" itemprop="name">hottredpen</p>
-              <p class="site-description motion-element" itemprop="description">从教育跨行到IT的开发者</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">48</span>
-                  <span class="site-state-item-name">日志</span>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/MySql%E6%8C%89%E5%91%A8%EF%BC%8C%E6%8C%89%E6%9C%88%EF%BC%8C%E6%8C%89%E6%97%A5%E5%88%86%E7%BB%84%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE/" rel="prev" title="MySql按周，按月，按日分组统计数据">
+                  <i class="fa fa-chevron-left"></i> MySql按周，按月，按日分组统计数据
                 </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">分类</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">47</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
             </div>
-          
-
-          <div class="links-of-author motion-element">
-            
+            <div class="post-nav-item">
+                <a href="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E5%AE%89%E8%A3%85python3/" rel="next" title="安装python3">
+                  安装python3 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#来自第三方的介绍"><span class="nav-number">3.</span> <span class="nav-text">来自第三方的介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">4.</span> <span class="nav-text">步骤</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">hottredpen</span>
-  <span class="author"><a href="http://www.beian.miit.gov.cn/" target="_blank">浙ICP备13033425号</a></span>
-  
+    </footer>
+  </article>
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
 
 
 
 
+      
 
-
-  <script src='https://unpkg.com/mermaid@8.8.3/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize("");
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-  </script>
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
   }
 </script>
 
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备13033425号 </a>
+      <img src="/images/beianicon.png" style="display: inline-block;">
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hottredpen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+  <script src='https://unpkg.com/mermaid@8.8.3/dist/mermaid.min.js'></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -609,104 +435,6 @@
 
 
 
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
 
   
 

@@ -1,132 +1,59 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.jk-kj.com","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
 
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="linux,scp,rsync,打包,断点续传," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="简客-记忆" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="背景服务器的内容转到另一台服务器 过程首先进行了打包1tar -cvf ./kod.tar ./kod3.1 打完包，发现有3个多G就尝试打包压缩1tar -zcvf ./kod2.tar.gz ./kod3.1 结果还是3G多，只压缩了200M 进行传输1scp ./kod.tar root@192.168.60.168:/tmp 开始有5M/s的速度，可慢慢地变得只有800K/s最气人的是在6">
-<meta name="keywords" content="linux,scp,rsync,打包,断点续传">
+  <meta name="description" content="背景服务器的内容转到另一台服务器 过程首先进行了打包1tar -cvf .&#x2F;kod.tar .&#x2F;kod3.1 打完包，发现有3个多G就尝试打包压缩 1tar -zcvf .&#x2F;kod2.tar.gz .&#x2F;kod3.1 结果还是3G多，只压缩了200M 进行传输1scp .&#x2F;kod.tar root@192.168.60.168:&#x2F;tmp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次linux上大文件的转移">
-<meta property="og:url" content="http://www.jk-kj.com/跳坑记录/记一次linux上大文件的转移/index.html">
+<meta property="og:url" content="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1linux%E4%B8%8A%E5%A4%A7%E6%96%87%E4%BB%B6%E7%9A%84%E8%BD%AC%E7%A7%BB/index.html">
 <meta property="og:site_name" content="简客-记忆">
-<meta property="og:description" content="背景服务器的内容转到另一台服务器 过程首先进行了打包1tar -cvf ./kod.tar ./kod3.1 打完包，发现有3个多G就尝试打包压缩1tar -zcvf ./kod2.tar.gz ./kod3.1 结果还是3G多，只压缩了200M 进行传输1scp ./kod.tar root@192.168.60.168:/tmp 开始有5M/s的速度，可慢慢地变得只有800K/s最气人的是在6">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-12T12:29:21.536Z">
+<meta property="og:description" content="背景服务器的内容转到另一台服务器 过程首先进行了打包1tar -cvf .&#x2F;kod.tar .&#x2F;kod3.1 打完包，发现有3个多G就尝试打包压缩 1tar -zcvf .&#x2F;kod2.tar.gz .&#x2F;kod3.1 结果还是3G多，只压缩了200M 进行传输1scp .&#x2F;kod.tar root@192.168.60.168:&#x2F;tmp">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-12-13T04:43:08.000Z">
+<meta property="article:modified_time" content="2020-11-12T12:29:21.536Z">
+<meta property="article:author" content="hottredpen">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="scp">
+<meta property="article:tag" content="rsync">
+<meta property="article:tag" content="打包">
+<meta property="article:tag" content="断点续传">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一次linux上大文件的转移">
-<meta name="twitter:description" content="背景服务器的内容转到另一台服务器 过程首先进行了打包1tar -cvf ./kod.tar ./kod3.1 打完包，发现有3个多G就尝试打包压缩1tar -zcvf ./kod2.tar.gz ./kod3.1 结果还是3G多，只压缩了200M 进行传输1scp ./kod.tar root@192.168.60.168:/tmp 开始有5M/s的速度，可慢慢地变得只有800K/s最气人的是在6">
 
 
+<link rel="canonical" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1linux%E4%B8%8A%E5%A4%A7%E6%96%87%E4%BB%B6%E7%9A%84%E8%BD%AC%E7%A7%BB/">
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://www.jk-kj.com/跳坑记录/记一次linux上大文件的转移/"/>
-
-
-
-
 
   <title>记一次linux上大文件的转移 | 简客-记忆</title>
   
@@ -136,497 +63,416 @@
 
 
 
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
 
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">简客-记忆</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle">抽象的才是永恒的</p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">简客-记忆</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">抽象的才是永恒的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
-  
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E8%BF%9B%E8%A1%8C%E4%BA%86%E6%89%93%E5%8C%85"><span class="nav-number">2.1.</span> <span class="nav-text">首先进行了打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E8%A1%8C%E4%BC%A0%E8%BE%93"><span class="nav-number">2.2.</span> <span class="nav-text">进行传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E6%9F%A5%E9%97%AE%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">排查问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"><span class="nav-number">2.4.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B"><span class="nav-number">2.5.</span> <span class="nav-text">解压</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">2.6.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">2.7.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#400G%E4%B8%AA%E6%96%87%E4%BB%B6%E6%89%93%E5%8C%85"><span class="nav-number">2.8.</span> <span class="nav-text">400G个文件打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#400G%E7%9A%84%E4%BC%A0%E8%BE%93"><span class="nav-number">2.9.</span> <span class="nav-text">400G的传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rsync%E4%B8%8Escp%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="nav-number">2.10.</span> <span class="nav-text">rsync与scp的差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#400G%E7%9A%84%E8%A7%A3%E5%8E%8B"><span class="nav-number">2.11.</span> <span class="nav-text">400G的解压</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%EF%BC%8C%E6%8B%86%E5%88%86%E6%89%93%E5%8C%85%EF%BC%88%E5%A4%B1%E8%B4%A5%E4%BA%86%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">其他，拆分打包（失败了）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hottredpen"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">hottredpen</p>
+  <div class="site-description" itemprop="description">找回指尖灵动的感觉</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/跳坑记录/记一次linux上大文件的转移/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1linux%E4%B8%8A%E5%A4%A7%E6%96%87%E4%BB%B6%E7%9A%84%E8%BD%AC%E7%A7%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="找回指尖灵动的感觉">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="简客-记忆">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          记一次linux上大文件的转移
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">记一次linux上大文件的转移</h1>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T12:43:08+08:00">
-                2017-12-13
-              </time>
-            
+      <time title="创建时间：2017-12-13 12:43:08" itemprop="dateCreated datePublished" datetime="2017-12-13T12:43:08+08:00">2017-12-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>服务器的内容转到另一台服务器</p>
-<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="首先进行了打包"><a href="#首先进行了打包" class="headerlink" title="首先进行了打包"></a>首先进行了打包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -cvf ./kod.tar ./kod3.1</div></pre></td></tr></table></figure>
-<p>打完包，发现有3个多G<br>就尝试打包压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zcvf ./kod2.tar.gz ./kod3.1</div></pre></td></tr></table></figure></p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="首先进行了打包"><a href="#首先进行了打包" class="headerlink" title="首先进行了打包"></a>首先进行了打包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf .&#x2F;kod.tar .&#x2F;kod3.1</span><br></pre></td></tr></table></figure>
+<p>打完包，发现有3个多G<br>就尝试打包压缩</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvf .&#x2F;kod2.tar.gz .&#x2F;kod3.1</span><br></pre></td></tr></table></figure>
 <p>结果还是3G多，只压缩了200M</p>
-<h4 id="进行传输"><a href="#进行传输" class="headerlink" title="进行传输"></a>进行传输</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure>
+<h4 id="进行传输"><a href="#进行传输" class="headerlink" title="进行传输"></a>进行传输</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp .&#x2F;kod.tar root@192.168.60.168:&#x2F;tmp</span><br></pre></td></tr></table></figure>
+
 <p>开始有5M/s的速度，可慢慢地变得只有800K/s<br>最气人的是在60%时的时候居然出现了<code>stalled</code></p>
-<h4 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">When transferring large files(for example mksysb images) using scp through a firewall, the scp connection stalls.</div><div class="line">Cause:</div><div class="line"></div><div class="line">The reason for scp to stall, is because scp greedily grabs as much bandwith of the network as possible when it transfers files, any delay caused by the network switch of the firewall can easily make the TCP connection stalled.</div><div class="line">Solution:</div><div class="line"></div><div class="line">There’s a solution to this problem: Add “-l 8192″ to the scp command.</div><div class="line"></div><div class="line">Adding the option “-l 8192″ limits the scp session bandwith up to 8192 Kbit/second, which seems to work safe and fast enough (up to 1 MB/second):</div></pre></td></tr></table></figure>
-<h4 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h4><p>在原有的命令行上加上了<code>-l 8192</code>可以维持在1M/s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div></pre></td></tr></table></figure></p>
+<h4 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">When transferring large files(for example mksysb images) using scp through a firewall, the scp connection stalls.</span><br><span class="line">Cause:</span><br><span class="line"></span><br><span class="line">The reason for scp to stall, is because scp greedily grabs as much bandwith of the network as possible when it transfers files, any delay caused by the network switch of the firewall can easily make the TCP connection stalled.</span><br><span class="line">Solution:</span><br><span class="line"></span><br><span class="line">There’s a solution to this problem: Add “-l 8192″ to the scp command.</span><br><span class="line"></span><br><span class="line">Adding the option “-l 8192″ limits the scp session bandwith up to 8192 Kbit&#x2F;second, which seems to work safe and fast enough (up to 1 MB&#x2F;second):</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h4><p>在原有的命令行上加上了<code>-l 8192</code>可以维持在1M/s</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -l 8192 .&#x2F;kod.tar root@192.168.60.168:&#x2F;tmp</span><br></pre></td></tr></table></figure>
+
 <p>开始速度也有6M/s，后面速度一直维持在1M/s，中间无<code>stalled</code></p>
 <p>如果是<code>-l 16000</code>则维持在2M/s，以此类推</p>
-<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -xvf kod.tar</div></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf kod.tar.gz</div></pre></td></tr></table></figure></p>
+<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf kod.tar</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf kod.tar.gz</span><br></pre></td></tr></table></figure>
+
+
 <h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>因为转移的文件有很多，而且都很大，我们不可能一直开者等待它传完，这就需要后台运行</p>
-<p>先输入密码进行传输<br>然后用<code>ctrl+z</code>,将当前进程挂起到后台暂停运行，执行一些别的操作<br>然后用 <code>bg</code> 来将挂起的进程放在后台(也可以用 <code>fg</code> 来将挂起的进程重新放回前台)继续运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@pvcent107 build]# scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">---------ctrl+zx</div><div class="line">[1]+  Stopped                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">[root@pvcent107 build]# bg %1</div><div class="line">[1]+ scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# jobs</div><div class="line">[1]+  Running                 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp &amp;</div><div class="line">[root@pvcent107 build]# disown -h %1</div><div class="line">[root@pvcent107 build]# ps -ef |grep kod</div><div class="line">root      5790  5577  1 10:04 pts/3    00:00:00 scp -l 8192 ./kod.tar root@192.168.60.168:/tmp</div><div class="line">root      5824  5577  0 10:05 pts/3    00:00:00 grep kod</div></pre></td></tr></table></figure></p>
+<p>先输入密码进行传输<br>然后用<code>ctrl+z</code>,将当前进程挂起到后台暂停运行，执行一些别的操作<br>然后用 <code>bg</code> 来将挂起的进程放在后台(也可以用 <code>fg</code> 来将挂起的进程重新放回前台)继续运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@pvcent107 build]# scp -l 8192 .&#x2F;kod.tar root@192.168.60.168:&#x2F;tmp</span><br><span class="line">---------ctrl+zx</span><br><span class="line">[1]+  Stopped                 scp -l 8192 .&#x2F;kod.tar root@192.168.60.168:&#x2F;tmp</span><br><span class="line">[root@pvcent107 build]# bg %1</span><br><span class="line">[1]+ scp -l 8192 .&#x2F;kod.tar root@192.168.60.168:&#x2F;tmp &amp;</span><br><span class="line">[root@pvcent107 build]# jobs</span><br><span class="line">[1]+  Running                 scp -l 8192 .&#x2F;kod.tar root@192.168.60.168:&#x2F;tmp &amp;</span><br><span class="line">[root@pvcent107 build]# disown -h %1</span><br><span class="line">[root@pvcent107 build]# ps -ef |grep kod</span><br><span class="line">root      5790  5577  1 10:04 pts&#x2F;3    00:00:00 scp -l 8192 .&#x2F;kod.tar root@192.168.60.168:&#x2F;tmp</span><br><span class="line">root      5824  5577  0 10:05 pts&#x2F;3    00:00:00 grep kod</span><br></pre></td></tr></table></figure>
+
 <h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>有时jobs会有多个，注意自己的文件大小是否正常，我就别坑了1次，没传输完成（完成了一个jobs），以为完成了就进行解压缩了。</p>
 <h4 id="400G个文件打包"><a href="#400G个文件打包" class="headerlink" title="400G个文件打包"></a>400G个文件打包</h4><p>之前想着。。。400G的文件需要切分-，-！可是用了切分时，却始终没有获取完整的包，好几次我都相信我的总包才80G</p>
-<p>最后用了整包打包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf kod.tar.bz2 ./kod &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure></p>
+<p>最后用了整包打包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup tar -cjf kod.tar.bz2 .&#x2F;kod &gt;&#x2F;dev&#x2F;null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
 <p>打完包发现才有400G+…….我的天，整整打包了一天一夜</p>
-<h4 id="400G的传输"><a href="#400G的传输" class="headerlink" title="400G的传输"></a>400G的传输</h4><p>scp 已经无法满足，因为万一中间来个服务器重启，或者其他因素那over了，那流量可就白白流失了<br>最后采用了<code>rsync</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.14.156:/data/</div></pre></td></tr></table></figure></p>
-<p>然后输入密码<br>再ctrl+z 暂停<br>再bg %1  放入后台（假设当前后台允许索引为1）<br>然后用jobs查看<br>如果你当前退出过当前终端，jobs已经无法查看到后台运行的进程，只能用ps<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef |grep kod</div></pre></td></tr></table></figure></p>
-<p>会有如下的显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root     175100 174758 47 08:10 pts/2    00:15:13 rsync -P --rsh=ssh ./kod_all.tar.bz2 112.13.91.176:/data/</div><div class="line">root     183245 174758  0 08:42 pts/2    00:00:00 grep --color=auto kod</div></pre></td></tr></table></figure></p>
+<h4 id="400G的传输"><a href="#400G的传输" class="headerlink" title="400G的传输"></a>400G的传输</h4><p>scp 已经无法满足，因为万一中间来个服务器重启，或者其他因素那over了，那流量可就白白流失了<br>最后采用了<code>rsync</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -P --rsh&#x3D;ssh .&#x2F;kod_all.tar.bz2 112.13.14.156:&#x2F;data&#x2F; </span><br></pre></td></tr></table></figure>
+<p>然后输入密码<br>再ctrl+z 暂停<br>再bg %1  放入后台（假设当前后台允许索引为1）<br>然后用jobs查看<br>如果你当前退出过当前终端，jobs已经无法查看到后台运行的进程，只能用ps</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef |grep kod</span><br></pre></td></tr></table></figure>
+<p>会有如下的显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root     175100 174758 47 08:10 pts&#x2F;2    00:15:13 rsync -P --rsh&#x3D;ssh .&#x2F;kod_all.tar.bz2 112.13.91.176:&#x2F;data&#x2F;</span><br><span class="line">root     183245 174758  0 08:42 pts&#x2F;2    00:00:00 grep --color&#x3D;auto kod</span><br></pre></td></tr></table></figure>
+
 <p>其中<code>00:15:13</code>指本次断点续传进行的时间。<br>当传输了200G以后，继续进行断点续传，这个时间会有好长一段时间是不更新的（作者认为它在寻找上一次的断点，因为文件大了寻找的时间会久一点），如果你这个时候马上关闭总端，很有可能本次传输就没执行，我就被坑了一次，一觉醒来一点就没传。。。</p>
-<h4 id="rsync与scp的差异"><a href="#rsync与scp的差异" class="headerlink" title="rsync与scp的差异"></a>rsync与scp的差异</h4><p>用scp时，这边传多少，另一个服务器就显示文件实时大小<br>而用rsync时，另一个服务器不实时显示文件大小，只有将这边的进程暂时kill掉，才能知道到底传了多少（可能我这个办法比较粗暴）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -9 175100</div></pre></td></tr></table></figure></p>
-<h4 id="400G的解压"><a href="#400G的解压" class="headerlink" title="400G的解压"></a>400G的解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -xjf ./kod_all.tar.bz2 &gt; /dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+<h4 id="rsync与scp的差异"><a href="#rsync与scp的差异" class="headerlink" title="rsync与scp的差异"></a>rsync与scp的差异</h4><p>用scp时，这边传多少，另一个服务器就显示文件实时大小<br>而用rsync时，另一个服务器不实时显示文件大小，只有将这边的进程暂时kill掉，才能知道到底传了多少（可能我这个办法比较粗暴）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 175100</span><br></pre></td></tr></table></figure>
+
+<h4 id="400G的解压"><a href="#400G的解压" class="headerlink" title="400G的解压"></a>400G的解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup tar -xjf .&#x2F;kod_all.tar.bz2 &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
 <p>其他查看操作同上面</p>
-<h3 id="其他，拆分打包（失败了）"><a href="#其他，拆分打包（失败了）" class="headerlink" title="其他，拆分打包（失败了）"></a>其他，拆分打包（失败了）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup tar -cjf - kod/ |split -b 10000m - kod.tar.bz2. &gt;/dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
-<p>它会生成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.aa</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ab</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ac</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ad</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ae</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.af</div><div class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ag</div></pre></td></tr></table></figure></p>
-<p>后面默认2位，字符逐渐增加<br>它的解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup cat pinkephp.tar.bz2.* | tar -xj &amp;</div></pre></td></tr></table></figure></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://linux.cn/article-7170-1.html" target="_blank" rel="external">https://linux.cn/article-7170-1.html</a></p>
-<p><a href="http://blog.csdn.net/tdstds/article/details/24870535" target="_blank" rel="external">http://blog.csdn.net/tdstds/article/details/24870535</a></p>
-<p><a href="http://blog.csdn.net/eroswang/article/details/5555415/" target="_blank" rel="external">http://blog.csdn.net/eroswang/article/details/5555415/</a></p>
+<h3 id="其他，拆分打包（失败了）"><a href="#其他，拆分打包（失败了）" class="headerlink" title="其他，拆分打包（失败了）"></a>其他，拆分打包（失败了）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup tar -cjf - kod&#x2F; |split -b 10000m - kod.tar.bz2. &gt;&#x2F;dev&#x2F;null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>它会生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.aa</span><br><span class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ab</span><br><span class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ac</span><br><span class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ad</span><br><span class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ae</span><br><span class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.af</span><br><span class="line">-rw-r--r-- 1 Administrator 197121   5242880 十二 27 08:39 kod.tar.bz2.ag</span><br></pre></td></tr></table></figure>
+<p>后面默认2位，字符逐渐增加<br>它的解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup cat pinkephp.tar.bz2.* | tar -xj &amp;</span><br></pre></td></tr></table></figure>
 
-      
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://linux.cn/article-7170-1.html">https://linux.cn/article-7170-1.html</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/tdstds/article/details/24870535">http://blog.csdn.net/tdstds/article/details/24870535</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/eroswang/article/details/5555415/">http://blog.csdn.net/eroswang/article/details/5555415/</a></p>
+
     </div>
-    
-    
-    
 
     
-
     
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/linux/" rel="tag"># linux</a>
-          
-            <a href="/tags/scp/" rel="tag"># scp</a>
-          
-            <a href="/tags/rsync/" rel="tag"># rsync</a>
-          
-            <a href="/tags/打包/" rel="tag"># 打包</a>
-          
-            <a href="/tags/断点续传/" rel="tag"># 断点续传</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/跳坑记录/记一次网站字体采用思源字体/" rel="next" title="记一次网站字体采用思源字体">
-                <i class="fa fa-chevron-left"></i> 记一次网站字体采用思源字体
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/scp/" rel="tag"># scp</a>
+              <a href="/tags/rsync/" rel="tag"># rsync</a>
+              <a href="/tags/%E6%89%93%E5%8C%85/" rel="tag"># 打包</a>
+              <a href="/tags/%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/" rel="tag"># 断点续传</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/学无止境/如何提取谷歌chrome浏览器的crx插件/" rel="prev" title="如何提取谷歌chrome浏览器的crx插件">
-                如何提取谷歌chrome浏览器的crx插件 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.png"
-                alt="hottredpen" />
-            
-              <p class="site-author-name" itemprop="name">hottredpen</p>
-              <p class="site-description motion-element" itemprop="description">从教育跨行到IT的开发者</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">48</span>
-                  <span class="site-state-item-name">日志</span>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E7%AB%99%E5%AD%97%E4%BD%93%E9%87%87%E7%94%A8%E6%80%9D%E6%BA%90%E5%AD%97%E4%BD%93/" rel="prev" title="记一次网站字体采用思源字体">
+                  <i class="fa fa-chevron-left"></i> 记一次网站字体采用思源字体
                 </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">分类</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">47</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
             </div>
-          
-
-          <div class="links-of-author motion-element">
-            
+            <div class="post-nav-item">
+                <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8F%96%E8%B0%B7%E6%AD%8Cchrome%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84crx%E6%8F%92%E4%BB%B6/" rel="next" title="如何提取谷歌chrome浏览器的crx插件">
+                  如何提取谷歌chrome浏览器的crx插件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先进行了打包"><span class="nav-number">2.1.</span> <span class="nav-text">首先进行了打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进行传输"><span class="nav-number">2.2.</span> <span class="nav-text">进行传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排查问题"><span class="nav-number">2.3.</span> <span class="nav-text">排查问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决问题"><span class="nav-number">2.4.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解压"><span class="nav-number">2.5.</span> <span class="nav-text">解压</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补充"><span class="nav-number">2.6.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意"><span class="nav-number">2.7.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#400G个文件打包"><span class="nav-number">2.8.</span> <span class="nav-text">400G个文件打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#400G的传输"><span class="nav-number">2.9.</span> <span class="nav-text">400G的传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rsync与scp的差异"><span class="nav-number">2.10.</span> <span class="nav-text">rsync与scp的差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#400G的解压"><span class="nav-number">2.11.</span> <span class="nav-text">400G的解压</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他，拆分打包（失败了）"><span class="nav-number">3.</span> <span class="nav-text">其他，拆分打包（失败了）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">hottredpen</span>
-  <span class="author"><a href="http://www.beian.miit.gov.cn/" target="_blank">浙ICP备13033425号</a></span>
-  
+    </footer>
+  </article>
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
 
 
 
 
+      
 
-
-  <script src='https://unpkg.com/mermaid@8.8.3/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize("");
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-  </script>
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
   }
 </script>
 
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备13033425号 </a>
+      <img src="/images/beianicon.png" style="display: inline-block;">
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hottredpen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+  <script src='https://unpkg.com/mermaid@8.8.3/dist/mermaid.min.js'></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -643,104 +489,6 @@
 
 
 
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
 
   
 
