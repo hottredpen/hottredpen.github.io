@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jk-kj.com/"/>
-  <updated>2020-11-17T04:06:53.427Z</updated>
+  <updated>2020-11-17T02:42:43.907Z</updated>
   <id>http://www.jk-kj.com/</id>
   
   <author>
@@ -15,39 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>testss</title>
-    <link href="http://www.jk-kj.com/%E9%9A%8F%E7%AC%94/testss/"/>
-    <id>http://www.jk-kj.com/随笔/testss/</id>
-    <published>2020-11-17T04:06:22.000Z</published>
-    <updated>2020-11-17T04:06:53.427Z</updated>
-    
-    <content type="html"><![CDATA[<pre class="mermaid">    graph LR商城配置 --> 商城信息商城配置 --> 会员配置商城配置 --> 分享配置商城配置 --> 积分配置商城配置 --> 提现配置商城配置 --> 订单配置商城配置 --> 第三方服务</pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;pre class=&quot;mermaid&quot;&gt;    graph LR
-
-商城配置 --&gt; 商城信息
-商城配置 --&gt; 会员配置
-商城配置 --&gt; 分享配置
-商城配置 --&gt; 积分配置
-商城配置 --&gt; 提现配置
-商城配置 --&gt; 订单配置
-商城配置 --&gt; 第三方服务&lt;/pre&gt;
-      
-    
-    </summary>
-    
-      <category term="随笔" scheme="http://www.jk-kj.com/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="ssss" scheme="http://www.jk-kj.com/tags/ssss/"/>
-    
-  </entry>
   
   <entry>
     <title>Charles修改返回值</title>
@@ -364,37 +331,6 @@
   
   <entry>
     <title>xxx的商家后台目录</title>
-    <link href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/"/>
-    <id>http://www.jk-kj.com/项目/xxx的总后台目录/</id>
-    <published>2020-11-12T04:57:10.000Z</published>
-    <updated>2020-11-12T12:29:21.555Z</updated>
-    
-    <content type="html"><![CDATA[<pre class="mermaid">    graph LR    商品管理 --> 商品列表    商品管理 --> 类目管理    商品管理 --> 类目属性    商品管理 --> 商家类目属性    商品管理 --> 品牌管理    订单监管 --> 订单列表    订单监管 --> 订单列表    订单监管 --> 订单列表</pre><pre class="mermaid">    graph LR   物流管理 --> 发货   发货 --> 全部1   发货 --> 待发货   发货 --> 发货中订单   物流管理 --> 运费模板   运费模板--> 全部2   运费模板--> 正常   运费模板--> 隐藏</pre><pre class="mermaid">    graph LR    宝贝管理 --> 发布宝贝    宝贝管理 --> 出售中的宝贝    宝贝管理 --> 仓库中的宝贝</pre><pre class="mermaid">    graph LR    店铺管理 --> 图片空间    店铺管理 --> 店铺装修    店铺管理 --> 类目管理    店铺管理 --> 品牌管理    店铺管理 --> 店铺资料    店铺管理 --> 店铺配置</pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;pre class=&quot;mermaid&quot;&gt;    graph LR
-    商品管理 --&gt; 商品列表
-    商品管理 --&gt; 类目管理
-    商品管理 --&gt; 类目属性
-    商品管理 --&gt; 商家类目属性
-    商品管理 --&gt; 品牌管理
-
-
-    订单监管 --&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="-项目" scheme="http://www.jk-kj.com/tags/%E9%A1%B9%E7%9B%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>xxx的商家后台目录</title>
     <link href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E5%95%86%E5%AE%B6%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/"/>
     <id>http://www.jk-kj.com/项目/xxx的商家后台目录/</id>
     <published>2020-11-12T04:57:10.000Z</published>
@@ -415,6 +351,37 @@
     订单管理 --&gt; 待收货
     订单管理 --&gt; 待评论
    
+      
+    
+    </summary>
+    
+    
+      <category term="-项目" scheme="http://www.jk-kj.com/tags/%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xxx的商家后台目录</title>
+    <link href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/"/>
+    <id>http://www.jk-kj.com/项目/xxx的总后台目录/</id>
+    <published>2020-11-12T04:57:10.000Z</published>
+    <updated>2020-11-12T12:29:21.555Z</updated>
+    
+    <content type="html"><![CDATA[<pre class="mermaid">    graph LR    商品管理 --> 商品列表    商品管理 --> 类目管理    商品管理 --> 类目属性    商品管理 --> 商家类目属性    商品管理 --> 品牌管理    订单监管 --> 订单列表    订单监管 --> 订单列表    订单监管 --> 订单列表</pre><pre class="mermaid">    graph LR   物流管理 --> 发货   发货 --> 全部1   发货 --> 待发货   发货 --> 发货中订单   物流管理 --> 运费模板   运费模板--> 全部2   运费模板--> 正常   运费模板--> 隐藏</pre><pre class="mermaid">    graph LR    宝贝管理 --> 发布宝贝    宝贝管理 --> 出售中的宝贝    宝贝管理 --> 仓库中的宝贝</pre><pre class="mermaid">    graph LR    店铺管理 --> 图片空间    店铺管理 --> 店铺装修    店铺管理 --> 类目管理    店铺管理 --> 品牌管理    店铺管理 --> 店铺资料    店铺管理 --> 店铺配置</pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre class=&quot;mermaid&quot;&gt;    graph LR
+    商品管理 --&gt; 商品列表
+    商品管理 --&gt; 类目管理
+    商品管理 --&gt; 类目属性
+    商品管理 --&gt; 商家类目属性
+    商品管理 --&gt; 品牌管理
+
+
+    订单监管 --&gt;
       
     
     </summary>
@@ -475,9 +442,9 @@
     <link href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/%E7%94%9F%E6%B4%BB%E5%93%A5-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/"/>
     <id>http://www.jk-kj.com/项目/生活哥-项目结构/</id>
     <published>2020-11-12T02:38:10.000Z</published>
-    <updated>2020-11-17T03:24:16.497Z</updated>
+    <updated>2020-11-17T05:18:04.969Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><pre class="mermaid">    graph LR商城配置 --> 商城信息商城配置 --> 会员配置商城配置 --> 分享配置商城配置 --> 积分配置商城配置 --> 提现配置商城配置 --> 订单配置商城配置 --> 第三方服务</pre><pre class="mermaid">    graph LR店铺装修 --> 模板管理店铺装修 --> 设计师模板店铺装修 --> 自定义页面</pre><pre class="mermaid">    graph LR订单中心 --> 订单管理订单中心 --> 售后/退货</pre><pre class="mermaid">    graph LR商品管理 --> 商品分类-是否需要商家类目商品管理 --> 宝贝管理商品管理 --> 服务标签商品管理 --> 商品评价</pre><pre class="mermaid">    graph LR活动中心 --> 营销活动活动中心 --> 拼团列表</pre><pre class="mermaid">    graph LR应用 --> 积分商城应用 --> 小程序直播</pre><pre class="mermaid">    graph LR配送设置 --> 发货模板配送设置 --> 快递公司</pre><pre class="mermaid">    graph LR微信管理 --> 粉丝管理微信管理 --> 菜单管理微信管理 --> 自动回复微信管理 --> 素材管理</pre><pre class="mermaid">    graph LR消息通知 --> 消息配置</pre><pre class="mermaid">    graph LR 其他 --> 用户提现 其他 --> 意见反馈 其他 --> 优惠券</pre><pre class="mermaid">    graph LR 门店管理 --> 门店列表</pre><pre class="mermaid">    graph LR 用户管理 --> 用户列表 用户管理 --> 用户分组</pre><pre class="mermaid">    graph LR 资料管理 --> 富文本 资料管理 --> 页面链接 资料管理 --> 省市区数据 资料管理 --> 常用问题 资料管理 --> 虚拟用户</pre>]]></content>
+    <content type="html"><![CDATA[<h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><pre class="mermaid">    graph LR商城配置 --> 商城信息商城配置 --> 会员配置商城配置 --> 分享配置商城配置 --> 积分配置商城配置 --> 提现配置商城配置 --> 订单配置商城配置 --> 第三方服务</pre><pre class="mermaid">    graph LR店铺装修 --> 模板管理店铺装修 --> 设计师模板店铺装修 --> 自定义页面</pre><pre class="mermaid">    graph LR订单中心 --> 订单管理订单中心 --> 售后/退货</pre><pre class="mermaid">    graph LR商品管理 --> 商品分类-是否需要商家类目商品管理 --> 宝贝管理商品管理 --> 服务标签商品管理 --> 商品评价</pre><pre class="mermaid">    graph LR活动中心 --> 营销活动活动中心 --> 拼团列表</pre><pre class="mermaid">    graph LR应用 --> 积分商城应用 --> 小程序直播</pre><pre class="mermaid">    graph LR配送设置 --> 发货模板配送设置 --> 快递公司</pre><pre class="mermaid">    graph LR微信管理 --> 粉丝管理微信管理 --> 菜单管理微信管理 --> 自动回复微信管理 --> 素材管理</pre><pre class="mermaid">    graph LR消息通知 --> 消息配置</pre><pre class="mermaid">    graph LR 其他 --> 用户提现 其他 --> 意见反馈 其他 --> 优惠券</pre><pre class="mermaid">    graph LR 门店管理 --> 门店列表</pre><pre class="mermaid">    graph LR 用户管理 --> 用户列表 用户管理 --> 用户分组</pre><pre class="mermaid">    graph LR 资料管理 --> 富文本 资料管理 --> 页面链接 资料管理 --> 省市区数据 资料管理 --> 常用问题 资料管理 --> 虚拟用户</pre><h3 id="商户中心"><a href="#商户中心" class="headerlink" title="商户中心"></a>商户中心</h3><p>todo</p>]]></content>
     
     <summary type="html">
     
@@ -573,6 +540,29 @@
     
     
       <category term="mysql" scheme="http://www.jk-kj.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记一次服务器cpu了解</title>
+    <link href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8cpu%E4%BA%86%E8%A7%A3/"/>
+    <id>http://www.jk-kj.com/跳坑记录/记一次服务器cpu了解/</id>
+    <published>2019-05-30T01:33:57.000Z</published>
+    <updated>2020-11-12T12:29:21.548Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>自己写的php代码,执行mysql时,占用了很大的CPU,排查问题修改代码后,发现公司服务器已经没有这个问题,连续请求,mysql的内存不会增加。但是客户的机子上,连续请求还是会出现这个问题。</p><p>经排查后，应该是客户服务器上的CPU处理速度跟不上,导致mysql执行效率跟不上,被阻塞住。导致CPU会因为请求数量的累加而上升。而公司服务器因为处理速度快,即使请求速不断累加,其CPU的值也上升很少。</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>在linux 下怎么查看服务器的cpu和内存的硬件信息<br><a href="https://zhidao.baidu.com/question/155943069.html" target="_blank" rel="external">https://zhidao.baidu.com/question/155943069.html</a><br>intel xeon(skylake) platinum 8163 性能评测 阿里云第四代ECS服务器<br><a href="https://yq.aliyun.com/articles/622603" target="_blank" rel="external">https://yq.aliyun.com/articles/622603</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;自己写的php代码,执行mysql时,占用了很大的CPU,排查问题修改代码后,发现公司服务器已经没有这个问题,连续请求,mysql的内存不会
+      
+    
+    </summary>
+    
+    
+      <category term="CPU" scheme="http://www.jk-kj.com/tags/CPU/"/>
     
   </entry>
   
