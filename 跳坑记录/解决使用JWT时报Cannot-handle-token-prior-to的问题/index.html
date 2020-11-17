@@ -24,12 +24,12 @@
     var CONFIG = {"hostname":"www.jk-kj.com","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="背景使用JWT时，因为本地时间和服务器上的时间不一致，导致的请求发送失败 解决方法在vendor\firebase\php-jwt\src\JWT.php中的第113行左右添加如下的代码 1echo &#39;&lt;br &#x2F;&gt; payload-&gt;iat &#x3D; &#39;. $payload-&gt;iat . &#39;&lt;br &#x2F;&gt;and ti">
+  <meta name="description" content="背景使用JWT时，因为本地时间和服务器上的时间不一致，导致的请求发送失败 解决方法在vendor\firebase\php-jwt\src\JWT.php中的第113行左右添加如下的代码 1echo &amp;#x27;&lt;br &#x2F;&gt; payload-&gt;iat &#x3D; &amp;#x27;. $payload-&gt;iat . &amp;#x27;&lt;br &#x2F;&gt;and time() &#x3D; &amp;#x27">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决使用JWT时报Cannot handle token prior to的问题">
 <meta property="og:url" content="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%A7%A3%E5%86%B3%E4%BD%BF%E7%94%A8JWT%E6%97%B6%E6%8A%A5Cannot-handle-token-prior-to%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="简客-记忆">
-<meta property="og:description" content="背景使用JWT时，因为本地时间和服务器上的时间不一致，导致的请求发送失败 解决方法在vendor\firebase\php-jwt\src\JWT.php中的第113行左右添加如下的代码 1echo &#39;&lt;br &#x2F;&gt; payload-&gt;iat &#x3D; &#39;. $payload-&gt;iat . &#39;&lt;br &#x2F;&gt;and ti">
+<meta property="og:description" content="背景使用JWT时，因为本地时间和服务器上的时间不一致，导致的请求发送失败 解决方法在vendor\firebase\php-jwt\src\JWT.php中的第113行左右添加如下的代码 1echo &amp;#x27;&lt;br &#x2F;&gt; payload-&gt;iat &#x3D; &amp;#x27;. $payload-&gt;iat . &amp;#x27;&lt;br &#x2F;&gt;and time() &#x3D; &amp;#x27">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-01-12T05:28:56.000Z">
 <meta property="article:modified_time" content="2020-11-12T12:29:21.534Z">
@@ -322,9 +322,9 @@
     <div class="post-body" itemprop="articleBody">
         <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>使用JWT时，因为本地时间和服务器上的时间不一致，导致的请求发送失败</p>
 <h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>在<code>vendor\firebase\php-jwt\src\JWT.php</code>中的第113行左右添加如下的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#39;&lt;br &#x2F;&gt; payload-&gt;iat &#x3D; &#39;. $payload-&gt;iat . &#39;&lt;br &#x2F;&gt;and time() &#x3D; &#39;.time() . &quot;&lt;br &#x2F;&gt;leeway&#x3D; &quot;. self::$leeway;</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">&#x27;&lt;br /&gt; payload-&gt;iat = &#x27;</span>. <span class="variable">$payload</span>-&gt;iat . <span class="string">&#x27;&lt;br /&gt;and time() = &#x27;</span>.time() . <span class="string">&quot;&lt;br /&gt;leeway= &quot;</span>. <span class="keyword">self</span>::<span class="variable">$leeway</span>;</span><br></pre></td></tr></table></figure>
 <p>会打印出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">payload-&gt;iat &#x3D; 1447702275  </span><br><span class="line">and time() &#x3D; 1447702211  </span><br><span class="line">leeway&#x3D; 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">payload-&gt;iat = <span class="number">1447702275</span>  </span><br><span class="line"><span class="keyword">and</span> time() = <span class="number">1447702211</span>  </span><br><span class="line">leeway= <span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p>通过时间差计算出和服务器的差值，并调整本地的时间</p>
 
     </div>
