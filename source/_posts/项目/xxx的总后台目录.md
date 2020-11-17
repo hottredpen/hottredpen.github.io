@@ -5,8 +5,7 @@ tags:
     -项目
 ---
 
-```mermaid
-    graph LR
+```mermaid graph LR
     商品管理 --> 商品列表
     商品管理 --> 类目管理
     商品管理 --> 类目属性
@@ -22,8 +21,7 @@ tags:
     
 ```
 
-```mermaid
-    graph LR
+```mermaid graph LR
    
    物流管理 --> 发货
    发货 --> 全部1
@@ -38,8 +36,7 @@ tags:
    
 ```
 
-```mermaid
-    graph LR
+```mermaid graph LR
    
     宝贝管理 --> 发布宝贝
     宝贝管理 --> 出售中的宝贝
@@ -47,8 +44,7 @@ tags:
    
 ```
 
-```mermaid
-    graph LR
+```mermaid graph LR
    
     店铺管理 --> 图片空间
     店铺管理 --> 店铺装修
