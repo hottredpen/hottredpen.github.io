@@ -315,6 +315,20 @@
       <span class="post-meta-item-text">阅读次数：</span>
       <span class="leancloud-visitors-count"></span>
     </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9C%A8vue%E4%B8%AD%E4%BD%BF%E7%94%A8axios%EF%BC%8C%E5%8F%82%E6%95%B0%E6%B2%A1%E6%9C%89%E5%BA%8F%E5%88%97%E5%8C%96/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9C%A8vue%E4%B8%AD%E4%BD%BF%E7%94%A8axios%EF%BC%8C%E5%8F%82%E6%95%B0%E6%B2%A1%E6%9C%89%E5%BA%8F%E5%88%97%E5%8C%96/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 </div>
 
         </div>
@@ -368,6 +382,7 @@
 
 
       
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -540,6 +555,18 @@
   
 
   
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"nEwTBQU57TgvhE9HufRlxOgK-gzGzoHsz","appKey":"uOHoHWwCwvT2XGKFM33V4RXh","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9C%A8vue%E4%B8%AD%E4%BD%BF%E7%94%A8axios%EF%BC%8C%E5%8F%82%E6%95%B0%E6%B2%A1%E6%9C%89%E5%BA%8F%E5%88%97%E5%8C%96/",
+      serverURLs: "https://newtbqu5.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

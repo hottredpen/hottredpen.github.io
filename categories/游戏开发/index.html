@@ -638,5 +638,17 @@
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"nEwTBQU57TgvhE9HufRlxOgK-gzGzoHsz","appKey":"uOHoHWwCwvT2XGKFM33V4RXh","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/",
+      serverURLs: "https://newtbqu5.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 </body>
 </html>
