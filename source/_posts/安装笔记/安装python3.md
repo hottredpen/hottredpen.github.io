@@ -8,10 +8,10 @@ tags: python3安装记录
 安装TensorFlow
 
 ### 安装python3
-```
+```shell
 brew install python3
 ```
-```
+```sh
 Pip, setuptools, and wheel have been installed. To update them
   pip3 install --upgrade pip setuptools wheel
 
