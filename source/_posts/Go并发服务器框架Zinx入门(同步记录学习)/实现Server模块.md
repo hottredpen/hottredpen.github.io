@@ -1,13 +1,23 @@
 ---
 title: 实现Server模块
 category: [学无止境]
-tags: []
+tags: [
+        实验楼同步学习
+      ]
 date: 2020-12-09 13:00:02
 ---
 
+#### 说明
+本文档按照实验楼--Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）
+https://www.lanqiao.cn/courses/1639
+主要有以下原因：
+1、模仿大神写教程的风格
+2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现
+
+
 
 ### 将完成 Zinx 框架的 server 模块。也就是实现如下图所示的功能模块：
-![11](media/11.png)
+![11](http://image.jk-kj.com/mweb/2020/12/09/1607497462088811.png)
 
 ### 知识点 
 - 服务器基本知识
@@ -271,7 +281,7 @@ import (
     "fmt"
     "net"
     "time"
-    "zinx/ziface" // 这行
+    "zinx/ziface" // 这一行
 )
 ```
 所以
@@ -281,5 +291,43 @@ go env
 ```
 使用前将本地的库临时加进去
 ```
-export GOPATH=$GOPATH:/Users/xxxx/project/go/my/zinx
+export GOPATH=$GOPATH:/Users/jinkangli/project/go/my/zinx
 ```
+
+### 其他知识点
+
+Go语言中Goroutine与线程的区别
+https://www.cnblogs.com/xi-jie/p/11447905.html
+
+##### 1、什么是Goroutine？
+Goroutine是建立在线程之上的轻量级的抽象。它允许我们以非常低的代价在同一个地址空间中并行地执行多个函数或者方法。相比于线程，它的创建和销毁的代价要小很多，并且它的调度是独立于线程的。
+
+```go
+package main
+ 
+import (
+    "fmt"
+    "time"
+)
+ 
+func learning() {
+    fmt.Println("My first goroutine")
+}
+ 
+func main() {
+    go learning()
+    time.Sleep(1 * time.Second)
+    fmt.Println("main function")
+}
+```
+这段代码的输出是：
+
+My first goroutine
+
+main function
+
+如果将Sleep去掉，将会输出的是：
+
+main function
+
+`这是因为，和线程一样，golang的主函数（其实也是跑在一个goroutine中）并不会等待其他goroutine结束。如果主goroutine结束了，所有其他goroutine都将结束。`
