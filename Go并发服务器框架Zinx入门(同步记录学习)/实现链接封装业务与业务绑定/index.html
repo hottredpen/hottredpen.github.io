@@ -24,17 +24,17 @@
     var CONFIG = {"hostname":"www.jk-kj.com","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。 知识点 链接封装 单元测试  ziface 创建 iconnection.gozinx&#x2F;ziface&#x2F;iconnection.go 因为接口中只定义方法，我们在实验介绍中的接口方法中，已经声明了这些方法。所以我们来直接看一下它的实现 1234567891011121314151617packag">
+  <meta name="description" content="说明本文档按照实验楼–Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）https:&#x2F;&#x2F;www.lanqiao.cn&#x2F;courses&#x2F;1639主要有以下原因：1、模仿大神写教程的风格2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现 本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。 知识点 链接封装 单元测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实现链接封装业务与业务绑定">
 <meta property="og:url" content="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%AE%9E%E7%8E%B0%E9%93%BE%E6%8E%A5%E5%B0%81%E8%A3%85%E4%B8%9A%E5%8A%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E7%BB%91%E5%AE%9A/index.html">
 <meta property="og:site_name" content="简客-记忆">
-<meta property="og:description" content="本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。 知识点 链接封装 单元测试  ziface 创建 iconnection.gozinx&#x2F;ziface&#x2F;iconnection.go 因为接口中只定义方法，我们在实验介绍中的接口方法中，已经声明了这些方法。所以我们来直接看一下它的实现 1234567891011121314151617packag">
+<meta property="og:description" content="说明本文档按照实验楼–Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）https:&#x2F;&#x2F;www.lanqiao.cn&#x2F;courses&#x2F;1639主要有以下原因：1、模仿大神写教程的风格2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现 本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。 知识点 链接封装 单元测试">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.jk-kj.com/mweb/2020/12/10/1607565067161122.png">
 <meta property="og:image" content="http://image.jk-kj.com/mweb/2020/12/10/16075650671666rr.png">
 <meta property="article:published_time" content="2020-12-10T01:00:02.000Z">
-<meta property="article:modified_time" content="2020-12-10T01:51:45.331Z">
+<meta property="article:modified_time" content="2020-12-10T01:54:25.714Z">
 <meta property="article:author" content="hottredpen">
 <meta property="article:tag" content="实验楼同步学习">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E8%8A%82%E5%AE%9E%E9%AA%8C%E4%B8%AD%EF%BC%8C%E6%88%91%E4%BB%AC%E5%B0%86%E5%AE%8C%E6%88%90-Zinx-%E6%A1%86%E6%9E%B6%E7%9A%84%E9%93%BE%E6%8E%A5%E5%B0%81%E8%A3%85%E4%B8%8E%E4%B8%9A%E5%8A%A1%E7%BB%91%E5%AE%9A%E7%9A%84%E6%A8%A1%E5%9D%97%E3%80%82%E5%A6%82%E4%B8%8B%E9%9D%A2%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E4%B8%AD%E6%89%80%E8%A1%A8%E7%A4%BA%E7%9A%84%E8%BF%99%E4%BA%9B%E5%8A%9F%E8%83%BD%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ziface-%E5%88%9B%E5%BB%BA-iconnection-go"><span class="nav-number">3.</span> <span class="nav-text">ziface 创建 iconnection.go</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#znet-%E5%88%9B%E5%BB%BA-connection-go"><span class="nav-number">4.</span> <span class="nav-text">znet 创建 connection.go</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E6%9B%B4%E6%AD%A3%E4%B8%80%E4%B8%8B-Server-go-%E4%B8%AD-%E5%A4%84%E7%90%86-conn-%E7%9A%84%E8%BF%9E%E6%8E%A5%E4%B8%9A%E5%8A%A1"><span class="nav-number">5.</span> <span class="nav-text">重新更正一下 Server.go 中 处理 conn 的连接业务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-1"><span class="nav-number">7.</span> <span class="nav-text">知识点</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E8%8A%82%E5%AE%9E%E9%AA%8C%E4%B8%AD%EF%BC%8C%E6%88%91%E4%BB%AC%E5%B0%86%E5%AE%8C%E6%88%90-Zinx-%E6%A1%86%E6%9E%B6%E7%9A%84%E9%93%BE%E6%8E%A5%E5%B0%81%E8%A3%85%E4%B8%8E%E4%B8%9A%E5%8A%A1%E7%BB%91%E5%AE%9A%E7%9A%84%E6%A8%A1%E5%9D%97%E3%80%82%E5%A6%82%E4%B8%8B%E9%9D%A2%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E4%B8%AD%E6%89%80%E8%A1%A8%E7%A4%BA%E7%9A%84%E8%BF%99%E4%BA%9B%E5%8A%9F%E8%83%BD%E3%80%82"><span class="nav-number"></span> <span class="nav-text">本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number"></span> <span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ziface-%E5%88%9B%E5%BB%BA-iconnection-go"><span class="nav-number"></span> <span class="nav-text">ziface 创建 iconnection.go</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#znet-%E5%88%9B%E5%BB%BA-connection-go"><span class="nav-number"></span> <span class="nav-text">znet 创建 connection.go</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E6%9B%B4%E6%AD%A3%E4%B8%80%E4%B8%8B-Server-go-%E4%B8%AD-%E5%A4%84%E7%90%86-conn-%E7%9A%84%E8%BF%9E%E6%8E%A5%E4%B8%9A%E5%8A%A1"><span class="nav-number"></span> <span class="nav-text">重新更正一下 Server.go 中 处理 conn 的连接业务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number"></span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-1"><span class="nav-number"></span> <span class="nav-text">知识点</span></a></div>
         </section>
         <!--/noindex-->
 
@@ -283,7 +283,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-12-10 09:00:02 / 修改时间：09:51:45" itemprop="dateCreated datePublished" datetime="2020-12-10T09:00:02+08:00">2020-12-10</time>
+      <time title="创建时间：2020-12-10 09:00:02 / 修改时间：09:54:25" itemprop="dateCreated datePublished" datetime="2020-12-10T09:00:02+08:00">2020-12-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -312,7 +312,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="本节实验中，我们将完成-Zinx-框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。"><a href="#本节实验中，我们将完成-Zinx-框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。" class="headerlink" title="本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。"></a>本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。</h3><p><img src="http://image.jk-kj.com/mweb/2020/12/10/1607565067161122.png" alt="22"></p>
+        <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>本文档按照实验楼–Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）<br><a target="_blank" rel="noopener" href="https://www.lanqiao.cn/courses/1639">https://www.lanqiao.cn/courses/1639</a><br>主要有以下原因：<br>1、模仿大神写教程的风格<br>2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现</p>
+<h3 id="本节实验中，我们将完成-Zinx-框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。"><a href="#本节实验中，我们将完成-Zinx-框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。" class="headerlink" title="本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。"></a>本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。</h3><p><img src="http://image.jk-kj.com/mweb/2020/12/10/1607565067161122.png" alt="22"></p>
 <h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
 <li>链接封装</li>
 <li>单元测试</li>
