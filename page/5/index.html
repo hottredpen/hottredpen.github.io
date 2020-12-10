@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,96 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/GitBash%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E4%B9%8B%E5%90%8E%E7%9A%84%E8%B7%AF%E5%BE%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="找回指尖灵动的感觉">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/GitBash%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E4%B9%8B%E5%90%8E%E7%9A%84%E8%B7%AF%E5%BE%84/" class="post-title-link" itemprop="url">GitBash修改默认打开之后的路径</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-03 08:58:26" itemprop="dateCreated datePublished" datetime="2017-11-03T08:58:26+08:00">2017-11-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/GitBash%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E4%B9%8B%E5%90%8E%E7%9A%84%E8%B7%AF%E5%BE%84/" class="post-meta-item leancloud_visitors" data-flag-title="GitBash修改默认打开之后的路径" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>在公司windows下用gitbash，每次打开都要切换到D盘指定目录，非常费时，网上搜了一下果真有对应方法</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/zzfenglin/article/details/54646541">http://blog.csdn.net/zzfenglin/article/details/54646541</a></p>
+<h4 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h4><p>在“Git Bash”快捷方式上点击鼠标右键，然后选择“属性”，会弹出如下截图的提示框：</p>
+<img src="http://img.blog.csdn.net/20170121165353158">
+
+<p>我们可以看到在“目标”后面的输入框中有操作的命令，在命令的最后是“–cd-to-home”，就是这条命令在快捷方式打开的时候切换到“/c/Users/Administrator”路径了。</p>
+<p>假如，我们想把默认路径修改为“D:\android_workspace”，那我们需要操作两步：</p>
+<p>1.将“目录”后面输入框中命令结尾部分去掉，即删掉“–cd-to-home”。</p>
+<p>2.将“起始位置”后面的输入框中的内容修改为我们想要的默认路径“D:\android_workspace”（注意：这个路径是根据你自己代码工程的位置而定的）</p>
+<p>修改之后的操作截图如下：</p>
+<img src="http://img.blog.csdn.net/20170121165423783">
+
+<p>修改之后，点击“确定”，然后重新打开“Git Bash”，就会自动切换到我们想要的路径</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -1068,314 +1158,6 @@
 <p>为我的抉择感到荣幸</p>
 <p>……</p>
 <p>从今天起，试着去感恩吧!</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="找回指尖灵动的感觉">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">vim常用命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-10-02 19:21:53" itemprop="dateCreated datePublished" datetime="2017-10-02T19:21:53+08:00">2017-10-02</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-17 10:48:58" itemprop="dateModified" datetime="2020-11-17T10:48:58+08:00">2020-11-17</time>
-      </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="vim常用命令" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><table>
-<thead>
-<tr>
-<th align="center">快捷键</th>
-<th align="center">说明</th>
-<th align="center">常用指数(自己)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">a</td>
-<td align="center">在当前光标后插入文本</td>
-<td align="center">★★★★</td>
-</tr>
-<tr>
-<td align="center">A</td>
-<td align="center">在本行行尾插入文本</td>
-<td align="center">★★★★★★</td>
-</tr>
-<tr>
-<td align="center">i</td>
-<td align="center">在光标前插入文本</td>
-<td align="center">★★★★★</td>
-</tr>
-<tr>
-<td align="center">I</td>
-<td align="center">在本行行首插入文本</td>
-<td align="center">★★</td>
-</tr>
-<tr>
-<td align="center">o</td>
-<td align="center">在光标下插入新行</td>
-<td align="center">★★</td>
-</tr>
-<tr>
-<td align="center">O</td>
-<td align="center">在光标上插入新行</td>
-<td align="center">★★</td>
-</tr>
-<tr>
-<td align="center">h</td>
-<td align="center">左移一个字符</td>
-<td align="center">★</td>
-</tr>
-<tr>
-<td align="center">j</td>
-<td align="center">下移一个字符</td>
-<td align="center">★</td>
-</tr>
-<tr>
-<td align="center">k</td>
-<td align="center">上移一个字符</td>
-<td align="center">★</td>
-</tr>
-<tr>
-<td align="center">l</td>
-<td align="center">右移一个字符</td>
-<td align="center">★</td>
-</tr>
-<tr>
-<td align="center">$</td>
-<td align="center">移动至当前行的行尾</td>
-<td align="center">★★★★</td>
-</tr>
-<tr>
-<td align="center">0（数字零）</td>
-<td align="center">移动至当前行的行首</td>
-<td align="center">★★★★★★</td>
-</tr>
-<tr>
-<td align="center">H</td>
-<td align="center">移动屏幕上端</td>
-<td align="center">★★★★★</td>
-</tr>
-<tr>
-<td align="center">M</td>
-<td align="center">移动屏幕中央</td>
-<td align="center">★★</td>
-</tr>
-<tr>
-<td align="center">L</td>
-<td align="center">移动屏幕下端</td>
-<td align="center">★★★★★</td>
-</tr>
-<tr>
-<td align="center">gg</td>
-<td align="center">到整个文件的第一行</td>
-<td align="center">★★★★★★★</td>
-</tr>
-<tr>
-<td align="center">G</td>
-<td align="center">到整个文件的最后一行</td>
-<td align="center">★★★★★★★★</td>
-</tr>
-<tr>
-<td align="center">nG</td>
-<td align="center">到第n行，如5G到第5行</td>
-<td align="center">★★★</td>
-</tr>
-<tr>
-<td align="center">:n</td>
-<td align="center">到第n行</td>
-<td align="center">★★★★★★★★</td>
-</tr>
-</tbody></table>
-<h3 id="删除和取消"><a href="#删除和取消" class="headerlink" title="删除和取消"></a>删除和取消</h3><table>
-<thead>
-<tr>
-<th align="center">快捷键</th>
-<th align="center">说明</th>
-<th align="center">常用指数（自己）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">x</td>
-<td align="center">删除光标所在处字符</td>
-<td align="center">★★★★★</td>
-</tr>
-<tr>
-<td align="center">nx</td>
-<td align="center">删除光标所在处n个字符</td>
-<td align="center">★</td>
-</tr>
-<tr>
-<td align="center">dd</td>
-<td align="center">删除光标所在行(+p剪切)</td>
-<td align="center">★★★★★★★</td>
-</tr>
-<tr>
-<td align="center">ndd</td>
-<td align="center">删除n行（+p剪切）</td>
-<td align="center">★★</td>
-</tr>
-<tr>
-<td align="center">dG</td>
-<td align="center">删除光标所在行值末尾</td>
-<td align="center">★★★★</td>
-</tr>
-<tr>
-<td align="center">D</td>
-<td align="center">删除光标所在处至行尾</td>
-<td align="center">★★★★</td>
-</tr>
-<tr>
-<td align="center">:n1,n2d</td>
-<td align="center">删除指定范围的行</td>
-<td align="center">★★★</td>
-</tr>
-<tr>
-<td align="center">u</td>
-<td align="center">取消上一步操作</td>
-<td align="center">★★★★★★★★★</td>
-</tr>
-</tbody></table>
-<h3 id="复制和粘贴"><a href="#复制和粘贴" class="headerlink" title="复制和粘贴"></a>复制和粘贴</h3><table>
-<thead>
-<tr>
-<th align="center">快捷键</th>
-<th align="center">说明</th>
-<th align="center">常用指数（自己）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">yy,Y</td>
-<td align="center">复制当前行</td>
-<td align="center">★★★★★</td>
-</tr>
-<tr>
-<td align="center">nyy,nY</td>
-<td align="center">复制当前行以下的n行</td>
-<td align="center">★★★</td>
-</tr>
-<tr>
-<td align="center">p</td>
-<td align="center">将内容粘贴所在行的下一行</td>
-<td align="center">★★★★★★★</td>
-</tr>
-<tr>
-<td align="center">P</td>
-<td align="center">将内容粘贴所在行的上一行</td>
-<td align="center">★</td>
-</tr>
-</tbody></table>
-<h3 id="搜索替换"><a href="#搜索替换" class="headerlink" title="搜索替换"></a>搜索替换</h3><table>
-<thead>
-<tr>
-<th align="center">快捷键</th>
-<th align="center">说明</th>
-<th align="center">常用指数（自己）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">/string</td>
-<td align="center">查找string(+n下一个)</td>
-<td align="center">★★★★★</td>
-</tr>
-<tr>
-<td align="center">:%s/old/new/g</td>
-<td align="center">全文替换，如:%s/123/789/g</td>
-<td align="center">★★★</td>
-</tr>
-</tbody></table>
-<h3 id="屏幕"><a href="#屏幕" class="headerlink" title="屏幕"></a>屏幕</h3><table>
-<thead>
-<tr>
-<th align="center">快捷键</th>
-<th align="center">说明</th>
-<th align="center">常用指数（自己）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ctrl+u</td>
-<td align="center">向上滚动半屏</td>
-<td align="center">★★★★★</td>
-</tr>
-<tr>
-<td align="center">ctrl+d</td>
-<td align="center">向下滚动半屏</td>
-<td align="center">★★★★★</td>
-</tr>
-<tr>
-<td align="center">ctrl+b</td>
-<td align="center">向上滚动整屏</td>
-<td align="center">★★★★★</td>
-</tr>
-<tr>
-<td align="center">ctrl+f</td>
-<td align="center">向下滚动整屏</td>
-<td align="center">★★★★★</td>
-</tr>
-</tbody></table>
-<h3 id="归纳图片"><a href="#归纳图片" class="headerlink" title="归纳图片"></a>归纳图片</h3><p><img src="http://image.jk-kj.com/mweb/2020/08/19/1597825362205420160712110935064.png" alt="20160712110935064"></p>
 
       
     </div>

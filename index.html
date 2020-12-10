@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -250,6 +250,112 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%AE%9E%E7%8E%B0%E9%93%BE%E6%8E%A5%E5%B0%81%E8%A3%85%E4%B8%9A%E5%8A%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E7%BB%91%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="找回指尖灵动的感觉">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%AE%9E%E7%8E%B0%E9%93%BE%E6%8E%A5%E5%B0%81%E8%A3%85%E4%B8%9A%E5%8A%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E7%BB%91%E5%AE%9A/" class="post-title-link" itemprop="url">实现链接封装业务与业务绑定</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-10 09:00:02 / 修改时间：09:51:45" itemprop="dateCreated datePublished" datetime="2020-12-10T09:00:02+08:00">2020-12-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%AE%9E%E7%8E%B0%E9%93%BE%E6%8E%A5%E5%B0%81%E8%A3%85%E4%B8%9A%E5%8A%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E7%BB%91%E5%AE%9A/" class="post-meta-item leancloud_visitors" data-flag-title="实现链接封装业务与业务绑定" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="本节实验中，我们将完成-Zinx-框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。"><a href="#本节实验中，我们将完成-Zinx-框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。" class="headerlink" title="本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。"></a>本节实验中，我们将完成 Zinx 框架的链接封装与业务绑定的模块。如下面的思维导图中所表示的这些功能。</h3><p><img src="http://image.jk-kj.com/mweb/2020/12/10/1607565067161122.png" alt="22"></p>
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li>链接封装</li>
+<li>单元测试</li>
+</ul>
+<h3 id="ziface-创建-iconnection-go"><a href="#ziface-创建-iconnection-go" class="headerlink" title="ziface 创建 iconnection.go"></a>ziface 创建 iconnection.go</h3><p>zinx/ziface/iconnection.go</p>
+<p>因为接口中只定义方法，我们在实验介绍中的接口方法中，已经声明了这些方法。所以我们来直接看一下它的实现</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ziface</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;net&quot;</span></span><br><span class="line"><span class="comment">//定义连接接口</span></span><br><span class="line"><span class="keyword">type</span> IConnection <span class="keyword">interface</span> &#123;</span><br><span class="line">    <span class="comment">//启动连接，让当前连接开始工作</span></span><br><span class="line">    Start()</span><br><span class="line">    <span class="comment">//停止连接，结束当前连接状态M</span></span><br><span class="line">    Stop()</span><br><span class="line">    <span class="comment">//从当前连接获取原始的socket TCPConn</span></span><br><span class="line">    GetTCPConnection() *net.TCPConn</span><br><span class="line">    <span class="comment">//获取当前连接ID</span></span><br><span class="line">    GetConnID() <span class="keyword">uint32</span></span><br><span class="line">    <span class="comment">//获取远程客户端地址信息</span></span><br><span class="line">    RemoteAddr() net.Addr</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//定义一个统一处理链接业务的接口</span></span><br><span class="line"><span class="keyword">type</span> HandFunc <span class="function"><span class="keyword">func</span><span class="params">(*net.TCPConn, []<span class="keyword">byte</span>, <span class="keyword">int</span>)</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="znet-创建-connection-go"><a href="#znet-创建-connection-go" class="headerlink" title="znet 创建 connection.go"></a>znet 创建 connection.go</h3><p>zinx/znet/connection.go</p>
+<p>我们这里再 Connection 中去实现接口中的方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> znet</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;net&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/ziface&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">type</span> Connection <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">//当前连接的socket TCP套接字</span></span><br><span class="line">    Conn *net.TCPConn</span><br><span class="line">    <span class="comment">//当前连接的ID 也可以称作为SessionID，ID全局唯一</span></span><br><span class="line">    ConnID <span class="keyword">uint32</span></span><br><span class="line">    <span class="comment">//当前连接的关闭状态</span></span><br><span class="line">    isClosed <span class="keyword">bool</span></span><br><span class="line">    <span class="comment">//该连接的处理方法api</span></span><br><span class="line">    handleAPI ziface.HandFunc</span><br><span class="line">    <span class="comment">//告知该链接已经退出/停止的channel</span></span><br><span class="line">    ExitBuffChan <span class="keyword">chan</span> <span class="keyword">bool</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建连接的方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewConntion</span><span class="params">(conn *net.TCPConn, connID <span class="keyword">uint32</span>, callback_api ziface.HandFunc)</span> *<span class="title">Connection</span></span>&#123;</span><br><span class="line">    c := &amp;Connection&#123;</span><br><span class="line">        Conn:     conn,</span><br><span class="line">        ConnID:   connID,</span><br><span class="line">        isClosed: <span class="literal">false</span>,</span><br><span class="line">        handleAPI: callback_api,</span><br><span class="line">        ExitBuffChan: <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">bool</span>, <span class="number">1</span>),</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 处理conn读数据的Goroutine */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">StartReader</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Reader Goroutine is  running&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> fmt.Println(c.RemoteAddr().String(), <span class="string">&quot; conn reader exit!&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> c.Stop()</span><br><span class="line">    <span class="keyword">for</span>  &#123;</span><br><span class="line">        <span class="comment">//读取我们最大的数据到buf中</span></span><br><span class="line">        buf := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">512</span>)</span><br><span class="line">        cnt, err := c.Conn.Read(buf)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;recv buf err &quot;</span>, err)</span><br><span class="line">            c.ExitBuffChan &lt;- <span class="literal">true</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//调用当前链接业务(这里执行的是当前conn的绑定的handle方法)</span></span><br><span class="line">        <span class="keyword">if</span> err := c.handleAPI(c.Conn, buf, cnt); err !=<span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;connID &quot;</span>, c.ConnID, <span class="string">&quot; handle is error&quot;</span>)</span><br><span class="line">            c.ExitBuffChan &lt;- <span class="literal">true</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//启动连接，让当前连接开始工作</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">Start</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//开启处理该链接读取到客户端数据之后的请求业务</span></span><br><span class="line">    <span class="keyword">go</span> c.StartReader()</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        <span class="keyword">select</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> &lt;- c.ExitBuffChan:</span><br><span class="line">            <span class="comment">//得到退出消息，不再阻塞</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//停止连接，结束当前连接状态M</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">Stop</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//1. 如果当前链接已经关闭</span></span><br><span class="line">    <span class="keyword">if</span> c.isClosed == <span class="literal">true</span> &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    c.isClosed = <span class="literal">true</span></span><br><span class="line">    <span class="comment">//TODO Connection Stop() 如果用户注册了该链接的关闭回调业务，那么在此刻应该显示调用</span></span><br><span class="line">    <span class="comment">// 关闭socket链接</span></span><br><span class="line">    c.Conn.Close()</span><br><span class="line">    <span class="comment">//通知从缓冲队列读数据的业务，该链接已经关闭</span></span><br><span class="line">    c.ExitBuffChan &lt;- <span class="literal">true</span></span><br><span class="line">    <span class="comment">//关闭该链接全部管道</span></span><br><span class="line">    <span class="built_in">close</span>(c.ExitBuffChan)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//从当前连接获取原始的socket TCPConn</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">GetTCPConnection</span><span class="params">()</span> *<span class="title">net</span>.<span class="title">TCPConn</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> c.Conn</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取当前连接ID</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">GetConnID</span><span class="params">()</span> <span class="title">uint32</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> c.ConnID</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取远程客户端地址信息</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">RemoteAddr</span><span class="params">()</span> <span class="title">net</span>.<span class="title">Addr</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> c.Conn.RemoteAddr()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="重新更正一下-Server-go-中-处理-conn-的连接业务"><a href="#重新更正一下-Server-go-中-处理-conn-的连接业务" class="headerlink" title="重新更正一下 Server.go 中 处理 conn 的连接业务"></a>重新更正一下 Server.go 中 处理 conn 的连接业务</h3><p>我们的修改在 3.3 和 3.4 处。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//3.3 处理该新连接请求的 业务 方法， 此时应该有 handler 和 conn是绑定的</span></span><br><span class="line">dealConn := NewConntion(conn, cid, CallBackToClient)</span><br><span class="line">cid ++</span><br><span class="line"><span class="comment">//3.4 启动当前链接的处理业务</span></span><br><span class="line"><span class="keyword">go</span> dealConn.Start()</span><br></pre></td></tr></table></figure>
+
+<p>CallBackToClient 是我们给当前客户端 conn 对象绑定的 handle 方法，当然目前是 server 端强制绑定的回显业务，我们之后会丰富框架，让这个用户可以让用户自定义指定 handle。</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>进行测试之前，我们这一次选择不使用 go test 的方式进行，这里我们使用两个 go 文件，一个叫做 Server.go 一个叫做 Client.go ，这样分别启动两个文件来模拟客户端请求服务器的过程。当然你也可以选择继续使用 go test 的方式进行测试。这里只是做演示，表示测试也是有多种方法的。</p>
+<p>我们在 zinx 文件夹下新建 Server.go 和 Client.go 的文件。 实际上，目前 Zinx 框架的对外接口并未改变，所以 V0.1 的测试依然有效。 所以，我们只是将 Server 和 Client 的功能进行拆分了。</p>
+<p>Server.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;zinx/znet&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">//Server 模块的测试函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//1 创建一个server 句柄 s</span></span><br><span class="line">    s := znet.NewServer(<span class="string">&quot;[zinx V0.1]&quot;</span>)</span><br><span class="line">    <span class="comment">//2 开启服务</span></span><br><span class="line">    s.Serve()</span><br><span class="line">&#125;</span><br><span class="line">Client.<span class="keyword">go</span>:</span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">`go</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">package main</span></span><br><span class="line"><span class="string">import (</span></span><br><span class="line"><span class="string">    &quot;fmt&quot;</span></span><br><span class="line"><span class="string">    &quot;net&quot;</span></span><br><span class="line"><span class="string">    &quot;time&quot;</span></span><br><span class="line"><span class="string">)</span></span><br><span class="line"><span class="string">func main() &#123;</span></span><br><span class="line"><span class="string">    fmt.Println(&quot;Client Test ... start&quot;)</span></span><br><span class="line"><span class="string">    //3秒之后发起测试请求，给服务端开启服务的机会</span></span><br><span class="line"><span class="string">    time.Sleep(3 * time.Second)</span></span><br><span class="line"><span class="string">    conn,err := net.Dial(&quot;tcp&quot;, &quot;127.0.0.1:7777&quot;)</span></span><br><span class="line"><span class="string">    if err != nil &#123;</span></span><br><span class="line"><span class="string">        fmt.Println(&quot;client start err, exit!&quot;)</span></span><br><span class="line"><span class="string">        return</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    for &#123;</span></span><br><span class="line"><span class="string">        _, err := conn.Write([]byte(&quot;hahaha&quot;))</span></span><br><span class="line"><span class="string">        if err !=nil &#123;</span></span><br><span class="line"><span class="string">            fmt.Println(&quot;write error err &quot;, err)</span></span><br><span class="line"><span class="string">            return</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">        buf :=make([]byte, 512)</span></span><br><span class="line"><span class="string">        cnt, err := conn.Read(buf)</span></span><br><span class="line"><span class="string">        if err != nil &#123;</span></span><br><span class="line"><span class="string">            fmt.Println(&quot;read buf error &quot;)</span></span><br><span class="line"><span class="string">            return</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">        fmt.Printf(&quot; server call back : %s, cnt = %d\n&quot;, buf,  cnt)</span></span><br><span class="line"><span class="string">        time.Sleep(1*time.Second)</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后我们先启动 Server go run Server.go 再启动 Client go run Client.go。</p>
+<p>我们可以看到，经过本次完善后，现在服务端就已经开始有回显数据的功能了。</p>
+<p><img src="http://image.jk-kj.com/mweb/2020/12/10/16075650671666rr.png" alt="rr"></p>
+<h3 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h3><p>关于Go defer的详细使用<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/phpper/p/11984161.html">https://www.cnblogs.com/phpper/p/11984161.html</a><br>自我理解：这些调用直到 return 前才被执。因此，可以用来做资源清理。（到return时，开始从下往上执行输出）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%AE%9E%E7%8E%B0Server%E6%A8%A1%E5%9D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -273,10 +379,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-12-09 13:00:02 / 修改时间：15:12:59" itemprop="dateCreated datePublished" datetime="2020-12-09T13:00:02+08:00">2020-12-09</time>
+      <time title="创建时间：2020-12-09 13:00:02" itemprop="dateCreated datePublished" datetime="2020-12-09T13:00:02+08:00">2020-12-09</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-10 09:41:57" itemprop="dateModified" datetime="2020-12-10T09:41:57+08:00">2020-12-10</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -343,7 +455,18 @@
 <p>所以<br>先看下gopath</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go <span class="keyword">env</span></span><br></pre></td></tr></table></figure>
 <p>使用前将本地的库临时加进去</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export GOPATH=<span class="variable">$GOPATH</span><span class="symbol">:/Users/xxxx/project/go/my/zinx</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export GOPATH=<span class="variable">$GOPATH</span><span class="symbol">:/Users/jinkangli/project/go/my/zinx</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他知识点"><a href="#其他知识点" class="headerlink" title="其他知识点"></a>其他知识点</h3><p>Go语言中Goroutine与线程的区别<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xi-jie/p/11447905.html">https://www.cnblogs.com/xi-jie/p/11447905.html</a></p>
+<h5 id="1、什么是Goroutine？"><a href="#1、什么是Goroutine？" class="headerlink" title="1、什么是Goroutine？"></a>1、什么是Goroutine？</h5><p>Goroutine是建立在线程之上的轻量级的抽象。它允许我们以非常低的代价在同一个地址空间中并行地执行多个函数或者方法。相比于线程，它的创建和销毁的代价要小很多，并且它的调度是独立于线程的。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">learning</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;My first goroutine&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">go</span> learning()</span><br><span class="line">    time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">    fmt.Println(<span class="string">&quot;main function&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码的输出是：</p>
+<p>My first goroutine</p>
+<p>main function</p>
+<p>如果将Sleep去掉，将会输出的是：</p>
+<p>main function</p>
+<p><code>这是因为，和线程一样，golang的主函数（其实也是跑在一个goroutine中）并不会等待其他goroutine结束。如果主goroutine结束了，所有其他goroutine都将结束。</code></p>
+
       
     </div>
 
@@ -1065,90 +1188,6 @@
 <h4 id="2、cc-instantiate"><a href="#2、cc-instantiate" class="headerlink" title="2、cc.instantiate"></a>2、cc.instantiate</h4><p>克隆指定的任意类型的对象，或者从 Prefab 实例化出新节点。</p>
 <h4 id="3、this-node-addChild"><a href="#3、this-node-addChild" class="headerlink" title="3、this.node.addChild"></a>3、this.node.addChild</h4><p>添加子节点</p>
 <h4 id="4、this-node-removeAllChildren"><a href="#4、this-node-removeAllChildren" class="headerlink" title="4、this.node.removeAllChildren"></a>4、this.node.removeAllChildren</h4><p>移除所有子节点</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%83)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E6%B8%B8%E6%88%8F%E5%BE%97%E5%88%86%E4%B8%8E%E5%A4%B1%E8%B4%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="找回指尖灵动的感觉">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%83)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E6%B8%B8%E6%88%8F%E5%BE%97%E5%88%86%E4%B8%8E%E5%A4%B1%E8%B4%A5/" class="post-title-link" itemprop="url">(七)、“仙剑出鞘”---游戏得分与失败</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-11-13 15:56:42 / 修改时间：16:20:00" itemprop="dateCreated datePublished" datetime="2020-11-13T15:56:42+08:00">2020-11-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%83)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E6%B8%B8%E6%88%8F%E5%BE%97%E5%88%86%E4%B8%8E%E5%A4%B1%E8%B4%A5/" class="post-meta-item leancloud_visitors" data-flag-title="(七)、“仙剑出鞘”---游戏得分与失败" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><p>在飞剑飞完后判断</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="title">isGameOver</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.mFeiJian.getComponent(<span class="string">&quot;feijian&quot;</span>).is_flying = <span class="literal">false</span></span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params"><span class="built_in">this</span>.gameData.guaiwu_num &lt;= <span class="number">0</span></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.gameController.emit(<span class="string">&#x27;game__win__thislevel&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params"><span class="built_in">this</span>.gameData.remain_num &lt;= <span class="number">0</span> </span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.gameController.emit(<span class="string">&#x27;game__loss__thislevel&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="主要涉及的cocos函数"><a href="#主要涉及的cocos函数" class="headerlink" title="主要涉及的cocos函数"></a>主要涉及的cocos函数</h3><p>无新函数</p>
 
       
     </div>
