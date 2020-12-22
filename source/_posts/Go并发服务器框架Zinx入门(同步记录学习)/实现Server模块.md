@@ -1,13 +1,13 @@
 ---
 title: 实现Server模块
 category: [学无止境]
-tags: [
-        实验楼同步学习
-      ]
+tags: 
+    - 实验楼同步学习
+    - go
 date: 2020-12-09 13:00:02
 ---
 
-#### 说明
+### 说明
 本文档按照实验楼--Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）
 https://www.lanqiao.cn/courses/1639
 主要有以下原因：
@@ -65,7 +65,7 @@ type IServer interface{
     Serve()
 }
 ```
-#### 在 znet 下实现服务模块 server.go
+### 在 znet 下实现服务模块 server.go
 我们这里使用 Server 结构体来实现上面接口中所定义的方法。首先，作为一个服务器，必须要有的三个属性就是：
 
  - 服务器名。
@@ -100,7 +100,7 @@ func NewServer (name string) ziface.IServer {
     return s
 }
 ```
-#### 启动服务器的实现
+### 启动服务器的实现
 启动一个服务器分为三步：
 
 获取 TCP 的地址。
