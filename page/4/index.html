@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,344 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8leftjoin-group%E5%8F%8A%E5%AD%90%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="找回指尖灵动的感觉">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8leftjoin-group%E5%8F%8A%E5%AD%90%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">记一次使用leftjoin,group及子查询的配合使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-07-27 15:47:12" itemprop="dateCreated datePublished" datetime="2018-07-27T15:47:12+08:00">2018-07-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8leftjoin-group%E5%8F%8A%E5%AD%90%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="记一次使用leftjoin,group及子查询的配合使用" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>库存数据统计</p>
+<p>库存的数量动态的，列出产品的同时，将批次表里的同product_id的cur_num相加，作为该产品的库存</p>
+<h3 id="以前的做法"><a href="#以前的做法" class="headerlink" title="以前的做法"></a>以前的做法</h3><p>先将产品列表取出（一条sql）<br>foreach 每个产品，并查询总数（当前页数*1条sql）</p>
+<h3 id="改进后的做法"><a href="#改进后的做法" class="headerlink" title="改进后的做法"></a>改进后的做法</h3><p>先用子查询获取查询的总数,然后一下group，group后的字段作为leftjoin的关联字段</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="variable">$storeProductBatchQuery</span> = M(<span class="string">&#x27;store_product_batch as spb&#x27;</span>)-&gt;field(<span class="string">&#x27;SUM(cur_num) as spb_cur_num_count,product_id&#x27;</span>)-&gt;group(<span class="string">&#x27;product_id&#x27;</span>)-&gt;buildSql(); <span class="regexp">//</span> group的使用</span><br><span class="line"><span class="variable">$list</span> = M(<span class="string">&quot;product as p&quot;</span>)</span><br><span class="line">        -&gt;join(<span class="string">&#x27;left join &#x27;</span>.<span class="variable">$storeProductBatchQuery</span>.<span class="string">&#x27; as spb on spb.product_id = p.id&#x27;</span>)</span><br><span class="line">        -&gt;field(<span class="string">&#x27;p.*,spb.spb_cur_num_count&#x27;</span>)</span><br><span class="line">        -&gt;where(<span class="variable">$newmap</span>)</span><br><span class="line">        -&gt;order(<span class="variable">$order</span>)</span><br><span class="line">        -&gt;limit(<span class="variable">$offset</span>.<span class="string">&#x27;,&#x27;</span>.<span class="variable">$page_size</span>)</span><br><span class="line">        -&gt;select(false);</span><br><span class="line"></span><br><span class="line">        dump(<span class="variable">$list</span>);</span><br><span class="line">        <span class="keyword">exit</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E5%AE%89%E8%A3%85python3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="找回指尖灵动的感觉">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E5%AE%89%E8%A3%85python3/" class="post-title-link" itemprop="url">安装python3</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-07-16 13:31:21" itemprop="dateCreated datePublished" datetime="2018-07-16T13:31:21+08:00">2018-07-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-20 11:25:16" itemprop="dateModified" datetime="2020-11-20T11:25:16+08:00">2020-11-20</time>
+      </span>
+
+  
+    <span id="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E5%AE%89%E8%A3%85python3/" class="post-meta-item leancloud_visitors" data-flag-title="安装python3" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>安装TensorFlow</p>
+<h3 id="安装python3"><a href="#安装python3" class="headerlink" title="安装python3"></a>安装python3</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install python3</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Pip, setuptools, and wheel have been installed. To update them</span><br><span class="line">  pip3 install --upgrade pip setuptools wheel</span><br><span class="line"></span><br><span class="line">You can install Python packages with</span><br><span class="line">  pip3 install &lt;package&gt;</span><br><span class="line"></span><br><span class="line">They will install into the site-package directory</span><br><span class="line">  /usr/<span class="built_in">local</span>/lib/python3.6/site-packages</span><br><span class="line"></span><br><span class="line">See: https://docs.brew.sh/Homebrew-and-Python.html</span><br><span class="line">==&gt; Summary</span><br><span class="line">🍺  /usr/<span class="built_in">local</span>/Cellar/python3/3.6.3: 7,973 files, 111.1MB, built <span class="keyword">in</span> 19 minutes 38 seconds</span><br><span class="line">➜  tensorflow python3 --version</span><br><span class="line">Python 3.6.3</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%82%AE%E4%BB%B6%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0SMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="找回指尖灵动的感觉">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%82%AE%E4%BB%B6%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0SMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/" class="post-title-link" itemprop="url">使用阿里云邮件推送实现SMTP发送邮件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-28 11:05:35" itemprop="dateCreated datePublished" datetime="2018-03-28T11:05:35+08:00">2018-03-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%82%AE%E4%BB%B6%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0SMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="使用阿里云邮件推送实现SMTP发送邮件" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一个wordpress项目里的自带的邮件（代发）发送邮件不稳定。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>WordPress 使用阿里云邮件推送实现SMTP发送邮件<br><a target="_blank" rel="noopener" href="https://www.wpdaxue.com/wordpress-aliyun-smtp.html">https://www.wpdaxue.com/wordpress-aliyun-smtp.html</a></p>
+<h3 id="来自第三方的介绍"><a href="#来自第三方的介绍" class="headerlink" title="来自第三方的介绍"></a>来自第三方的介绍</h3><p>6、切换到“发信地址”界面，新建发信地址：<br>现在很多虚拟主机都是默认不支持 mail() 函数发送邮件的，不过一般都提供 smtp 发件支持。要找一个好用的 smtp 发送邮件方可不容易，不是发件数量限制太小，就是经常被判为垃圾邮件。所以倡萌此前一直在服务器搭建邮件发送功能，并想办法优化提高邮件可行度，避免被判为垃圾邮件，但效果还是不太理想。前些天，想起了阿里云的邮件推送服务，并进行了测试，发现真的不错哦。</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1、要了解和开通阿里云邮件推送服务，请查看：<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/directmail">https://www.aliyun.com/product/directmail</a></p>
+<p>2、开通以后，在控制台进入“发信域名”新建域名<br>阿里云里提示最好用二级域名，但是<a href="mailto:&#115;&#x65;&#114;&#x76;&#105;&#99;&#101;&#64;&#x65;&#x6d;&#97;&#105;&#108;&#46;&#x6a;&#x6b;&#45;&#x6b;&#x6a;&#46;&#x63;&#111;&#x6d;">&#115;&#x65;&#114;&#x76;&#105;&#99;&#101;&#64;&#x65;&#x6d;&#97;&#105;&#108;&#46;&#x6a;&#x6b;&#45;&#x6b;&#x6a;&#46;&#x63;&#111;&#x6d;</a>类似的邮箱还是会被某些插件不认可。最后我还是用上了<a href="mailto:&#115;&#101;&#114;&#118;&#x69;&#x63;&#x65;&#x40;&#106;&#x6b;&#45;&#x6b;&#106;&#x2e;&#99;&#111;&#109;">&#115;&#101;&#114;&#118;&#x69;&#x63;&#x65;&#x40;&#106;&#x6b;&#45;&#x6b;&#106;&#x2e;&#99;&#111;&#109;</a><br>3、添加域名后，点击配置，可以查看到域名配置信息<br>4、按照域名配置信息的提示，到你的域名解析后台添加3条解析记录：<br>5、添加完解析记录，回到阿里云后台，点击“验证”，返回“验证通过”说明解析生效：<br>6、切换到“发信地址”界面，新建发信地址：<br>7、选择刚才添加的发信域名，然后输入你要使用的账号，输入回信地址，选择发信类型：批量邮件<br>注：发信类型有：<br>触发邮件：注册确认、订单确认、密码重置、交易通知等<br>批量邮件：自有用户的产品促销、期刊订阅等<br>但是有些用户反馈，触发邮件方式不太稳定，你可以根据自己的实际选择吧，这里我选择的是批量邮件<br>8、添加完返回到界面，点击“验证回信地址”，然后会发送邮件到你的回信地址，到你的邮件箱点击邮件的链接验证通过即可，注意哦，验证邮件可能在垃圾箱里。然后设置SMTP 密码。<br>9、完成上面的步骤后，阿里云的邮件推送的SMTP发送功能就设置好了</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/MySql%E6%8C%89%E5%91%A8%EF%BC%8C%E6%8C%89%E6%9C%88%EF%BC%8C%E6%8C%89%E6%97%A5%E5%88%86%E7%BB%84%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="找回指尖灵动的感觉">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/MySql%E6%8C%89%E5%91%A8%EF%BC%8C%E6%8C%89%E6%9C%88%EF%BC%8C%E6%8C%89%E6%97%A5%E5%88%86%E7%BB%84%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">MySql按周，按月，按日分组统计数据</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-19 14:25:08" itemprop="dateCreated datePublished" datetime="2018-03-19T14:25:08+08:00">2018-03-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/MySql%E6%8C%89%E5%91%A8%EF%BC%8C%E6%8C%89%E6%9C%88%EF%BC%8C%E6%8C%89%E6%97%A5%E5%88%86%E7%BB%84%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE/" class="post-meta-item leancloud_visitors" data-flag-title="MySql按周，按月，按日分组统计数据" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前开发微信时，做过类似的简单统计。那时对于mysql的理解比较浅，有些数据都是预先存入数据去实现的。这时就会出现多个时间，比如create_time  create_date。<br>现在开发开单宝的统计，特意搜索了一下关于统计时mysql处理的文章</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>MySql按周，按月，按日分组统计数据<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lqclh502/article/details/50157483">https://blog.csdn.net/lqclh502/article/details/50157483</a><br>MySQL中distinct和count(*)的使用方法比较<br><a target="_blank" rel="noopener" href="http://www.jb51.net/article/74559.htm">http://www.jb51.net/article/74559.htm</a></p>
+<h3 id="几个关键词"><a href="#几个关键词" class="headerlink" title="几个关键词"></a>几个关键词</h3><h4 id="网上的资料"><a href="#网上的资料" class="headerlink" title="网上的资料"></a>网上的资料</h4><p>关键词：<code>DATE_FORMAT</code><br>对时间进行格式化<br>例子：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select DATE_FORMAT(create_time,<span class="string">&#x27;%Y%u&#x27;</span>) weeks,count(caseid) count <span class="keyword">from</span> tc_case<span class="built_in"> group </span>by weeks;</span><br><span class="line"></span><br><span class="line">select DATE_FORMAT(create_time,<span class="string">&#x27;%Y%m%d&#x27;</span>) days,count(caseid) count <span class="keyword">from</span> tc_case<span class="built_in"> group </span>by days;</span><br><span class="line"></span><br><span class="line">select DATE_FORMAT(create_time,<span class="string">&#x27;%Y%m&#x27;</span>) months,count(caseid) count <span class="keyword">from</span> tc_case<span class="built_in"> group </span>by months;</span><br></pre></td></tr></table></figure>
+
+<p>DATE_FORMAT(date,format)</p>
+<p>根据format字符串格式化date值。下列修饰符可以被用在format字符串中：</p>
+<p>%M 月名字(January……December)<br>%W 星期名字(Sunday……Saturday)<br>%D 有英语前缀的月份的日期(1st, 2nd, 3rd, 等等。）<br>%Y 年, 数字, 4 位<br>%y 年, 数字, 2 位<br>%a 缩写的星期名字(Sun……Sat)<br>%d 月份中的天数, 数字(00……31)<br>%e 月份中的天数, 数字(0……31)<br>%m 月, 数字(01……12)<br>%c 月, 数字(1……12)<br>%b 缩写的月份名字(Jan……Dec)<br>%j 一年中的天数(001……366)<br>%H 小时(00……23)<br>%k 小时(0……23)<br>%h 小时(01……12)<br>%I 小时(01……12)<br>%l 小时(1……12)<br>%i 分钟, 数字(00……59)<br>%r 时间,12 小时(hh:mm:ss [AP]M)<br>%T 时间,24 小时(hh:mm:ss)<br>%S 秒(00……59)<br>%s 秒(00……59)<br>%p AM或PM<br>%w 一个星期中的天数(0=Sunday ……6=Saturday ）<br>%U 星期(0……52), 这里星期天是星期的第一天<br>%u 星期(0……52), 这里星期一是星期的第一天<br>%% 一个文字“%”</p>
+<h4 id="动手实战"><a href="#动手实战" class="headerlink" title="动手实战"></a>动手实战</h4><p>网上写的是DATE类型的字段的处理，可是我习惯用int类型的时间戳保存时间<br>需要改进一下</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DATE_FORMAT( <span class="name">FROM_UNIXTIME</span>(<span class="name">create_time</span>),&#x27;%Y-%m-%d&#x27; ) AS  days</span><br><span class="line">DATE_FORMAT( <span class="name">FROM_UNIXTIME</span>(<span class="name">create_time</span>),&#x27;%Y-%m&#x27; ) AS  months</span><br><span class="line">DATE_FORMAT( <span class="name">FROM_UNIXTIME</span>(<span class="name">create_time</span>),&#x27;%u&#x27; ) AS  weeks</span><br></pre></td></tr></table></figure>
+
+<p>接下来只要对 days months weeks进group就OK<br>thinkphp下的代码</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$<span class="keyword">list</span> = M(<span class="string">&quot;Order&quot;</span>)</span><br><span class="line"><span class="function">        -&gt;</span>field(<span class="string">&quot; DATE_FORMAT( FROM_UNIXTIME(create_time),&#x27;%Y-%m-%d&#x27; ) AS  days, SUM(total_money) total_money_count , COUNT( DISTINCT customer_id ) AS customer_id_count , COUNT( id ) AS order_count&quot;</span>)</span><br><span class="line"><span class="function">        -&gt;</span>where($newmap)</span><br><span class="line"><span class="function">        -&gt;</span>group(<span class="string">&#x27; days &#x27;</span>)</span><br><span class="line"><span class="function">        -&gt;</span>select();</span><br></pre></td></tr></table></figure>
+
+<p>关键词：<code>DISTINCT</code><br>在count不重复的记录的时候就能用到它，<br>上面的代码里就用到了<code>COUNT( DISTINCT customer_id ) AS customer_id_count</code>,有了这个关键词，就不用以前的笨方法了</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -834,364 +1172,6 @@ x86代表适用32位系统,x64代表适用64位系统</code></pre>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://linux.cn/article-7170-1.html">https://linux.cn/article-7170-1.html</a></p>
 <p><a target="_blank" rel="noopener" href="http://blog.csdn.net/tdstds/article/details/24870535">http://blog.csdn.net/tdstds/article/details/24870535</a></p>
 <p><a target="_blank" rel="noopener" href="http://blog.csdn.net/eroswang/article/details/5555415/">http://blog.csdn.net/eroswang/article/details/5555415/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E7%AB%99%E5%AD%97%E4%BD%93%E9%87%87%E7%94%A8%E6%80%9D%E6%BA%90%E5%AD%97%E4%BD%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="找回指尖灵动的感觉">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E7%AB%99%E5%AD%97%E4%BD%93%E9%87%87%E7%94%A8%E6%80%9D%E6%BA%90%E5%AD%97%E4%BD%93/" class="post-title-link" itemprop="url">记一次网站字体采用思源字体</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-12-07 12:46:14" itemprop="dateCreated datePublished" datetime="2017-12-07T12:46:14+08:00">2017-12-07</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E7%AB%99%E5%AD%97%E4%BD%93%E9%87%87%E7%94%A8%E6%80%9D%E6%BA%90%E5%AD%97%E4%BD%93/" class="post-meta-item leancloud_visitors" data-flag-title="记一次网站字体采用思源字体" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>客户想让他的网站都显示思源字体</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>fontsquirrel<br><a target="_blank" rel="noopener" href="https://www.fontsquirrel.com/">https://www.fontsquirrel.com</a><br>CSS @font-face属性实现在网页中嵌入任意字体<br><a target="_blank" rel="noopener" href="http://www.jb51.net/css/23073.html">http://www.jb51.net/css/23073.html</a></p>
-<p>如何在网页中嵌入自己想要的字体(实例下载)<br><a target="_blank" rel="noopener" href="http://blog.csdn.net/sinolzeng/article/details/41802951">http://blog.csdn.net/sinolzeng/article/details/41802951</a></p>
-<h3 id="linux安装字体（错误的方法）"><a href="#linux安装字体（错误的方法）" class="headerlink" title="linux安装字体（错误的方法）"></a>linux安装字体（错误的方法）</h3><h4 id="下载字体"><a href="#下载字体" class="headerlink" title="下载字体"></a>下载字体</h4><p>下载思源全套字体（字体文件名称：NotoSansHans）</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>pan.baidu.com<span class="regexp">/s/</span><span class="number">1</span>uJBBK</span><br></pre></td></tr></table></figure>
-
-<p>windows的字体比较多，其字体文件位于 C:\WINDOWS\Fonts,如果想额外安装也可以到这里找找</p>
-<p>字体格式有ttf和otf等多重后缀，linux上ttf和oft都可以</p>
-<h4 id="移动文件到服务器指定位置"><a href="#移动文件到服务器指定位置" class="headerlink" title="移动文件到服务器指定位置"></a>移动文件到服务器指定位置</h4><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># mkdir <span class="regexp">/usr/</span>share<span class="regexp">/fonts/</span>NotoSansHans</span><br><span class="line"># cp arial*.otf <span class="regexp">/usr/</span>share<span class="regexp">/fonts/</span>NotoSansHans/</span><br><span class="line">或</span><br><span class="line"># cp arial*.ttf <span class="regexp">/usr/</span>share<span class="regexp">/fonts/</span>NotoSansHans/</span><br></pre></td></tr></table></figure>
-
-<h4 id="为刚加入的字体设置缓存使之有效"><a href="#为刚加入的字体设置缓存使之有效" class="headerlink" title="为刚加入的字体设置缓存使之有效"></a>为刚加入的字体设置缓存使之有效</h4><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd <span class="regexp">/usr/</span>share<span class="regexp">/font/</span>NotoSansHans</span><br><span class="line"># fc-cache -fv</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>因为我在windows里先安装了思源字体，并在<code>Noto Sans S Chinese</code>中找到了思源字体，所以font-family中我用<code>Noto Sans S Chinese</code></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;Noto Sans S Chinese&quot;</span>, Helvetica, Arial, sans-serif;</span><br><span class="line">    <span class="attribute">-webkit-font-smoothing</span>: antialiased;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#777777</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>为什么文件名是<code>NotoSansHans</code>，安装后需要<code>Noto Sans S Chinese</code><br>这里有个疑惑</p>
-<h4 id="疑惑解决（2017-12-8）"><a href="#疑惑解决（2017-12-8）" class="headerlink" title="疑惑解决（2017.12.8）"></a>疑惑解决（2017.12.8）</h4><p>自己本地安装了ttf包后，生成了Noto Sans S Chinese字体，可是这个字体不是服务器里的</p>
-<p>也就是说，我在linux上安装的字体只能在linux上使用,浏览器里使用一个是看客户端有没有这个字体，另一个是你的css中引入如ttf之类的字体资源，但是对于中文来说，要把整个字体都方法css上，大概要10M以上（这个肯定不是个办法）</p>
-<h3 id="css-font-face引入-只能引入英文字体"><a href="#css-font-face引入-只能引入英文字体" class="headerlink" title="css font-face引入(只能引入英文字体)"></a>css font-face引入(只能引入英文字体)</h3><p>在<br><a target="_blank" rel="noopener" href="https://www.fontsquirrel.com/">https://www.fontsquirrel.com</a><br>中找到自己需要的字体</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;fontNameRegular&#x27;</span>;</span><br><span class="line"><span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&#x27;fontName.eot&#x27;</span>);</span><br><span class="line"><span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">&#x27;fontName Regular&#x27;</span>),</span><br><span class="line"><span class="built_in">local</span>(<span class="string">&#x27;fontName&#x27;</span>),</span><br><span class="line"><span class="built_in">url</span>(<span class="string">&#x27;fontName.woff&#x27;</span>) <span class="built_in">format</span>(<span class="string">&#x27;woff&#x27;</span>),</span><br><span class="line"><span class="built_in">url</span>(<span class="string">&#x27;fontName.ttf&#x27;</span>) <span class="built_in">format</span>(<span class="string">&#x27;truetype&#x27;</span>),</span><br><span class="line"><span class="built_in">url</span>(<span class="string">&#x27;fontName.svg#fontName&#x27;</span>) <span class="built_in">format</span>(<span class="string">&#x27;svg&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*其中fontName替换为你的字体名称*/</span> </span><br></pre></td></tr></table></figure>
-
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>想在网页中全部使用某不常用的字体，几乎是不可取的方法，除非客户端里大家都安装了该字体</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/elementui%E5%BC%95%E5%85%A5iconfont/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="找回指尖灵动的感觉">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/elementui%E5%BC%95%E5%85%A5iconfont/" class="post-title-link" itemprop="url">elementui引入iconfont</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-10 15:58:02" itemprop="dateCreated datePublished" datetime="2017-11-10T15:58:02+08:00">2017-11-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/elementui%E5%BC%95%E5%85%A5iconfont/" class="post-meta-item leancloud_visitors" data-flag-title="elementui引入iconfont" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>element官方的icon太少</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/b376924098/article/details/78286880#reply">http://blog.csdn.net/b376924098/article/details/78286880#reply</a></p>
-<p>CSS3 @font-face [<a target="_blank" rel="noopener" href="http://www.w3cplus.com/content/css3-font-face]">http://www.w3cplus.com/content/css3-font-face]</a></p>
-<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ul>
-<li>去阿里巴巴矢量图，地址;<a target="_blank" rel="noopener" href="http://www.iconfont.cn/">http://www.iconfont.cn/</a></li>
-<li>进入网站登录账户后，新建一个项目</li>
-<li>选择一些自己要用到的图标如上图点击购物车按钮添加到购物车。</li>
-</ul>
- <img src="http://img.blog.csdn.net/20171019170321456?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYjM3NjkyNDA5OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-
-<ul>
-<li>保存时，以yourprogect-icon命名</li>
-<li>并命名一个自己的字体名称，jkkjFontFamily</li>
-<li>在iconfont.css添加以下代码<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[class^=<span class="string">&quot;jkkj-icon&quot;</span>]</span>, <span class="selector-attr">[class*=<span class="string">&quot; jkkj-icon&quot;</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>:<span class="string">&quot;jkkjFontFamily&quot;</span> <span class="meta">!important</span>;</span><br><span class="line">  <span class="comment">/* 以下内容参照第三方图标库本身的规则 */</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">  <span class="attribute">font-style</span>:normal;</span><br><span class="line">  <span class="attribute">-webkit-font-smoothing</span>: antialiased;</span><br><span class="line">  <span class="attribute">-moz-osx-font-smoothing</span>: grayscale;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-效果类似于下图<img src="http://img.blog.csdn.net/20171019171813100?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYjM3NjkyNDA5OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center"></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/node-sass%E5%AE%89%E8%A3%85%E4%B8%8D%E6%88%90%E5%8A%9F%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="找回指尖灵动的感觉">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/node-sass%E5%AE%89%E8%A3%85%E4%B8%8D%E6%88%90%E5%8A%9F%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">node-sass安装不成功的解决方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-09 15:55:24" itemprop="dateCreated datePublished" datetime="2017-11-09T15:55:24+08:00">2017-11-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/node-sass%E5%AE%89%E8%A3%85%E4%B8%8D%E6%88%90%E5%8A%9F%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="node-sass安装不成功的解决方法" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>每次安装node-sass都被墙导致安装不成功</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/qq_35440678/article/details/51909327">http://blog.csdn.net/qq_35440678/article/details/51909327</a></p>
-<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>直接用淘宝的镜像安装成功</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --<span class="attr">registry=</span>https://registry.npm.taobao.org</span><br><span class="line">cnpm install <span class="keyword">node</span><span class="title">-sass</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/vscode%E9%85%8D%E7%BD%AEeslint/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="找回指尖灵动的感觉">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/vscode%E9%85%8D%E7%BD%AEeslint/" class="post-title-link" itemprop="url">vscode配置eslint</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-03 09:08:31" itemprop="dateCreated datePublished" datetime="2017-11-03T09:08:31+08:00">2017-11-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/vscode%E9%85%8D%E7%BD%AEeslint/" class="post-meta-item leancloud_visitors" data-flag-title="vscode配置eslint" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>公司开始了新项目用了vue，因为用了某人开源的基础架构，所以被动的被用上了eslint，刚开始用sublime写vue，结果各种规法错误，很是恼火。最后按网上教程用了vscode+eslint插件，一键格式化错误，牛X死了</p>
-<h4 id="安装eslint插件"><a href="#安装eslint插件" class="headerlink" title="安装eslint插件"></a>安装eslint插件</h4><p>安装并配置完成 ESLint 后，我们继续回到 VSCode 进行扩展设置，依次点击 文件 &gt; 首选项 &gt; 设置 打开 VSCode 配置文件,添加如下配置</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;eslint.autoFixOnSave&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;files.autoSave&quot;</span>:<span class="string">&quot;off&quot;</span>,</span><br><span class="line"><span class="string">&quot;eslint.validate&quot;</span>: [</span><br><span class="line">   <span class="string">&quot;javascript&quot;</span>,</span><br><span class="line">   <span class="string">&quot;javascriptreact&quot;</span>,</span><br><span class="line">   <span class="string">&quot;html&quot;</span>,</span><br><span class="line">   &#123; <span class="string">&quot;language&quot;</span>: <span class="string">&quot;vue&quot;</span>, <span class="string">&quot;autoFix&quot;</span>: <span class="literal">true</span> &#125;</span><br><span class="line"> ],</span><br><span class="line"> <span class="string">&quot;eslint.options&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;plugins&quot;</span>: [<span class="string">&quot;html&quot;</span>]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>这样每次保存的时候就可以根据根目录下.eslintrc.js你配置的eslint规则来检查和做一些简单的fix。</p>
-<p>当前eslint规则</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">module.exports</span> <span class="string">=</span> &#123;</span><br><span class="line">    <span class="attr">root:</span> <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">parser:</span> <span class="string">&#x27;babel-eslint&#x27;</span>,</span><br><span class="line">    <span class="attr">parserOptions:</span> &#123;</span><br><span class="line">        <span class="attr">sourceType:</span> <span class="string">&#x27;module&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">env:</span> &#123;</span><br><span class="line">        <span class="attr">browser:</span> <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">node:</span> <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">es6:</span> <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">extends:</span> <span class="string">&#x27;eslint:recommended&#x27;</span>,</span><br><span class="line">    <span class="string">//</span> <span class="string">required</span> <span class="string">to</span> <span class="string">lint</span> <span class="string">*.vue</span> <span class="string">files</span></span><br><span class="line">    <span class="attr">plugins:</span> [</span><br><span class="line">        <span class="string">&#x27;html&#x27;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">//</span> <span class="string">check</span> <span class="string">if</span> <span class="string">imports</span> <span class="string">actually</span> <span class="string">resolve</span></span><br><span class="line">    <span class="attr">&#x27;settings&#x27;:</span> &#123;</span><br><span class="line">        <span class="attr">&#x27;import/resolver&#x27;:</span> &#123;</span><br><span class="line">            <span class="attr">&#x27;webpack&#x27;:</span> &#123;</span><br><span class="line">                <span class="attr">&#x27;config&#x27;:</span> <span class="string">&#x27;build/webpack.base.conf.js&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">//</span> <span class="string">add</span> <span class="string">your</span> <span class="string">custom</span> <span class="string">rules</span> <span class="string">here</span></span><br><span class="line">    <span class="string">//it</span> <span class="string">is</span> <span class="string">base</span> <span class="string">on</span> <span class="string">https://github.com/vuejs/eslint-config-vue</span></span><br><span class="line">    <span class="attr">&#x27;rules&#x27;:</span> &#123;</span><br><span class="line">        <span class="attr">&#x27;accessor-pairs&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;arrow-spacing&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;before&#x27;:</span> <span class="literal">true</span>, <span class="attr">&#x27;after&#x27;:</span> <span class="literal">true</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;block-spacing&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;always&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;brace-style&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;1tbs&#x27;</span>, &#123; <span class="attr">&#x27;allowSingleLine&#x27;:</span> <span class="literal">true</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;camelcase&#x27;:</span> [<span class="number">0</span>, &#123; <span class="attr">&#x27;properties&#x27;:</span> <span class="string">&#x27;always&#x27;</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;comma-dangle&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;comma-spacing&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;before&#x27;:</span> <span class="literal">false</span>, <span class="attr">&#x27;after&#x27;:</span> <span class="literal">true</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;comma-style&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;last&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;constructor-super&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;curly&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;multi-line&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;dot-location&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;property&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;eol-last&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;eqeqeq&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;allow-null&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;generator-star-spacing&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;before&#x27;:</span> <span class="literal">true</span>, <span class="attr">&#x27;after&#x27;:</span> <span class="literal">true</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;handle-callback-err&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;^(err|error)$&#x27;</span> ],</span><br><span class="line">        <span class="attr">&#x27;indent&#x27;:</span> [<span class="number">2</span>, <span class="number">2</span>, &#123; <span class="attr">&#x27;SwitchCase&#x27;:</span> <span class="number">1</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;jsx-quotes&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;prefer-single&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;key-spacing&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;beforeColon&#x27;:</span> <span class="literal">false</span>, <span class="attr">&#x27;afterColon&#x27;:</span> <span class="literal">true</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;keyword-spacing&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;before&#x27;:</span> <span class="literal">true</span>, <span class="attr">&#x27;after&#x27;:</span> <span class="literal">true</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;new-cap&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;newIsCap&#x27;:</span> <span class="literal">true</span>, <span class="attr">&#x27;capIsNew&#x27;:</span> <span class="literal">false</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;new-parens&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-array-constructor&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-caller&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-console&#x27;:</span> <span class="string">&#x27;off&#x27;</span>,</span><br><span class="line">        <span class="attr">&#x27;no-class-assign&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-cond-assign&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-const-assign&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-control-regex&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-delete-var&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-dupe-args&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-dupe-class-members&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-dupe-keys&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-duplicate-case&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-empty-character-class&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-empty-pattern&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-eval&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-ex-assign&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-extend-native&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-extra-bind&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-extra-boolean-cast&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-extra-parens&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;functions&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;no-fallthrough&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-floating-decimal&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-func-assign&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-implied-eval&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-inner-declarations&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;functions&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;no-invalid-regexp&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-irregular-whitespace&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-iterator&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-label-var&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-labels&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;allowLoop&#x27;:</span> <span class="literal">false</span>, <span class="attr">&#x27;allowSwitch&#x27;:</span> <span class="literal">false</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;no-lone-blocks&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-mixed-spaces-and-tabs&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-multi-spaces&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-multi-str&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-multiple-empty-lines&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;max&#x27;:</span> <span class="number">1</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;no-native-reassign&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-negated-in-lhs&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-new-object&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-new-require&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-new-symbol&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-new-wrappers&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-obj-calls&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-octal&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-octal-escape&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-path-concat&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-proto&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-redeclare&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-regex-spaces&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-return-assign&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;except-parens&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;no-self-assign&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-self-compare&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-sequences&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-shadow-restricted-names&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-spaced-func&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-sparse-arrays&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-this-before-super&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-throw-literal&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-trailing-spaces&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-undef&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-undef-init&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-unexpected-multiline&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-unmodified-loop-condition&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-unneeded-ternary&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;defaultAssignment&#x27;:</span> <span class="literal">false</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;no-unreachable&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-unsafe-finally&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-unused-vars&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;vars&#x27;:</span> <span class="string">&#x27;all&#x27;</span>, <span class="attr">&#x27;args&#x27;:</span> <span class="string">&#x27;none&#x27;</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;no-useless-call&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-useless-computed-key&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-useless-constructor&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-useless-escape&#x27;:</span> <span class="number">0</span>,</span><br><span class="line">        <span class="attr">&#x27;no-whitespace-before-property&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-with&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;one-var&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;initialized&#x27;:</span> <span class="string">&#x27;never&#x27;</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;operator-linebreak&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;after&#x27;</span>, &#123; <span class="attr">&#x27;overrides&#x27;:</span> &#123; <span class="string">&#x27;?&#x27;</span><span class="string">:</span> <span class="string">&#x27;before&#x27;</span>, <span class="string">&#x27;:&#x27;</span><span class="string">:</span> <span class="string">&#x27;before&#x27;</span> &#125; &#125;],</span><br><span class="line">        <span class="attr">&#x27;padded-blocks&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;quotes&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;single&#x27;</span>, &#123; <span class="attr">&#x27;avoidEscape&#x27;:</span> <span class="literal">true</span>, <span class="attr">&#x27;allowTemplateLiterals&#x27;:</span> <span class="literal">true</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;semi&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;semi-spacing&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;before&#x27;:</span> <span class="literal">false</span>, <span class="attr">&#x27;after&#x27;:</span> <span class="literal">true</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;space-before-blocks&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;always&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;space-before-function-paren&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;space-in-parens&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;space-infix-ops&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;space-unary-ops&#x27;:</span> [<span class="number">2</span>, &#123; <span class="attr">&#x27;words&#x27;:</span> <span class="literal">true</span>, <span class="attr">&#x27;nonwords&#x27;:</span> <span class="literal">false</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;spaced-comment&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;always&#x27;</span>, &#123; <span class="attr">&#x27;markers&#x27;:</span> [<span class="string">&#x27;global&#x27;</span>, <span class="string">&#x27;globals&#x27;</span>, <span class="string">&#x27;eslint&#x27;</span>, <span class="string">&#x27;eslint-disable&#x27;</span>, <span class="string">&#x27;*package&#x27;</span>, <span class="string">&#x27;!&#x27;</span>, <span class="string">&#x27;,&#x27;</span>] &#125;],</span><br><span class="line">        <span class="attr">&#x27;template-curly-spacing&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;use-isnan&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;valid-typeof&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;wrap-iife&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;any&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;yield-star-spacing&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;both&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;yoda&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">        <span class="attr">&#x27;prefer-const&#x27;:</span> <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&#x27;no-debugger&#x27;:</span> <span class="string">process.env.NODE_ENV</span> <span class="string">===</span> <span class="string">&#x27;production&#x27;</span> <span class="string">?</span> <span class="attr">2 :</span> <span class="number">0</span>,</span><br><span class="line">        <span class="attr">&#x27;object-curly-spacing&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;always&#x27;</span>, &#123; <span class="attr">objectsInObjects:</span> <span class="literal">false</span> &#125;],</span><br><span class="line">        <span class="attr">&#x27;array-bracket-spacing&#x27;:</span> [<span class="number">2</span>, <span class="string">&#x27;never&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p><code>shift+ctrl+p</code>    =&gt; 选择 <code>eslint fix all auto-fixable problems</code></p>
 
       
     </div>
