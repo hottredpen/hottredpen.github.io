@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,207 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%89)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E5%89%91%E9%98%B5%E7%9B%98%E7%9A%84%E6%8E%A7%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%89)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E5%89%91%E9%98%B5%E7%9B%98%E7%9A%84%E6%8E%A7%E5%88%B6/" class="post-title-link" itemprop="url">(三)、“仙剑出鞘”---剑阵盘的控制</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-13 13:59:31 / 修改时间：16:20:21" itemprop="dateCreated datePublished" datetime="2020-11-13T13:59:31+08:00">2020-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%89)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E5%89%91%E9%98%B5%E7%9B%98%E7%9A%84%E6%8E%A7%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="(三)、“仙剑出鞘”---剑阵盘的控制" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.node.on(cc.Node.EventType.TOUCH_START, <span class="built_in">this</span>.onTouchStart, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">this</span>.node.on(cc.Node.EventType.TOUCH_MOVE, <span class="built_in">this</span>.onTouchMove , <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">this</span>.node.on(cc.Node.EventType.TOUCH_CANCEL, <span class="built_in">this</span>.onTouchEnd, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">this</span>.node.on(cc.Node.EventType.TOUCH_END, <span class="built_in">this</span>.onTouchEnd, <span class="built_in">this</span>);</span><br><span class="line">        <span class="comment">// this.mEnableTouch = true;</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;mEnableTouch on&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">     </span><br><span class="line">    onTouchMove (event) &#123;</span><br><span class="line"><span class="keyword">var</span> touches = event.getTouches();</span><br><span class="line"><span class="keyword">var</span> touchLoc = touches[<span class="number">0</span>].getLocation();</span><br><span class="line"><span class="comment">// this.mHookMoveToPos = this.node.parent.convertToNodeSpaceAR(touchLoc);</span></span><br><span class="line"><span class="comment">// console.log(&#x27;touchLoc : &#x27;, touchLoc);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> toX:<span class="built_in">Number</span> = touchLoc.x - <span class="built_in">Number</span>(<span class="built_in">this</span>.preX) </span><br><span class="line"><span class="keyword">var</span> toY:<span class="built_in">Number</span> = touchLoc.y - <span class="built_in">Number</span>(<span class="built_in">this</span>.preY)</span><br><span class="line"><span class="built_in">this</span>.preX = touchLoc.x</span><br><span class="line"><span class="built_in">this</span>.preY = touchLoc.y</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;touchLoc.x&#x27;</span>,touchLoc.x)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;preX&#x27;</span>,<span class="built_in">this</span>.preX)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;touchLoc.y&#x27;</span>,touchLoc.y)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;preY&#x27;</span>,<span class="built_in">this</span>.preY)</span><br><span class="line"><span class="function"><span class="title">if</span>(<span class="params"> toX &gt; <span class="number">0</span> </span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot; &gt; 0&quot;</span>)</span><br><span class="line">    <span class="built_in">this</span>.mPan.angle +=<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">if</span>(<span class="params"> toX &lt; <span class="number">0</span> </span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot; &lt; 0&quot;</span>)</span><br><span class="line">    <span class="built_in">this</span>.mPan.angle -=<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="主要涉及的cocos函数"><a href="#主要涉及的cocos函数" class="headerlink" title="主要涉及的cocos函数"></a>主要涉及的cocos函数</h3><h4 id="1、event-getTouches"><a href="#1、event-getTouches" class="headerlink" title="1、event.getTouches()"></a>1、event.getTouches()</h4><p>获取触碰点</p>
+<h4 id="2、cc-Node-EventType-TOUCH-MOVE"><a href="#2、cc-Node-EventType-TOUCH-MOVE" class="headerlink" title="2、cc.Node.EventType.TOUCH_MOVE"></a>2、cc.Node.EventType.TOUCH_MOVE</h4><p>事件类型</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/" class="post-title-link" itemprop="url">xxx的商家后台目录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-12 12:57:10" itemprop="dateCreated datePublished" datetime="2020-11-12T12:57:10+08:00">2020-11-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-17 14:36:29" itemprop="dateModified" datetime="2020-11-17T14:36:29+08:00">2020-11-17</time>
+      </span>
+
+  
+    <span id="/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/" class="post-meta-item leancloud_visitors" data-flag-title="xxx的商家后台目录" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <pre class="mermaid">graph LR
+    商品管理 --> 商品列表
+    商品管理 --> 类目管理
+    商品管理 --> 类目属性
+    商品管理 --> 商家类目属性
+    商品管理 --> 品牌管理
+
+
+    订单监管 --> 订单列表
+    订单监管 --> 订单列表
+    订单监管 --> 订单列表</pre>
+
+<pre class="mermaid">graph LR
+
+   物流管理 --> 发货
+   发货 --> 全部1
+   发货 --> 待发货
+   发货 --> 发货中订单
+
+   物流管理 --> 运费模板
+   运费模板--> 全部2
+   运费模板--> 正常
+   运费模板--> 隐藏</pre>
+
+<pre class="mermaid">graph LR
+
+    宝贝管理 --> 发布宝贝
+    宝贝管理 --> 出售中的宝贝
+    宝贝管理 --> 仓库中的宝贝</pre>
+
+<pre class="mermaid">graph LR
+
+    店铺管理 --> 图片空间
+    店铺管理 --> 店铺装修
+    店铺管理 --> 类目管理
+    店铺管理 --> 品牌管理
+    店铺管理 --> 店铺资料
+    店铺管理 --> 店铺配置</pre>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -1007,200 +1208,6 @@
           <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>自己写的php代码,执行mysql时,占用了很大的CPU,排查问题修改代码后,发现公司服务器已经没有这个问题,连续请求,mysql的内存不会增加。但是客户的机子上,连续请求还是会出现这个问题。</p>
 <p>经排查后，应该是客户服务器上的CPU处理速度跟不上,导致mysql执行效率跟不上,被阻塞住。导致CPU会因为请求数量的累加而上升。而公司服务器因为处理速度快,即使请求速不断累加,其CPU的值也上升很少。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>在linux 下怎么查看服务器的cpu和内存的硬件信息<br><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/155943069.html">https://zhidao.baidu.com/question/155943069.html</a><br>intel xeon(skylake) platinum 8163 性能评测 阿里云第四代ECS服务器<br><a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/622603">https://yq.aliyun.com/articles/622603</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/cocos%E5%85%A5%E9%97%A8%E8%A7%A3%E8%AF%BB%E5%B0%8F%E7%8C%AB%E9%92%93%E9%B1%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/cocos%E5%85%A5%E9%97%A8%E8%A7%A3%E8%AF%BB%E5%B0%8F%E7%8C%AB%E9%92%93%E9%B1%BC/" class="post-title-link" itemprop="url">cocos入门解读小猫钓鱼</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-25 08:33:31" itemprop="dateCreated datePublished" datetime="2019-04-25T08:33:31+08:00">2019-04-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/cocos%E5%85%A5%E9%97%A8%E8%A7%A3%E8%AF%BB%E5%B0%8F%E7%8C%AB%E9%92%93%E9%B1%BC/" class="post-meta-item leancloud_visitors" data-flag-title="cocos入门解读小猫钓鱼" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一直想弄一个小游戏出来，但是因为想用框架，在框架的选择上面兜兜转转，用了一遍，cocos是我最早接触的那时，还是叫cocos-js,后来出了个cocos-creator之后就没怎么深入了。2018年下半年又重新去接触微信小游戏，选了白鹭引擎，刚看完文档，有个同事说laya不错，看了一下laya的基础代码，感觉比白鹭简单（入坑）。但随着自己不断的深入已经想了解一些功能的实现时，laya的文档和教程可以几乎没什么帮助。查看github上的项目，也就那么几个。最后又去看白鹭社区，白鹭的开源项目还是很多的，有想重新用回白鹭的冲动，但忍住了。但某天一个简单功能在laya的模拟器跑正常，但到了微信开发工具里却始终无效，看了社区，这个问题据说已经在早几个版本里已经修复（当然不知道mac上面有没有修复），之后彻底对laya失去了希望。<br>重新看了白鹭和cocos-creator，最后发现cocos-creator的设计模式，很符合我的口味，突然有种为什么之前不先考虑cocos的疑惑。</p>
-<p>后来看到了一个“小猫钓鱼”的cocos项目。作者的教程真的写的很详细，果断重新入坑cocos。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>CocosCreator微信小游戏入门实战《小猫钓鱼》<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzx023/article/details/83063363">https://blog.csdn.net/zzx023/article/details/83063363</a></p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1ftp%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1ftp%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">记一次ftp环境的搭建</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-24 13:59:27" itemprop="dateCreated datePublished" datetime="2019-04-24T13:59:27+08:00">2019-04-24</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1ftp%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/" class="post-meta-item leancloud_visitors" data-flag-title="记一次ftp环境的搭建" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>给客户的服务器上安装ftp环境</p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>Linux下如何进行FTP设置:vsftp<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/eagling/articles/4848669.html">https://www.cnblogs.com/eagling/articles/4848669.html</a><br>FTP主动模式和被动模式的区别<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dancheblog/p/3799448.html">https://www.cnblogs.com/dancheblog/p/3799448.html</a><br>Linux Vsftpd 连接超时解决方法（被动模式）<br><a target="_blank" rel="noopener" href="https://blog.51cto.com/5468755/1594648">https://blog.51cto.com/5468755/1594648</a></p>
-<h3 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h3><p>vsftpd安装，执行以下命令： </p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y <span class="keyword">install</span> vsftpd</span><br></pre></td></tr></table></figure>
-
-<p>我们选择了“vsftp配置虚拟用户”<br>使用vsftpd虚拟用户登录FTP服务器进行常见的操作。<br>首先安装FTP 虚拟用户需要用到的软件及认证模块</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">yum</span>  install  pam*  libdb-utils libdb* –skip-broken  –y （Centos<span class="number">7</span>）</span><br><span class="line"></span><br><span class="line"><span class="attribute">yum</span> install db<span class="number">4</span>* -y （Centos<span class="number">6</span>）</span><br></pre></td></tr></table></figure>
-<p>编辑<code>vim /etc/vsftpd/ftpusers.txt</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user001</span><br><span class="line">user001</span><br></pre></td></tr></table></figure>
-<p>第一行为FTP虚拟用户，登录用户名，第二行为密码，第三行为用户名，依次类推。</p>
-<p>创建并生成vsftpd数据库文件，生成数据库文件命令：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db_load -T -t hash -f <span class="regexp">/etc/</span>vsftpd<span class="regexp">/ftpusers.txt /</span>etc<span class="regexp">/vsftpd/</span>vsftpd_login.db</span><br><span class="line"></span><br><span class="line">chmod <span class="number">700</span> <span class="regexp">/etc/</span>vsftpd/vsftpd_login.db</span><br></pre></td></tr></table></figure>
-<p>配置PAM验证文件：</p>
-<p>在配置文件vi  /etc/pam.d/vsftpd 行首加入如下两行认证语句：（如果是32位，lib64需改成lib，如果RedHat，加入的语句不一样，需注意）</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auth        sufficient      <span class="regexp">/lib64/</span>security<span class="regexp">/pam_userdb.so     db=/</span>etc<span class="regexp">/vsftpd/</span>vsftpd_login</span><br><span class="line"></span><br><span class="line">account     sufficient      <span class="regexp">/lib64/</span>security<span class="regexp">/pam_userdb.so     db=/</span>etc<span class="regexp">/vsftpd/</span>vsftpd_login</span><br></pre></td></tr></table></figure>
-<p>创建vsftpd映射本地用户：</p>
-<p>所有的FTP虚拟用户需要使用一个系统用户，这个系统用户不需要密码，也不需要登录。主要用来做虚拟用户映射使用。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -s <span class="regexp">/sbin/</span>nologin ftpuser</span><br></pre></td></tr></table></figure>
-<p>修改vsftpd.conf配置文件：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">anonymous_enable</span>=<span class="literal">NO</span></span><br><span class="line"></span><br><span class="line"><span class="attr">local_enable</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attr">write_enable</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attr">local_umask</span>=<span class="number">022</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dirmessage_enable</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attr">xferlog_enable</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attr">connect_from_port_20</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attr">xferlog_file</span>=/var/log/vsftpd.log</span><br><span class="line"></span><br><span class="line"><span class="attr">xferlog_std_format</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ascii_upload_enable</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ascii_download_enable</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attr">listen</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attr">guest_enable</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attr">guest_username</span>=ftpuser</span><br><span class="line"></span><br><span class="line"><span class="attr">pam_service_name</span>=vsftpd</span><br><span class="line"></span><br><span class="line"><span class="attr">user_config_dir</span>=/etc/vsftpd/vsftpd_user_conf</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>保存重启,service  vsftpd restart 即可使用虚拟用户登录，这时候所有的虚拟用户共同使用/home/ftpuser目录上传下载，如果想使用自己独立的目录，可以在/etc/vsftpd/vsftpd_user_conf目录创建各自的配置文件，如给admin创建独立的配置文件：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /etc/vsftpd/vsftpd_user_conf</span><br><span class="line"></span><br><span class="line">vim  /etc/vsftpd/vsftpd_user_conf/user001，内容如下，建立自己的FTP目录。</span><br><span class="line"></span><br><span class="line"><span class="attribute">local_root</span>=/home/ftpuser/user001</span><br><span class="line"></span><br><span class="line"><span class="attribute">write_enable</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">anon_world_readable_only</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">anon_upload_enable</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">anon_mkdir_write_enable</span>=<span class="literal">YES</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">anon_other_write_enable</span>=<span class="literal">YES</span></span><br></pre></td></tr></table></figure>
-
-<p>以上内容是参照其他博文做的，到这个时候，我以为已经大功告成，结果<br>结果出现各种<br>500 Illegal PORT command<br>227 Entering Passive Mode…</p>
-<p>一大堆问题，总之引出了 “主动和被动的问题”</p>
-<p>看了半天，主动和被动的关系，决定采用“主动模式”（开始入坑）<br>当初为什么选主动，因为博文里说了主动，服务器安全些。而且在配置21端口和20端口的时候，移动云的虚拟防火墙把我坑了一把。<br>可是无论我怎么配，都搞不定。。。登录成功目录出不来</p>
-<p>在最后发现了第三篇博文，被动模式（本想直接跳过去的，但看见他报的错误和我一模一样，抱着转被动试试看）</p>
-<p>1,vi /etc/vsftpd/vsftpd.conf</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pasv_enable</span>=<span class="literal">YES</span></span><br><span class="line"><span class="attr">pasv_min_port</span>=<span class="number">61001</span>    (注意端口和客户端的保持一致)</span><br><span class="line"><span class="attr">pasv_max_port</span>=<span class="number">62000</span></span><br><span class="line"><span class="attr">anon_max_rate</span>=<span class="number">1000000</span></span><br><span class="line"><span class="attr">local_max_rate</span>=<span class="number">2000000</span></span><br><span class="line"><span class="attr">max_clients</span>=<span class="number">10</span></span><br><span class="line"><span class="attr">max_per_ip</span>=<span class="number">100</span></span><br></pre></td></tr></table></figure>
-<p>2、加载内核 ip_conntrack_ftp 和 ip_nat_ftp（终端执行）</p>
-<p>modprobe ip_conntrack_ftp<br>modprobe ip_nat_ftp</p>
-<p>3.配置 iptables 开放 61001 到 62000 端口</p>
-<p>vi /etc/sysconfig/iptables  在*filter下加入下</p>
-<p>-A OUTPUT -p tcp –sport 61001:62000 -j ACCEPT<br>-A INPUT -p tcp –dport 61001:62000 -j ACCEPT</p>
-<h3 id="过程遇到的坑"><a href="#过程遇到的坑" class="headerlink" title="过程遇到的坑"></a>过程遇到的坑</h3><p>1、坑1—移动运的虚拟<br>21端口  在安全组里加了 没在虚拟防火墙中配置</p>
-<p>2、坑2—主动模式的选择</p>
-<p>3、坑3— -A OUTPUT -p tcp –sport 61001:62000 -j ACCEPT 没有配置</p>
 
       
     </div>

@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,222 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/mysql%E4%B8%AD%E7%9A%84%E8%A7%86%E5%9B%BE%EF%BC%88%E8%BD%AC%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/mysql%E4%B8%AD%E7%9A%84%E8%A7%86%E5%9B%BE%EF%BC%88%E8%BD%AC%EF%BC%89/" class="post-title-link" itemprop="url">mysql中的视图（转）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-24 09:22:05" itemprop="dateCreated datePublished" datetime="2017-10-24T09:22:05+08:00">2017-10-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/mysql%E4%B8%AD%E7%9A%84%E8%A7%86%E5%9B%BE%EF%BC%88%E8%BD%AC%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="mysql中的视图（转）" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>上一个项目接手后，在转移数据庫的时候，数据庫的转移失败，那是我第一次接触mysql视图。但是那时没去研究啥是视图。</p>
+<p>今天查看另一个项目时，又发现了mysql视图的存在，需要充电一下了！</p>
+<h4 id="文章来源"><a href="#文章来源" class="headerlink" title="文章来源"></a>文章来源</h4><p>作者：风一样的码农<br>原文地址：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/chenpi/p/5133648.html">http://www.cnblogs.com/chenpi/p/5133648.html</a></p>
+<h4 id="什么是视图"><a href="#什么是视图" class="headerlink" title="什么是视图"></a>什么是视图</h4><p>通俗的讲，视图就是一条SELECT语句执行后返回的结果集。所以我们在创建视图的时候，主要的工作就落在创建这条SQL查询语句上。</p>
+<h4 id="视图的特性"><a href="#视图的特性" class="headerlink" title="视图的特性"></a>视图的特性</h4><p>视图是对若干张基本表的引用，一张虚表，查询语句执行的结果，不存储具体的数据（基本表数据发生了改变，视图也会跟着改变）；</p>
+<p>可以跟基本表一样，进行增删改查操作(ps:增删改操作有条件限制)；</p>
+<h4 id="视图的作用"><a href="#视图的作用" class="headerlink" title="视图的作用"></a>视图的作用</h4><p>方便操作，特别是查询操作，减少复杂的SQL语句，增强可读性；</p>
+<p>更加安全，数据库授权命令不能限定到特定行和特定列，但是通过合理创建视图，可以把权限限定到行列级别；</p>
+<h4 id="使用场合"><a href="#使用场合" class="headerlink" title="使用场合"></a>使用场合</h4><p>权限控制的时候，不希望用户访问表中某些含敏感信息的列，比如salary…</p>
+<p>关键信息来源于多个复杂关联表，可以创建视图提取我们需要的信息，简化操作；</p>
+<h4 id="视图实例1-创建视图及查询数据操作"><a href="#视图实例1-创建视图及查询数据操作" class="headerlink" title="视图实例1-创建视图及查询数据操作"></a>视图实例1-创建视图及查询数据操作</h4><p>现有三张表：用户(user)、课程(course)、用户课程中间表(user_course)，表结构及数据如下：</p>
+<p>表定义：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Table structure for `course`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`course`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`course`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`description`</span> <span class="built_in">varchar</span>(<span class="number">500</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Records of course</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;JAVA&#x27;</span>, <span class="string">&#x27;JAVA课程&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;C++&#x27;</span>, <span class="string">&#x27;C++课程&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;C语言&#x27;</span>, <span class="string">&#x27;C语言课程&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Table structure for `user`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`account`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`others`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`others2`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Records of user</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;user1&#x27;</span>, <span class="string">&#x27;小陈&#x27;</span>, <span class="string">&#x27;美国&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;1&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;user2&#x27;</span>, <span class="string">&#x27;小张&#x27;</span>, <span class="string">&#x27;日本&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;user3&#x27;</span>, <span class="string">&#x27;小王&#x27;</span>, <span class="string">&#x27;中国&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Table structure for `user_course`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user_course`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user_course`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`userid`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`courseid`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">7</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Records of user_course</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;1&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;2&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+<p>这时，当我们想要查询小张上的所以课程相关信息的时候，需要这样写一条长长的SQL语句，如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="string">`uc`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</span><br><span class="line">    <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span>,</span><br><span class="line">    <span class="string">`c`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`coursename`</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    <span class="string">`user`</span> <span class="string">`u`</span></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`user_course`</span> <span class="string">`uc`</span> <span class="keyword">ON</span> ((<span class="string">`u`</span>.<span class="string">`id`</span> = <span class="string">`uc`</span>.<span class="string">`userid`</span>))</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`course`</span> <span class="string">`c`</span> <span class="keyword">ON</span> ((<span class="string">`uc`</span>.<span class="string">`courseid`</span> = <span class="string">`c`</span>.<span class="string">`id`</span>))</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    u.<span class="string">`name`</span> = <span class="string">&#x27;小张&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是我们可以通过视图简化操作，例如我们创建视图view_user_course如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- View structure for `view_user_course`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span></span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`view_user_course`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> ALGORITHM = UNDEFINED </span><br><span class="line">DEFINER = <span class="string">`root`</span>@<span class="string">`localhost`</span> </span><br><span class="line"><span class="keyword">SQL</span> <span class="keyword">SECURITY</span> DEFINER </span><br><span class="line"><span class="keyword">VIEW</span> <span class="string">`view_user_course`</span> <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span></span><br><span class="line">        <span class="string">`uc`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</span><br><span class="line">        <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span>,</span><br><span class="line">        <span class="string">`c`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`coursename`</span></span><br><span class="line">    <span class="keyword">FROM</span></span><br><span class="line">        (</span><br><span class="line">            (</span><br><span class="line">                <span class="string">`user`</span> <span class="string">`u`</span></span><br><span class="line">                <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`user_course`</span> <span class="string">`uc`</span> <span class="keyword">ON</span> ((<span class="string">`u`</span>.<span class="string">`id`</span> = <span class="string">`uc`</span>.<span class="string">`userid`</span>))</span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`course`</span> <span class="string">`c`</span> <span class="keyword">ON</span> ((<span class="string">`uc`</span>.<span class="string">`courseid`</span> = <span class="string">`c`</span>.<span class="string">`id`</span>))</span><br><span class="line">        )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>几点说明（MySQL中的视图在标准SQL的基础之上做了扩展）：</p>
+<p>ALGORITHM=UNDEFINED：指定视图的处理算法；</p>
+<p>DEFINER=<code>root</code>@<code>localhost</code>：指定视图创建者；</p>
+<p>SQL SECURITY DEFINER：指定视图查询数据时的安全验证方式；</p>
+<p>创建好视图之后，我们可以直接用以下SQL语句在视图上查询小张上的所以课程相关信息，同样可以得到所需结果：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    vuc.username,</span><br><span class="line">    vuc.coursename</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    view_user_course vuc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">     vuc.username = <span class="string">&#x27;小张&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="视图实例2-增删改数据操作"><a href="#视图实例2-增删改数据操作" class="headerlink" title="视图实例2-增删改数据操作"></a>视图实例2-增删改数据操作</h4><p>继续，我们可以尝试在视图view_user_course上做增删改数据操作，如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> username=<span class="string">&#x27;test&#x27;</span>,coursename=<span class="string">&#x27;JAVASCRIPT&#x27;</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>遗憾的是操作失败，提示错误信息如下：</p>
+<p>[SQL] update view_user_course set username=’test’,coursename=’JAVASCRIPT’ where id=3</p>
+<p>[Err] 1393 - Can not modify more than one base table through a join view ‘demo.view_user_course’</p>
+<p>因为不能在一张由多张关联表连接而成的视图上做同时修改两张表的操作；</p>
+<p>那么哪些操作可以在视图上进行呢？</p>
+<p>视图与表是一对一关系情况：如果没有其它约束（如视图中没有的字段，在基本表中是必填字段情况），是可以进行增删改数据操作；</p>
+<p>如我们创建用户关键信息视图view_user_keyinfo，如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- View structure for `view_user_keyinfo`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span></span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`view_user_keyinfo`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> ALGORITHM = UNDEFINED DEFINER = <span class="string">`root`</span>@<span class="string">`localhost`</span> <span class="keyword">SQL</span> <span class="keyword">SECURITY</span> DEFINER <span class="keyword">VIEW</span> <span class="string">`view_user_keyinfo`</span> <span class="keyword">AS</span> <span class="keyword">SELECT</span></span><br><span class="line">    <span class="string">`u`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</span><br><span class="line">    <span class="string">`u`</span>.<span class="string">`account`</span> <span class="keyword">AS</span> <span class="string">`account`</span>,</span><br><span class="line">    <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    <span class="string">`user`</span> <span class="string">`u`</span>;</span><br></pre></td></tr></table></figure>
+
+<p>进行增删改操作如下，操作成功（注意user表中的其它字段要允许为空，否则操作失败）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> view_user_keyinfo (<span class="keyword">account</span>, username)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">    (<span class="string">&#x27;test1&#x27;</span>, <span class="string">&#x27;test1&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    view_user_keyinfo</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    username = <span class="string">&#x27;test1&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> view_user_keyinfo</span><br><span class="line"><span class="keyword">SET</span> username = <span class="string">&#x27;updateuser&#x27;</span></span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    <span class="keyword">id</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>视图与表是一对多关系情况：如果只修改一张表的数据，且没有其它约束（如视图中没有的字段，在基本表中是必填字段情况），是可以进行改数据操作，如以下语句，操作成功；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> coursename=<span class="string">&#x27;JAVA&#x27;</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> username=<span class="string">&#x27;test2&#x27;</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>以下操作失败：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> view_user_course <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> view_user_course(username, coursename) <span class="keyword">VALUES</span>(<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><p>视图中的查询语句性能要调到最优；<br>修改操作时要小心，不经意间你已经修改了基本表里的多条数据；</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E5%AE%89%E8%A3%85phphub5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E5%AE%89%E8%A3%85phphub5/" class="post-title-link" itemprop="url">安装phphub5</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-22 19:05:19" itemprop="dateCreated datePublished" datetime="2017-10-22T19:05:19+08:00">2017-10-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E5%AE%89%E8%A3%85phphub5/" class="post-meta-item leancloud_visitors" data-flag-title="安装phphub5" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h4><p>Nginx 1.8+<br>PHP 5.6+<br>Mysql 5.7+<br>Redis 3.0+<br>Memcached 1.4+</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/summerblue/</span>phphub5.git</span><br></pre></td></tr></table></figure>
+
+<p>安装扩展包依赖</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+
+<p>生成配置文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cp</span> <span class="selector-class">.env</span><span class="selector-class">.example</span> <span class="selector-class">.env</span></span><br></pre></td></tr></table></figure>
+
+<p>编辑env<br>选择数据库<br>数据库迁移</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">php</span> <span class="string">artisan migrate</span></span><br><span class="line"></span><br><span class="line"><span class="attr">php</span> <span class="string">artisan db:seed</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
