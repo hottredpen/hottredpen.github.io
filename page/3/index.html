@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,97 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%94)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E9%A3%9E%E5%89%91%E7%9A%84%E5%8F%91%E5%B0%84%E5%8F%8A%E8%BD%A8%E8%BF%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%94)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E9%A3%9E%E5%89%91%E7%9A%84%E5%8F%91%E5%B0%84%E5%8F%8A%E8%BD%A8%E8%BF%B9/" class="post-title-link" itemprop="url">(五)、“仙剑出鞘”---飞剑的发射及轨迹</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-13 15:39:23 / 修改时间：16:20:14" itemprop="dateCreated datePublished" datetime="2020-11-13T15:39:23+08:00">2020-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%94)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E9%A3%9E%E5%89%91%E7%9A%84%E5%8F%91%E5%B0%84%E5%8F%8A%E8%BD%A8%E8%BF%B9/" class="post-meta-item leancloud_visitors" data-flag-title="(五)、“仙剑出鞘”---飞剑的发射及轨迹" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">start_move_feijian</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;mFeiJian move&#x27;</span>)</span><br><span class="line">    <span class="comment">// 将cocos 的一些基本操作练习一遍</span></span><br><span class="line">    <span class="built_in">this</span>.mFeiJian.position = <span class="keyword">new</span> cc.Vec3(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.mFeiJian.getComponent(<span class="string">&quot;feijian&quot;</span>).is_flying = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// // 画贝塞尔曲线</span></span><br><span class="line">    <span class="built_in">this</span>.point1 = cc.v2(<span class="built_in">this</span>.mZhunXin.position.x*<span class="number">3</span>,<span class="number">600</span>)</span><br><span class="line">    <span class="built_in">this</span>.point2 = cc.v2(<span class="built_in">this</span>.mZhunXin.position.x*<span class="number">2</span>,<span class="number">2100</span>)</span><br><span class="line">    <span class="keyword">let</span> endPoint = cc.v2(<span class="built_in">this</span>.mZhunXin.position.x,<span class="number">750</span>)</span><br><span class="line">    <span class="keyword">let</span> ddd = <span class="built_in">this</span>.mFeiJian.runAction(</span><br><span class="line">        </span><br><span class="line">        cc.sequence(</span><br><span class="line">            cc.spawn(cc.rotateBy(<span class="number">1</span>, <span class="number">360</span>),  cc.bezierTo(<span class="number">1</span>, [<span class="built_in">this</span>.point1, <span class="built_in">this</span>.point2, endPoint]) ),</span><br><span class="line">            cc.moveTo(<span class="number">1</span>,<span class="built_in">this</span>.mZhunXin.position.x,<span class="number">0</span>),</span><br><span class="line">            <span class="comment">// 执行完成动作后回调</span></span><br><span class="line">            cc.callFunc(<span class="built_in">this</span>.isGameOver,<span class="built_in">this</span>)</span><br><span class="line">        )</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="主要涉及的cocos函数"><a href="#主要涉及的cocos函数" class="headerlink" title="主要涉及的cocos函数"></a>主要涉及的cocos函数</h3><h4 id="1、cc-Vec3"><a href="#1、cc-Vec3" class="headerlink" title="1、cc.Vec3"></a>1、cc.Vec3</h4><p>position的坐标在最新版本中都用cc.Vec3</p>
+<h4 id="2、cc-v2"><a href="#2、cc-v2" class="headerlink" title="2、cc.v2"></a>2、cc.v2</h4><p>二维坐标</p>
+<h4 id="3、this-node-runAction"><a href="#3、this-node-runAction" class="headerlink" title="3、this.node.runAction"></a>3、this.node.runAction</h4><p>运行动作</p>
+<h4 id="4、cc-sequence"><a href="#4、cc-sequence" class="headerlink" title="4、cc.sequence"></a>4、cc.sequence</h4><p>按顺序执行动作</p>
+<h4 id="5、cc-spawn"><a href="#5、cc-spawn" class="headerlink" title="5、cc.spawn"></a>5、cc.spawn</h4><p>多个动作同时间进行</p>
+<h4 id="6、cc-rotateBy"><a href="#6、cc-rotateBy" class="headerlink" title="6、cc.rotateBy"></a>6、cc.rotateBy</h4><p>翻转</p>
+<h4 id="7-cc-moveTo"><a href="#7-cc-moveTo" class="headerlink" title="7.cc.moveTo"></a>7.cc.moveTo</h4><p>移动</p>
+<h4 id="8、cc-bezierTo"><a href="#8、cc-bezierTo" class="headerlink" title="8、cc.bezierTo"></a>8、cc.bezierTo</h4><p>按贝塞尔曲线轨迹运行</p>
+<h4 id="9、cc-callFunc"><a href="#9、cc-callFunc" class="headerlink" title="9、cc.callFunc"></a>9、cc.callFunc</h4><p>回调函数</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -421,6 +512,120 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/" class="post-title-link" itemprop="url">xxx的商家后台目录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-12 12:57:10" itemprop="dateCreated datePublished" datetime="2020-11-12T12:57:10+08:00">2020-11-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-17 14:36:29" itemprop="dateModified" datetime="2020-11-17T14:36:29+08:00">2020-11-17</time>
+      </span>
+
+  
+    <span id="/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/" class="post-meta-item leancloud_visitors" data-flag-title="xxx的商家后台目录" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <pre class="mermaid">graph LR
+    商品管理 --> 商品列表
+    商品管理 --> 类目管理
+    商品管理 --> 类目属性
+    商品管理 --> 商家类目属性
+    商品管理 --> 品牌管理
+
+
+    订单监管 --> 订单列表
+    订单监管 --> 订单列表
+    订单监管 --> 订单列表</pre>
+
+<pre class="mermaid">graph LR
+
+   物流管理 --> 发货
+   发货 --> 全部1
+   发货 --> 待发货
+   发货 --> 发货中订单
+
+   物流管理 --> 运费模板
+   运费模板--> 全部2
+   运费模板--> 正常
+   运费模板--> 隐藏</pre>
+
+<pre class="mermaid">graph LR
+
+    宝贝管理 --> 发布宝贝
+    宝贝管理 --> 出售中的宝贝
+    宝贝管理 --> 仓库中的宝贝</pre>
+
+<pre class="mermaid">graph LR
+
+    店铺管理 --> 图片空间
+    店铺管理 --> 店铺装修
+    店铺管理 --> 类目管理
+    店铺管理 --> 品牌管理
+    店铺管理 --> 店铺资料
+    店铺管理 --> 店铺配置</pre>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E5%95%86%E5%AE%B6%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -499,120 +704,6 @@
     退款管理 --> 平台介入
     退款管理 --> 退款完成
     退款管理 --> 退款已关闭</pre>
-
-<pre class="mermaid">graph LR
-
-   物流管理 --> 发货
-   发货 --> 全部1
-   发货 --> 待发货
-   发货 --> 发货中订单
-
-   物流管理 --> 运费模板
-   运费模板--> 全部2
-   运费模板--> 正常
-   运费模板--> 隐藏</pre>
-
-<pre class="mermaid">graph LR
-
-    宝贝管理 --> 发布宝贝
-    宝贝管理 --> 出售中的宝贝
-    宝贝管理 --> 仓库中的宝贝</pre>
-
-<pre class="mermaid">graph LR
-
-    店铺管理 --> 图片空间
-    店铺管理 --> 店铺装修
-    店铺管理 --> 类目管理
-    店铺管理 --> 品牌管理
-    店铺管理 --> 店铺资料
-    店铺管理 --> 店铺配置</pre>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/" class="post-title-link" itemprop="url">xxx的商家后台目录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-12 12:57:10" itemprop="dateCreated datePublished" datetime="2020-11-12T12:57:10+08:00">2020-11-12</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-17 14:36:29" itemprop="dateModified" datetime="2020-11-17T14:36:29+08:00">2020-11-17</time>
-      </span>
-
-  
-    <span id="/%E9%A1%B9%E7%9B%AE/xxx%E7%9A%84%E6%80%BB%E5%90%8E%E5%8F%B0%E7%9B%AE%E5%BD%95/" class="post-meta-item leancloud_visitors" data-flag-title="xxx的商家后台目录" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <pre class="mermaid">graph LR
-    商品管理 --> 商品列表
-    商品管理 --> 类目管理
-    商品管理 --> 类目属性
-    商品管理 --> 商家类目属性
-    商品管理 --> 品牌管理
-
-
-    订单监管 --> 订单列表
-    订单监管 --> 订单列表
-    订单监管 --> 订单列表</pre>
 
 <pre class="mermaid">graph LR
 
@@ -1109,109 +1200,6 @@
 <p>4、飞剑出鞘后如果没有进行“二次打击”，将回到主角身边</p>
 <p>5、敌方发出攻击，需要“飞剑”进行防御，只有飞剑停留在“防御点”，飞剑还能进行“二次打击”，否则将回到主角身边</p>
 <h3 id="cocos知识点"><a href="#cocos知识点" class="headerlink" title="cocos知识点"></a>cocos知识点</h3><p>暂无</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8mysql%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%A7%E7%9A%84%E6%8E%92%E6%9F%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8mysql%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%A7%E7%9A%84%E6%8E%92%E6%9F%A5/" class="post-title-link" itemprop="url">记一次服务器mysql占用过大的排查</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-06-05 16:58:15" itemprop="dateCreated datePublished" datetime="2019-06-05T16:58:15+08:00">2019-06-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8mysql%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%A7%E7%9A%84%E6%8E%92%E6%9F%A5/" class="post-meta-item leancloud_visitors" data-flag-title="记一次服务器mysql占用过大的排查" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>公司测试服务器上，跑了N多的应用，某天mysql的CPU占用超高，http的请求部分也有超20%以上的。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>mysql/mariadb知识点总结（24）：慢查询日志<br><a target="_blank" rel="noopener" href="http://www.zsythink.net/archives/1260">http://www.zsythink.net/archives/1260</a><br>关于MySQL 通用查询日志和慢查询日志分析<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ac4f291b806a">https://www.jianshu.com/p/ac4f291b806a</a><br>mysql中slow query log慢日志查询分析<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/musings/p/5913186.html">https://www.cnblogs.com/musings/p/5913186.html</a></p>
-<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="记录全部的log"><a href="#记录全部的log" class="headerlink" title="记录全部的log"></a>记录全部的log</h4><p>开启全部的sql记录，先看看全局的</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span> <span class="string">&#x27;%general%&#x27;</span>;</span><br><span class="line"></span><br><span class="line">+<span class="comment">------------------+--------------+</span></span><br><span class="line">| Variable_name    | <span class="keyword">Value</span>        |</span><br><span class="line">+<span class="comment">------------------+--------------+</span></span><br><span class="line">| general_log      | <span class="keyword">OFF</span>          |</span><br><span class="line">| general_log_file | ecs<span class="number">-248</span>d.<span class="keyword">log</span> |</span><br><span class="line">+<span class="comment">------------------+--------------+</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
-<p>发现没有开，</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> general_log=<span class="keyword">on</span>;</span><br></pre></td></tr></table></figure>
-<p>我们打算用文件的形式记录下来</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">&#x27;%log_output%&#x27;</span>;</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> log_output=<span class="string">&#x27;FILE&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<p>这个时候就可以去查看</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/<span class="class"><span class="keyword">lib</span>/<span class="title">mysql</span>/<span class="title">ecs</span>-248<span class="title">d</span>.<span class="title">log</span></span></span><br></pre></td></tr></table></figure>
-<p>（注意：上述命令只对当前生效，当MySQL重启失效，如果要永久生效，需要配置 my.cnf）</p>
-<h3 id="记录慢查询log"><a href="#记录慢查询log" class="headerlink" title="记录慢查询log"></a>记录慢查询log</h3><p>先查看下</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> ‘%quer%’;</span><br></pre></td></tr></table></figure>
-<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">+-------------------------------+-------------------+</span><br><span class="line">|<span class="string"> Variable_name                 </span>|<span class="string"> Value             </span>|</span><br><span class="line">+-------------------------------+-------------------+</span><br><span class="line">|<span class="string"> expensive_subquery_limit      </span>|<span class="string"> 100               </span>|</span><br><span class="line">|<span class="string"> ft_query_expansion_limit      </span>|<span class="string"> 20                </span>|</span><br><span class="line">|<span class="string"> have_query_cache              </span>|<span class="string"> YES               </span>|</span><br><span class="line">|<span class="string"> log_queries_not_using_indexes </span>|<span class="string"> OFF               </span>|</span><br><span class="line">|<span class="string"> log_slow_queries              </span>|<span class="string"> ON                </span>|</span><br><span class="line">|<span class="string"> long_query_time               </span>|<span class="string"> 10.000000          </span>|</span><br><span class="line">|<span class="string"> query_alloc_block_size        </span>|<span class="string"> 8192              </span>|</span><br><span class="line">|<span class="string"> query_cache_limit             </span>|<span class="string"> 262144            </span>|</span><br><span class="line">|<span class="string"> query_cache_min_res_unit      </span>|<span class="string"> 2048              </span>|</span><br><span class="line">|<span class="string"> query_cache_size              </span>|<span class="string"> 1073741824        </span>|</span><br><span class="line">|<span class="string"> query_cache_strip_comments    </span>|<span class="string"> OFF               </span>|</span><br><span class="line">|<span class="string"> query_cache_type              </span>|<span class="string"> ON                </span>|</span><br><span class="line">|<span class="string"> query_cache_wlock_invalidate  </span>|<span class="string"> OFF               </span>|</span><br><span class="line">|<span class="string"> query_prealloc_size           </span>|<span class="string"> 8192              </span>|</span><br><span class="line">|<span class="string"> slow_query_log                </span>|<span class="string"> OFF                </span>|</span><br><span class="line">|<span class="string"> slow_query_log_file           </span>|<span class="string"> ecs-248d-slow.log </span>|</span><br><span class="line">+-------------------------------+-------------------+</span><br><span class="line">16 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-<p>开启慢查询的条件，设置<code>long_query_time</code>为1秒</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">set</span> <span class="attribute">long_query_time</span>=1;</span><br></pre></td></tr></table></figure>
-
-<p>试一试有没有生效</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sleep</span>(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-<p>到<code>/var/lib/mysql/ecs-248d-slow.log</code>查看下有没有</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Time: <span class="number">190605</span> <span class="number">17</span>:<span class="number">32</span>:<span class="number">20</span></span><br><span class="line"># <span class="symbol">User@</span>Host: root[root] @ localhost []</span><br><span class="line"># Thread_id: <span class="number">2223</span>  Schema:   QC_hit: No</span><br><span class="line"># Query_time: <span class="number">2.000163</span>  Lock_time: <span class="number">0.000000</span>  Rows_sent: <span class="number">1</span>  Rows_examined: <span class="number">0</span></span><br><span class="line">SET timestamp=<span class="number">1559727140</span>;</span><br><span class="line">select sleep(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-
-<p>如果太多了，用</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow -s t /var/<span class="class"><span class="keyword">lib</span>/<span class="title">mysql</span>/<span class="title">ecs</span>-248<span class="title">d</span>-<span class="title">slow</span>.<span class="title">log</span></span></span><br></pre></td></tr></table></figure>
-<p>帮我们统一下</p>
 
       
     </div>
