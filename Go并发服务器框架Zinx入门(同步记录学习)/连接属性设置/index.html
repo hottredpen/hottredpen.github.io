@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.jk-kj.com","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="说明本文档按照实验楼–Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）https:&#x2F;&#x2F;www.lanqiao.cn&#x2F;courses&#x2F;1639主要有以下原因：1、模仿大神写教程的风格2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现 实验介绍本节我们将实现 zinx 最终的功能，链接属性配置。 知识点链接配置 准备工作现在当我们在使用链接处理的时候，希望和链接绑定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="连接属性设置">
+<meta property="og:url" content="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E8%BF%9E%E6%8E%A5%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:site_name" content="简客-记忆">
+<meta property="og:description" content="说明本文档按照实验楼–Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）https:&#x2F;&#x2F;www.lanqiao.cn&#x2F;courses&#x2F;1639主要有以下原因：1、模仿大神写教程的风格2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现 实验介绍本节我们将实现 zinx 最终的功能，链接属性配置。 知识点链接配置 准备工作现在当我们在使用链接处理的时候，希望和链接绑定">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.jk-kj.com/mweb/2020/12/27/1609048010223500.png">
+<meta property="og:image" content="http://image.jk-kj.com/mweb/2020/12/27/16090480102360pp.png">
+<meta property="article:published_time" content="2020-12-27T05:22:23.000Z">
+<meta property="article:modified_time" content="2020-12-27T05:51:43.368Z">
+<meta property="article:author" content="hottredpen">
+<meta property="article:tag" content="实验楼同步学习">
+<meta property="article:tag" content="go">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.jk-kj.com/mweb/2020/12/27/1609048010223500.png">
+
+
+<link rel="canonical" href="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E8%BF%9E%E6%8E%A5%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>连接属性设置 | 简客-记忆</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">简客-记忆</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">抽象的才是永恒的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">实验介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">知识点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%99%E9%93%BE%E6%8E%A5%E6%B7%BB%E5%8A%A0%E9%93%BE%E6%8E%A5%E9%85%8D%E7%BD%AE%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.</span> <span class="nav-text">给链接添加链接配置接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E5%B1%9E%E6%80%A7%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">5.</span> <span class="nav-text">链接属性方法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">测试</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hottredpen"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">hottredpen</p>
+  <div class="site-description" itemprop="description">直观层</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E8%BF%9E%E6%8E%A5%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          连接属性设置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-27 13:22:23 / 修改时间：13:51:43" itemprop="dateCreated datePublished" datetime="2020-12-27T13:22:23+08:00">2020-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E8%BF%9E%E6%8E%A5%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="连接属性设置" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>本文档按照实验楼–Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）<br><a target="_blank" rel="noopener" href="https://www.lanqiao.cn/courses/1639">https://www.lanqiao.cn/courses/1639</a><br>主要有以下原因：<br>1、模仿大神写教程的风格<br>2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现</p>
+<h3 id="实验介绍"><a href="#实验介绍" class="headerlink" title="实验介绍"></a>实验介绍</h3><p>本节我们将实现 zinx 最终的功能，链接属性配置。<br><img src="http://image.jk-kj.com/mweb/2020/12/27/1609048010223500.png" alt="00"></p>
+<h4 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h4><p>链接配置</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>现在当我们在使用链接处理的时候，希望和链接绑定一些用户的数据，或者参数。那么我们现在可以把当前链接设定一些传递参数的接口或者方法。</p>
+<h3 id="给链接添加链接配置接口"><a href="#给链接添加链接配置接口" class="headerlink" title="给链接添加链接配置接口"></a>给链接添加链接配置接口</h3><p>我们需要在 IConnection 接口中添加三个方法，分别对应我们开篇图片中对应的三个功能：<br>zinx/ziface/iconnection.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置链接属性</span></span><br><span class="line">SetProperty(key <span class="keyword">string</span>, value <span class="keyword">interface</span>&#123;&#125;)</span><br><span class="line"><span class="comment">//获取链接属性</span></span><br><span class="line">GetProperty(key <span class="keyword">string</span>)(<span class="keyword">interface</span>&#123;&#125;, error)</span><br><span class="line"><span class="comment">//移除链接属性</span></span><br><span class="line">RemoveProperty(key <span class="keyword">string</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里增添了 3 个方法SetProperty(),GetProperty(),RemoveProperty().那么 property 是什么类型的呢，我么接下来看看 Connection 的定义。</p>
+<h3 id="链接属性方法实现"><a href="#链接属性方法实现" class="headerlink" title="链接属性方法实现"></a>链接属性方法实现</h3><p>这里，我们需要定义 property 的类型，其实是很容易想到的，他应该是一个集合类型，因为链接属性应该是唯一的。同时，我们为了保护链接属性的并发安全性能，还需要对其加上一个锁，所以，修正后的代码如下：<br>zinx/znet/connction.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里我们引入了锁操作，所以在 import 部分里我们还需要将 &quot;sync&quot; 引入进来</span></span><br><span class="line"><span class="comment">// 和之前一样，//... 表示剩余代码不需要修改。</span></span><br><span class="line"><span class="keyword">type</span> Connection <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">//当前Conn属于哪个Server</span></span><br><span class="line">    TcpServer ziface.IServer</span><br><span class="line">    <span class="comment">//当前连接的socket TCP套接字</span></span><br><span class="line">    Conn *net.TCPConn</span><br><span class="line">    <span class="comment">//当前连接的ID 也可以称作为SessionID，ID全局唯一</span></span><br><span class="line">    ConnID <span class="keyword">uint32</span></span><br><span class="line">    <span class="comment">//当前连接的关闭状态</span></span><br><span class="line">    isClosed <span class="keyword">bool</span></span><br><span class="line">    <span class="comment">//消息管理MsgId和对应处理方法的消息管理模块</span></span><br><span class="line">    MsgHandler ziface.IMsgHandle</span><br><span class="line">    <span class="comment">//告知该链接已经退出/停止的channel</span></span><br><span class="line">    ExitBuffChan <span class="keyword">chan</span> <span class="keyword">bool</span></span><br><span class="line">    <span class="comment">//无缓冲管道，用于读、写两个goroutine之间的消息通信</span></span><br><span class="line">    msgChan <span class="keyword">chan</span> []<span class="keyword">byte</span></span><br><span class="line">    <span class="comment">//有关冲管道，用于读、写两个goroutine之间的消息通信</span></span><br><span class="line">    msgBuffChan <span class="keyword">chan</span> []<span class="keyword">byte</span></span><br><span class="line">    <span class="comment">// ================================</span></span><br><span class="line">    <span class="comment">//链接属性</span></span><br><span class="line">    property     <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">    <span class="comment">//保护链接属性修改的锁</span></span><br><span class="line">    propertyLock sync.RWMutex</span><br><span class="line">    <span class="comment">// ================================</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建连接的方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewConntion</span><span class="params">(server ziface.IServer, conn *net.TCPConn, connID <span class="keyword">uint32</span>, msgHandler ziface.IMsgHandle)</span> *<span class="title">Connection</span></span> &#123;</span><br><span class="line">    <span class="comment">//初始化Conn属性</span></span><br><span class="line">    c := &amp;Connection&#123;</span><br><span class="line">        TcpServer:    server,</span><br><span class="line">        Conn:         conn,</span><br><span class="line">        ConnID:       connID,</span><br><span class="line">        isClosed:     <span class="literal">false</span>,</span><br><span class="line">        MsgHandler:   msgHandler,</span><br><span class="line">        ExitBuffChan: <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">bool</span>, <span class="number">1</span>),</span><br><span class="line">        msgChan:      <span class="built_in">make</span>(<span class="keyword">chan</span> []<span class="keyword">byte</span>),</span><br><span class="line">        msgBuffChan:  <span class="built_in">make</span>(<span class="keyword">chan</span> []<span class="keyword">byte</span>, utils.GlobalObject.MaxMsgChanLen),</span><br><span class="line">        property:     <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;), <span class="comment">//对链接属性map初始化</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//将新创建的Conn添加到链接管理中</span></span><br><span class="line">    c.TcpServer.GetConnMgr().Add(c)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="comment">//设置链接属性</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">SetProperty</span><span class="params">(key <span class="keyword">string</span>, value <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">    c.propertyLock.Lock()</span><br><span class="line">    <span class="keyword">defer</span> c.propertyLock.Unlock()</span><br><span class="line">    c.property[key] = value</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取链接属性</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">GetProperty</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">interface</span>&#123;&#125;, error)</span></span> &#123;</span><br><span class="line">    c.propertyLock.RLock()</span><br><span class="line">    <span class="keyword">defer</span> c.propertyLock.RUnlock()</span><br><span class="line">    <span class="keyword">if</span> value, ok := c.property[key]; ok  &#123;</span><br><span class="line">        <span class="keyword">return</span> value, <span class="literal">nil</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span>, errors.New(<span class="string">&quot;no property found&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//移除链接属性</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">RemoveProperty</span><span class="params">(key <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    c.propertyLock.Lock()</span><br><span class="line">    <span class="keyword">defer</span> c.propertyLock.Unlock()</span><br><span class="line">    <span class="built_in">delete</span>(c.property, key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>到这里，我们 zinx 框架的全部功能就完成了。现在我们来测试一下链接属性的设置与提取是否可用:</p>
+<p>Server.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/ziface&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/znet&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">//ping test 自定义路由</span></span><br><span class="line"><span class="keyword">type</span> PingRouter <span class="keyword">struct</span> &#123;</span><br><span class="line">    znet.BaseRouter</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Ping Handle</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *PingRouter)</span> <span class="title">Handle</span><span class="params">(request ziface.IRequest)</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Call PingRouter Handle&quot;</span>)</span><br><span class="line">    <span class="comment">//先读取客户端的数据，再回写ping...ping...ping</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;recv from client : msgId=&quot;</span>, request.GetMsgID(), <span class="string">&quot;, data=&quot;</span>, <span class="keyword">string</span>(request.GetData()))</span><br><span class="line">    err := request.GetConnection().SendBuffMsg(<span class="number">0</span>, []<span class="keyword">byte</span>(<span class="string">&quot;ping...ping...ping&quot;</span>))</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> HelloZinxRouter <span class="keyword">struct</span> &#123;</span><br><span class="line">    znet.BaseRouter</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//HelloZinxRouter Handle</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *HelloZinxRouter)</span> <span class="title">Handle</span><span class="params">(request ziface.IRequest)</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Call HelloZinxRouter Handle&quot;</span>)</span><br><span class="line">    <span class="comment">//先读取客户端的数据，再回写ping...ping...ping</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;recv from client : msgId=&quot;</span>, request.GetMsgID(), <span class="string">&quot;, data=&quot;</span>, <span class="keyword">string</span>(request.GetData()))</span><br><span class="line">    err := request.GetConnection().SendBuffMsg(<span class="number">1</span>, []<span class="keyword">byte</span>(<span class="string">&quot;Hello Zinx Router V0.10&quot;</span>))</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建连接的时候执行</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DoConnectionBegin</span><span class="params">(conn ziface.IConnection)</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;DoConnecionBegin is Called ... &quot;</span>)</span><br><span class="line">    <span class="comment">//=============设置两个链接属性，在连接创建之后===========</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;Set conn Name, Home done!&quot;</span>)</span><br><span class="line">    conn.SetProperty(<span class="string">&quot;Name&quot;</span>, <span class="string">&quot;Aceld&quot;</span>)</span><br><span class="line">    conn.SetProperty(<span class="string">&quot;Home&quot;</span>, <span class="string">&quot;https://www.lanqiao.cn/courses/1639/&quot;</span>)</span><br><span class="line">    <span class="comment">//===================================================</span></span><br><span class="line">    err := conn.SendMsg(<span class="number">2</span>, []<span class="keyword">byte</span>(<span class="string">&quot;DoConnection BEGIN...&quot;</span>))</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//连接断开的时候执行</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DoConnectionLost</span><span class="params">(conn ziface.IConnection)</span></span> &#123;</span><br><span class="line">    <span class="comment">//============在连接销毁之前，查询conn的Name，Home属性=====</span></span><br><span class="line">    <span class="keyword">if</span> name, err:= conn.GetProperty(<span class="string">&quot;Name&quot;</span>); err == <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;Conn Property Name = &quot;</span>, name)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> home, err := conn.GetProperty(<span class="string">&quot;Home&quot;</span>); err == <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;Conn Property Home = &quot;</span>, home)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//===================================================</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;DoConneciotnLost is Called ... &quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//创建一个server句柄</span></span><br><span class="line">    s := znet.NewServer()</span><br><span class="line">    <span class="comment">//注册链接hook回调函数</span></span><br><span class="line">    s.SetOnConnStart(DoConnectionBegin)</span><br><span class="line">    s.SetOnConnStop(DoConnectionLost)</span><br><span class="line">    <span class="comment">//配置路由</span></span><br><span class="line">    s.AddRouter(<span class="number">0</span>, &amp;PingRouter&#123;&#125;)</span><br><span class="line">    s.AddRouter(<span class="number">1</span>, &amp;HelloZinxRouter&#123;&#125;)</span><br><span class="line">    <span class="comment">//开启服务</span></span><br><span class="line">    s.Serve()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里主要看DoConnectionBegin()和DoConnectionLost()两个函数的实现， 利用在两个 Hook 函数中，设置链接属性和提取链接属性。链接创建之后给当前链接绑定两个属性”Name”,”Home”, 那么我们在随时可以通过conn.GetProperty()方法得到链接已经设置的属性。</p>
+<p>我们的 Client.go 不需要修改。</p>
+<p><img src="http://image.jk-kj.com/mweb/2020/12/27/16090480102360pp.png" alt="pp"></p>
+<p>当我们终止客户端链接，那么服务端在断开链接之前，已经读取到了 conn 的两个属性 Name 和 Home。说明我们的代码达到了预期效果，可以对链接属性进行控制了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%A5%BC%E5%90%8C%E6%AD%A5%E5%AD%A6%E4%B9%A0/" rel="tag"># 实验楼同步学习</a>
+              <a href="/tags/go/" rel="tag"># go</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%AE%9E%E7%8E%B0%E9%93%BE%E6%8E%A5%E6%8E%A7%E5%88%B6/" rel="prev" title="实现链接控制">
+                  <i class="fa fa-chevron-left"></i> 实现链接控制
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备13033425号 </a>
+      <img src="/images/beianicon.png" style="display: inline-block;">
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hottredpen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+  <script src='http://image.jk-kj.com/mermaid-8.8.3.min.js'></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"nEwTBQU57TgvhE9HufRlxOgK-gzGzoHsz","app_key":"uOHoHWwCwvT2XGKFM33V4RXh","server_url":null,"security":false};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) === '-MdYXbMMI' ? `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com` : server_url;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
