@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,661 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E5%9C%A8mac%E4%B8%8A%E9%80%9A%E8%BF%87Homebrew%E5%AE%89%E8%A3%85redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E5%9C%A8mac%E4%B8%8A%E9%80%9A%E8%BF%87Homebrew%E5%AE%89%E8%A3%85redis/" class="post-title-link" itemprop="url">在mac上通过Homebrew安装redis</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-22 14:10:57" itemprop="dateCreated datePublished" datetime="2017-10-22T14:10:57+08:00">2017-10-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E5%9C%A8mac%E4%B8%8A%E9%80%9A%E8%BF%87Homebrew%E5%AE%89%E8%A3%85redis/" class="post-meta-item leancloud_visitors" data-flag-title="在mac上通过Homebrew安装redis" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>redis</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后提示</p>
+<figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">To</span> have launchd start redis now <span class="literal">and</span> restart at login:</span><br><span class="line">  brew services start redis</span><br><span class="line">  <span class="literal">Or</span>, <span class="keyword">if</span> you don<span class="comment">&#x27;t want/need a background service you can just run:</span></span><br><span class="line">    redis-server /usr/<span class="keyword">local</span>/etc/redis.conf</span><br><span class="line">    ==&gt; Summary</span><br><span class="line">    🍺  /usr/<span class="keyword">local</span>/Cellar/redis/<span class="number">4.0</span>.<span class="number">2</span>: <span class="number">11</span> files, <span class="number">2.7</span>MB, built in <span class="number">23</span> seconds</span><br></pre></td></tr></table></figure>
+
+<p>执行提示</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services <span class="literal">start</span> redis</span><br></pre></td></tr></table></figure>
+<p>完成后提示</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Cloning <span class="built_in">int</span>o <span class="string">&#x27;/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services&#x27;</span>...</span><br><span class="line">remote: Counting objects: <span class="number">12</span>, done.</span><br><span class="line">remote: Compressing objects: <span class="number">100</span>% (<span class="number">8</span>/<span class="number">8</span>), done.</span><br><span class="line">remote: Total <span class="number">12</span> (delta <span class="number">0</span>), reused <span class="number">7</span> (delta <span class="number">0</span>), pack-reused <span class="number">0</span></span><br><span class="line">Unpacking objects: <span class="number">100</span>% (<span class="number">12</span>/<span class="number">12</span>), done.</span><br><span class="line">Checking connectivity... done.</span><br><span class="line">Tapped <span class="number">0</span> formulae (<span class="number">39</span> files, <span class="number">53.5</span>KB)</span><br><span class="line">==&gt; Successfully started `redis` (label: homebrew.mxcl.redis)</span><br></pre></td></tr></table></figure>
+
+<p>ok~redis 已经启动</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/mac%E4%B8%8B%E5%AE%89%E8%A3%85python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/mac%E4%B8%8B%E5%AE%89%E8%A3%85python/" class="post-title-link" itemprop="url">mac下安装python</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-07 16:29:03" itemprop="dateCreated datePublished" datetime="2017-10-07T16:29:03+08:00">2017-10-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/mac%E4%B8%8B%E5%AE%89%E8%A3%85python/" class="post-meta-item leancloud_visitors" data-flag-title="mac下安装python" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>知乎上说，不要在mac自带的python里折腾，怕折腾蹦了影响系统</p>
+<p>用brew 安装，且自带pip</p>
+<h3 id="安装python2-amp-python3"><a href="#安装python2-amp-python3" class="headerlink" title="安装python2 &amp; python3"></a>安装python2 &amp; python3</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>python</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>python3</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">This formula installs a python2 executable to /usr/local/bin.</span><br><span class="line">If you wish to have this formula&#x27;s python executable in your PATH then add</span><br><span class="line">the following to ~/.zshrc:</span><br><span class="line">  export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</span><br><span class="line"></span><br><span class="line">  Pip and setuptools have been installed. To <span class="keyword">update</span> them</span><br><span class="line">    pip2 <span class="keyword">install</span> <span class="comment">--upgrade pip setuptools</span></span><br><span class="line"></span><br><span class="line">    You can <span class="keyword">install</span> Python packages <span class="keyword">with</span></span><br><span class="line">      pip2 <span class="keyword">install</span> &lt;<span class="keyword">package</span>&gt;</span><br><span class="line"></span><br><span class="line">      They will <span class="keyword">install</span> <span class="keyword">into</span> the site-<span class="keyword">package</span> <span class="keyword">directory</span></span><br><span class="line">        /usr/<span class="keyword">local</span>/lib/python2<span class="number">.7</span>/site-packages</span><br><span class="line"></span><br><span class="line">	See: https://docs.brew.sh/Homebrew-<span class="keyword">and</span>-Python.html</span><br></pre></td></tr></table></figure>
+
+<h4 id="设置PATH"><a href="#设置PATH" class="headerlink" title="设置PATH"></a>设置PATH</h4><p>vim ~/.zshrc 加入<br><code>export PATH=&quot;/usr/local/opt/python/libexec/bin:$PATH&quot;</code></p>
+<h4 id="验证PATH设置成功"><a href="#验证PATH设置成功" class="headerlink" title="验证PATH设置成功"></a>验证PATH设置成功</h4><p>输入<code>which python</code><br>如果显示 <code>/usr/local/opt/python/libexec/bin/python</code>则说明成功</p>
+<h4 id="如何使用系统的python"><a href="#如何使用系统的python" class="headerlink" title="如何使用系统的python"></a>如何使用系统的python</h4><p>如果有需要想使用一下系统的Python，输入<code>/usr/bin/python</code>即可</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/python%E4%B9%8B%E7%A6%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/python%E4%B9%8B%E7%A6%85/" class="post-title-link" itemprop="url">python之禅</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-07 15:12:09" itemprop="dateCreated datePublished" datetime="2017-10-07T15:12:09+08:00">2017-10-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/python%E4%B9%8B%E7%A6%85/" class="post-meta-item leancloud_visitors" data-flag-title="python之禅" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>虽然python不是我的入门语言，之前一直抵触它的缩进语法，但通过《python宝典》的入门学习，发现python成为当前最热门的语言不是偶然。</p>
+<p>python社区和语言一起成长，融合了多种语言的特性及优点。</p>
+<p>刚试着用import this 查看了python之禅</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">The Zen <span class="keyword">of</span> Python, <span class="keyword">by</span> Tim Peters</span><br><span class="line"></span><br><span class="line">Beautiful <span class="keyword">is</span> better than ugly.</span><br><span class="line"><span class="keyword">Explicit</span> <span class="keyword">is</span> better than implicit.</span><br><span class="line">Simple <span class="keyword">is</span> better than complex.</span><br><span class="line">Complex <span class="keyword">is</span> better than complicated.</span><br><span class="line">Flat <span class="keyword">is</span> better than nested.</span><br><span class="line">Sparse <span class="keyword">is</span> better than dense.</span><br><span class="line">Readability counts.</span><br><span class="line">Special cases aren<span class="comment">&#x27;t special enough to break the rules.</span></span><br><span class="line">Although practicality beats purity.</span><br><span class="line">Errors should never pass silently.</span><br><span class="line">Unless explicitly silenced.</span><br><span class="line"><span class="keyword">In</span> the face <span class="keyword">of</span> ambiguity, refuse the temptation <span class="keyword">to</span> guess.</span><br><span class="line">There should be one-- <span class="keyword">and</span> preferably only one --obvious way <span class="keyword">to</span> <span class="keyword">do</span> it.</span><br><span class="line">Although that way may <span class="keyword">not</span> be obvious at first unless you<span class="comment">&#x27;re Dutch.</span></span><br><span class="line">Now <span class="keyword">is</span> better than never.</span><br><span class="line">Although never <span class="keyword">is</span> often better than *right* now.</span><br><span class="line"><span class="keyword">If</span> the implementation <span class="keyword">is</span> hard <span class="keyword">to</span> explain, it<span class="comment">&#x27;s a bad idea.</span></span><br><span class="line"><span class="keyword">If</span> the implementation <span class="keyword">is</span> easy <span class="keyword">to</span> explain, it may be a good idea.</span><br><span class="line">Namespaces are one honking great idea -- <span class="keyword">let</span><span class="comment">&#x27;s do more of those!</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">python之禅 <span class="keyword">by</span> Tim Peters</span><br><span class="line"> </span><br><span class="line"> 优美胜于丑陋（Python 以编写优美的代码为目标）</span><br><span class="line"> 明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）</span><br><span class="line"> 简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）</span><br><span class="line"> 复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）</span><br><span class="line"> 扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）</span><br><span class="line"> 间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）</span><br><span class="line"> 可读性很重要（优美的代码是可读的）</span><br><span class="line"> 即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）</span><br><span class="line">  </span><br><span class="line">不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 <span class="keyword">except</span>:pass 风格的代码）</span><br><span class="line">   </span><br><span class="line">当存在多种可能，不要尝试去猜测</span><br><span class="line"></span><br><span class="line">而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）</span><br><span class="line"></span><br><span class="line">虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）</span><br><span class="line">    </span><br><span class="line">做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）</span><br><span class="line">     </span><br><span class="line">如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）</span><br><span class="line">      </span><br><span class="line">命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上升到开发哲学上，任何语言都是适用的</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E9%9A%8F%E7%AC%94/%E4%B8%BAxxx%E6%84%9F%E5%88%B0%E8%8D%A3%E5%B9%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E9%9A%8F%E7%AC%94/%E4%B8%BAxxx%E6%84%9F%E5%88%B0%E8%8D%A3%E5%B9%B8/" class="post-title-link" itemprop="url">为xxx感到荣幸</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-07 09:09:18" itemprop="dateCreated datePublished" datetime="2017-10-07T09:09:18+08:00">2017-10-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E9%9A%8F%E7%AC%94/%E4%B8%BAxxx%E6%84%9F%E5%88%B0%E8%8D%A3%E5%B9%B8/" class="post-meta-item leancloud_visitors" data-flag-title="为xxx感到荣幸" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>xxx—–代表一切可以感恩和赞颂的“人”或“事”或“自己”</p>
+<p>某天，我发现自己一直以来都很少去感恩别人，包括自己所取得的一些小成就，也是被自己所否定不认可，总觉得自己（或别人）做的还是不够好，不够完美。可完美的事情真得存在吗？</p>
+<p>感恩自己身边的人和事，才会发现生活原来是如此的美。自然的美，和谐的美，错误的美，成功的美……</p>
+<p>想象着，自己和父母都存在如此的心声，那将是多么幸福的事：</p>
+<p>有这样的儿子感到荣幸</p>
+<p>有这样的老婆感到荣幸</p>
+<p>有这样的公司感到荣幸</p>
+<p>有经历这样的项目感到荣幸</p>
+<p>为我的抉择感到荣幸</p>
+<p>……</p>
+<p>从今天起，试着去感恩吧!</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">vim常用命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-02 19:21:53" itemprop="dateCreated datePublished" datetime="2017-10-02T19:21:53+08:00">2017-10-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-17 10:48:58" itemprop="dateModified" datetime="2020-11-17T10:48:58+08:00">2020-11-17</time>
+      </span>
+
+  
+    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="vim常用命令" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">说明</th>
+<th align="center">常用指数(自己)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a</td>
+<td align="center">在当前光标后插入文本</td>
+<td align="center">★★★★</td>
+</tr>
+<tr>
+<td align="center">A</td>
+<td align="center">在本行行尾插入文本</td>
+<td align="center">★★★★★★</td>
+</tr>
+<tr>
+<td align="center">i</td>
+<td align="center">在光标前插入文本</td>
+<td align="center">★★★★★</td>
+</tr>
+<tr>
+<td align="center">I</td>
+<td align="center">在本行行首插入文本</td>
+<td align="center">★★</td>
+</tr>
+<tr>
+<td align="center">o</td>
+<td align="center">在光标下插入新行</td>
+<td align="center">★★</td>
+</tr>
+<tr>
+<td align="center">O</td>
+<td align="center">在光标上插入新行</td>
+<td align="center">★★</td>
+</tr>
+<tr>
+<td align="center">h</td>
+<td align="center">左移一个字符</td>
+<td align="center">★</td>
+</tr>
+<tr>
+<td align="center">j</td>
+<td align="center">下移一个字符</td>
+<td align="center">★</td>
+</tr>
+<tr>
+<td align="center">k</td>
+<td align="center">上移一个字符</td>
+<td align="center">★</td>
+</tr>
+<tr>
+<td align="center">l</td>
+<td align="center">右移一个字符</td>
+<td align="center">★</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">移动至当前行的行尾</td>
+<td align="center">★★★★</td>
+</tr>
+<tr>
+<td align="center">0（数字零）</td>
+<td align="center">移动至当前行的行首</td>
+<td align="center">★★★★★★</td>
+</tr>
+<tr>
+<td align="center">H</td>
+<td align="center">移动屏幕上端</td>
+<td align="center">★★★★★</td>
+</tr>
+<tr>
+<td align="center">M</td>
+<td align="center">移动屏幕中央</td>
+<td align="center">★★</td>
+</tr>
+<tr>
+<td align="center">L</td>
+<td align="center">移动屏幕下端</td>
+<td align="center">★★★★★</td>
+</tr>
+<tr>
+<td align="center">gg</td>
+<td align="center">到整个文件的第一行</td>
+<td align="center">★★★★★★★</td>
+</tr>
+<tr>
+<td align="center">G</td>
+<td align="center">到整个文件的最后一行</td>
+<td align="center">★★★★★★★★</td>
+</tr>
+<tr>
+<td align="center">nG</td>
+<td align="center">到第n行，如5G到第5行</td>
+<td align="center">★★★</td>
+</tr>
+<tr>
+<td align="center">:n</td>
+<td align="center">到第n行</td>
+<td align="center">★★★★★★★★</td>
+</tr>
+</tbody></table>
+<h3 id="删除和取消"><a href="#删除和取消" class="headerlink" title="删除和取消"></a>删除和取消</h3><table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">说明</th>
+<th align="center">常用指数（自己）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">x</td>
+<td align="center">删除光标所在处字符</td>
+<td align="center">★★★★★</td>
+</tr>
+<tr>
+<td align="center">nx</td>
+<td align="center">删除光标所在处n个字符</td>
+<td align="center">★</td>
+</tr>
+<tr>
+<td align="center">dd</td>
+<td align="center">删除光标所在行(+p剪切)</td>
+<td align="center">★★★★★★★</td>
+</tr>
+<tr>
+<td align="center">ndd</td>
+<td align="center">删除n行（+p剪切）</td>
+<td align="center">★★</td>
+</tr>
+<tr>
+<td align="center">dG</td>
+<td align="center">删除光标所在行值末尾</td>
+<td align="center">★★★★</td>
+</tr>
+<tr>
+<td align="center">D</td>
+<td align="center">删除光标所在处至行尾</td>
+<td align="center">★★★★</td>
+</tr>
+<tr>
+<td align="center">:n1,n2d</td>
+<td align="center">删除指定范围的行</td>
+<td align="center">★★★</td>
+</tr>
+<tr>
+<td align="center">u</td>
+<td align="center">取消上一步操作</td>
+<td align="center">★★★★★★★★★</td>
+</tr>
+</tbody></table>
+<h3 id="复制和粘贴"><a href="#复制和粘贴" class="headerlink" title="复制和粘贴"></a>复制和粘贴</h3><table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">说明</th>
+<th align="center">常用指数（自己）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">yy,Y</td>
+<td align="center">复制当前行</td>
+<td align="center">★★★★★</td>
+</tr>
+<tr>
+<td align="center">nyy,nY</td>
+<td align="center">复制当前行以下的n行</td>
+<td align="center">★★★</td>
+</tr>
+<tr>
+<td align="center">p</td>
+<td align="center">将内容粘贴所在行的下一行</td>
+<td align="center">★★★★★★★</td>
+</tr>
+<tr>
+<td align="center">P</td>
+<td align="center">将内容粘贴所在行的上一行</td>
+<td align="center">★</td>
+</tr>
+</tbody></table>
+<h3 id="搜索替换"><a href="#搜索替换" class="headerlink" title="搜索替换"></a>搜索替换</h3><table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">说明</th>
+<th align="center">常用指数（自己）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">/string</td>
+<td align="center">查找string(+n下一个)</td>
+<td align="center">★★★★★</td>
+</tr>
+<tr>
+<td align="center">:%s/old/new/g</td>
+<td align="center">全文替换，如:%s/123/789/g</td>
+<td align="center">★★★</td>
+</tr>
+</tbody></table>
+<h3 id="屏幕"><a href="#屏幕" class="headerlink" title="屏幕"></a>屏幕</h3><table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">说明</th>
+<th align="center">常用指数（自己）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ctrl+u</td>
+<td align="center">向上滚动半屏</td>
+<td align="center">★★★★★</td>
+</tr>
+<tr>
+<td align="center">ctrl+d</td>
+<td align="center">向下滚动半屏</td>
+<td align="center">★★★★★</td>
+</tr>
+<tr>
+<td align="center">ctrl+b</td>
+<td align="center">向上滚动整屏</td>
+<td align="center">★★★★★</td>
+</tr>
+<tr>
+<td align="center">ctrl+f</td>
+<td align="center">向下滚动整屏</td>
+<td align="center">★★★★★</td>
+</tr>
+</tbody></table>
+<h3 id="归纳图片"><a href="#归纳图片" class="headerlink" title="归纳图片"></a>归纳图片</h3><p><img src="http://image.jk-kj.com/mweb/2020/08/19/1597825362205420160712110935064.png" alt="20160712110935064"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -417,7 +1072,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
