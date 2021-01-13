@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,7 +210,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -242,6 +242,117 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/Nginx%E4%BB%A3%E7%90%86%E6%9C%AC%E5%9C%B0%E5%85%B6%E4%BB%96%E7%AB%AF%E5%8F%A3%E6%97%A0%E6%B3%95%E8%B0%83%E5%8F%96PHP%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/Nginx%E4%BB%A3%E7%90%86%E6%9C%AC%E5%9C%B0%E5%85%B6%E4%BB%96%E7%AB%AF%E5%8F%A3%E6%97%A0%E6%B3%95%E8%B0%83%E5%8F%96PHP%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">nginx代理无法执行PHP的问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-01-13 09:21:14 / 修改时间：09:53:54" itemprop="dateCreated datePublished" datetime="2021-01-13T09:21:14+08:00">2021-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">跳坑记录</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/Nginx%E4%BB%A3%E7%90%86%E6%9C%AC%E5%9C%B0%E5%85%B6%E4%BB%96%E7%AB%AF%E5%8F%A3%E6%97%A0%E6%B3%95%E8%B0%83%E5%8F%96PHP%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="nginx代理无法执行PHP的问题" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>因为客户特殊，只能给了80端口且不随便给开二级域名</p>
+<p>主无服务，端口:80</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="attr">listen</span> <span class="string">80;</span></span><br><span class="line">    <span class="attr">listen</span> <span class="string">443 ssl;</span></span><br><span class="line">    <span class="attr">server_name</span> <span class="string">example.com;</span></span><br><span class="line">    <span class="attr">root</span> <span class="string">/var/www/html;</span></span><br><span class="line">    <span class="attr">index</span> <span class="string">index.php index.html;</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">location</span>  <span class="string">/ &#123;</span></span><br><span class="line">        <span class="attr">if</span> <span class="string">( !-e $request_filename )&#123;</span></span><br><span class="line">             <span class="attr">rewrite</span> <span class="string">^(.*)$ /index.php?s=$1 last;</span></span><br><span class="line">             <span class="attr">break;</span></span><br><span class="line">        <span class="attr">&#125;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">    ## 代理本地服务</span></span><br><span class="line"><span class="comment">    ## 问题出在这个位置（下文有正确的配置）</span></span><br><span class="line">    <span class="attr">location</span> <span class="string">/proxy/ &#123;  </span></span><br><span class="line">        <span class="attr">proxy_pass</span> <span class="string">https://localhost:8144/;</span></span><br><span class="line">    <span class="meta">&#125;</span>   <span class="string"></span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="attr">location</span> <span class="string">~ \.php$ &#123;</span></span><br><span class="line">        <span class="attr">fastcgi_pass</span>   <span class="string">127.0.0.1:9000;</span></span><br><span class="line">        <span class="attr">fastcgi_index</span>  <span class="string">index.php;</span></span><br><span class="line">        <span class="attr">fastcgi_param</span>  <span class="string">SCRIPT_FILENAME  /$document_root$fastcgi_script_name;</span></span><br><span class="line">        <span class="attr">include</span>        <span class="string">fastcgi_params;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br><span class="line"><span class="attr">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>辅助服务,端口:8144</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="attr">listen</span> <span class="string">8144;</span></span><br><span class="line">    <span class="attr">server_name</span> <span class="string">localhost;</span></span><br><span class="line">    <span class="attr">root</span> <span class="string">/var/www/tools;</span></span><br><span class="line">    <span class="attr">index</span> <span class="string">index.php index.html;</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">location</span>  <span class="string">/ &#123;</span></span><br><span class="line">        <span class="attr">if</span> <span class="string">( !-e $request_filename )&#123;</span></span><br><span class="line">             <span class="attr">rewrite</span> <span class="string">^(.*)$ /index.php?s=$1 last;</span></span><br><span class="line">             <span class="attr">break;</span></span><br><span class="line">        <span class="attr">&#125;</span></span><br><span class="line">    <span class="meta">&#125;</span> <span class="string"></span></span><br><span class="line">    </span><br><span class="line">    <span class="attr">location</span> <span class="string">~ \.php$ &#123;</span></span><br><span class="line">        <span class="attr">fastcgi_pass</span>   <span class="string">127.0.0.1:9000;</span></span><br><span class="line">        <span class="attr">fastcgi_index</span>  <span class="string">index.php;</span></span><br><span class="line">        <span class="attr">fastcgi_param</span>  <span class="string">SCRIPT_FILENAME  /$document_root$fastcgi_script_name;</span></span><br><span class="line">        <span class="attr">include</span>        <span class="string">fastcgi_params;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br><span class="line"><span class="attr">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>如上配置<br>会出现一下情况</p>
+<ul>
+<li>1、静态资源能正常访问，如:example.com/proxy/test.txt</li>
+<li>2、php文件，在example.com/test.php能访问，但是example.com/proxy/test.php会出现404</li>
+<li>3、本地 curl example.com/proxy/test.php 能访问</li>
+</ul>
+<p>也就是 通过nginx访问example.com/proxy/test.php时，实际没有走 代理。匹配到了下面的 location ~ .php$ 了</p>
+<p>通过查阅 nginx 的语法</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">= 开头表示精确匹配</span></span><br><span class="line"></span><br><span class="line">^~ 开头表示uri以某个常规字符串开头，理解为匹配 url路径即可。nginx不对url做编码，因此请求为/static/20%/aa，可以被规则^~ /static/ /aa匹配到（注意是空格）。</span><br><span class="line"></span><br><span class="line">~ 开头表示区分大小写的正则匹配</span><br><span class="line"></span><br><span class="line">~*  开头表示不区分大小写的正则匹配</span><br><span class="line"></span><br><span class="line">!~和!~<span class="strong">*分别为区分大小写不匹配及不区分大小写不匹配 的正则</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">/ 通用匹配，任何请求都会匹配到。</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">多个location配置的情况下匹配顺序为（参考资料而来，还未实际验证）：</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">首先匹配 =，其次匹配^~, 其次是按文件中顺序的正则匹配，最后是交给 / 通用匹配。当有匹配成功时候，停止匹配，按当前匹配规则处理请求。</span></span><br></pre></td></tr></table></figure>
+
+<p>例子，有如下匹配规则：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">= / &#123;精确匹配，必须是127</span>.<span class="number">0.0</span>.<span class="number">1</span>/</span><br><span class="line"></span><br><span class="line"> 规则A</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">= /login</span> &#123;精确匹配，必须是<span class="number">127.0</span>.<span class="number">0.1</span>/login</span><br><span class="line"></span><br><span class="line"> 规则B</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">^~ /static</span>/ &#123;非精确匹配，并且不区分大小写，比如<span class="number">127.0</span>.<span class="number">0.1</span>/static/js.</span><br><span class="line"></span><br><span class="line"> 规则C</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">~ \.(gif</span>|jpg|png|js|css)$ &#123;区分大小写，以gif,jpg,js结尾</span><br><span class="line"></span><br><span class="line"> 规则D</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">~* \.png</span>$ &#123;不区分大小写，匹配.png结尾的</span><br><span class="line"></span><br><span class="line"> 规则E</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">!~ \.xhtml</span>$ &#123;区分大小写，匹配不已.xhtml结尾的</span><br><span class="line"></span><br><span class="line"> 规则F</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">!~* \.xhtml</span>$ &#123;</span><br><span class="line"></span><br><span class="line"> 规则G</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">/ &#123;什么都可以</span></span><br><span class="line"><span class="title"></span></span><br><span class="line"><span class="title">规则H</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么产生的效果如下：</p>
+<p>访问根目录/， 比如<a target="_blank" rel="noopener" href="http://localhost/">http://localhost/</a> 将匹配规则A</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://localhost/login">http://localhost/login</a> 将匹配规则B，<a target="_blank" rel="noopener" href="http://localhost/register">http://localhost/register</a> 则匹配规则H</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://localhost/static/a.html">http://localhost/static/a.html</a> 将匹配规则C</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://localhost/a.gif">http://localhost/a.gif</a>, <a target="_blank" rel="noopener" href="http://localhost/b.jpg">http://localhost/b.jpg</a> 将匹配规则D和规则E，但是规则D顺序优先，规则E不起作用， 而 <a target="_blank" rel="noopener" href="http://localhost/static/c.png">http://localhost/static/c.png</a> 则优先匹配到 规则C</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://localhost/a.PNG">http://localhost/a.PNG</a> 则匹配规则E， 而不会匹配规则D，因为规则E不区分大小写。</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://localhost/a.xhtml">http://localhost/a.xhtml</a> 不会匹配规则F和规则G，<a target="_blank" rel="noopener" href="http://localhost/a.XHTML%E4%B8%8D%E4%BC%9A%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99G%EF%BC%8C%E5%9B%A0%E4%B8%BA%E4%B8%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99%E3%80%82%E8%A7%84%E5%88%99F%EF%BC%8C%E8%A7%84%E5%88%99G%E5%B1%9E%E4%BA%8E%E6%8E%92%E9%99%A4%E6%B3%95%EF%BC%8C%E7%AC%A6%E5%90%88%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99%E4%BD%86%E6%98%AF%E4%B8%8D%E4%BC%9A%E5%8C%B9%E9%85%8D%E5%88%B0%EF%BC%8C%E6%89%80%E4%BB%A5%E6%83%B3%E6%83%B3%E7%9C%8B%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B8%AD%E5%93%AA%E9%87%8C%E4%BC%9A%E7%94%A8%E5%88%B0%E3%80%82">http://localhost/a.XHTML不会匹配规则G，因为不区分大小写。规则F，规则G属于排除法，符合匹配规则但是不会匹配到，所以想想看实际应用中哪里会用到。</a></p>
+<p>访问 <a target="_blank" rel="noopener" href="http://localhost/category/id/1111">http://localhost/category/id/1111</a> 则最终匹配到规则H，因为以上规则都不匹配，这个时候应该是nginx转发请求给后端应用服务器，比如FastCGI（php），tomcat（jsp），nginx作为方向代理服务器存在。</p>
+<p>所以最上面的配置应该是</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="attr">listen</span> <span class="string">80;</span></span><br><span class="line">    <span class="attr">listen</span> <span class="string">443 ssl;</span></span><br><span class="line">    <span class="attr">server_name</span> <span class="string">example.com;</span></span><br><span class="line">    <span class="attr">root</span> <span class="string">/var/www/html;</span></span><br><span class="line">    <span class="attr">index</span> <span class="string">index.php index.html;</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">location</span>  <span class="string">/ &#123;</span></span><br><span class="line">        <span class="attr">if</span> <span class="string">( !-e $request_filename )&#123;</span></span><br><span class="line">             <span class="attr">rewrite</span> <span class="string">^(.*)$ /index.php?s=$1 last;</span></span><br><span class="line">             <span class="attr">break;</span></span><br><span class="line">        <span class="attr">&#125;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">    ## 代理本地服务</span></span><br><span class="line"><span class="comment">    ## 前面加上 ^~ 这样就不会将代理的php匹配到当前的php反向代理了</span></span><br><span class="line">    <span class="attr">location</span> <span class="string">^~ /proxy/ &#123;  </span></span><br><span class="line">        <span class="attr">proxy_pass</span> <span class="string">https://localhost:8144/;</span></span><br><span class="line">    <span class="meta">&#125;</span>   <span class="string"></span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="attr">location</span> <span class="string">~ \.php$ &#123;</span></span><br><span class="line">        <span class="attr">fastcgi_pass</span>   <span class="string">127.0.0.1:9000;</span></span><br><span class="line">        <span class="attr">fastcgi_index</span>  <span class="string">index.php;</span></span><br><span class="line">        <span class="attr">fastcgi_param</span>  <span class="string">SCRIPT_FILENAME  /$document_root$fastcgi_script_name;</span></span><br><span class="line">        <span class="attr">include</span>        <span class="string">fastcgi_params;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br><span class="line"><span class="attr">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/feiyuanxing/archive/2004/01/13/4668818.html">详解 nginx location ~ .*.(js|css)?$ 什么意思？
+</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -1308,120 +1419,6 @@
 <p>Client.go:</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;net&quot;</span></span><br><span class="line">    <span class="string">&quot;time&quot;</span></span><br><span class="line">    <span class="string">&quot;io&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/znet&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Client Test ... start&quot;</span>)</span><br><span class="line">    <span class="comment">//3秒之后发起测试请求，给服务端开启服务的机会</span></span><br><span class="line">    time.Sleep(<span class="number">3</span> * time.Second)</span><br><span class="line">    conn,err := net.Dial(<span class="string">&quot;tcp&quot;</span>, <span class="string">&quot;127.0.0.1:7777&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;client start err, exit!&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        <span class="comment">//发封包message消息</span></span><br><span class="line">        dp := znet.NewDataPack()</span><br><span class="line">        msg, _ := dp.Pack(znet.NewMsgPackage(<span class="number">0</span>,[]<span class="keyword">byte</span>(<span class="string">&quot;Zinx V0.5 Client Test Message&quot;</span>)))</span><br><span class="line">        _, err := conn.Write(msg)</span><br><span class="line">        <span class="keyword">if</span> err !=<span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;write error err &quot;</span>, err)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// buf :=make([]byte, 512)</span></span><br><span class="line">        <span class="comment">// cnt, err := conn.Read(buf)</span></span><br><span class="line">        <span class="comment">// if err != nil &#123;</span></span><br><span class="line">        <span class="comment">//     fmt.Println(&quot;read buf error &quot;)</span></span><br><span class="line">        <span class="comment">//     return</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// fmt.Printf(&quot; server call back : %s, cnt = %d\n&quot;, buf,  cnt)</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//先读出流中的head部分</span></span><br><span class="line">        headData := <span class="built_in">make</span>([]<span class="keyword">byte</span>, dp.GetHeadLen())</span><br><span class="line">        _, err = io.ReadFull(conn, headData) <span class="comment">//ReadFull 会把msg填充满为止</span></span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;read head error&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将headData字节流 拆包到msg中</span></span><br><span class="line">        msgHead, err := dp.Unpack(headData)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;server unpack err:&quot;</span>, err)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> msgHead.GetDataLen() &gt; <span class="number">0</span> &#123;</span><br><span class="line">            <span class="comment">//msg 是有data数据的，需要再次读取data数据</span></span><br><span class="line">            msg := msgHead.(*znet.Message)</span><br><span class="line">            msg.Data = <span class="built_in">make</span>([]<span class="keyword">byte</span>, msg.GetDataLen())</span><br><span class="line">            <span class="comment">//根据dataLen从io中读取字节流</span></span><br><span class="line">            _, err := io.ReadFull(conn, msg.Data)</span><br><span class="line">            <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                fmt.Println(<span class="string">&quot;server unpack data err:&quot;</span>, err)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            fmt.Println(<span class="string">&quot;==&gt; Recv Msg: ID=&quot;</span>, msg.Id, <span class="string">&quot;, len=&quot;</span>, msg.DataLen, <span class="string">&quot;, data=&quot;</span>, <span class="keyword">string</span>(msg.Data))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        time.Sleep(<span class="number">1</span>*time.Second)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试结果:<br><img src="http://image.jk-kj.com/mweb/2020/12/22/16086134450822wwwd.png" alt="wwwd"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">全局配置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-17 09:00:02" itemprop="dateCreated datePublished" datetime="2020-12-17T09:00:02+08:00">2020-12-17</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-21 12:44:58" itemprop="dateModified" datetime="2020-12-21T12:44:58+08:00">2020-12-21</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="全局配置" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>本节实验中，我们将完成 Zinx 框架的全局配置模块。如下面的思维导图中所表示的这些功能。</p>
-<p><img src="media/44.png" alt="44"></p>
-<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
-<li>json 格式问题</li>
-<li>全局配置文件的好处</li>
-</ul>
-<h3 id="Zinx-的全局配置"><a href="#Zinx-的全局配置" class="headerlink" title="Zinx 的全局配置"></a>Zinx 的全局配置</h3><p>随着架构逐步的变大，参数就会越来越多，为了省去我们后续大频率修改参数的麻烦，接下来 Zinx 需要做一个加载配置的模块，和一个全局获取 Zinx 参数的对象。 这样也方便了我们以后的维护操作，试想一下，如果你的项目里每个类的配置都写在自己的类方法里，后续出现需要更改配置的时候再去修改配置就会很麻烦。所以，通常我们都会用一个全局的配置功能来方便后续维护。</p>
-<h5 id="Zinx-V0-4-增添全局配置代码实现"><a href="#Zinx-V0-4-增添全局配置代码实现" class="headerlink" title="Zinx-V0.4 增添全局配置代码实现"></a>Zinx-V0.4 增添全局配置代码实现</h5><p>我们先做一个简单的加载配置模块，要加载的配置文件的文本格式，就选择比较通用的json格式，配置信息暂时如下:</p>
-<p>我们先在 zinx 文件夹下新建 conf 文件夹，然后再 conf 文件夹下新建 zinx.json 文件。</p>
-<p>配置信息如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;Name&quot;</span>: <span class="string">&quot;demo server&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Host&quot;</span>: <span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line">  <span class="string">&quot;TcpPort&quot;</span>: <span class="number">7777</span>,</span><br><span class="line">  <span class="string">&quot;MaxConn&quot;</span>: <span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里需要大家注意一下 json 的书写规范如下：</p>
-<p> 1、数组或对象之中的字符串必须使用双引号，不能使用单引号。<br> 2、对象的成员名称必须使用双引号。<br> 3、数组或对象最后一个成员的后面，不能加逗号 。<br> 4、数组或对象的每个成员的值，可以是简单值，也可以是复合值。简单值分为四种：字符串、数值（必须以十进制表示）、布尔值和 null（NaN, Infinity, -Infinity 和 undefined 都会被转为 null）。复合值分为两种：符合 JSON 格式的对象和符合 JSON 格式的数组。</p>
-<p>现在我们需要建立一个全局配置信息的对象。</p>
-<h5 id="创建全局参数文件"><a href="#创建全局参数文件" class="headerlink" title="创建全局参数文件"></a>创建全局参数文件</h5><p>创建<code>zinx/utils</code>文件夹，在下面创建globalobj.go文件,暂时编写如下。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> utils</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;encoding/json&quot;</span></span><br><span class="line">    <span class="string">&quot;io/ioutil&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/ziface&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    存储一切有关Zinx框架的全局参数，供其他模块使用</span></span><br><span class="line"><span class="comment">    一些参数也可以通过 用户根据 zinx.json来配置</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">type</span> GlobalObj <span class="keyword">struct</span> &#123;</span><br><span class="line">    TcpServer ziface.IServer <span class="comment">//当前Zinx的全局Server对象</span></span><br><span class="line">    Host      <span class="keyword">string</span>         <span class="comment">//当前服务器主机IP</span></span><br><span class="line">    TcpPort   <span class="keyword">int</span>            <span class="comment">//当前服务器主机监听端口号</span></span><br><span class="line">    Name      <span class="keyword">string</span>         <span class="comment">//当前服务器名称</span></span><br><span class="line">    Version   <span class="keyword">string</span>         <span class="comment">//当前Zinx版本号</span></span><br><span class="line">    MaxPacketSize <span class="keyword">uint32</span> <span class="comment">//都需数据包的最大值</span></span><br><span class="line">    MaxConn       <span class="keyword">int</span>    <span class="comment">//当前服务器主机允许的最大链接个数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    定义一个全局的对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> GlobalObject *GlobalObj</span><br></pre></td></tr></table></figure>
-
-<p>我们在全局定义了一个GlobalObject对象，目的就是让其他模块都能访问到里面的参数。</p>
-<h5 id="提供-init-初始化方法"><a href="#提供-init-初始化方法" class="headerlink" title="提供 init 初始化方法"></a>提供 init 初始化方法</h5><p>然后我们提供一个init()方法，目的是初始化GlobalObject对象，和加载服务端应用配置文件conf/zinx.json</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> utils</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;encoding/json&quot;</span></span><br><span class="line">    <span class="string">&quot;io/ioutil&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/ziface&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    存储一切有关Zinx框架的全局参数，供其他模块使用</span></span><br><span class="line"><span class="comment">    一些参数也可以通过 用户根据 zinx.json来配置</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">type</span> GlobalObj <span class="keyword">struct</span> &#123;</span><br><span class="line">    TcpServer ziface.IServer <span class="comment">//当前Zinx的全局Server对象</span></span><br><span class="line">    Host      <span class="keyword">string</span>         <span class="comment">//当前服务器主机IP</span></span><br><span class="line">    TcpPort   <span class="keyword">int</span>            <span class="comment">//当前服务器主机监听端口号</span></span><br><span class="line">    Name      <span class="keyword">string</span>         <span class="comment">//当前服务器名称</span></span><br><span class="line">    Version   <span class="keyword">string</span>         <span class="comment">//当前Zinx版本号</span></span><br><span class="line">    MaxPacketSize <span class="keyword">uint32</span> <span class="comment">//都需数据包的最大值</span></span><br><span class="line">    MaxConn       <span class="keyword">int</span>    <span class="comment">//当前服务器主机允许的最大链接个数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    定义一个全局的对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> GlobalObject *GlobalObj</span><br><span class="line"><span class="comment">//读取用户的配置文件</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(g *GlobalObj)</span> <span class="title">Reload</span><span class="params">()</span></span> &#123;</span><br><span class="line">    data, err := ioutil.ReadFile(<span class="string">&quot;conf/zinx.json&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="built_in">panic</span>(err)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//将json数据解析到struct中</span></span><br><span class="line">    <span class="comment">//fmt.Printf(&quot;json :%s\n&quot;, data)</span></span><br><span class="line">    err = json.Unmarshal(data, &amp;GlobalObject)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="built_in">panic</span>(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    提供init方法，默认加载</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//初始化GlobalObject变量，设置一些默认值</span></span><br><span class="line">    GlobalObject = &amp;GlobalObj&#123;</span><br><span class="line">        Name:    <span class="string">&quot;ZinxServerApp&quot;</span>,</span><br><span class="line">        Version: <span class="string">&quot;V0.4&quot;</span>,</span><br><span class="line">        TcpPort: <span class="number">7777</span>,</span><br><span class="line">        Host:    <span class="string">&quot;0.0.0.0&quot;</span>,</span><br><span class="line">        MaxConn: <span class="number">12000</span>,</span><br><span class="line">        MaxPacketSize:<span class="number">4096</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//从配置文件中加载一些用户配置的参数</span></span><br><span class="line">    GlobalObject.Reload()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里的 init 方法其实是 Golang 的一个特性，在执行 Go 语言程序时，<code>Golang 会先看各个包里有没有 init 方法</code>，如果有就先执行初始化。初始化方法全都运行完之后才会执行主函数。</p>
-<h5 id="硬参数替换与-Server-初始化参数配置"><a href="#硬参数替换与-Server-初始化参数配置" class="headerlink" title="硬参数替换与 Server 初始化参数配置"></a>硬参数替换与 Server 初始化参数配置</h5><p>我们这里来修改 znet/server.go 文件的 NewServer 方法。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里别忘了在头部 import &quot;zinx/utils&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  创建一个服务器句柄</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewServer</span> <span class="params">()</span> <span class="title">ziface</span>.<span class="title">IServer</span></span> &#123;</span><br><span class="line">    <span class="comment">//先初始化全局配置文件</span></span><br><span class="line">    utils.GlobalObject.Reload()</span><br><span class="line">    s:= &amp;Server &#123;</span><br><span class="line">        Name :utils.GlobalObject.Name,<span class="comment">//从全局参数获取</span></span><br><span class="line">        IPVersion:<span class="string">&quot;tcp4&quot;</span>,</span><br><span class="line">        IP:utils.GlobalObject.Host,<span class="comment">//从全局参数获取</span></span><br><span class="line">        Port:utils.GlobalObject.TcpPort,<span class="comment">//从全局参数获取</span></span><br><span class="line">        Router: <span class="literal">nil</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们为方便验证我们的参数已经成功被加载，在Server.Start()方法中加入几行调试信息</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Server)</span> <span class="title">Start</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 如果我们的方法正确，运行时就会打印出Version: V0.4, MaxConn: 3,  MaxPacketSize: 4096</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;[START] Server name: %s,listenner at IP: %s, Port %d is starting\n&quot;</span>, s.Name, s.IP, s.Port)</span><br><span class="line">    fmt.Printf(<span class="string">&quot;[Zinx] Version: %s, MaxConn: %d,  MaxPacketSize: %d\n&quot;</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 其他代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p>我们今天完成了对我们框架进行全局配置的实现。同时使用到了 json 反序列化的方式使配置文件变成了配置对象，来方便我们对其进行操作。</p>
 
       
     </div>
