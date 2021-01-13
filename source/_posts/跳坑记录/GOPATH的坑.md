@@ -1,9 +1,9 @@
 ---
 title: GOPATH的坑
+category: [跳坑记录]
 date: 2020-12-29 16:52:14
 tags: 
     - go
-    - 字体
 ---
 
 首先使用go env查看当前环境变量，新手入门出现找不到包的情况大多是环境环境的问题。只需要关注GOROOT和GOPATH即可。
@@ -11,7 +11,7 @@ tags:
 - GOROOT：简单来说就是GO的安装目录，这个影响不大。
 - GOPATH：表示GO的工作目录，出现找不到包的情况大概率就是这里出了问题。
 
-![112233](media/112233.png)
+![112233](http://image.jk-kj.com/mweb/2021/01/08/16100732082162112233.png)
 
 Golang 的代码必须放置在一个 workspace 中。一个 workspace 是一个目录，此目录中包含几个子目录：
 

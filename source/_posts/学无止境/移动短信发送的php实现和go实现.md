@@ -10,7 +10,7 @@ date: 2021-01-08 09:59:53
 现在用自己熟悉的php和新学的go来实现一遍，看看go的实现有和不同
 
 ### 官方java版本的demo
-![demoforjava](media/demoforjava.png)
+![demoforjava](http://image.jk-kj.com/mweb/2021/01/08/16100730123915demoforjava.png)
 
 ### php实现
 ```php
@@ -150,7 +150,7 @@ func main() {
 ### 主要的不同
 
 - md5的方法需要自己去封装下使用
-- json.Marshal返回的是 []uint8，需要自己在转格式
+- json.Marshal返回的是 []uint8，需要自己再转格式
 - go语音在使用类似php中的函数时，必须自己清楚需要用到哪些包
 
 
