@@ -1,0 +1,68 @@
+syntax = "proto3";
+package msg;
+option go_package = "./;msg";
+
+enum Result {
+    REGISTER_SUCCESS=0;
+    REGISTER_FAIL=1;
+    LOGIN_SUCCESS=2;
+    LOGIN_FAIL=3;
+}
+
+message Test {
+	string Test = 2;
+}
+
+// 用户登陆协议
+message UserLogin  {
+    string LoginName = 1;   // 用户名
+    string LoginPW =2;      // 密码
+}
+// 注册协议
+message UserRegister {
+    string LoginName =1;    // 用户名
+    string LoginPW =2;      // 密码
+}
+// 消息返回协议
+message UserResult {
+    Result RetResult =1;
+    string ErrorInfo = 2;
+}
+
+// 玩家有角色的情况
+message UserST {
+    string UID    =1;       // 账号ID
+    string ServerID =2;     // 服务器ID
+    string RoleUID  =3;     // 角色UID
+    string RoleName =4;     // 角色名字
+    string RoleLev =5;      // 角色等级
+    string Coin  =6;        // 金币
+    // 其他的暂时不做定义
+}
+// 基础用户信息id头像昵称
+message UserBaseInfo{
+    string Uid = 1;
+    string NickName = 2;
+    string Avatar = 3;
+}
+// 消息体 
+// 如 type=text  ContentJson={text:"你好"}
+// 如 type=image  ContentJson={image:"xxx.png",height:100,width:100}
+// 因为不同的type,ContentJson的结构不同，所以为字符串类型
+message ChatMessage{
+    string Type = 1;
+    string ContentJson = 2;
+}
+// 消息发送
+message ChatREQ {
+	ChatMessage Message=1;
+    uint32 ToId=2;
+    string ToType=3;
+}
+// 消息送达
+message ChatACK {
+	UserBaseInfo From=1;
+	ChatMessage  Message=2;
+    uint32 ToId=3;
+    string ToType=4;
+}
