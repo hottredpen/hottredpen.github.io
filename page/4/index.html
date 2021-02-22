@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,7 +210,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -242,6 +242,452 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%83)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E6%B8%B8%E6%88%8F%E5%BE%97%E5%88%86%E4%B8%8E%E5%A4%B1%E8%B4%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%83)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E6%B8%B8%E6%88%8F%E5%BE%97%E5%88%86%E4%B8%8E%E5%A4%B1%E8%B4%A5/" class="post-title-link" itemprop="url">(七)、“仙剑出鞘”---游戏得分与失败</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-13 15:56:42 / 修改时间：16:20:00" itemprop="dateCreated datePublished" datetime="2020-11-13T15:56:42+08:00">2020-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%83)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E6%B8%B8%E6%88%8F%E5%BE%97%E5%88%86%E4%B8%8E%E5%A4%B1%E8%B4%A5/" class="post-meta-item leancloud_visitors" data-flag-title="(七)、“仙剑出鞘”---游戏得分与失败" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><p>在飞剑飞完后判断</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="title">isGameOver</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.mFeiJian.getComponent(<span class="string">&quot;feijian&quot;</span>).is_flying = <span class="literal">false</span></span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params"><span class="built_in">this</span>.gameData.guaiwu_num &lt;= <span class="number">0</span></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.gameController.emit(<span class="string">&#x27;game__win__thislevel&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params"><span class="built_in">this</span>.gameData.remain_num &lt;= <span class="number">0</span> </span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.gameController.emit(<span class="string">&#x27;game__loss__thislevel&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="主要涉及的cocos函数"><a href="#主要涉及的cocos函数" class="headerlink" title="主要涉及的cocos函数"></a>主要涉及的cocos函数</h3><p>无新函数</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E5%85%AD)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E5%85%AD)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" class="post-title-link" itemprop="url">(六)、“仙剑出鞘”---碰撞检测</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-13 15:46:52" itemprop="dateCreated datePublished" datetime="2020-11-13T15:46:52+08:00">2020-11-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-17 18:22:18" itemprop="dateModified" datetime="2020-11-17T18:22:18+08:00">2020-11-17</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E5%85%AD)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" class="post-meta-item leancloud_visitors" data-flag-title="(六)、“仙剑出鞘”---碰撞检测" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><p>在场景中开启碰撞检测</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> manager = cc.director.getCollisionManager();<span class="comment">//获取碰撞检测系统</span></span><br><span class="line">manager.enabled = <span class="literal">true</span>;<span class="comment">//默认碰撞检测系统是禁用的，需要手动开启碰撞检测系统</span></span><br><span class="line">manager.enabledDebugDraw = <span class="literal">true</span>;<span class="comment">//开启后可在debug中显示碰撞区域</span></span><br></pre></td></tr></table></figure>
+
+
+<p>飞剑中的碰撞监听函数onCollisionEnter</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">onCollisionEnter</span>(<span class="params">other:<span class="built_in">any</span> , self:<span class="built_in">any</span></span>)</span> &#123;</span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params">other.node.name.indexOf(<span class="string">&#x27;guaiwu&#x27;</span>) &gt; -<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">        other.node.emit(<span class="string">&#x27;guaiwu__attackby__feijian&#x27;</span>,&#123;<span class="attr">feijian_gj</span>:<span class="built_in">this</span>.feijian_gj&#125;,<span class="built_in">this</span>); <span class="comment">// 触发被飞剑攻击事件(加分事件在里面)</span></span><br><span class="line">        other.node.emit(<span class="string">&#x27;guaiwu_buffby_feijian&#x27;</span>,&#123;&#125;,<span class="built_in">this</span>) <span class="comment">// 触发被飞剑添加了buff事件</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="主要界面设置"><a href="#主要界面设置" class="headerlink" title="主要界面设置"></a>主要界面设置</h3><p>在<code>项目&gt;&gt;项目设置&gt;&gt;分组管理</code>  中设置可以碰撞的组<code>gongji test</code></p>
+<p><img src="http://image.jk-kj.com/mweb/2020/11/17/16056035562098ss.png" alt="ss"></p>
+<h3 id="主要涉及的cocos函数"><a href="#主要涉及的cocos函数" class="headerlink" title="主要涉及的cocos函数"></a>主要涉及的cocos函数</h3><h4 id="1、onCollisionEnter"><a href="#1、onCollisionEnter" class="headerlink" title="1、onCollisionEnter"></a>1、onCollisionEnter</h4><p>碰撞监听事件</p>
+<h4 id="2、this-node-emit"><a href="#2、this-node-emit" class="headerlink" title="2、this.node.emit"></a>2、this.node.emit</h4><p>节点通知事件</p>
+<h4 id="3、this-node-on"><a href="#3、this-node-on" class="headerlink" title="3、this.node.on"></a>3、this.node.on</h4><p>节点监听事件</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%94)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E9%A3%9E%E5%89%91%E7%9A%84%E5%8F%91%E5%B0%84%E5%8F%8A%E8%BD%A8%E8%BF%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%94)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E9%A3%9E%E5%89%91%E7%9A%84%E5%8F%91%E5%B0%84%E5%8F%8A%E8%BD%A8%E8%BF%B9/" class="post-title-link" itemprop="url">(五)、“仙剑出鞘”---飞剑的发射及轨迹</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-13 15:39:23 / 修改时间：16:20:14" itemprop="dateCreated datePublished" datetime="2020-11-13T15:39:23+08:00">2020-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%94)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E9%A3%9E%E5%89%91%E7%9A%84%E5%8F%91%E5%B0%84%E5%8F%8A%E8%BD%A8%E8%BF%B9/" class="post-meta-item leancloud_visitors" data-flag-title="(五)、“仙剑出鞘”---飞剑的发射及轨迹" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">start_move_feijian</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;mFeiJian move&#x27;</span>)</span><br><span class="line">    <span class="comment">// 将cocos 的一些基本操作练习一遍</span></span><br><span class="line">    <span class="built_in">this</span>.mFeiJian.position = <span class="keyword">new</span> cc.Vec3(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.mFeiJian.getComponent(<span class="string">&quot;feijian&quot;</span>).is_flying = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// // 画贝塞尔曲线</span></span><br><span class="line">    <span class="built_in">this</span>.point1 = cc.v2(<span class="built_in">this</span>.mZhunXin.position.x*<span class="number">3</span>,<span class="number">600</span>)</span><br><span class="line">    <span class="built_in">this</span>.point2 = cc.v2(<span class="built_in">this</span>.mZhunXin.position.x*<span class="number">2</span>,<span class="number">2100</span>)</span><br><span class="line">    <span class="keyword">let</span> endPoint = cc.v2(<span class="built_in">this</span>.mZhunXin.position.x,<span class="number">750</span>)</span><br><span class="line">    <span class="keyword">let</span> ddd = <span class="built_in">this</span>.mFeiJian.runAction(</span><br><span class="line">        </span><br><span class="line">        cc.sequence(</span><br><span class="line">            cc.spawn(cc.rotateBy(<span class="number">1</span>, <span class="number">360</span>),  cc.bezierTo(<span class="number">1</span>, [<span class="built_in">this</span>.point1, <span class="built_in">this</span>.point2, endPoint]) ),</span><br><span class="line">            cc.moveTo(<span class="number">1</span>,<span class="built_in">this</span>.mZhunXin.position.x,<span class="number">0</span>),</span><br><span class="line">            <span class="comment">// 执行完成动作后回调</span></span><br><span class="line">            cc.callFunc(<span class="built_in">this</span>.isGameOver,<span class="built_in">this</span>)</span><br><span class="line">        )</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="主要涉及的cocos函数"><a href="#主要涉及的cocos函数" class="headerlink" title="主要涉及的cocos函数"></a>主要涉及的cocos函数</h3><h4 id="1、cc-Vec3"><a href="#1、cc-Vec3" class="headerlink" title="1、cc.Vec3"></a>1、cc.Vec3</h4><p>position的坐标在最新版本中都用cc.Vec3</p>
+<h4 id="2、cc-v2"><a href="#2、cc-v2" class="headerlink" title="2、cc.v2"></a>2、cc.v2</h4><p>二维坐标</p>
+<h4 id="3、this-node-runAction"><a href="#3、this-node-runAction" class="headerlink" title="3、this.node.runAction"></a>3、this.node.runAction</h4><p>运行动作</p>
+<h4 id="4、cc-sequence"><a href="#4、cc-sequence" class="headerlink" title="4、cc.sequence"></a>4、cc.sequence</h4><p>按顺序执行动作</p>
+<h4 id="5、cc-spawn"><a href="#5、cc-spawn" class="headerlink" title="5、cc.spawn"></a>5、cc.spawn</h4><p>多个动作同时间进行</p>
+<h4 id="6、cc-rotateBy"><a href="#6、cc-rotateBy" class="headerlink" title="6、cc.rotateBy"></a>6、cc.rotateBy</h4><p>翻转</p>
+<h4 id="7-cc-moveTo"><a href="#7-cc-moveTo" class="headerlink" title="7.cc.moveTo"></a>7.cc.moveTo</h4><p>移动</p>
+<h4 id="8、cc-bezierTo"><a href="#8、cc-bezierTo" class="headerlink" title="8、cc.bezierTo"></a>8、cc.bezierTo</h4><p>按贝塞尔曲线轨迹运行</p>
+<h4 id="9、cc-callFunc"><a href="#9、cc-callFunc" class="headerlink" title="9、cc.callFunc"></a>9、cc.callFunc</h4><p>回调函数</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E5%9B%9B)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E5%87%86%E5%BF%83%E7%9A%84%E5%91%A8%E6%9C%9F%E8%BF%90%E8%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E5%9B%9B)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E5%87%86%E5%BF%83%E7%9A%84%E5%91%A8%E6%9C%9F%E8%BF%90%E8%A1%8C/" class="post-title-link" itemprop="url">(四)、“仙剑出鞘”---准心的周期运行</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-13 15:34:01 / 修改时间：16:20:17" itemprop="dateCreated datePublished" datetime="2020-11-13T15:34:01+08:00">2020-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E5%9B%9B)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E5%87%86%E5%BF%83%E7%9A%84%E5%91%A8%E6%9C%9F%E8%BF%90%E8%A1%8C/" class="post-meta-item leancloud_visitors" data-flag-title="(四)、“仙剑出鞘”---准心的周期运行" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@property</span>(cc.Node)</span><br><span class="line">mZhunXinHengTiao: cc.Node = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@property</span>(cc.Node)</span><br><span class="line">mZhunXin: cc.Node = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@property</span>(cc.Integer)</span><br><span class="line">time_speed:<span class="built_in">Number</span> = <span class="number">1</span>; <span class="comment">// 时间流逝倍率</span></span><br><span class="line"><span class="meta">@property</span>(cc.Integer)</span><br><span class="line">cycle_time:<span class="built_in">Number</span> = <span class="number">5</span>; <span class="comment">// 一个周期所用时间</span></span><br><span class="line"></span><br><span class="line">max_x:<span class="built_in">Number</span> = <span class="number">0</span>; <span class="comment">// 最大偏移</span></span><br><span class="line">total_move_time:<span class="built_in">Number</span> = <span class="number">0</span>; <span class="comment">// 总移动时间</span></span><br><span class="line">per_move_time:<span class="built_in">Number</span> = <span class="number">0</span>; <span class="comment">// 每帧移动时间</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start () &#123;</span><br><span class="line">    <span class="built_in">this</span>.max_x = <span class="built_in">this</span>.mZhunXinHengTiao.width/<span class="number">2</span></span><br><span class="line">    <span class="built_in">this</span>.total_move_time = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line">update (dt) &#123;</span><br><span class="line">    <span class="keyword">let</span> PI = <span class="number">3.14159</span>    </span><br><span class="line">    <span class="built_in">this</span>.per_move_time  = dt*<span class="built_in">Number</span>(<span class="built_in">this</span>.time_speed) <span class="comment">// 每帧移动时间</span></span><br><span class="line">    <span class="built_in">this</span>.total_move_time = <span class="built_in">Number</span>(<span class="built_in">this</span>.total_move_time) + <span class="built_in">Number</span>(<span class="built_in">this</span>.per_move_time) <span class="comment">// 总移动时间</span></span><br><span class="line">    <span class="built_in">this</span>.mZhunXin.x = <span class="built_in">Number</span>(<span class="built_in">this</span>.max_x)*<span class="built_in">Math</span>.sin(<span class="number">2</span>*PI*(<span class="built_in">Number</span>(<span class="built_in">this</span>.total_move_time)/<span class="built_in">Number</span>(<span class="built_in">this</span>.cycle_time))) <span class="comment">// 准心的偏移量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="主要涉及的cocos函数"><a href="#主要涉及的cocos函数" class="headerlink" title="主要涉及的cocos函数"></a>主要涉及的cocos函数</h3><h4 id="1、Math-sin"><a href="#1、Math-sin" class="headerlink" title="1、Math.sin"></a>1、Math.sin</h4><p>正弦余弦</p>
+<h4 id="2、update（dt）"><a href="#2、update（dt）" class="headerlink" title="2、update（dt）"></a>2、update（dt）</h4><p>dt代表的每帧所用时间</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%89)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E5%89%91%E9%98%B5%E7%9B%98%E7%9A%84%E6%8E%A7%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%89)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E5%89%91%E9%98%B5%E7%9B%98%E7%9A%84%E6%8E%A7%E5%88%B6/" class="post-title-link" itemprop="url">(三)、“仙剑出鞘”---剑阵盘的控制</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-13 13:59:31 / 修改时间：16:20:21" itemprop="dateCreated datePublished" datetime="2020-11-13T13:59:31+08:00">2020-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%89)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E5%89%91%E9%98%B5%E7%9B%98%E7%9A%84%E6%8E%A7%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="(三)、“仙剑出鞘”---剑阵盘的控制" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.node.on(cc.Node.EventType.TOUCH_START, <span class="built_in">this</span>.onTouchStart, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">this</span>.node.on(cc.Node.EventType.TOUCH_MOVE, <span class="built_in">this</span>.onTouchMove , <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">this</span>.node.on(cc.Node.EventType.TOUCH_CANCEL, <span class="built_in">this</span>.onTouchEnd, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">this</span>.node.on(cc.Node.EventType.TOUCH_END, <span class="built_in">this</span>.onTouchEnd, <span class="built_in">this</span>);</span><br><span class="line">        <span class="comment">// this.mEnableTouch = true;</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;mEnableTouch on&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">     </span><br><span class="line">    onTouchMove (event) &#123;</span><br><span class="line"><span class="keyword">var</span> touches = event.getTouches();</span><br><span class="line"><span class="keyword">var</span> touchLoc = touches[<span class="number">0</span>].getLocation();</span><br><span class="line"><span class="comment">// this.mHookMoveToPos = this.node.parent.convertToNodeSpaceAR(touchLoc);</span></span><br><span class="line"><span class="comment">// console.log(&#x27;touchLoc : &#x27;, touchLoc);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> toX:<span class="built_in">Number</span> = touchLoc.x - <span class="built_in">Number</span>(<span class="built_in">this</span>.preX) </span><br><span class="line"><span class="keyword">var</span> toY:<span class="built_in">Number</span> = touchLoc.y - <span class="built_in">Number</span>(<span class="built_in">this</span>.preY)</span><br><span class="line"><span class="built_in">this</span>.preX = touchLoc.x</span><br><span class="line"><span class="built_in">this</span>.preY = touchLoc.y</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;touchLoc.x&#x27;</span>,touchLoc.x)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;preX&#x27;</span>,<span class="built_in">this</span>.preX)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;touchLoc.y&#x27;</span>,touchLoc.y)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;preY&#x27;</span>,<span class="built_in">this</span>.preY)</span><br><span class="line"><span class="function"><span class="title">if</span>(<span class="params"> toX &gt; <span class="number">0</span> </span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot; &gt; 0&quot;</span>)</span><br><span class="line">    <span class="built_in">this</span>.mPan.angle +=<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">if</span>(<span class="params"> toX &lt; <span class="number">0</span> </span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot; &lt; 0&quot;</span>)</span><br><span class="line">    <span class="built_in">this</span>.mPan.angle -=<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="主要涉及的cocos函数"><a href="#主要涉及的cocos函数" class="headerlink" title="主要涉及的cocos函数"></a>主要涉及的cocos函数</h3><h4 id="1、event-getTouches"><a href="#1、event-getTouches" class="headerlink" title="1、event.getTouches()"></a>1、event.getTouches()</h4><p>获取触碰点</p>
+<h4 id="2、cc-Node-EventType-TOUCH-MOVE"><a href="#2、cc-Node-EventType-TOUCH-MOVE" class="headerlink" title="2、cc.Node.EventType.TOUCH_MOVE"></a>2、cc.Node.EventType.TOUCH_MOVE</h4><p>事件类型</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -795,434 +1241,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%8C)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%95%8C%E9%9D%A2%E7%9A%84%E8%AE%BE%E8%AE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%8C)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%95%8C%E9%9D%A2%E7%9A%84%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">(二)、“仙剑出鞘”---界面的设计</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-30 08:26:10" itemprop="dateCreated datePublished" datetime="2020-10-30T08:26:10+08:00">2020-10-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-13 16:20:30" itemprop="dateModified" datetime="2020-11-13T16:20:30+08:00">2020-11-13</time>
-      </span>
-
-  
-    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%BA%8C)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%95%8C%E9%9D%A2%E7%9A%84%E8%AE%BE%E8%AE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="(二)、“仙剑出鞘”---界面的设计" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="第一版设计"><a href="#第一版设计" class="headerlink" title="第一版设计"></a>第一版设计</h3><p><img src="http://image.jk-kj.com/mweb/2020/11/12/1605145436331640ab7c21f06b5a78a963a52c27f58a37.png" alt="40ab7c21f06b5a78a963a52c27f58a37"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%80)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%8E%A9%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%80)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%8E%A9%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">(一)、“仙剑出鞘”---玩法的设计</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-27 08:26:10" itemprop="dateCreated datePublished" datetime="2020-10-27T08:26:10+08:00">2020-10-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-04 10:24:16" itemprop="dateModified" datetime="2021-01-04T10:24:16+08:00">2021-01-04</time>
-      </span>
-
-  
-    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/(%E4%B8%80)%E3%80%81%E2%80%9C%E4%BB%99%E5%89%91%E5%87%BA%E9%9E%98%E2%80%9D---%E7%8E%A9%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="(一)、“仙剑出鞘”---玩法的设计" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="主要玩法："><a href="#主要玩法：" class="headerlink" title="主要玩法："></a>主要玩法：</h3><p>1、<del>用户上划屏幕，将飞剑“出鞘”，飞到之前的瞄准准心处</del>。<br>顺时针轮流到当前剑阵某点，将飞剑“出鞘”，飞剑降落到刚才点进行打击点</p>
-<p>2、瞄准准心左右移动，飞剑到达准心后，垂直下落。</p>
-<p>3、用户控制左右“飞剑轮盘”，将飞剑进行“二次打击”。</p>
-<p>4、飞剑出鞘后如果没有进行“二次打击”，将回到主角身边</p>
-<p>5、敌方发出攻击，需要“飞剑”进行防御，只有飞剑停留在“防御点”，飞剑还能进行“二次打击”，否则将回到主角身边</p>
-<h3 id="cocos知识点"><a href="#cocos知识点" class="headerlink" title="cocos知识点"></a>cocos知识点</h3><p>暂无</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8mysql%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%A7%E7%9A%84%E6%8E%92%E6%9F%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8mysql%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%A7%E7%9A%84%E6%8E%92%E6%9F%A5/" class="post-title-link" itemprop="url">记一次服务器mysql占用过大的排查</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-06-05 16:58:15" itemprop="dateCreated datePublished" datetime="2019-06-05T16:58:15+08:00">2019-06-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8mysql%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%A7%E7%9A%84%E6%8E%92%E6%9F%A5/" class="post-meta-item leancloud_visitors" data-flag-title="记一次服务器mysql占用过大的排查" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>公司测试服务器上，跑了N多的应用，某天mysql的CPU占用超高，http的请求部分也有超20%以上的。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>mysql/mariadb知识点总结（24）：慢查询日志<br><a target="_blank" rel="noopener" href="http://www.zsythink.net/archives/1260">http://www.zsythink.net/archives/1260</a><br>关于MySQL 通用查询日志和慢查询日志分析<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ac4f291b806a">https://www.jianshu.com/p/ac4f291b806a</a><br>mysql中slow query log慢日志查询分析<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/musings/p/5913186.html">https://www.cnblogs.com/musings/p/5913186.html</a></p>
-<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="记录全部的log"><a href="#记录全部的log" class="headerlink" title="记录全部的log"></a>记录全部的log</h4><p>开启全部的sql记录，先看看全局的</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span> <span class="string">&#x27;%general%&#x27;</span>;</span><br><span class="line"></span><br><span class="line">+<span class="comment">------------------+--------------+</span></span><br><span class="line">| Variable_name    | <span class="keyword">Value</span>        |</span><br><span class="line">+<span class="comment">------------------+--------------+</span></span><br><span class="line">| general_log      | <span class="keyword">OFF</span>          |</span><br><span class="line">| general_log_file | ecs<span class="number">-248</span>d.<span class="keyword">log</span> |</span><br><span class="line">+<span class="comment">------------------+--------------+</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
-<p>发现没有开，</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> general_log=<span class="keyword">on</span>;</span><br></pre></td></tr></table></figure>
-<p>我们打算用文件的形式记录下来</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">&#x27;%log_output%&#x27;</span>;</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> log_output=<span class="string">&#x27;FILE&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<p>这个时候就可以去查看</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/<span class="class"><span class="keyword">lib</span>/<span class="title">mysql</span>/<span class="title">ecs</span>-248<span class="title">d</span>.<span class="title">log</span></span></span><br></pre></td></tr></table></figure>
-<p>（注意：上述命令只对当前生效，当MySQL重启失效，如果要永久生效，需要配置 my.cnf）</p>
-<h3 id="记录慢查询log"><a href="#记录慢查询log" class="headerlink" title="记录慢查询log"></a>记录慢查询log</h3><p>先查看下</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> ‘%quer%’;</span><br></pre></td></tr></table></figure>
-<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">+-------------------------------+-------------------+</span><br><span class="line">|<span class="string"> Variable_name                 </span>|<span class="string"> Value             </span>|</span><br><span class="line">+-------------------------------+-------------------+</span><br><span class="line">|<span class="string"> expensive_subquery_limit      </span>|<span class="string"> 100               </span>|</span><br><span class="line">|<span class="string"> ft_query_expansion_limit      </span>|<span class="string"> 20                </span>|</span><br><span class="line">|<span class="string"> have_query_cache              </span>|<span class="string"> YES               </span>|</span><br><span class="line">|<span class="string"> log_queries_not_using_indexes </span>|<span class="string"> OFF               </span>|</span><br><span class="line">|<span class="string"> log_slow_queries              </span>|<span class="string"> ON                </span>|</span><br><span class="line">|<span class="string"> long_query_time               </span>|<span class="string"> 10.000000          </span>|</span><br><span class="line">|<span class="string"> query_alloc_block_size        </span>|<span class="string"> 8192              </span>|</span><br><span class="line">|<span class="string"> query_cache_limit             </span>|<span class="string"> 262144            </span>|</span><br><span class="line">|<span class="string"> query_cache_min_res_unit      </span>|<span class="string"> 2048              </span>|</span><br><span class="line">|<span class="string"> query_cache_size              </span>|<span class="string"> 1073741824        </span>|</span><br><span class="line">|<span class="string"> query_cache_strip_comments    </span>|<span class="string"> OFF               </span>|</span><br><span class="line">|<span class="string"> query_cache_type              </span>|<span class="string"> ON                </span>|</span><br><span class="line">|<span class="string"> query_cache_wlock_invalidate  </span>|<span class="string"> OFF               </span>|</span><br><span class="line">|<span class="string"> query_prealloc_size           </span>|<span class="string"> 8192              </span>|</span><br><span class="line">|<span class="string"> slow_query_log                </span>|<span class="string"> OFF                </span>|</span><br><span class="line">|<span class="string"> slow_query_log_file           </span>|<span class="string"> ecs-248d-slow.log </span>|</span><br><span class="line">+-------------------------------+-------------------+</span><br><span class="line">16 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-<p>开启慢查询的条件，设置<code>long_query_time</code>为1秒</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">set</span> <span class="attribute">long_query_time</span>=1;</span><br></pre></td></tr></table></figure>
-
-<p>试一试有没有生效</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sleep</span>(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-<p>到<code>/var/lib/mysql/ecs-248d-slow.log</code>查看下有没有</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Time: <span class="number">190605</span> <span class="number">17</span>:<span class="number">32</span>:<span class="number">20</span></span><br><span class="line"># <span class="symbol">User@</span>Host: root[root] @ localhost []</span><br><span class="line"># Thread_id: <span class="number">2223</span>  Schema:   QC_hit: No</span><br><span class="line"># Query_time: <span class="number">2.000163</span>  Lock_time: <span class="number">0.000000</span>  Rows_sent: <span class="number">1</span>  Rows_examined: <span class="number">0</span></span><br><span class="line">SET timestamp=<span class="number">1559727140</span>;</span><br><span class="line">select sleep(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-
-<p>如果太多了，用</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow -s t /var/<span class="class"><span class="keyword">lib</span>/<span class="title">mysql</span>/<span class="title">ecs</span>-248<span class="title">d</span>-<span class="title">slow</span>.<span class="title">log</span></span></span><br></pre></td></tr></table></figure>
-<p>帮我们统一下</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8cpu%E4%BA%86%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8cpu%E4%BA%86%E8%A7%A3/" class="post-title-link" itemprop="url">记一次服务器cpu了解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-30 09:33:57" itemprop="dateCreated datePublished" datetime="2019-05-30T09:33:57+08:00">2019-05-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%9C%8D%E5%8A%A1%E5%99%A8cpu%E4%BA%86%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="记一次服务器cpu了解" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>自己写的php代码,执行mysql时,占用了很大的CPU,排查问题修改代码后,发现公司服务器已经没有这个问题,连续请求,mysql的内存不会增加。但是客户的机子上,连续请求还是会出现这个问题。</p>
-<p>经排查后，应该是客户服务器上的CPU处理速度跟不上,导致mysql执行效率跟不上,被阻塞住。导致CPU会因为请求数量的累加而上升。而公司服务器因为处理速度快,即使请求速不断累加,其CPU的值也上升很少。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>在linux 下怎么查看服务器的cpu和内存的硬件信息<br><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/155943069.html">https://zhidao.baidu.com/question/155943069.html</a><br>intel xeon(skylake) platinum 8163 性能评测 阿里云第四代ECS服务器<br><a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/622603">https://yq.aliyun.com/articles/622603</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/cocos%E5%85%A5%E9%97%A8%E8%A7%A3%E8%AF%BB%E5%B0%8F%E7%8C%AB%E9%92%93%E9%B1%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/cocos%E5%85%A5%E9%97%A8%E8%A7%A3%E8%AF%BB%E5%B0%8F%E7%8C%AB%E9%92%93%E9%B1%BC/" class="post-title-link" itemprop="url">cocos入门解读小猫钓鱼</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-25 08:33:31" itemprop="dateCreated datePublished" datetime="2019-04-25T08:33:31+08:00">2019-04-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/cocos%E5%85%A5%E9%97%A8%E8%A7%A3%E8%AF%BB%E5%B0%8F%E7%8C%AB%E9%92%93%E9%B1%BC/" class="post-meta-item leancloud_visitors" data-flag-title="cocos入门解读小猫钓鱼" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一直想弄一个小游戏出来，但是因为想用框架，在框架的选择上面兜兜转转，用了一遍，cocos是我最早接触的那时，还是叫cocos-js,后来出了个cocos-creator之后就没怎么深入了。2018年下半年又重新去接触微信小游戏，选了白鹭引擎，刚看完文档，有个同事说laya不错，看了一下laya的基础代码，感觉比白鹭简单（入坑）。但随着自己不断的深入已经想了解一些功能的实现时，laya的文档和教程可以几乎没什么帮助。查看github上的项目，也就那么几个。最后又去看白鹭社区，白鹭的开源项目还是很多的，有想重新用回白鹭的冲动，但忍住了。但某天一个简单功能在laya的模拟器跑正常，但到了微信开发工具里却始终无效，看了社区，这个问题据说已经在早几个版本里已经修复（当然不知道mac上面有没有修复），之后彻底对laya失去了希望。<br>重新看了白鹭和cocos-creator，最后发现cocos-creator的设计模式，很符合我的口味，突然有种为什么之前不先考虑cocos的疑惑。</p>
-<p>后来看到了一个“小猫钓鱼”的cocos项目。作者的教程真的写的很详细，果断重新入坑cocos。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>CocosCreator微信小游戏入门实战《小猫钓鱼》<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzx023/article/details/83063363">https://blog.csdn.net/zzx023/article/details/83063363</a></p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,7 +210,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -242,6 +242,538 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%AE%9E%E7%8E%B0%E5%B7%A5%E4%BD%9C%E6%B1%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%AE%9E%E7%8E%B0%E5%B7%A5%E4%BD%9C%E6%B1%A0/" class="post-title-link" itemprop="url">实现工作池</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-25 09:37:02 / 修改时间：11:17:33" itemprop="dateCreated datePublished" datetime="2020-12-25T09:37:02+08:00">2020-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%AE%9E%E7%8E%B0%E5%B7%A5%E4%BD%9C%E6%B1%A0/" class="post-meta-item leancloud_visitors" data-flag-title="实现工作池" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>本文档按照实验楼–Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）<br><a target="_blank" rel="noopener" href="https://www.lanqiao.cn/courses/1639">https://www.lanqiao.cn/courses/1639</a><br>主要有以下原因：<br>1、模仿大神写教程的风格<br>2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现</p>
+<h3 id="实验介绍"><a href="#实验介绍" class="headerlink" title="实验介绍"></a>实验介绍</h3><p>我们现在就需要给 Zinx 添加消息队列和多任务 Worker 机制了。<br><img src="http://image.jk-kj.com/mweb/2020/12/25/1608866221349188.png" alt="88"></p>
+<h4 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h4><ul>
+<li>消息队列</li>
+<li>工作池</li>
+</ul>
+<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>我们可以通过 worker 的数量来限定处理业务的固定 goroutine 数量，而不是无限制的开辟 Goroutine，虽然我们知道 go 的调度算法已经做的很极致了，但是大数量的 Goroutine 依然会带来一些不必要的环境切换成本，这些本应该是服务器应该节省掉的成本。我们可以用消息队列来缓冲 worker 工作的数据。</p>
+<p>初步我们的设计结构如下图：</p>
+<p><img src="http://image.jk-kj.com/mweb/2020/12/25/160886622135118801.jpeg" alt="8801"></p>
+<h3 id="创建消息队列"><a href="#创建消息队列" class="headerlink" title="创建消息队列"></a>创建消息队列</h3><p>首先，处理消息队列的部分，我们应该集成到MsgHandler模块下，因为属于我们消息模块范畴内的。</p>
+<p>zinx/znet/msghandler.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MsgHandle <span class="keyword">struct</span> &#123;</span><br><span class="line">    Apis           <span class="keyword">map</span>[<span class="keyword">uint32</span>]ziface.IRouter  <span class="comment">//存放每个MsgId 所对应的处理方法的map属性</span></span><br><span class="line">    WorkerPoolSize <span class="keyword">uint32</span>                     <span class="comment">//业务工作Worker池的数量</span></span><br><span class="line">    TaskQueue      []<span class="keyword">chan</span> ziface.IRequest     <span class="comment">//Worker负责取任务的消息队列</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewMsgHandle</span><span class="params">()</span> *<span class="title">MsgHandle</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &amp;MsgHandle&#123;</span><br><span class="line">        Apis: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">uint32</span>]ziface.IRouter),</span><br><span class="line">        WorkerPoolSize:utils.GlobalObject.WorkerPoolSize,</span><br><span class="line">        <span class="comment">//一个worker对应一个queue</span></span><br><span class="line">        TaskQueue:<span class="built_in">make</span>([]<span class="keyword">chan</span> ziface.IRequest, utils.GlobalObject.WorkerPoolSize),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里添加两个成员:</p>
+<ul>
+<li><p><code>WokerPoolSize</code>:作为工作池的数量，因为 TaskQueue 中的每个队列应该是和一个 Worker 对应的，所以我们在创建 TaskQueue 中队列数量要和 Worker 的数量一致。</p>
+</li>
+<li><p><code>TaskQueue</code>真是一个 Request 请求信息的 channel 集合。用来缓冲提供 worker 调用的 Request 请求信息，worker 会从对应的队列中获取客户端的请求数据并且处理掉。</p>
+</li>
+</ul>
+<p>当然WorkerPoolSize最好也可以从GlobalObject获取，并且zinx.json配置文件可以手动配置。</p>
+<p>zinx/utils/globalobj.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    存储一切有关Zinx框架的全局参数，供其他模块使用</span></span><br><span class="line"><span class="comment">    一些参数也可以通过 用户根据 zinx.json来配置</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">type</span> GlobalObj <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        Server</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    TcpServer ziface.IServer <span class="comment">//当前Zinx的全局Server对象</span></span><br><span class="line">    Host      <span class="keyword">string</span>         <span class="comment">//当前服务器主机IP</span></span><br><span class="line">    TcpPort   <span class="keyword">int</span>            <span class="comment">//当前服务器主机监听端口号</span></span><br><span class="line">    Name      <span class="keyword">string</span>         <span class="comment">//当前服务器名称</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        Zinx</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    Version          <span class="keyword">string</span> <span class="comment">//当前Zinx版本号</span></span><br><span class="line">    MaxPacketSize    <span class="keyword">uint32</span> <span class="comment">//都需数据包的最大值</span></span><br><span class="line">    MaxConn          <span class="keyword">int</span>    <span class="comment">//当前服务器主机允许的最大链接个数</span></span><br><span class="line">    WorkerPoolSize   <span class="keyword">uint32</span> <span class="comment">//业务工作Worker池的数量</span></span><br><span class="line">    MaxWorkerTaskLen <span class="keyword">uint32</span> <span class="comment">//业务工作Worker对应负责的任务队列最大任务存储数量</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        config file path</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    ConfFilePath <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    提供init方法，默认加载</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//初始化GlobalObject变量，设置一些默认值</span></span><br><span class="line">    GlobalObject = &amp;GlobalObj&#123;</span><br><span class="line">        Name:          <span class="string">&quot;ZinxServerApp&quot;</span>,</span><br><span class="line">        Version:       <span class="string">&quot;V0.4&quot;</span>,</span><br><span class="line">        TcpPort:       <span class="number">7777</span>,</span><br><span class="line">        Host:          <span class="string">&quot;0.0.0.0&quot;</span>,</span><br><span class="line">        MaxConn:       <span class="number">12000</span>,</span><br><span class="line">        MaxPacketSize: <span class="number">4096</span>,</span><br><span class="line">        ConfFilePath:  <span class="string">&quot;conf/zinx.json&quot;</span>,</span><br><span class="line">        WorkerPoolSize: <span class="number">10</span>,</span><br><span class="line">        MaxWorkerTaskLen: <span class="number">1024</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//从配置文件中加载一些用户配置的参数</span></span><br><span class="line">    GlobalObject.Reload()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建及启动-Worker-工作池"><a href="#创建及启动-Worker-工作池" class="headerlink" title="创建及启动 Worker 工作池"></a>创建及启动 Worker 工作池</h3><p>现在添加 Worker 工作池，先定义一些启动工作池的接口。</p>
+<p>zinx/ziface/imsghandler.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    消息管理抽象层</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> IMsgHandle <span class="keyword">interface</span>&#123;</span><br><span class="line">    DoMsgHandler(request IRequest)            <span class="comment">//马上以非阻塞方式处理消息</span></span><br><span class="line">    AddRouter(msgId <span class="keyword">uint32</span>, router IRouter)    <span class="comment">//为消息添加具体的处理逻辑</span></span><br><span class="line">    StartWorkerPool()                        <span class="comment">//启动worker工作池</span></span><br><span class="line">    SendMsgToTaskQueue(request IRequest)    <span class="comment">//将消息交给TaskQueue,由worker进行处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>zinx/znet/msghandler.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意，头文件中要引入 zinx/utils</span></span><br><span class="line"><span class="comment">//启动一个Worker工作流程</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(mh *MsgHandle)</span> <span class="title">StartOneWorker</span><span class="params">(workerID <span class="keyword">int</span>, taskQueue <span class="keyword">chan</span> ziface.IRequest)</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Worker ID = &quot;</span>, workerID, <span class="string">&quot; is started.&quot;</span>)</span><br><span class="line">    <span class="comment">//不断的等待队列中的消息</span></span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        <span class="keyword">select</span> &#123;</span><br><span class="line">            <span class="comment">//有消息则取出队列的Request，并执行绑定的业务方法</span></span><br><span class="line">            <span class="keyword">case</span> request := &lt;-taskQueue:</span><br><span class="line">                mh.DoMsgHandler(request)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//启动worker工作池</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(mh *MsgHandle)</span> <span class="title">StartWorkerPool</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//遍历需要启动worker的数量，依此启动</span></span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">0</span>; i &lt; <span class="keyword">int</span>(mh.WorkerPoolSize); i++ &#123;</span><br><span class="line">        <span class="comment">//一个worker被启动</span></span><br><span class="line">        <span class="comment">//给当前worker对应的任务队列开辟空间</span></span><br><span class="line">        mh.TaskQueue[i] = <span class="built_in">make</span>(<span class="keyword">chan</span> ziface.IRequest, utils.GlobalObject.MaxWorkerTaskLen)</span><br><span class="line">        <span class="comment">//启动当前Worker，阻塞的等待对应的任务队列是否有消息传递进来</span></span><br><span class="line">        <span class="keyword">go</span> mh.StartOneWorker(i, mh.TaskQueue[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>StartWorkerPool()方法是启动 Worker 工作池，这里根据用户配置好的WorkerPoolSize的数量来启动，然后分别给每个 Worker 分配一个TaskQueue，然后用一个 goroutine 来承载一个 Worker 的工作业务。</p>
+<p>StartOneWorker()方法就是一个 Worker 的工作业务，每个 worker 是不会退出的(目前没有设定 worker 的停止工作机制)，会永久的从对应的 TaskQueue 中等待消息，并处理。</p>
+<p>发送消息给消息队列<br>现在，worker 工作池已经准备就绪了，那么就需要有一个给到 worker 工作池消息的入口，我们再定义一个方法</p>
+<p>zinx/znet/msghandler.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将消息交给TaskQueue,由worker进行处理</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(mh *MsgHandle)</span><span class="title">SendMsgToTaskQueue</span><span class="params">(request ziface.IRequest)</span></span> &#123;</span><br><span class="line">    <span class="comment">//根据ConnID来分配当前的连接应该由哪个worker负责处理</span></span><br><span class="line">    <span class="comment">//轮询的平均分配法则</span></span><br><span class="line">    <span class="comment">//得到需要处理此条连接的workerID</span></span><br><span class="line">    workerID := request.GetConnection().GetConnID() % mh.WorkerPoolSize</span><br><span class="line">    fmt.Println(<span class="string">&quot;Add ConnID=&quot;</span>, request.GetConnection().GetConnID(),<span class="string">&quot; request msgID=&quot;</span>, request.GetMsgID(), <span class="string">&quot;to workerID=&quot;</span>, workerID)</span><br><span class="line">    <span class="comment">//将请求消息发送给任务队列</span></span><br><span class="line">    mh.TaskQueue[workerID] &lt;- request</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>SendMsgToTaskQueue()作为工作池的数据入口，这里面采用的是轮询的分配机制，因为不同链接信息都会调用这个入口，那么到底应该由哪个 worker 处理该链接的请求处理，整理用的是一个简单的求模运算。用余数和 workerID 的匹配来进行分配。</p>
+<p>最终将 request 请求数据发送给对应 worker 的 TaskQueue，那么对应的 worker 的 Goroutine 就会处理该链接请求了。</p>
+<h3 id="Zinx-V0-8-代码实现"><a href="#Zinx-V0-8-代码实现" class="headerlink" title="Zinx-V0.8 代码实现"></a>Zinx-V0.8 代码实现</h3><p>好了，现在需要将消息队列和多任务 worker 机制集成到我们 Zinx 的中了。我们在 Server 的Start()方法中，在服务端 Accept 之前，启动 Worker 工作池。</p>
+<p>zinx/znet/server.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//开启网络服务,只需要修改这里所提到的部分，对于打了 //... 的部分的意思是原来的代码不需要做修改</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Server)</span> <span class="title">Start</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="comment">//开启一个go去做服务端Linster业务</span></span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">//0 启动worker工作池机制</span></span><br><span class="line">        s.msgHandler.StartWorkerPool()</span><br><span class="line">        <span class="comment">//1 获取一个TCP的Addr</span></span><br><span class="line">        addr, err := net.ResolveTCPAddr(s.IPVersion, fmt.Sprintf(<span class="string">&quot;%s:%d&quot;</span>, s.IP, s.Port))</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;resolve tcp addr err: &quot;</span>, err)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其次，当我们已经得到客户端的连接请求过来数据的时候，我们应该将数据发送给 Worker 工作池进行处理。</p>
+<p>所以应该在 Connection 的StartReader()方法中修改：</p>
+<p>zinx/znet/connection.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意，头文件中要引入 zinx/utils</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    读消息Goroutine，用于从客户端中读取数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">StartReader</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Reader Goroutine is  running&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> fmt.Println(c.RemoteAddr().String(), <span class="string">&quot; conn reader exit!&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> c.Stop()</span><br><span class="line">    <span class="keyword">for</span>  &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        req := Request&#123;</span><br><span class="line">            conn:c,</span><br><span class="line">            msg:msg,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> utils.GlobalObject.WorkerPoolSize &gt; <span class="number">0</span> &#123;</span><br><span class="line">            <span class="comment">//已经启动工作池机制，将消息交给Worker处理</span></span><br><span class="line">            c.MsgHandler.SendMsgToTaskQueue(&amp;req)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//从绑定好的消息和对应的处理方法中执行对应的Handle方法</span></span><br><span class="line">            <span class="keyword">go</span> c.MsgHandler.DoMsgHandler(&amp;req)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里并没有强制使用多任务 Worker 机制，而是判断用户配置WorkerPoolSize的个数，如果大于 0，那么我就启动多任务机制处理链接请求消息，如果=0 或者&lt;0 那么，我们依然只是之前的开启一个临时的 Goroutine 处理客户端请求消息。</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>测试代码和 V0.6、V0.7 的代码一样。因为 Zinx 框架对外接口没有发生改变。</p>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p>我们今天实现了 Zinx 框架的工作池，同时解答了上一节中为什么我们的测试代码无需修改。我们的 Zinx 对外提供服务的接口没有改变，所以测试文件不需要修改。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/" class="post-title-link" itemprop="url">读写分离</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-24 08:37:02" itemprop="dateCreated datePublished" datetime="2020-12-24T08:37:02+08:00">2020-12-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-25 11:16:53" itemprop="dateModified" datetime="2020-12-25T11:16:53+08:00">2020-12-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/" class="post-meta-item leancloud_visitors" data-flag-title="读写分离" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>本文档按照实验楼–Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）<br><a target="_blank" rel="noopener" href="https://www.lanqiao.cn/courses/1639">https://www.lanqiao.cn/courses/1639</a><br>主要有以下原因：<br>1、模仿大神写教程的风格<br>2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现</p>
+<h3 id="实验介绍"><a href="#实验介绍" class="headerlink" title="实验介绍"></a>实验介绍</h3><p>接下来我们就要对 Zinx 做一个小小的改变，就是与客户端进修数据交互的 Gouroutine 由一个变成两个，一个专门负责从客户端读取数据，一个专门负责向客户端写数据。这么设计有什么好处，当然是目的就是高内聚，模块的功能单一，对于我们今后扩展功能更加方便。</p>
+<p><img src="http://image.jk-kj.com/mweb/2020/12/25/1608866181459277.png" alt="77"></p>
+<h4 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h4><ul>
+<li>Golang 并发模型</li>
+<li>读写分离</li>
+</ul>
+<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>我们希望 Zinx 在升级到 V0.7 版本的时候，架构是下面这样的：</p>
+<p><img src="http://image.jk-kj.com/mweb/2020/12/25/160886618146477701.jpeg" alt="7701"></p>
+<p>Server 依然是处理客户端的响应，主要关键的几个方法是 Listen、Accept 等。当建立与客户端的套接字后，那么就会开启两个 Goroutine 分别处理读数据业务和写数据业务，读写数据之间的消息通过一个 Channel 传递。下面我们就开始进行实际的实现。</p>
+<p>下面我们就开始实现 Zinx V0.7。</p>
+<h3 id="添加读写模块交互数据的管道"><a href="#添加读写模块交互数据的管道" class="headerlink" title="添加读写模块交互数据的管道"></a>添加读写模块交互数据的管道</h3><p>我们给Connection新增一个管道成员msgChan,作用是用于读写两个 go 的通信。</p>
+<p>zinx/znet/connection.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Connection <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">//当前连接的socket TCP套接字</span></span><br><span class="line">    Conn *net.TCPConn</span><br><span class="line">    <span class="comment">//当前连接的ID 也可以称作为SessionID，ID全局唯一</span></span><br><span class="line">    ConnID <span class="keyword">uint32</span></span><br><span class="line">    <span class="comment">//当前连接的关闭状态</span></span><br><span class="line">    isClosed <span class="keyword">bool</span></span><br><span class="line">    <span class="comment">//消息管理MsgId和对应处理方法的消息管理模块</span></span><br><span class="line">    MsgHandler ziface.IMsgHandle</span><br><span class="line">    <span class="comment">//告知该链接已经退出/停止的channel</span></span><br><span class="line">    ExitBuffChan <span class="keyword">chan</span> <span class="keyword">bool</span></span><br><span class="line">    <span class="comment">//无缓冲管道，用于读、写两个goroutine之间的消息通信</span></span><br><span class="line">    msgChan        <span class="keyword">chan</span> []<span class="keyword">byte</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建连接的方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewConntion</span><span class="params">(conn *net.TCPConn, connID <span class="keyword">uint32</span>, msgHandler ziface.IMsgHandle)</span> *<span class="title">Connection</span></span>&#123;</span><br><span class="line">    c := &amp;Connection&#123;</span><br><span class="line">        Conn:     conn,</span><br><span class="line">        ConnID:   connID,</span><br><span class="line">        isClosed: <span class="literal">false</span>,</span><br><span class="line">        MsgHandler: msgHandler,</span><br><span class="line">        ExitBuffChan: <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">bool</span>, <span class="number">1</span>),</span><br><span class="line">        msgChan:<span class="built_in">make</span>(<span class="keyword">chan</span> []<span class="keyword">byte</span>), <span class="comment">//msgChan初始化</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-Writer-Goroutine"><a href="#创建-Writer-Goroutine" class="headerlink" title="创建 Writer Goroutine"></a>创建 Writer Goroutine</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    写消息Goroutine， 用户将数据发送给客户端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">StartWriter</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;[Writer Goroutine is running]&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> fmt.Println(c.RemoteAddr().String(), <span class="string">&quot;[conn Writer exit!]&quot;</span>)</span><br><span class="line">     <span class="keyword">for</span> &#123;</span><br><span class="line">         <span class="keyword">select</span> &#123;</span><br><span class="line">             <span class="keyword">case</span> data := &lt;-c.msgChan:</span><br><span class="line">                 <span class="comment">//有数据要写给客户端</span></span><br><span class="line">                 <span class="keyword">if</span> _, err := c.Conn.Write(data); err != <span class="literal">nil</span> &#123;</span><br><span class="line">                     fmt.Println(<span class="string">&quot;Send Data error:, &quot;</span>, err, <span class="string">&quot; Conn Writer exit&quot;</span>)</span><br><span class="line">                     <span class="keyword">return</span></span><br><span class="line">                &#125;</span><br><span class="line">             <span class="keyword">case</span> &lt;- c.ExitBuffChan:</span><br><span class="line">                 <span class="comment">//conn已经关闭</span></span><br><span class="line">                 <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>关于 for select 和 channel 的用法：</p>
+<p>select 语句只能与通道联用，它一般由若干个分支组成。每次执行这种语句的时候，一般只有一个分支中的代码会被运行。select 语句的分支分为两种，一种叫做候选分支，另一种叫做默认分支。候选分支总是以关键字 case 开头，后跟一个 case 表达式和一个冒号，然后我们可以从下一行开始写入当分支被选中时需要执行的语句。</p>
+<p>由于 select 语句是专为通道而设计的，所以每个 case 表达式中都只能包含操作通道的表达式，比如接收表达式。使用一个接收值可以接收通道里的值，使用两个接收值可以判断通道是否已经关闭了。</p>
+<p>对于 select 语句的执行规则如下：</p>
+<ul>
+<li>每个 case 都必须是一个通信。</li>
+<li>所有 Channel 表达式都会被求值。</li>
+<li>所有被发送的表达式都会被求值。</li>
+<li>如果任意某个通信可以进行，它就执行，其他被忽略。</li>
+<li>如果有多个 case 都可以运行，Select 会随机公平地选出一个执行。其他不会执行。 否则：</li>
+<li>如果有 default 子句，则执行该语句。</li>
+<li>如果没有 default 子句，select 将阻塞，直到某个通信可以运行；Go 不会重新对 Channel 或值进行求值。<br>注意这里是和 switch 的操作是不一样的，switch 操作中，只要从上到下有一个满足条件了，就会执行相应的那一个 case，select 中，我们是全部计算一遍，然后再从可满足条件的 case 中公平的执行其中一个。这是为了防止有些通道长期得不到执行。</li>
+</ul>
+<h3 id="Reader-将发送客户端的数据改为发送至-Channel"><a href="#Reader-将发送客户端的数据改为发送至-Channel" class="headerlink" title="Reader 将发送客户端的数据改为发送至 Channel"></a>Reader 将发送客户端的数据改为发送至 Channel</h3><p>修改 Reader 调用的SendMsg()方法</p>
+<p>zinx/znet/connection.go</p>
+<h3 id="启动-Reader-和-Writer"><a href="#启动-Reader-和-Writer" class="headerlink" title="启动 Reader 和 Writer"></a>启动 Reader 和 Writer</h3><p>zinx/znet/connection.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//启动连接，让当前连接开始工作</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">Start</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//1 开启用户从客户端读取数据流程的Goroutine</span></span><br><span class="line">    <span class="keyword">go</span> c.StartReader()</span><br><span class="line">    <span class="comment">//2 开启用于写回客户端数据流程的Goroutine</span></span><br><span class="line">    <span class="keyword">go</span> c.StartWriter()</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        <span class="keyword">select</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> &lt;- c.ExitBuffChan:</span><br><span class="line">            <span class="comment">//得到退出消息，不再阻塞</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Zinx-0-7-测试"><a href="#Zinx-0-7-测试" class="headerlink" title="Zinx 0.7 测试"></a>Zinx 0.7 测试</h3><p>这里我们的测试代码不需要做任何修改，大家可以想一想为什么。我们这里的测试步骤也和上一节保持一致。</p>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p>我们今天通过 Channel 实现了 Goroutine 的读写分离，关于 Channel 是 Golang 的一个特色机制，大家可以在课下多找一些资料了解其详情。</p>
+<h3 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h3><p>一般具体执行为 xxxer，比如 StartWriter StartReader , xxHandler</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%A4%9A%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%A4%9A%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">多路由模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-23 09:45:02" itemprop="dateCreated datePublished" datetime="2020-12-23T09:45:02+08:00">2020-12-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 08:36:47" itemprop="dateModified" datetime="2020-12-24T08:36:47+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E5%A4%9A%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="多路由模式" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>本文档按照实验楼–Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）<br><a target="_blank" rel="noopener" href="https://www.lanqiao.cn/courses/1639">https://www.lanqiao.cn/courses/1639</a><br>主要有以下原因：<br>1、模仿大神写教程的风格<br>2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现</p>
+<h3 id="实验介绍"><a href="#实验介绍" class="headerlink" title="实验介绍"></a>实验介绍</h3><p>本节实验中，我们将完成 Zinx 框架的多路由模块。如下面的思维导图中所表示的这些功能。<br><img src="http://image.jk-kj.com/mweb/2020/12/23/1608693867906566.png" alt="66"></p>
+<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><ul>
+<li>多路由模式</li>
+<li>单元测试</li>
+</ul>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>我们之前在已经给 Zinx 配置了路由模式，但是很惨，之前的 Zinx 好像只能绑定一个路由的处理业务方法。显然这是无法满足基本的服务器需求的，那么现在我们要在之前的基础上，给 Zinx 添加多路由的方式。</p>
+<p>既然是多路由的模式，我们这里就需要给 MsgId 和对应的处理逻辑进行捆绑。所以我们需要一个 Map。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apis <span class="keyword">map</span>[<span class="keyword">uint32</span>] ziface.IRouter</span><br></pre></td></tr></table></figure>
+<p>这里起名字是Apis，其中 key 就是 msgId， value 就是对应的 Router，里面应是使用者重写的 Handle 等方法。</p>
+<p>那么这个 Apis 应该放在哪呢。</p>
+<p>下面，我们再定义一个消息管理模块来进行维护这个Apis。</p>
+<h3 id="创建消息管理模块"><a href="#创建消息管理模块" class="headerlink" title="创建消息管理模块"></a>创建消息管理模块</h3><h5 id="创建消息管理模块抽象类"><a href="#创建消息管理模块抽象类" class="headerlink" title="创建消息管理模块抽象类"></a>创建消息管理模块抽象类</h5><p>在zinx/ziface下创建imsghandler.go文件， 定义出我们之前图片中的方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ziface</span><br><span class="line"><span class="comment">// 消息管理抽象层</span></span><br><span class="line"><span class="keyword">type</span> IMsgHandler <span class="keyword">interface</span> &#123;</span><br><span class="line">	DoMsgHandler(request IRequest) <span class="comment">// 马上以非阻塞方式处理消息</span></span><br><span class="line">	AddRouter(msgId <span class="keyword">uint32</span>,router IRouter) <span class="comment">// 为消息添加具体的处理逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里面有两个方法，AddRouter()就是添加一个 msgId 和一个路由关系到 Apis 中，那么DoMsgHandler()则是调用 Router 中具体Handle()等方法的接口。</p>
+<h5 id="实现消息管理模块"><a href="#实现消息管理模块" class="headerlink" title="实现消息管理模块"></a>实现消息管理模块</h5><p>在zinx/znet下创建msghandler.go文件。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> znet</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;strconv&quot;</span></span><br><span class="line">	<span class="string">&quot;zinx/ziface&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> MsgHandle <span class="keyword">struct</span> &#123;</span><br><span class="line">	Apis <span class="keyword">map</span>[<span class="keyword">uint32</span>] ziface.IRouter <span class="comment">// 存放每个MsgId 所对应的处理方法的map属性</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewMsgHandle</span> *<span class="title">MsgHandle</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;MsgHandle &#123;</span><br><span class="line">		Apis: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">uint32</span>]ziface.IRouter),</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 马上以非阻塞方式处理消息</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(mh *MsgHandle)</span> <span class="title">DoMsgHandler</span><span class="params">(request ziface.IRequest)</span></span>&#123;</span><br><span class="line">	handler,ok := mh.Apis[request.GetMsgId()]</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;api msgId= &quot;</span>,request.GetMsgId(),<span class="string">&quot; is not Round!&quot;</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 执行对应处理方法</span></span><br><span class="line">	handler.PreHandle(request)</span><br><span class="line">    handler.Handle(request)</span><br><span class="line">    handler.PostHandle(request)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为消息添加具体的处理逻辑</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(mh *MsgHandle)</span> <span class="title">AddRouter</span> <span class="params">(msgId <span class="keyword">uint32</span>,router ziface.IRouter)</span></span>&#123;</span><br><span class="line">	<span class="comment">//1 判断当前msg绑定的API处理方法是否已经存在</span></span><br><span class="line">	<span class="keyword">if</span> _,ok := mh.Apis[msgId]; ok &#123;</span><br><span class="line">		<span class="built_in">panic</span>(<span class="string">&quot;repeated api ,msgId = &quot;</span> + strconv.Itoa(<span class="keyword">int</span>(msgId)))</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2 添加msg与api的绑定关系</span></span><br><span class="line">	mh.Apis[msgId] = router</span><br><span class="line">	fmt.Println(<span class="string">&quot; Add api msgId =&quot;</span> ,msgId)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Zinx-V0-6-代码实现"><a href="#Zinx-V0-6-代码实现" class="headerlink" title="Zinx-V0.6 代码实现"></a>Zinx-V0.6 代码实现</h3><p>首先iserver的AddRouter()的接口要稍微改一下，增添 MsgId 参数.</p>
+<p>iserver.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ziface</span><br><span class="line"><span class="comment">//定义服务器接口</span></span><br><span class="line"><span class="keyword">type</span> IServer <span class="keyword">interface</span>&#123;</span><br><span class="line">    <span class="comment">//启动服务器方法</span></span><br><span class="line">    Start()</span><br><span class="line">    <span class="comment">//停止服务器方法</span></span><br><span class="line">    Stop()</span><br><span class="line">    <span class="comment">//开启业务服务方法</span></span><br><span class="line">    Serve()</span><br><span class="line">    <span class="comment">//路由功能：给当前服务注册一个路由业务方法，供客户端链接处理使用</span></span><br><span class="line">    AddRouter(msgId <span class="keyword">uint32</span>, router IRouter)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其次，Server类中 之前有一个Router成员 ，代表唯一的处理方法，现在应该替换成MsgHandler成员。</p>
+<p>zinx/znet/server.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Server <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">//服务器的名称</span></span><br><span class="line">    Name <span class="keyword">string</span></span><br><span class="line">    <span class="comment">//tcp4 or other</span></span><br><span class="line">    IPVersion <span class="keyword">string</span></span><br><span class="line">    <span class="comment">//服务绑定的IP地址</span></span><br><span class="line">    IP <span class="keyword">string</span></span><br><span class="line">    <span class="comment">//服务绑定的端口</span></span><br><span class="line">    Port <span class="keyword">int</span></span><br><span class="line">    <span class="comment">//当前Server的消息管理模块，用来绑定MsgId和对应的处理方法</span></span><br><span class="line">    msgHandler ziface.IMsgHandle</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>初始化 Server 自然也要更正，增加 msgHandler 初始化。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  创建一个服务器句柄</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewServer</span> <span class="params">()</span> <span class="title">ziface</span>.<span class="title">IServer</span></span> &#123;</span><br><span class="line">    utils.GlobalObject.Reload()</span><br><span class="line">    s:= &amp;Server &#123;</span><br><span class="line">        Name :utils.GlobalObject.Name,</span><br><span class="line">        IPVersion:<span class="string">&quot;tcp4&quot;</span>,</span><br><span class="line">        IP:utils.GlobalObject.Host,</span><br><span class="line">        Port:utils.GlobalObject.TcpPort,</span><br><span class="line">        msgHandler: NewMsgHandle(), <span class="comment">//msgHandler 初始化</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后当 Server 在处理 conn 请求业务的时候，创建 conn 的时候也需要把 msgHandler 作为参数传递给 Connection 对象。也就是在我们 server.go 的 Start() 方法中的 3.3 注释下进行如下修改：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">dealConn := NewConntion(conn, cid, s.msgHandler)</span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure>
+<p>最后，我们的 AddRouter 方法做了修改，所以要重新实现接口方法：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//路由功能：给当前服务注册一个路由业务方法，供客户端链接处理使用</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Server)</span><span class="title">AddRouter</span><span class="params">(msgId <span class="keyword">uint32</span>, router ziface.IRouter)</span></span> &#123;</span><br><span class="line">    s.msgHandler.AddRouter(msgId,router)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么接下来就是 Connection 对象了。固然在 Connection 对象中应该有 MsgHandler 的成员，来查找消息对应的回调路由方法。</p>
+<p>zinx/znet/connection.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Connection <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">//当前连接的socket TCP套接字</span></span><br><span class="line">    Conn *net.TCPConn</span><br><span class="line">    <span class="comment">//当前连接的ID 也可以称作为SessionID，ID全局唯一</span></span><br><span class="line">    ConnID <span class="keyword">uint32</span></span><br><span class="line">    <span class="comment">//当前连接的关闭状态</span></span><br><span class="line">    isClosed <span class="keyword">bool</span></span><br><span class="line">    <span class="comment">//消息管理MsgId和对应处理方法的消息管理模块</span></span><br><span class="line">    MsgHandler ziface.IMsgHandle</span><br><span class="line">    <span class="comment">//告知该链接已经退出/停止的channel</span></span><br><span class="line">    ExitBuffChan <span class="keyword">chan</span> <span class="keyword">bool</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建连接的方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewConntion</span><span class="params">(conn *net.TCPConn, connID <span class="keyword">uint32</span>, msgHandler ziface.IMsgHandle)</span> *<span class="title">Connection</span></span>&#123;</span><br><span class="line">    c := &amp;Connection&#123;</span><br><span class="line">        Conn:     conn,</span><br><span class="line">        ConnID:   connID,</span><br><span class="line">        isClosed: <span class="literal">false</span>,</span><br><span class="line">        MsgHandler: msgHandler,</span><br><span class="line">        ExitBuffChan: <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">bool</span>, <span class="number">1</span>),</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后，在 conn 已经拆包之后，需要调用路由业务的时候，我们只需要让 conn 调用 MsgHandler 中的DoMsgHander()方法就好了。</p>
+<p>zinx/znet/connection.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">StartReader</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;[Reader Goroutine is running]&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> fmt.Println(c.RemoteAddr().String(), <span class="string">&quot;[conn Reader exit!]&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> c.Stop()</span><br><span class="line">    <span class="keyword">for</span>  &#123;</span><br><span class="line">        <span class="comment">// 创建拆包解包的对象</span></span><br><span class="line">        dp := NewDataPack()</span><br><span class="line">        <span class="comment">//读取客户端的Msg head</span></span><br><span class="line">        headData := <span class="built_in">make</span>([]<span class="keyword">byte</span>, dp.GetHeadLen())</span><br><span class="line">        <span class="keyword">if</span> _, err := io.ReadFull(c.GetTCPConnection(), headData); err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;read msg head error &quot;</span>, err)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//拆包，得到msgid 和 datalen 放在msg中</span></span><br><span class="line">        msg , err := dp.Unpack(headData)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;unpack error &quot;</span>, err)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//根据 dataLen 读取 data，放在msg.Data中</span></span><br><span class="line">        <span class="keyword">var</span> data []<span class="keyword">byte</span></span><br><span class="line">        <span class="keyword">if</span> msg.GetDataLen() &gt; <span class="number">0</span> &#123;</span><br><span class="line">            data = <span class="built_in">make</span>([]<span class="keyword">byte</span>, msg.GetDataLen())</span><br><span class="line">            <span class="keyword">if</span> _, err := io.ReadFull(c.GetTCPConnection(), data); err != <span class="literal">nil</span> &#123;</span><br><span class="line">                fmt.Println(<span class="string">&quot;read msg data error &quot;</span>, err)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        msg.SetData(data)</span><br><span class="line">        <span class="comment">//得到当前客户端请求的Request数据</span></span><br><span class="line">        req := Request&#123;</span><br><span class="line">            conn:c,</span><br><span class="line">            msg:msg,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//从绑定好的消息和对应的处理方法中执行对应的Handle方法</span></span><br><span class="line">        <span class="keyword">go</span> c.MsgHandler.DoMsgHandler(&amp;req)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好了，大功告成，我们来测试一下 Zinx 的多路由设置功能吧。</p>
+<h3 id="使用-Zinx-V0-6-完成应用程序"><a href="#使用-Zinx-V0-6-完成应用程序" class="headerlink" title="使用 Zinx-V0.6 完成应用程序"></a>使用 Zinx-V0.6 完成应用程序</h3><p>这里我们既然完成了多路由模式，那么就可以进行一个服务端，多个客户端的方式进行测试我们的功能模块了。</p>
+<p>我们在 Server 端设置 2 个路由，一个是 MsgId 为 0 的消息会执行 PingRouter{}重写的Handle()方法，一个是 MsgId 为 1 的消息会执行 HelloZinxRouter{}重写的Handle()方法。</p>
+<p>Server.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/ziface&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/znet&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">//ping test 自定义路由</span></span><br><span class="line"><span class="keyword">type</span> PingRouter <span class="keyword">struct</span> &#123;</span><br><span class="line">    znet.BaseRouter</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Ping Handle</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *PingRouter)</span> <span class="title">Handle</span><span class="params">(request ziface.IRequest)</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Call PingRouter Handle&quot;</span>)</span><br><span class="line">    <span class="comment">//先读取客户端的数据，再回写ping...ping...ping</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;recv from client : msgId=&quot;</span>, request.GetMsgID(), <span class="string">&quot;, data=&quot;</span>, <span class="keyword">string</span>(request.GetData()))</span><br><span class="line">    err := request.GetConnection().SendMsg(<span class="number">0</span>, []<span class="keyword">byte</span>(<span class="string">&quot;ping...ping...ping&quot;</span>))</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//HelloZinxRouter Handle</span></span><br><span class="line"><span class="keyword">type</span> HelloZinxRouter <span class="keyword">struct</span> &#123;</span><br><span class="line">    znet.BaseRouter</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *HelloZinxRouter)</span> <span class="title">Handle</span><span class="params">(request ziface.IRequest)</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Call HelloZinxRouter Handle&quot;</span>)</span><br><span class="line">    <span class="comment">//先读取客户端的数据，再回写ping...ping...ping</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;recv from client : msgId=&quot;</span>, request.GetMsgID(), <span class="string">&quot;, data=&quot;</span>, <span class="keyword">string</span>(request.GetData()))</span><br><span class="line">    err := request.GetConnection().SendMsg(<span class="number">1</span>, []<span class="keyword">byte</span>(<span class="string">&quot;Hello Zinx Router V0.6&quot;</span>))</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//创建一个server句柄</span></span><br><span class="line">    s := znet.NewServer()</span><br><span class="line">    <span class="comment">//配置路由</span></span><br><span class="line">    s.AddRouter(<span class="number">0</span>, &amp;PingRouter&#123;&#125;)</span><br><span class="line">    s.AddRouter(<span class="number">1</span>, &amp;HelloZinxRouter&#123;&#125;)</span><br><span class="line">    <span class="comment">//开启服务</span></span><br><span class="line">    s.Serve()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们现在写两个客户端，分别发送 0 消息和 1 消息来进行测试 Zinx 是否能够处理 2 个不同的消息业务。</p>
+<p>Client01.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;io&quot;</span></span><br><span class="line">    <span class="string">&quot;net&quot;</span></span><br><span class="line">    <span class="string">&quot;time&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/znet&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    模拟客户端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Client Test ... start&quot;</span>)</span><br><span class="line">    <span class="comment">//3秒之后发起测试请求，给服务端开启服务的机会</span></span><br><span class="line">    time.Sleep(<span class="number">3</span> * time.Second)</span><br><span class="line">    conn,err := net.Dial(<span class="string">&quot;tcp&quot;</span>, <span class="string">&quot;127.0.0.1:7777&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;client start err, exit!&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        <span class="comment">//发封包message消息</span></span><br><span class="line">        dp := znet.NewDataPack()</span><br><span class="line">        msg, _ := dp.Pack(znet.NewMsgPackage(<span class="number">1</span>,[]<span class="keyword">byte</span>(<span class="string">&quot;Zinx V0.6 Client1 Test Message&quot;</span>)))</span><br><span class="line">        _, err := conn.Write(msg)</span><br><span class="line">        <span class="keyword">if</span> err !=<span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;write error err &quot;</span>, err)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//先读出流中的head部分</span></span><br><span class="line">        headData := <span class="built_in">make</span>([]<span class="keyword">byte</span>, dp.GetHeadLen())</span><br><span class="line">        _, err = io.ReadFull(conn, headData) <span class="comment">//ReadFull 会把msg填充满为止</span></span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;read head error&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将headData字节流 拆包到msg中</span></span><br><span class="line">        msgHead, err := dp.Unpack(headData)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;server unpack err:&quot;</span>, err)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> msgHead.GetDataLen() &gt; <span class="number">0</span> &#123;</span><br><span class="line">            <span class="comment">//msg 是有data数据的，需要再次读取data数据</span></span><br><span class="line">            msg := msgHead.(*znet.Message)</span><br><span class="line">            msg.Data = <span class="built_in">make</span>([]<span class="keyword">byte</span>, msg.GetDataLen())</span><br><span class="line">            <span class="comment">//根据dataLen从io中读取字节流</span></span><br><span class="line">            _, err := io.ReadFull(conn, msg.Data)</span><br><span class="line">            <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                fmt.Println(<span class="string">&quot;server unpack data err:&quot;</span>, err)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            fmt.Println(<span class="string">&quot;==&gt; Recv Msg: ID=&quot;</span>, msg.Id, <span class="string">&quot;, len=&quot;</span>, msg.DataLen, <span class="string">&quot;, data=&quot;</span>, <span class="keyword">string</span>(msg.Data))</span><br><span class="line">        &#125;</span><br><span class="line">        time.Sleep(<span class="number">1</span>*time.Second)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果：<br><img src="http://image.jk-kj.com/mweb/2020/12/23/16086938679117bbss.png" alt="bbss"></p>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p>今天我们完成了 zinx 框架的多路由模式，使得其有了对多个客户端提供服务的功能，下一小节中，我们将继续实现 zinx 的读写分离模块。</p>
+<h5 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">handler,ok := mh.Apis[request.GetMsgId()] <span class="comment">// 直接获取数据，这种不可能是产生err，通过ok 返回是否存在（理解）</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E6%B6%88%E6%81%AF%E5%B0%81%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E6%B6%88%E6%81%AF%E5%B0%81%E8%A3%85/" class="post-title-link" itemprop="url">消息封装</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-21 12:45:02" itemprop="dateCreated datePublished" datetime="2020-12-21T12:45:02+08:00">2020-12-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-22 13:05:05" itemprop="dateModified" datetime="2020-12-22T13:05:05+08:00">2020-12-22</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Go%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6Zinx%E5%85%A5%E9%97%A8(%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0)/%E6%B6%88%E6%81%AF%E5%B0%81%E8%A3%85/" class="post-meta-item leancloud_visitors" data-flag-title="消息封装" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>本文档按照实验楼–Go 并发服务器框架 Zinx 入门的文档同步学习记录（大部分内容相同）<br><a target="_blank" rel="noopener" href="https://www.lanqiao.cn/courses/1639">https://www.lanqiao.cn/courses/1639</a><br>主要有以下原因：<br>1、模仿大神写教程的风格<br>2、验证每一个步骤，而不是简简单单的复制教程中的代码。简单重现</p>
+<h3 id="实验介绍"><a href="#实验介绍" class="headerlink" title="实验介绍"></a>实验介绍</h3><p>本节实验中，我们将完成 Zinx 框架的消息封装模块。如下面的思维导图中所表示的这些功能。<br><img src="http://image.jk-kj.com/mweb/2020/12/22/1608613445064455.png" alt="55"></p>
+<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><p>tcp 封包拆包<br>消息封装</p>
+<h3 id="Zinx-的消息封装"><a href="#Zinx-的消息封装" class="headerlink" title="Zinx 的消息封装"></a>Zinx 的消息封装</h3><p>接下来我们再对 Zinx 做一个简单的升级，现在我们把服务器的全部数据都放在一个 Request 里，当前的 Request 结构如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Request <span class="keyword">struct</span> &#123;</span><br><span class="line">    conn ziface.IConnection <span class="comment">//已经和客户端建立好的链接</span></span><br><span class="line">    data []<span class="keyword">byte</span>             <span class="comment">//客户端请求的数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>很明显，现在是用一个<code>[]byte</code>来接受全部数据，又没有长度，又没有消息类型，这不科学。怎么办呢？我们现在就要自定义一种消息类型，把全部的消息都放在这种消息类型里。</p>
+<h3 id="创建消息封装类型"><a href="#创建消息封装类型" class="headerlink" title="创建消息封装类型"></a>创建消息封装类型</h3><p>在zinx/ziface/下创建imessage.go文件: 将请求的一个消息封装到 message 中，定义抽象层接口，定义好 Getter 方法和 Setter 方法。</p>
+<p>zinx/ziface/imessage.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ziface</span><br><span class="line"> <span class="comment">// 将请求消息封装到message中，定义抽象层接口</span></span><br><span class="line"><span class="keyword">type</span> IMessage <span class="keyword">interface</span>&#123;</span><br><span class="line">	GetDataLen() <span class="keyword">uint32</span> <span class="comment">//获取消息数据段长度</span></span><br><span class="line">	GetMsgId() <span class="keyword">uint32</span> <span class="comment">// 获取消息ID</span></span><br><span class="line">	GetData() []<span class="keyword">byte</span> <span class="comment">// 获取消息内容</span></span><br><span class="line">	SetMsgId(<span class="keyword">uint32</span>) <span class="comment">// 设置消息id</span></span><br><span class="line">	SetData([]<span class="keyword">byte</span>) <span class="comment">// 设置消息内容</span></span><br><span class="line">	SetDataLen(<span class="keyword">uint32</span>) <span class="comment">// 设置消息数据长度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同时创建实例 message 类，在zinx/znet/下，创建message.go文件。</p>
+<p>整理一个基本的 message 包，会包含消息 ID，数据，数据长度三个成员，提供基本的 setter 和 getter 方法，目的是为了以后做封装优化的作用。同时也提供了一个创建一个 message 包的初始化方法NewMegPackage。</p>
+<p>这里我们只需要要实现 Message 类，写出构造函数，实现接口中对应的方法，比较的简单，大家可以试试先自己尝试实现。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> znet</span><br><span class="line"><span class="keyword">type</span> Message <span class="keyword">struct</span> &#123;</span><br><span class="line">	Id <span class="keyword">uint32</span></span><br><span class="line">	DataLen <span class="keyword">uint32</span></span><br><span class="line">	Data []<span class="keyword">byte</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建一个Message消息包</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewMsgPackage</span><span class="params">(id <span class="keyword">uint32</span>, data []<span class="keyword">byte</span>)</span> *<span class="title">Message</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;Message&#123;</span><br><span class="line">		Id : id,</span><br><span class="line">		DataLen : <span class="keyword">uint32</span>(<span class="built_in">len</span>(data)),</span><br><span class="line">		Data: data,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取消息数据段长度</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(msg *Message)</span> <span class="title">GeDataLen</span><span class="params">()</span> <span class="title">uint32</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> msg.DataLen</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 获取消息ID</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(msg *Message)</span> <span class="title">GetMsgId</span><span class="params">()</span> <span class="title">uint32</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> msg.Id</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 获取消息内容</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(msg *Message)</span> <span class="title">GetData</span><span class="params">()</span> []<span class="title">byte</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> msg.Data</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 获取消息内容</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(msg *Message)</span> <span class="title">SetDataLen</span><span class="params">(<span class="built_in">len</span> <span class="keyword">uint32</span>)</span></span> &#123;</span><br><span class="line">	msg.DataLen = <span class="built_in">len</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 设置消息ID</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(msg *Message)</span> <span class="title">SetMsgId</span><span class="params">(msgId <span class="keyword">uint32</span>)</span></span> &#123;</span><br><span class="line">	msg.Id = msgId</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 设置消息内容</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(msg *Message)</span> <span class="title">SetData</span><span class="params">(data []<span class="keyword">byte</span>)</span></span>&#123;</span><br><span class="line">	msg.Data = data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="消息的封包与拆包"><a href="#消息的封包与拆包" class="headerlink" title="消息的封包与拆包"></a>消息的封包与拆包</h3><p>我们这里就是采用经典的 TLV(Type-Len-Value)封包格式来解决 TCP 粘包问题吧。<br><img src="http://image.jk-kj.com/mweb/2020/12/22/160861344507975501.jpeg" alt="5501"></p>
+<p>图片来源于 zinx 作者。</p>
+<p>由于 Zinx 也是 TCP 流的形式传播数据，难免会出现消息 1 和消息 2 一同发送，那么 zinx 就需要有能力区分两个消息的边界，所以 Zinx 此时应该提供一个统一的拆包和封包的方法。在发包之前打包成如上图这种格式的有 head 和 body 的两部分的包，在收到数据的时候分两次进行读取，先读取固定长度的 head 部分，得到后续 Data 的长度，再根据 DataLen 读取之后的 body。这样就能够解决粘包的问题了。</p>
+<h5 id="创建拆包封包抽象类"><a href="#创建拆包封包抽象类" class="headerlink" title="创建拆包封包抽象类"></a>创建拆包封包抽象类</h5><p>在zinx/ziface下，创建idatapack.go文件</p>
+<p>我们需要三个方法：</p>
+<ul>
+<li><p>封包数据。</p>
+</li>
+<li><p>拆包数据。</p>
+</li>
+<li><p>得到头部长度。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">package</span> ziface</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    封包数据和拆包数据</span></span><br><span class="line"><span class="comment">    直接面向TCP连接中的数据流,为传输数据添加头部信息，用于处理TCP粘包问题。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">type</span> IDataPack <span class="keyword">interface</span> &#123;</span><br><span class="line">	 GetHeadLen() <span class="keyword">uint32</span> <span class="comment">// 获取包头长度方法</span></span><br><span class="line">	 Pack(msg IMessage)([]<span class="keyword">byte</span>,error) <span class="comment">// 封包方法</span></span><br><span class="line">	 Unpack([]<span class="keyword">byte</span>)(IMessage,error) <span class="comment">// 拆包方法</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="实现拆包封包类"><a href="#实现拆包封包类" class="headerlink" title="实现拆包封包类"></a>实现拆包封包类</h5><p>在zinx/znet/下，创建datapack.go文件.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> znet</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;bytes&quot;</span></span><br><span class="line">	<span class="string">&quot;encoding/binary&quot;</span></span><br><span class="line">	<span class="string">&quot;errors&quot;</span></span><br><span class="line">	<span class="string">&quot;zinx/ziface&quot;</span></span><br><span class="line">	<span class="string">&quot;zinx/utils&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">// 封包拆包类实例，暂时不需要成员</span></span><br><span class="line"><span class="keyword">type</span> DataPack <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"><span class="comment">// 封包拆包实例初始化方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewDataPack</span><span class="params">()</span> *<span class="title">DataPack</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;DataPack&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 获取包头长度方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(dp *DataPack)</span> <span class="title">GetHeadLen</span><span class="params">()</span> <span class="title">uint32</span></span> &#123;</span><br><span class="line">	<span class="comment">//Id uint32(4字节) +  DataLen uint32(4字节)</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">8</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 封装方法(压缩数据)</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(dp *DataPack)</span> <span class="title">Pack</span><span class="params">(msg ziface.IMessage)</span> <span class="params">([]<span class="keyword">byte</span>, error)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 创建一个存放bytes字节的缓冲</span></span><br><span class="line">	dataBuff := bytes.NewBuffer([]<span class="keyword">byte</span>&#123;&#125;)</span><br><span class="line">	<span class="comment">// 写datalen</span></span><br><span class="line">	<span class="keyword">if</span> err := binary.Write(dataBuff,binary.LittleEndian,msg.GetDataLen()); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 写msgId</span></span><br><span class="line">	<span class="keyword">if</span> err := binary.Write(dataBuff,binary.LittleEndian,msg.GetMsgId()); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 写data数据</span></span><br><span class="line">	<span class="keyword">if</span> err := binary.Write(dataBuff,binary.LittleEndian,msg.GetData()); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dataBuff.Bytes(), <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拆包方法(解压数据)</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(dp *DataPack)</span> <span class="title">Unpack</span><span class="params">(binaryData []<span class="keyword">byte</span> )</span> <span class="params">(ziface.IMessage ,error)</span></span>&#123;</span><br><span class="line">	<span class="comment">// 创建一个从输入二进制数据的ioReader</span></span><br><span class="line">	dataBuff := bytes.NewReader(binaryData)</span><br><span class="line">	<span class="comment">// 只解压head的信息，得到dataLen和msgID</span></span><br><span class="line">	msg := &amp;Message&#123;&#125;</span><br><span class="line">	<span class="comment">// 读dataLen</span></span><br><span class="line">	<span class="keyword">if</span> err := binary.Read(dataBuff, binary.LittleEndian, &amp;msg.DataLen); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 读取msgID</span></span><br><span class="line">	<span class="keyword">if</span> err := binary.Read(dataBuff, binary.LittleEndian,&amp;msg.Id); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 判断dataLen的长度是否超出我们允许的最大包长度</span></span><br><span class="line">	<span class="keyword">if</span> (utils.GlobalObject.MaxPacketSize &gt; <span class="number">0</span> &amp;&amp; msg.DataLen &gt; utils.GlobalObject.MaxPacketSize)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>,errors.New(<span class="string">&quot;Too Large msg data recieved&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//这里只需要把head的数据拆包出来就可以了，然后再通过head的长度，再从conn读取一次数据</span></span><br><span class="line">	<span class="keyword">return</span> msg, <span class="literal">nil</span>	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是整理的Unpack方法，因为我们从上图可以知道，我们进行拆包的时候是分两次过程的，第二次是依赖第一次的 dataLen 结果，所以Unpack只能解压出包头 head 的内容，得到 msgId 和 dataLen。之后调用者再根据 dataLen 继续从 io 流中读取 body 中的数据。</p>
+<h5 id="测试拆包封包功能"><a href="#测试拆包封包功能" class="headerlink" title="测试拆包封包功能"></a>测试拆包封包功能</h5><p>为了容易理解，我们先不用集成 zinx 框架来测试，而是使用 Server 和 Client 来测试一下封包拆包的功能。</p>
+<p>TestPackServer.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;io&quot;</span></span><br><span class="line">	<span class="string">&quot;net&quot;</span></span><br><span class="line">	<span class="string">&quot;zinx/znet&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只是辅助测试datapack拆包，封包功能</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 创建socket TCP Server</span></span><br><span class="line">	listenner,err := net.Listen(<span class="string">&quot;tcp&quot;</span>,<span class="string">&quot;127.0.0.1:7777&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;server listen err:&quot;</span>,err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//创建服务器gotoutine，负责从客户端goroutine读取粘包的数据，然后进行解析</span></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		conn, err := listenner.Accept()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot; server accept error&quot;</span>, err)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 处理客户端请求</span></span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(conn net.Conn)</span></span> &#123;</span><br><span class="line">			<span class="comment">// 创建封包拆包对象dp</span></span><br><span class="line">			dp := znet.NewDataPack()</span><br><span class="line">			<span class="keyword">for</span> &#123;</span><br><span class="line">				<span class="comment">// 1、想读取六中的head部分</span></span><br><span class="line">				headData := <span class="built_in">make</span>([]<span class="keyword">byte</span>,dp.GetHeadLen())</span><br><span class="line">				_,err := io.ReadFull(conn, headData) <span class="comment">//ReadFull 会把msg填充满为止</span></span><br><span class="line">				<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">					fmt.Println(<span class="string">&quot; read head error&quot;</span>,err)</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="comment">// 将headData字节流 拆包到msg中</span></span><br><span class="line">				msgHead,err := dp.Unpack(headData)</span><br><span class="line">				<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">					fmt.Println(<span class="string">&quot; server unpack error&quot;</span>,err)</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> msgHead.GetDataLen() &gt; <span class="number">0</span> &#123;</span><br><span class="line">					<span class="comment">//msg 是有data数据的，需要再次读取data数据</span></span><br><span class="line">					msg := msgHead.(*znet.Message)</span><br><span class="line">					msg.Data = <span class="built_in">make</span>([]<span class="keyword">byte</span>, msg.GetDataLen())</span><br><span class="line">					<span class="comment">//根据dataLen从io中读取字节流</span></span><br><span class="line">					_,err := io.ReadFull(conn, msg.Data)</span><br><span class="line">					<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">						fmt.Println(<span class="string">&quot; server unpack data err:&quot;</span>, err)</span><br><span class="line">						<span class="keyword">return</span></span><br><span class="line">					&#125;</span><br><span class="line">					fmt.Println(<span class="string">&quot; ==&gt; Recv Msg : ID=&quot;</span>,msg.Id,<span class="string">&quot;,len=&quot;</span>,msg.DataLen,<span class="string">&quot;,data=&quot;</span>,<span class="keyword">string</span>(msg.Data))</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;(conn)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>TestPackClient.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;net&quot;</span></span><br><span class="line">	<span class="string">&quot;zinx/znet&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//客户端goroutine，负责模拟粘包的数据，然后进行发送</span></span><br><span class="line">	<span class="comment">//客户端goroutine，负责模拟粘包的数据，然后进行发送</span></span><br><span class="line">	conn, err := net.Dial(<span class="string">&quot;tcp&quot;</span>, <span class="string">&quot;127.0.0.1:7777&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;client dial err:&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//创建一个封包对象 dp</span></span><br><span class="line">	dp := znet.NewDataPack()</span><br><span class="line">	<span class="comment">// 封装一个msg1包</span></span><br><span class="line">	msg1 := &amp;znet.Message&#123;</span><br><span class="line">		Id: <span class="number">0</span>,</span><br><span class="line">		DataLen:<span class="number">5</span>, </span><br><span class="line">		Data: []<span class="keyword">byte</span>&#123;<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;o&#x27;</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	sendData1, err := dp.Pack(msg1)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot; client pack msg1 err&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	msg2 := &amp;znet.Message&#123;</span><br><span class="line">		Id:<span class="number">1</span>,</span><br><span class="line">		DataLen:<span class="number">7</span>,</span><br><span class="line">		Data:    []<span class="keyword">byte</span>&#123;<span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;!&#x27;</span>, <span class="string">&#x27;!&#x27;</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sendData2 , err := dp.Pack(msg2)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot; client pack msg2 err:&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//将sendData1，和 sendData2 拼接一起，组成粘包</span></span><br><span class="line">	sendData1 = <span class="built_in">append</span>(sendData1,sendData2...)</span><br><span class="line">	<span class="comment">// 向服务器端写数据</span></span><br><span class="line">	conn.Write(sendData1)</span><br><span class="line">	<span class="comment">//客户端阻塞</span></span><br><span class="line">	<span class="keyword">select</span> &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里，我们的消息封装模块就完成了，下面我们将其集成到 zinx 中。</p>
+<h5 id="Zinx-V0-5-代码实现"><a href="#Zinx-V0-5-代码实现" class="headerlink" title="Zinx-V0.5 代码实现"></a>Zinx-V0.5 代码实现</h5><h5 id="Request-字段修改"><a href="#Request-字段修改" class="headerlink" title="Request 字段修改"></a>Request 字段修改</h5><p>首先我们要将我们之前的 Request 中的[]byte类型的 data 字段改成 Message 类型.。并且我们需要把 irequest 的方法新增一个 GetMsgID。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> znet</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;zinx/ziface&quot;</span></span><br><span class="line"><span class="keyword">type</span> Request <span class="keyword">struct</span> &#123;</span><br><span class="line">    conn ziface.IConnection <span class="comment">//已经和客户端建立好的 链接</span></span><br><span class="line">    msg ziface.IMessage     <span class="comment">//客户端请求的数据</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取请求连接信息</span></span><br><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(r *Request)</span> <span class="title">GetConnection</span><span class="params">()</span> <span class="title">ziface</span>.<span class="title">IConnection</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> r.conn</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取请求消息的数据</span></span><br><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(r *Request)</span> <span class="title">GetData</span><span class="params">()</span> []<span class="title">byte</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> r.msg.GetData()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取请求的消息的ID</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Request)</span> <span class="title">GetMsgID</span><span class="params">()</span> <span class="title">uint32</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> r.msg.GetMsgId()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ziface</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   IRequest 接口：</span></span><br><span class="line"><span class="comment">   实际上是把客户端请求的链接信息 和 请求的数据 包装到了 Request里</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">type</span> IRequest <span class="keyword">interface</span>&#123;</span><br><span class="line">    GetConnection() IConnection    <span class="comment">//获取请求连接信息</span></span><br><span class="line">    GetData() []<span class="keyword">byte</span>            <span class="comment">//获取请求消息的数据</span></span><br><span class="line">    GetMsgID() <span class="keyword">uint32</span>           <span class="comment">//hu获取消息的id</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="集成拆包过程"><a href="#集成拆包过程" class="headerlink" title="集成拆包过程"></a>集成拆包过程</h5><p>接下来我们需要在 Connection 的StartReader()方法中</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">StartReader</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Reader Goroutine is  running&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> fmt.Println(c.RemoteAddr().String(), <span class="string">&quot; conn reader exit!&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> c.Stop()</span><br><span class="line">    <span class="keyword">for</span>  &#123;</span><br><span class="line">        <span class="comment">// 创建拆包解包的对象</span></span><br><span class="line">        dp := NewDataPack()</span><br><span class="line">        <span class="comment">//读取客户端的Msg head</span></span><br><span class="line">        headData := <span class="built_in">make</span>([]<span class="keyword">byte</span>, dp.GetHeadLen())</span><br><span class="line">        <span class="keyword">if</span> _, err := io.ReadFull(c.GetTCPConnection(), headData); err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;read msg head error &quot;</span>, err)</span><br><span class="line">            c.ExitBuffChan &lt;- <span class="literal">true</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//拆包，得到msgid 和 datalen 放在msg中</span></span><br><span class="line">        msg , err := dp.Unpack(headData)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;unpack error &quot;</span>, err)</span><br><span class="line">            c.ExitBuffChan &lt;- <span class="literal">true</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//根据 dataLen 读取 data，放在msg.Data中</span></span><br><span class="line">        <span class="keyword">var</span> data []<span class="keyword">byte</span></span><br><span class="line">        <span class="keyword">if</span> msg.GetDataLen() &gt; <span class="number">0</span> &#123;</span><br><span class="line">            data = <span class="built_in">make</span>([]<span class="keyword">byte</span>, msg.GetDataLen())</span><br><span class="line">            <span class="keyword">if</span> _, err := io.ReadFull(c.GetTCPConnection(), data); err != <span class="literal">nil</span> &#123;</span><br><span class="line">                fmt.Println(<span class="string">&quot;read msg data error &quot;</span>, err)</span><br><span class="line">                c.ExitBuffChan &lt;- <span class="literal">true</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        msg.SetData(data)</span><br><span class="line">        <span class="comment">//得到当前客户端请求的Request数据</span></span><br><span class="line">        req := Request&#123;</span><br><span class="line">            conn:c,</span><br><span class="line">            msg:msg, <span class="comment">//将之前的buf 改成 msg</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//从路由Routers 中找到注册绑定Conn的对应Handle</span></span><br><span class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span> <span class="params">(request ziface.IRequest)</span></span> &#123;</span><br><span class="line">            <span class="comment">//执行注册的路由方法</span></span><br><span class="line">            c.Router.PreHandle(request)</span><br><span class="line">            c.Router.Handle(request)</span><br><span class="line">            c.Router.PostHandle(request)</span><br><span class="line">        &#125;(&amp;req)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="提供封包方法"><a href="#提供封包方法" class="headerlink" title="提供封包方法"></a>提供封包方法</h5><p>现在我们已经将拆包的功能集成到 Zinx 中了，但是使用 Zinx 的时候，如果我们希望给用户返回一个 TLV 格式的数据，总不能每次都经过这么繁琐的过程，所以我们应该给 Zinx 提供一个封包的接口，供 Zinx 发包使用。 我们在 iconnection.go 中新增 SendMsg()方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ziface</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;net&quot;</span></span><br><span class="line"><span class="comment">//定义连接接口</span></span><br><span class="line"><span class="keyword">type</span> IConnection <span class="keyword">interface</span> &#123;</span><br><span class="line">    <span class="comment">//启动连接，让当前连接开始工作</span></span><br><span class="line">    Start()</span><br><span class="line">    <span class="comment">//停止连接，结束当前连接状态M</span></span><br><span class="line">    Stop()</span><br><span class="line">    <span class="comment">//从当前连接获取原始的socket TCPConn</span></span><br><span class="line">    GetTCPConnection() *net.TCPConn</span><br><span class="line">    <span class="comment">//获取当前连接ID</span></span><br><span class="line">    GetConnID() <span class="keyword">uint32</span></span><br><span class="line">    <span class="comment">//获取远程客户端地址信息</span></span><br><span class="line">    RemoteAddr() net.Addr</span><br><span class="line">    <span class="comment">//直接将Message数据发送数据给远程的TCP客户端</span></span><br><span class="line">    SendMsg(msgId <span class="keyword">uint32</span>, data []<span class="keyword">byte</span>) error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们到 connection.go 中实现这个方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接将Message数据发送数据给远程的TCP客户端</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Connection)</span> <span class="title">SendMsg</span><span class="params">(msgId <span class="keyword">uint32</span>, data []<span class="keyword">byte</span>)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> c.isClosed == <span class="literal">true</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> errors.New(<span class="string">&quot;Connection closed when send msg&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//将data封包，并且发送</span></span><br><span class="line">    dp := NewDataPack()</span><br><span class="line">    msg, err := dp.Pack(NewMsgPackage(msgId, data))</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;Pack error msg id = &quot;</span>, msgId)</span><br><span class="line">        <span class="keyword">return</span>  errors.New(<span class="string">&quot;Pack error msg &quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//写回客户端</span></span><br><span class="line">    <span class="keyword">if</span> _, err := c.Conn.Write(msg); err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;Write msg id &quot;</span>, msgId, <span class="string">&quot; error &quot;</span>)</span><br><span class="line">        c.ExitBuffChan &lt;- <span class="literal">true</span></span><br><span class="line">        <span class="keyword">return</span> errors.New(<span class="string">&quot;conn Write error&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，做出修改后，我们需要在 connection.go 中将 io 和 errors 包引入进来。</p>
+<p>现在我们所需要的方法就全部完成了，下面我们来编写功能测试模块。</p>
+<h3 id="使用-Zinx-V0-5-完成应用程序"><a href="#使用-Zinx-V0-5-完成应用程序" class="headerlink" title="使用 Zinx-V0.5 完成应用程序"></a>使用 Zinx-V0.5 完成应用程序</h3><p>我们这里测试依然继续使用 Server.go 和 Client.go 的方法。</p>
+<p>当前 Server 端是先把客户端发送来 Msg 解析，然后返回一个 MsgId 为 1 的消息，消息内容是”ping…ping…ping”</p>
+<p>Server.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/znet&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/ziface&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//ping test 自定义路由</span></span><br><span class="line"><span class="keyword">type</span> PingRouter <span class="keyword">struct</span> &#123;</span><br><span class="line">    znet.BaseRouter  <span class="comment">//一定要先基础BaseRouter</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test PreHandle</span></span><br><span class="line"><span class="comment">// func (this *PingRouter) PreHandle(request ziface.IRequest)&#123;</span></span><br><span class="line"><span class="comment">//     fmt.Println(&quot; Call Router PreHandle&quot;)</span></span><br><span class="line"><span class="comment">//     _,err := request.GetConnection().GetTCPConnection().Write([]byte(&quot;before ping ....\n&quot;))</span></span><br><span class="line"><span class="comment">//     if err != nil&#123;</span></span><br><span class="line"><span class="comment">//         fmt.Println(&quot;call back ping err&quot;)</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// test Handle</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *PingRouter)</span> <span class="title">Handle</span><span class="params">(request ziface.IRequest)</span></span>&#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot; Call Router Handle&quot;</span>)</span><br><span class="line">    fmt.Println(<span class="string">&quot;recv from client : msgId=&quot;</span>, request.GetMsgId(), <span class="string">&quot;, data=&quot;</span>, <span class="keyword">string</span>(request.GetData()))</span><br><span class="line">    <span class="comment">//回写数据</span></span><br><span class="line">    err := request.GetConnection().SendMsg(<span class="number">1</span>, []<span class="keyword">byte</span>(<span class="string">&quot;ping...ping...ping&quot;</span>))</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;call back ping err&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test PostHandle</span></span><br><span class="line"><span class="comment">// func (this *PingRouter) PostHandle(request ziface.IRequest)&#123;</span></span><br><span class="line"><span class="comment">//     fmt.Println(&quot; Call Router PostHandle&quot;)</span></span><br><span class="line"><span class="comment">//     _,err := request.GetConnection().GetTCPConnection().Write([]byte(&quot;after ping ....\n&quot;))</span></span><br><span class="line"><span class="comment">//     if err != nil&#123;</span></span><br><span class="line"><span class="comment">//         fmt.Println(&quot;call back ping err&quot;)</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//Server 模块的测试函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//1 创建一个server 句柄 s</span></span><br><span class="line">    s := znet.NewServer()</span><br><span class="line">    s.AddRouter(&amp;PingRouter&#123;&#125;)</span><br><span class="line">    <span class="comment">//2 开启服务</span></span><br><span class="line">    s.Serve()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里 Client 客户端，模拟一个 MsgId 为 0 的”Zinx V0.5 Client Test Message”消息，然后把服务端返回的数据打印出来。</p>
+<p>Client.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;net&quot;</span></span><br><span class="line">    <span class="string">&quot;time&quot;</span></span><br><span class="line">    <span class="string">&quot;io&quot;</span></span><br><span class="line">    <span class="string">&quot;zinx/znet&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Client Test ... start&quot;</span>)</span><br><span class="line">    <span class="comment">//3秒之后发起测试请求，给服务端开启服务的机会</span></span><br><span class="line">    time.Sleep(<span class="number">3</span> * time.Second)</span><br><span class="line">    conn,err := net.Dial(<span class="string">&quot;tcp&quot;</span>, <span class="string">&quot;127.0.0.1:7777&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;client start err, exit!&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        <span class="comment">//发封包message消息</span></span><br><span class="line">        dp := znet.NewDataPack()</span><br><span class="line">        msg, _ := dp.Pack(znet.NewMsgPackage(<span class="number">0</span>,[]<span class="keyword">byte</span>(<span class="string">&quot;Zinx V0.5 Client Test Message&quot;</span>)))</span><br><span class="line">        _, err := conn.Write(msg)</span><br><span class="line">        <span class="keyword">if</span> err !=<span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;write error err &quot;</span>, err)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// buf :=make([]byte, 512)</span></span><br><span class="line">        <span class="comment">// cnt, err := conn.Read(buf)</span></span><br><span class="line">        <span class="comment">// if err != nil &#123;</span></span><br><span class="line">        <span class="comment">//     fmt.Println(&quot;read buf error &quot;)</span></span><br><span class="line">        <span class="comment">//     return</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// fmt.Printf(&quot; server call back : %s, cnt = %d\n&quot;, buf,  cnt)</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//先读出流中的head部分</span></span><br><span class="line">        headData := <span class="built_in">make</span>([]<span class="keyword">byte</span>, dp.GetHeadLen())</span><br><span class="line">        _, err = io.ReadFull(conn, headData) <span class="comment">//ReadFull 会把msg填充满为止</span></span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;read head error&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将headData字节流 拆包到msg中</span></span><br><span class="line">        msgHead, err := dp.Unpack(headData)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;server unpack err:&quot;</span>, err)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> msgHead.GetDataLen() &gt; <span class="number">0</span> &#123;</span><br><span class="line">            <span class="comment">//msg 是有data数据的，需要再次读取data数据</span></span><br><span class="line">            msg := msgHead.(*znet.Message)</span><br><span class="line">            msg.Data = <span class="built_in">make</span>([]<span class="keyword">byte</span>, msg.GetDataLen())</span><br><span class="line">            <span class="comment">//根据dataLen从io中读取字节流</span></span><br><span class="line">            _, err := io.ReadFull(conn, msg.Data)</span><br><span class="line">            <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                fmt.Println(<span class="string">&quot;server unpack data err:&quot;</span>, err)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            fmt.Println(<span class="string">&quot;==&gt; Recv Msg: ID=&quot;</span>, msg.Id, <span class="string">&quot;, len=&quot;</span>, msg.DataLen, <span class="string">&quot;, data=&quot;</span>, <span class="keyword">string</span>(msg.Data))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        time.Sleep(<span class="number">1</span>*time.Second)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果:<br><img src="http://image.jk-kj.com/mweb/2020/12/22/16086134450822wwwd.png" alt="wwwd"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -442,6 +974,101 @@
     剑阵出招 --> 4个点</pre>
 
 
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/cocos%20creator%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/cocos%20creator%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/" class="post-title-link" itemprop="url">cocos creator的数据双向绑定</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-15 12:15:01" itemprop="dateCreated datePublished" datetime="2020-12-15T12:15:01+08:00">2020-12-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-21 12:27:47" itemprop="dateModified" datetime="2021-02-21T12:27:47+08:00">2021-02-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/cocos%20creator%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/" class="post-meta-item leancloud_visitors" data-flag-title="cocos creator的数据双向绑定" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>平常开发vue项目，有双向绑定，数据和展示是分离的，不需要关系什么时候去更新view<br>但cocos中，view是需要自己去更新。搜索很久终于发现了一篇博客</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/news/447233#">CocosCreator开发中为什么get/set如此重要</a></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>以下是自己在ts中是实践</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对msgEnemy变量进行的动态绑定，先定义一个私有变量</span></span><br><span class="line"><span class="keyword">private</span> _msgEnemy:msg.Enemy = <span class="literal">null</span>  <span class="comment">// 此处msg.Enemy是一个protobuf结构</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@property</span></span><br><span class="line"><span class="keyword">get</span> <span class="title">msgEnemy</span>():<span class="title">msg</span>.<span class="title">Enemy</span>&#123;</span><br><span class="line">    <span class="comment">//console.log(&#x27;get msgEnemy&#x27;)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>._msgEnemy;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">set</span> <span class="title">msgEnemy</span>(<span class="params">value:msg.Enemy</span>)&#123;<span class="comment">//set:必须无返回值类型</span></span><br><span class="line">    <span class="comment">//console.log(&#x27;set msgEnemy&#x27;)</span></span><br><span class="line">    <span class="built_in">this</span>._msgEnemy=value;</span><br><span class="line">    <span class="built_in">this</span>.node.getChildByName(<span class="string">&#x27;progressBar&#x27;</span>).getChildByName(<span class="string">&#x27;maxHP&#x27;</span>).getComponent(cc.Label).string = <span class="built_in">this</span>._msgEnemy.MaxHP.toString()</span><br><span class="line">    <span class="built_in">this</span>.node.getChildByName(<span class="string">&#x27;progressBar&#x27;</span>).getChildByName(<span class="string">&#x27;HP&#x27;</span>).getComponent(cc.Label).string = <span class="built_in">this</span>._msgEnemy.HP.toString()</span><br><span class="line">    <span class="built_in">this</span>.node.getChildByName(<span class="string">&#x27;progressBar&#x27;</span>).getChildByName(<span class="string">&#x27;bar&#x27;</span>).width = <span class="built_in">Math</span>.ceil(<span class="built_in">this</span>._msgEnemy.HP/<span class="built_in">this</span>._msgEnemy.MaxHP)*<span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当进行血量减少时</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">subHP</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.msgEnemy = <span class="built_in">Object</span>.assign(<span class="built_in">this</span>.msgEnemy,&#123;<span class="attr">HP</span>:<span class="built_in">this</span>.msgEnemy.HP - val&#125;); <span class="comment">// 只有整个替换才会触发set</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>使用 get/set 的好处<br>灵活控制读写权限<br>为抽象做准备<br>数据可靠性<br>可以实现 MVVM</p>
 
       
     </div>
@@ -840,572 +1467,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">存储过程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-28 12:20:53" itemprop="dateCreated datePublished" datetime="2020-11-28T12:20:53+08:00">2020-11-28</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-28 13:04:36" itemprop="dateModified" datetime="2020-12-28T13:04:36+08:00">2020-12-28</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="存储过程" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/aigao3209/article/details/101336418">https://blog.csdn.net/aigao3209/article/details/101336418</a></p>
-<h3 id="一、存储过程"><a href="#一、存储过程" class="headerlink" title="一、存储过程"></a>一、存储过程</h3><h4 id="什么是存储过程"><a href="#什么是存储过程" class="headerlink" title="什么是存储过程"></a>什么是存储过程</h4><p>大多数SQL语句都是针对一个或多个表的单条语句。并非所有的操作都这么简单。</p>
-<p>经常会有一个完整的操作需要很多条才能完成。</p>
-<p>存储过程（Stored Procedure）是在大型数据库系统中，一组为了完成特定功能的SQL 语句集，存储在数据库中经过第一次编译后再次调用不需要再次编译，用户通过指定存储过程的名字并给出参数（如果该存储过程带有参数）来执行它。</p>
-<p>存储过程是数据库中的一个重要对象，任何一个设计良好的数据库应用程序都应该用到存储过程。</p>
-<p>为什么要使用存储过程</p>
-<ul>
-<li><p>(1).存储过程增强了SQL语言的功能和灵活性。存储过程可以用流控制语句编写，有很强的灵活性，可以完成复杂的判断和较复杂的运算。</p>
-</li>
-<li><p>(2).存储过程允许标准组件是编程。存储过程被创建后，可以在程序中被多次调用，而不必重新编写该存储过程的SQL语句。而且数据库专业人员可以随时对存储过程进行修改，对应用程序源代码毫无影响。</p>
-</li>
-<li><p>(3).存储过程能实现较快的执行速度。如果某一操作包含大量的Transaction-SQL代码或分别被多次执行，那么存储过程要比批处理的执行速度快很多。因为存储过程是预编译的。在首次运行一个存储过程时查询，优化器对其进行分析优化，并且给出最终被存储在系统表中的执行计划。而批处理的Transaction-SQL语句在每次运行时都要进行编译和优化，速度相对要慢一些。</p>
-</li>
-<li><p>(4).存储过程能过减少网络流量。针对同一个数据库对象的操作（如查询、修改），如果这一操作所涉及的Transaction-SQL语句被组织程存储过程，那么当在客户计算机上调用该存储过程时，网络中传送的只是该调用语句，从而大大增加了网络流量并降低了网络负载。</p>
-</li>
-<li><p>(5).存储过程可被作为一种安全机制来充分利用。系统管理员通过执行某一存储过程的权限进行限制，能够实现对相应的数据的访问权限的限制，避免了非授权用户对数据的访问，保证了数据的安全。</p>
-</li>
-</ul>
-<p>为什么不使用存储过程：</p>
-<ul>
-<li><p>1） 可移植性差</p>
-</li>
-<li><p>2） 对于简单的SQL语句，存储过程没什么优势</p>
-</li>
-<li><p>3） 如果存储过程中不一定会减少网络传输</p>
-</li>
-<li><p>4） 如果只有一个用户使用数据库，那么存储过程对安全也没什么影响</p>
-</li>
-<li><p>5） 团队开发时需要先统一标准，否则后期维护成本大</p>
-</li>
-<li><p>6） 在大并发量访问的情况下，不宜写过多涉及运算的存储过程</p>
-</li>
-<li><p>7） 业务逻辑复杂时，特别是涉及到对很大的表进行操作的时候，不如在前端先简化业务逻辑</p>
-</li>
-</ul>
-<p>定义存储过程<br>语法：</p>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="function"><span class="keyword">procedure</span> 过程名（参数1，参数2....）</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">begin</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">sql</span>语句;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>创建存储过程之前我们必须修改mysql语句默认结束符 ; 要不能我们不能创建成功</p>
-<p>使用<code>delimiter</code>可以修改执行符号</p>
-<p>DELIMITER是分割符的意思，因为MySQL默认以”;”为分隔符，如果我们没有声明分割符，那么编译器会把存储过程当成SQL语句进行处理，则存储过程的编译过程会报错，所以要事先用DELIMITER关键字申明当前段分隔符，这样MySQL才会将”;”当做存储过程中的代码，不会执行这些代码，用完了之后要把分隔符还原。</p>
-<p>语法：</p>
-<figure class="highlight cal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">delimiter 新执行符号</span><br><span class="line"></span><br><span class="line">mysql&gt; delimiter %  这样结束符就为%</span><br><span class="line"></span><br><span class="line">mysql&gt; create <span class="function"><span class="keyword">procedure</span> <span class="title">selCg</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">begin</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">select</span> * <span class="title">from</span> <span class="title">category</span>;</span></span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">end</span> %</span><br></pre></td></tr></table></figure>
-<p>调用存储过程<br>语法：</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> 过程名（参数<span class="number">1</span>，参数<span class="number">2</span>）;</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">call</span> selCg<span class="comment">()</span> <span class="meta">%</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>存储过程参数类型<br>In参数<br>特点：读取外部变量值，且有效范围仅限存储过程内部</p>
-<p>例子：</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; delimiter <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">mysql&gt; create <span class="function"><span class="keyword">procedure</span> <span class="title">pin</span><span class="params">(<span class="keyword">in</span> p_in int)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">begin</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">select</span> <span class="title">p_in</span>;</span></span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">set</span> p_in=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    -&gt; select p_in;</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">-&gt; <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">mysql&gt; delimiter ;  使用完马上恢复默认的</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">set</span> @p_in=<span class="number">1</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>等同于</p>
-<p>对比下，</p>
-<p>例：定义存储过程 getOneBook，当输入某书籍 id 后，可以调出对应书籍记录</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create procedure getOneBook<span class="params">(in b int)</span></span><br><span class="line"></span><br><span class="line">-&gt; begin</span><br><span class="line"></span><br><span class="line">-&gt; select * from books where bId=b;</span><br><span class="line"></span><br><span class="line">-&gt; end <span class="string">//</span></span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected <span class="params">(0.01 sec)</span></span><br><span class="line"></span><br><span class="line">mysql&gt; call getOneBook<span class="params">(3)</span>;<span class="string">//</span></span><br><span class="line"></span><br><span class="line">+<span class="params">-----</span>+<span class="params">-----------------------------</span>+<span class="params">---------</span>+<span class="params">-----------------------------</span>+<span class="params">-------</span>+<span class="params">------------</span>+<span class="params">--------</span>+<span class="params">-----------</span>+</span><br><span class="line"></span><br><span class="line">| bId | bName                       | bTypeId | publishing                  | price | pubDate    | author | ISBN      |</span><br><span class="line"></span><br><span class="line">+<span class="params">-----</span>+<span class="params">-----------------------------</span>+<span class="params">---------</span>+<span class="params">-----------------------------</span>+<span class="params">-------</span>+<span class="params">------------</span>+<span class="params">--------</span>+<span class="params">-----------</span>+</span><br><span class="line"></span><br><span class="line">|   3 | 网络程序与设计－asp | 2       | 北方交通大学出版社|    43 | 2005-02-01 | 王玥| 75053815x |</span><br><span class="line"></span><br><span class="line">+<span class="params">-----</span>+<span class="params">-----------------------------</span>+<span class="params">---------</span>+<span class="params">-----------------------------</span>+<span class="params">-------</span>+<span class="params">------------</span>+<span class="params">--------</span>+<span class="params">-----------</span>+</span><br><span class="line"></span><br><span class="line">1 row in <span class="keyword">set</span> <span class="params">(0.00 sec)</span></span><br></pre></td></tr></table></figure>
-<p>Out参数<br>特点：不读取外部变量值，在存储过程执行完毕后保留新值</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; delimiter <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">mysql&gt; create <span class="function"><span class="keyword">procedure</span> <span class="title">pout</span><span class="params">(<span class="keyword">out</span> p_out int)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">begin</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">select</span> <span class="title">p_out</span>;</span></span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">set</span> p_out=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    -&gt; select p_out;</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">mysql&gt; delimiter ;</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">set</span> @p_out=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">mysql&gt; call pout(@p_out);</span><br></pre></td></tr></table></figure>
-
-<p>等同于</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">call</span> pout()=<span class="number">2</span><span class="comment">; set @p_out=2;</span></span><br><span class="line"></span><br><span class="line">create procedure pout(out p_outs <span class="built_in">int</span>) 杯子A的定义</span><br><span class="line"></span><br><span class="line">    -&gt; begin</span><br><span class="line"></span><br><span class="line">    -&gt; set p_outs=<span class="number">8</span><span class="comment">;  p_outs 理解为杯子A，作用于存储过程内部</span></span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">select</span> p_outs<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    -&gt; end<span class="comment">; 存储过程执行完毕，杯子A中放的是8</span></span><br><span class="line"></span><br><span class="line">mysql&gt; set <span class="symbol">@p_out</span>=<span class="number">1</span><span class="comment">; 系统中又定义一个杯子B</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="symbol">@p_out</span>； <span class="number">1</span> 杯子B中放的是<span class="number">1</span></span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="built_in">call</span> pout(<span class="symbol">@p_out</span>)<span class="comment">; 该语句执行时，存储过程内部用过杯子A去保存执行的结果，然后执行完毕，用户拿杯子B，去接杯子A的值，实际上就是等于将杯子A的值赋值给杯子B，所以，执行完后，杯子B里面放的是8</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">call</span> pout()=<span class="number">8</span>（这个<span class="number">8</span>放在杯子A中）<span class="comment">; set @p_out（杯子B）=8 （这个8是从杯子A中来的）;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="symbol">@p_out</span>； <span class="number">8</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>不论你怎么赋值都是2 注意此处的call pout(@p_out); 中的这个@p_out这个参数,是我们在系统中定义的那个@p_out</p>
-<p>我们的存储过程中的那个p_out参数是存储过程中自己用的,作用范围仅限于存储过程的的begin到end之间,所以这两个p_out是不同的两个参数</p>
-<p>这里只是刚好名字一样而已.</p>
-<p>In传入参数,是外部将值传给存储过程来使用的,而out传出参数是为了讲存储过程的执行结果回传给调用他的程序来使用的.</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">create</span> <span class="keyword">procedure</span> demo(<span class="keyword">out</span> pa <span class="type">varchar</span>(<span class="number">200</span>))</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">select</span> bName <span class="keyword">into</span> pa <span class="keyword">from</span> books <span class="keyword">where</span> bId=<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">end</span> //</span><br><span class="line"></span><br><span class="line">调用，执行：</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">call</span> demo(@a); //</span><br><span class="line"></span><br><span class="line">查看变量@a 中的值：</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> @a;//</span><br><span class="line"></span><br><span class="line">+<span class="comment">-----------------------------+</span></span><br><span class="line"></span><br><span class="line">| @a                          |</span><br><span class="line"></span><br><span class="line">+<span class="comment">-----------------------------+</span></span><br><span class="line"></span><br><span class="line">| 网络程序与设计－asp         |</span><br><span class="line"></span><br><span class="line">+<span class="comment">-----------------------------+</span></span><br></pre></td></tr></table></figure>
-<p>Inout参数<br>特点：读取外部变量，在存储过程执行完后保留新值&lt;类似银行存款&gt;</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; delimiter <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">mysql&gt; create <span class="function"><span class="keyword">procedure</span> <span class="title">pinout</span><span class="params">(inout p_inout int)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">begin</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">select</span> <span class="title">p_inout</span>;</span></span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">set</span> p_inout=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    -&gt; select p_inout;</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">mysql&gt; delimiter ;</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">set</span> @p_inout=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">mysql&gt; call pinout(@p_inout);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>不加参数的情况<br>如果在创建存储过程时没有指定参数类型，则需要在调用的时候指定参数值</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table t2(id int(<span class="number">11</span>)); 创建表</span><br><span class="line"></span><br><span class="line">mysql&gt; create <span class="function"><span class="keyword">procedure</span> <span class="title">t2</span><span class="params">(n1 int)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">begin</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">set</span> @<span class="title">x</span>=0;</span></span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">repeat</span> <span class="keyword">set</span> @x=@x+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    -&gt; insert into t2 values(@x);</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">until</span> @x&gt;n1</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">end</span> <span class="keyword">repeat</span>;</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">    -&gt; <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">mysql&gt; delimiter ;</span><br><span class="line"></span><br><span class="line">mysql&gt; call t2(<span class="number">5</span>); 循环<span class="number">5</span>次</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>存储过程变量的使用<br>MySQL中使用declare进行变量定义</p>
-<p>变量定义：DECLARE variable_name [,variable_name…] datatype [DEFAULT value];</p>
-<p>datatype为MySQL的数据类型，如:int, float, date, varchar(length)</p>
-<p>变量赋值： SET 变量名 = 表达式值 [,variable_name = expression …]</p>
-<p>变量赋值可以在不同的存储过程中继承</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create <span class="function"><span class="keyword">procedure</span> <span class="title">decl</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">begin</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">declare</span> <span class="title">name</span> <span class="title">varchar</span><span class="params">(200)</span>;</span></span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">set</span> <span class="keyword">name</span>=(select bName from books where bId=<span class="number">12</span>);</span><br><span class="line"></span><br><span class="line">    -&gt; select <span class="keyword">name</span>;</span><br><span class="line"></span><br><span class="line">-&gt; <span class="keyword">end</span><span class="comment">//</span></span><br></pre></td></tr></table></figure>
-
-<p>存储过程语句的注释<br>做过开发的都知道，写注释是个利人利己的事情。便于理解维护</p>
-<p>MySQL注释有两种风格</p>
-<p>“–“：单行注释</p>
-<p>“/<em>…..</em>/”:一般用于多行注释</p>
-<p>例子：</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create <span class="function"><span class="keyword">procedure</span> <span class="title">decl</span><span class="params">()</span> --<span class="title">procedure</span> <span class="title">name</span> <span class="title">is</span> <span class="title">decl</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">-&gt;/*<span class="title">procedure</span> <span class="title">body</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt;/* <span class="title">start</span> <span class="title">begin</span> */</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">begin</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -&gt; <span class="title">declare</span> <span class="title">name</span> <span class="title">varchar</span><span class="params">(200)</span>;</span></span><br><span class="line"></span><br><span class="line">    -&gt; <span class="keyword">set</span> <span class="keyword">name</span>=(select bName from books where bId=<span class="number">12</span>);</span><br><span class="line"></span><br><span class="line">    -&gt; select <span class="keyword">name</span>;</span><br><span class="line"></span><br><span class="line">-&gt; <span class="keyword">end</span><span class="comment">//</span></span><br></pre></td></tr></table></figure>
-<p>存储过程流程控制语句<br>变量作用域：<br>内部的变量在其作用域范围内享有更高的优先权，当执行到end。变量时，内部变量消失，此时已经在其作用域外，变量不再可见了，应为在存储过程外再也不能找到这个申明的变量，但是你可以通过out参数或者将其值指派给会话变量来保存其值。</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; DELIMITER <span class="comment">// </span></span><br><span class="line"></span><br><span class="line">mysql &gt; CREATE <span class="function"><span class="keyword">PROCEDURE</span> <span class="title">proc3</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">     -&gt; <span class="title">begin</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">     -&gt; <span class="title">declare</span> <span class="title">x1</span> <span class="title">varchar</span><span class="params">(5)</span> <span class="title">default</span> &#x27;<span class="title">outer</span>&#x27;;</span> </span><br><span class="line"></span><br><span class="line">     -&gt; <span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">     -&gt; declare x1 varchar(<span class="number">5</span>) <span class="keyword">default</span> <span class="string">&#x27;inner&#x27;</span>; </span><br><span class="line"></span><br><span class="line">     -&gt; select x1; </span><br><span class="line"></span><br><span class="line">     -&gt; <span class="keyword">end</span>; </span><br><span class="line"></span><br><span class="line">     -&gt; select x1; </span><br><span class="line"></span><br><span class="line">     -&gt; <span class="keyword">end</span>; </span><br><span class="line"></span><br><span class="line">     -&gt; <span class="comment">// </span></span><br><span class="line"></span><br><span class="line">mysql &gt; DELIMITER ;</span><br></pre></td></tr></table></figure>
-
-<p>条件语句<br>1：if-then -else语句</p>
-<p>2：case语句：</p>
-<p>循环语句：<br>1：while ···· end while：</p>
-<p>while 1 do ……. if **** then break; end while;</p>
-<p>2：repeat···· end repeat：</p>
-<p>执行操作后检查结果，而while则是执行前进行检查。</p>
-<p>3：loop ·····end loop:</p>
-<p>loop循环不需要初始条件，这点和while 循环相似，同时和repeat循环一样不需要结束条件, leave语句的意义是离开循环。</p>
-<p>4：LABLES 标号：</p>
-<p>标号可以用在begin repeat while 或者loop 语句前，语句标号只能在合法的语句前面使用。可以跳出循环，使运行指令达到复合语句的最后一步。</p>
-<p>5：ITERATE迭代</p>
-<p>通过引用复合语句的标号,来从新开始复合语句</p>
-<p>查看存储过程<br>查看存储过程内容：</p>
-<p>mysql&gt; show create procedure demo \G</p>
-<p>查看存储过程状态：</p>
-<p>mysql&gt; show procedure status \G  查看所有存储过程</p>
-<p>修改存储过程：<br>使用alter语句修改</p>
-<p>ALTER {PROCEDURE | FUNCTION} sp_name [characteristic …]<br>characteristic:<br>{ CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }<br>| SQL SECURITY { DEFINER | INVOKER }<br>| COMMENT ‘string’</p>
-<p>sp_name参数表示存储过程或函数的名称</p>
-<p>characteristic参数指定存储函数的特性</p>
-<p>CONTAINS SQL表示子程序包含SQL语句，但不包含读或写数据的语句；</p>
-<p>NO SQL表示子程序中不包含SQL语句</p>
-<p>READS SQL DATA表示子程序中包含读数据的语句</p>
-<p>MODIFIES SQL DATA表示子程序中包含写数据的语句</p>
-<p>SQL SECURITY { DEFINER | INVOKER }指明谁有权限来执行</p>
-<p>DEFINER表示只有定义者自己才能够执行</p>
-<p>INVOKER表示调用者可以执行</p>
-<p>COMMENT ‘string’是注释信息。</p>
-<p>–</p>
-<p>/**/</p>
-<p>删除存储过程<br>语法：</p>
-<p>方法一：DROP  PROCEDURE  过程名</p>
-<figure class="highlight cal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; drop <span class="function"><span class="keyword">procedure</span> <span class="title">p_inout</span>;</span></span><br></pre></td></tr></table></figure>
-
-<p>方法二：DROP PROCEDURE  IF  EXISTS存储过程名</p>
-<p>这个语句被用来移除一个存储程序。不能在一个存储过程中删除另一个存储过程，只能调用另一个存储过程</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/linux%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%97%B6%E7%9A%84configure/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/linux%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%97%B6%E7%9A%84configure/" class="post-title-link" itemprop="url">linux安装软件时的configure</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-28 10:02:53" itemprop="dateCreated datePublished" datetime="2020-11-28T10:02:53+08:00">2020-11-28</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-28 10:24:53" itemprop="dateModified" datetime="2020-12-28T10:24:53+08:00">2020-12-28</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/linux%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%97%B6%E7%9A%84configure/" class="post-meta-item leancloud_visitors" data-flag-title="linux安装软件时的configure" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>源码的安装一般由3个步骤组成：配置(configure)、编译(make)、安装(make install)。</p>
-<p><code>Configure</code>是一个可执行脚本，它有很多选项，在待安装的源码路径下使用命令<code>./configure –help</code>输出详细的选项列表。</p>
-<p>其中<code>–prefix</code>选项是配置安装的路径，如果不配置该选项，安装后可执行文件默认放在<code>/usr/local/bin</code>，库文件默认放在<code>/usr/local/lib</code>，配置文件默认放在<code>/usr/local/etc</code>，其它的资源文件放在<code>/usr/local/share</code>，比较凌乱。</p>
-<p>如果配置–prefix，如：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<p>可以把所有资源文件放在<code>/usr/local/test</code>的路径中，不会杂乱。</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.</span>/configure --prefix=/usr/local/test</span><br><span class="line">make 编译（时间有点久）</span><br><span class="line">make<span class="built_in"> check </span>检测编译（时间有点久,一般可不选）</span><br><span class="line">sudo make install 安装</span><br><span class="line">xxx —version 检测是否安装成功</span><br></pre></td></tr></table></figure>
-
-
-<p>用了—prefix选项的另一个好处是卸载软件或移植软件。当某个安装的软件不再需要时，只须简单的删除该安装目录，就可以把软件卸载得干干净净；移植软件只需拷贝整个目录到另外一个机器即可（相同的操作系统）。</p>
-<p>当然要卸载程序，也可以在原来的make目录下用一次<code>make uninstall</code>，但前提是make文件指定过uninstall。</p>
-<h3 id="make-check-效果-以protocol为例"><a href="#make-check-效果-以protocol为例" class="headerlink" title="make check 效果(以protocol为例)"></a>make check 效果(以protocol为例)</h3><p><img src="http://image.jk-kj.com/mweb/2020/12/28/16091222754950wer.png" alt="wer"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%B8%A6%E5%84%BF%E5%AD%90%E7%8E%A9arduino%E8%88%B5%E6%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%B8%A6%E5%84%BF%E5%AD%90%E7%8E%A9arduino%E8%88%B5%E6%9C%BA/" class="post-title-link" itemprop="url">带儿子玩arduino舵机</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-11-27 00:02:53 / 修改时间：00:11:07" itemprop="dateCreated datePublished" datetime="2020-11-27T00:02:53+08:00">2020-11-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%B8%A6%E5%84%BF%E5%AD%90%E7%8E%A9arduino%E8%88%B5%E6%9C%BA/" class="post-meta-item leancloud_visitors" data-flag-title="带儿子玩arduino舵机" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="过程图"><a href="#过程图" class="headerlink" title="过程图"></a>过程图</h4><p><img src="http://image.jk-kj.com/mweb/2020/11/27/16064068232116WechatIMG929-1.jpeg?imageView2/1/w/800" alt="WechatIMG929"></p>
-<p><img src="http://image.jk-kj.com/mweb/2020/11/27/16064066479490duoji.png?imageView2/1/w/800" alt="duoji"></p>
-<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><ul>
-<li>1、当arduino的软件打开时，无法同时使用<code>https://ide.makeblock.com</code>里的连接设备</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%B8%A6%E5%84%BF%E5%AD%90%E7%8E%A9arduino%E6%B5%81%E6%B0%B4%E7%81%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%B8%A6%E5%84%BF%E5%AD%90%E7%8E%A9arduino%E6%B5%81%E6%B0%B4%E7%81%AF/" class="post-title-link" itemprop="url">带儿子玩arduino流水灯</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-24 22:41:02" itemprop="dateCreated datePublished" datetime="2020-11-24T22:41:02+08:00">2020-11-24</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-27 00:04:50" itemprop="dateModified" datetime="2020-11-27T00:04:50+08:00">2020-11-27</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%B8%A6%E5%84%BF%E5%AD%90%E7%8E%A9arduino%E6%B5%81%E6%B0%B4%E7%81%AF/" class="post-meta-item leancloud_visitors" data-flag-title="带儿子玩arduino流水灯" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>sss<br><img src="http://image.jk-kj.com/mweb/2020/11/24/16062292222132WechatIMG910-1.jpeg?imageView2/1/w/800" alt="WechatIMG910"></p>
-<p>dd<br><img src="http://image.jk-kj.com/mweb/2020/11/24/16062290254087arduinoliushuideng.png?imageView2/1/w/800" alt="arduinoliushuideng"><br>ddd</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/Charles%E4%BF%AE%E6%94%B9%E8%BF%94%E5%9B%9E%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/Charles%E4%BF%AE%E6%94%B9%E8%BF%94%E5%9B%9E%E5%80%BC/" class="post-title-link" itemprop="url">Charles修改返回值</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-11-17 10:33:54 / 修改时间：10:42:43" itemprop="dateCreated datePublished" datetime="2020-11-17T10:33:54+08:00">2020-11-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/Charles%E4%BF%AE%E6%94%B9%E8%BF%94%E5%9B%9E%E5%80%BC/" class="post-meta-item leancloud_visitors" data-flag-title="Charles修改返回值" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一直使用的charles的抓包，没尝试过，改数据，今天抽空照着博客里的试了一遍</p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/binghuizi199293/article/details/80970344">https://blog.csdn.net/binghuizi199293/article/details/80970344</a></p>
-<h3 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h3><p>待补充</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>取消 map local</p>
-<p>菜单栏 <code>Tools &gt; Map Local</code>取消</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

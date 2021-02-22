@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,7 +210,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -242,6 +242,488 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1php%E5%AE%89%E8%A3%85ImageMagick%E6%89%A9%E5%B1%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1php%E5%AE%89%E8%A3%85ImageMagick%E6%89%A9%E5%B1%95/" class="post-title-link" itemprop="url">记一次php安装ImageMagick扩展</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-19 14:01:27" itemprop="dateCreated datePublished" datetime="2018-03-19T14:01:27+08:00">2018-03-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1php%E5%AE%89%E8%A3%85ImageMagick%E6%89%A9%E5%B1%95/" class="post-meta-item leancloud_visitors" data-flag-title="记一次php安装ImageMagick扩展" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>将pdf转png图片</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>在wamp server环境下安装php_imagick拓展<br><a target="_blank" rel="noopener" href="http://www.smallerpig.com/673.html">http://www.smallerpig.com/673.html</a><br>windows php安装ImageMagick扩展<br><a target="_blank" rel="noopener" href="http://blog.csdn.net/livelinux/article/details/50319853">http://blog.csdn.net/livelinux/article/details/50319853</a><br>Centos 安装ImageMagick 与 imagick for php步骤详解<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xingmeng/p/4268043.html#undefined">https://www.cnblogs.com/xingmeng/p/4268043.html#undefined</a></p>
+<h3 id="本机wamp下安装php-imagick拓展"><a href="#本机wamp下安装php-imagick拓展" class="headerlink" title="本机wamp下安装php_imagick拓展"></a>本机wamp下安装php_imagick拓展</h3><h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p>1.在php安装目录的ext文件夹下新建imagick文件夹<br>2.将该文件夹的路径添加到系统路径(path值).<br>3.从网址<a target="_blank" rel="noopener" href="http://windows.php.net/downloads/pecl/releases/imagick/%E4%B8%8B%E8%BD%BD%E5%AF%B9%E5%BA%94php%E7%89%88%E6%9C%AC%E7%9A%84imagick">http://windows.php.net/downloads/pecl/releases/imagick/下载对应php版本的imagick</a>(phpinfo中看php version,Compiler ，Architecture，这三个属性)<br>4.这里需要注意的是下载的文件区别,我们从文件名中来区分,例如php_imagick-3.2.0b2-5.5-nts-vc11-x86.zip</p>
+<pre><code>其中5.5是对应的php版本.
+nts值代表该文件适用于IIS,ts代表该文件适用于Apache,
+VC11和VC9是编译器的版本.我们可以适用phpinfo()命令来查看我们机器上php适用的是哪个版本(如图1)
+x86代表适用32位系统,x64代表适用64位系统</code></pre>
+<p>5.下载好对应的zip文件后,将所有文件解压到我们第一步新建的imagick文件夹!</p>
+<p>6.添加php_imagick.dll的完整路径到php.ini文件中.例如:extension=C:\wamp\bin\php\php5.5.12\ext\ext\imagick\php_imagick.dll</p>
+<p>7.重启wamp服务器</p>
+<p>8.运行phpinfo看看是不是已经成功添加拓展了</p>
+<p>9.查看phpinfo中，查看ImageMagick supported formats内的值</p>
+<p>输入phpinfo()看到imagick，就算装成功了，但这个时候还不能用，你会看到ImageMagick number of supported formats 为0，ImageMagick supported formats no value，还要安装ImageMagick ，phpinfo里面会写出要安装那个版本的，如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ImageMagick</span> <span class="number">6</span>.<span class="number">9</span>.<span class="number">3</span>-<span class="number">7</span> Q<span class="number">16</span> x<span class="number">64</span> <span class="number">2016</span>-<span class="number">03</span>-<span class="number">27</span> http://www.imagemagick.org </span><br></pre></td></tr></table></figure>
+
+<p>然后去下载这个ImageMagick 6.9.3-7 Q16 x64 版本的安装</p>
+<p>记得版本要对得上号，要不然就会出现ImageMagick supported formats no value</p>
+<p>安装完后重启，再输入phpinfo,就会看到ImageMagick supported formats不是空的了，这个时候就算安全成功</p>
+<h3 id="Centos-安装ImageMagick"><a href="#Centos-安装ImageMagick" class="headerlink" title="Centos 安装ImageMagick"></a>Centos 安装ImageMagick</h3><h4 id="1-依次运行以下命令"><a href="#1-依次运行以下命令" class="headerlink" title="1. 依次运行以下命令"></a>1. 依次运行以下命令</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> ImageMagick</span><br><span class="line"></span><br><span class="line">yum <span class="keyword">install</span> ImageMagick-devel</span><br><span class="line"></span><br><span class="line">yum <span class="keyword">install</span> php-pear [for PECL]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y <span class="keyword">install</span> php-devel</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-安装C编译器"><a href="#2-安装C编译器" class="headerlink" title="2. 安装C编译器"></a>2. 安装C编译器</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> gcc</span><br></pre></td></tr></table></figure>
+<p>如果装不了gcc就用这个命令：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc gcc-c++ <span class="built_in">auto</span>conf <span class="built_in">auto</span>make</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-安装imagick"><a href="#3-安装imagick" class="headerlink" title="3. 安装imagick"></a>3. 安装imagick</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pecl <span class="keyword">install</span> imagick</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-加载imagick到php"><a href="#4-加载imagick到php" class="headerlink" title="4. 加载imagick到php"></a>4. 加载imagick到php</h4><p>在/etc/php.ini 加上extension=imagick.so</p>
+<h4 id="5-重启service-httpd-restart"><a href="#5-重启service-httpd-restart" class="headerlink" title="5. 重启service httpd restart"></a>5. 重启service httpd restart</h4><h4 id="6-使用-phpinfo-或运行-php-m-grep-imagick-来查看是否安装成功"><a href="#6-使用-phpinfo-或运行-php-m-grep-imagick-来查看是否安装成功" class="headerlink" title="6. 使用 phpinfo() 或运行 php -m | grep imagick 来查看是否安装成功"></a>6. 使用 phpinfo() 或运行 php -m | grep imagick 来查看是否安装成功</h4><h3 id="mac-上安装"><a href="#mac-上安装" class="headerlink" title="mac 上安装"></a>mac 上安装</h3><h4 id="安装php的imagick拓展"><a href="#安装php的imagick拓展" class="headerlink" title="安装php的imagick拓展"></a>安装php的imagick拓展</h4><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew reinstall php56-imagick --build-<span class="keyword">from</span>-<span class="keyword">source</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="安装ghostscript"><a href="#安装ghostscript" class="headerlink" title="安装ghostscript"></a>安装ghostscript</h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>ghostscript</span><br></pre></td></tr></table></figure>
+
+<h3 id="linux上安装"><a href="#linux上安装" class="headerlink" title="linux上安装"></a>linux上安装</h3><p>这次被坑惨了，linux是最近新的服务器里面没有安装过GD库，这个导致我后面多个坑</p>
+<p>第一次安装走的是<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xingmeng/p/4268043.html#undefined">https://www.cnblogs.com/xingmeng/p/4268043.html#undefined</a><br>里面的方法，</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> ImageMagick</span><br><span class="line">yum <span class="keyword">install</span> ImageMagick-devel</span><br><span class="line">yum <span class="keyword">install</span> php-pear</span><br><span class="line">yum -y <span class="keyword">install</span> php-devel</span><br><span class="line">yum <span class="keyword">install</span> gcc</span><br><span class="line">yum <span class="keyword">install</span> gcc gcc-c++ autoconf automake</span><br><span class="line">pecl <span class="keyword">install</span> imagick</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>加载imagick到php<br>在/etc/php.ini 加上extension=imagick.so</p>
+<p>重启service httpd restart</p>
+<p>使用 phpinfo() 或运行 php -m | grep imagick 来查看是否安装成功</p>
+<p>这次</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Imagick,</span> ImagickDraw, ImagickPixel, ImagickPixelIterator,(ImagickKernel  不知道为什么没有这个，本机和mac上都有)  </span><br></pre></td></tr></table></figure>
+
+<p>结果提示错误，具体忘记了，估计是因为GD库没有引起的<br>之后照着<br><a target="_blank" rel="noopener" href="http://blog.csdn.net/snow_small/article/details/79173575">http://blog.csdn.net/snow_small/article/details/79173575</a><br>进行了编译安装<br>1、安装ImageMagic</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> download]<span class="meta"># wget http://www.imagemagick.org/download/ImageMagick.tar.gz  </span></span><br><span class="line"></span><br><span class="line">[root<span class="symbol">@localhost</span> download]<span class="meta"># tar -xzvf ImageMagick  </span></span><br><span class="line">[root<span class="symbol">@localhost</span> download]<span class="meta"># cd ImageMagick-7.0.7-22/  </span></span><br><span class="line">[root<span class="symbol">@localhost</span> ImageMagick<span class="number">-7.0</span><span class="number">.7</span><span class="number">-22</span>]<span class="meta"># ./configure --prefix=/usr/local/imagemagick  </span></span><br><span class="line">[root<span class="symbol">@localhost</span> ImageMagick<span class="number">-7.0</span><span class="number">.7</span><span class="number">-22</span>]<span class="meta"># make  </span></span><br><span class="line">[root<span class="symbol">@localhost</span> ImageMagick<span class="number">-7.0</span><span class="number">.7</span><span class="number">-22</span>]<span class="meta"># make install </span></span><br></pre></td></tr></table></figure>
+
+<p>2、检查是否安装成功</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[root@localhost ImageMagick-7.0.7-22]</span># /usr/local/imagemagick/bin/convert -version  </span><br><span class="line">Version: ImageMagick <span class="number">7.0</span><span class="number">.7</span><span class="number">-22</span> Q16 x86_64 <span class="number">2018</span><span class="number">-01</span><span class="number">-26</span> http:<span class="comment">//www.imagemagick.org  </span></span><br><span class="line">Copyright: © <span class="number">1999</span><span class="number">-2018</span> ImageMagick Studio LLC  </span><br><span class="line">License: http:<span class="comment">//www.imagemagick.org/script/license.php  </span></span><br><span class="line">Features: Cipher DPC HDRI OpenMP   </span><br><span class="line">Delegates (built-<span class="keyword">in</span>): fontconfig freetype jng jpeg png x xml zlib  </span><br></pre></td></tr></table></figure>
+
+
+<h3 id="我的坑"><a href="#我的坑" class="headerlink" title="我的坑"></a>我的坑</h3><p>但是报下面这个错误</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Postscript <span class="keyword">delegate</span> failed</span><br></pre></td></tr></table></figure>
+<p>是<code>ghostscript</code>没安装，可实际是安装的在<code>/usr/bin/gs</code>中，但apache死活说找不到（是权限问题），网上有个解决方案是把’/usr/local/bin/gs’做软连接到<code>/usr/bin/gs</code>,可是我这边的情况刚好是倒过来的。</p>
+<p>一狠心把<code>ghostscript</code>给卸载了，重新编译安装了gs，这次真出现在了<code>/usr/local/bin/gs</code>,建立了个软连接，真把这个问题解决了。</p>
+<p>这次因为没有安装GD库，用的png版本太老，<code>Delegates (built-in): fontconfig freetype jng jpeg (png 没显示) x xml zlib  </code></p>
+<p>一直提示<br><code>no decode delegate for this image format PNG</code><br>因为没有安装GD库，我在编译<code>ImageMagick-7.0.7-22</code>时没有将<code>png</code>编译进行</p>
+<p>直到手动添加了png库，才最终发现没有安装GD库</p>
+<p>我们在Centos安装ImageMagick教程中讲述了如何安装ImageMagick,安装完毕之后发现程序并不支持png和jpeg格式的图片,但是这两种图片又是我们平时所常见的,所以我们还要进一步地配置,是其支持png和jpeg格式.</p>
+<p>首先我们安装所需的库文件.</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> tcl-devel libpng-devel libjpeg-devel ghostscript-devel</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E9%9A%8F%E7%AC%94/%E7%88%B7%E7%88%B7%E8%B5%B0%E5%A5%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E9%9A%8F%E7%AC%94/%E7%88%B7%E7%88%B7%E8%B5%B0%E5%A5%BD/" class="post-title-link" itemprop="url">爷爷走好</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-02-06 08:43:13" itemprop="dateCreated datePublished" datetime="2018-02-06T08:43:13+08:00">2018-02-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E9%9A%8F%E7%AC%94/%E7%88%B7%E7%88%B7%E8%B5%B0%E5%A5%BD/" class="post-meta-item leancloud_visitors" data-flag-title="爷爷走好" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>您的教诲,您的事迹,您的荣誉…不会消逝，一直在我们的心里</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/brew%E5%AE%89%E8%A3%85mongodb%E5%8F%8Aphp-mongodb%E6%89%A9%E5%B1%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/brew%E5%AE%89%E8%A3%85mongodb%E5%8F%8Aphp-mongodb%E6%89%A9%E5%B1%95/" class="post-title-link" itemprop="url">brew安装mongodb及php mongodb扩展</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-01-25 12:59:34" itemprop="dateCreated datePublished" datetime="2018-01-25T12:59:34+08:00">2018-01-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/brew%E5%AE%89%E8%A3%85mongodb%E5%8F%8Aphp-mongodb%E6%89%A9%E5%B1%95/" class="post-meta-item leancloud_visitors" data-flag-title="brew安装mongodb及php mongodb扩展" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>安装某laravel项目</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="http://old.ruesin.com/system/mac/mac-mongodb-345.html">http://old.ruesin.com/system/mac/mac-mongodb-345.html</a></p>
+<h3 id="安装mongodb服务"><a href="#安装mongodb服务" class="headerlink" title="安装mongodb服务"></a>安装mongodb服务</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>mongodb</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">=<span class="function">=&gt;</span> Installing mongodb</span><br><span class="line">=<span class="function">=&gt;</span> Downloading https://homebrew.bintray.com/bottles/mongodb<span class="number">-3.4</span><span class="number">.10</span>.high_sierra.</span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span> <span class="number">100.0</span>%</span><br><span class="line">=<span class="function">=&gt;</span> Pouring mongodb<span class="number">-3.4</span><span class="number">.10</span>.high_sierra.bottle.tar.gz</span><br><span class="line">=<span class="function">=&gt;</span> Caveats</span><br><span class="line">To have launchd start mongodb now <span class="keyword">and</span> restart at login:</span><br><span class="line">  brew services start mongodb</span><br><span class="line">Or, <span class="keyword">if</span> you don<span class="string">&#x27;t want/need a background service you can just run:</span></span><br><span class="line"><span class="string">  mongod --config /usr/local/etc/mongod.conf</span></span><br><span class="line"><span class="string">==&gt; Summary</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="php-的-mongodb-扩展"><a href="#php-的-mongodb-扩展" class="headerlink" title="php 的 mongodb 扩展"></a>php 的 mongodb 扩展</h3><p>search一下</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">brew search mongo</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>php71-mongo</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装出错"><a href="#安装出错" class="headerlink" title="安装出错"></a>安装出错</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">NOTICE: PHP message: PHP Warning:  PHP Startup: mongodb: Unable to initialize module</span><br><span class="line">Module compiled <span class="keyword">with</span> <span class="keyword">build</span> <span class="keyword">ID</span>=API20160303,NTS</span><br><span class="line">PHP    <span class="keyword">compiled</span> <span class="keyword">with</span> <span class="keyword">build</span> <span class="keyword">ID</span>=API20160303,NTS,debug</span><br><span class="line">These options need <span class="keyword">to</span> <span class="keyword">match</span></span><br><span class="line"> <span class="keyword">in</span> <span class="literal">Unknown</span> <span class="keyword">on</span> line <span class="number">0</span></span><br><span class="line">&lt;br /&gt;</span><br><span class="line">&lt;b&gt;<span class="keyword">Warning</span>&lt;/b&gt;:  PHP <span class="keyword">Startup</span>: mongodb: Unable <span class="keyword">to</span> initialize <span class="keyword">module</span></span><br><span class="line"><span class="keyword">Module</span> <span class="keyword">compiled</span> <span class="keyword">with</span> <span class="keyword">build</span> <span class="keyword">ID</span>=API20160303,NTS</span><br><span class="line">PHP    <span class="keyword">compiled</span> <span class="keyword">with</span> <span class="keyword">build</span> <span class="keyword">ID</span>=API20160303,NTS,debug</span><br><span class="line">These options need <span class="keyword">to</span> <span class="keyword">match</span></span><br><span class="line"> <span class="keyword">in</span> &lt;b&gt;<span class="literal">Unknown</span>&lt;/b&gt; <span class="keyword">on</span> line &lt;b&gt;<span class="number">0</span>&lt;/b&gt;&lt;br /&gt;</span><br><span class="line"><span class="literal">Unknown</span>(<span class="number">0</span>) : <span class="keyword">Warning</span> - PHP <span class="keyword">Startup</span>: mongodb: Unable <span class="keyword">to</span> initialize <span class="keyword">module</span></span><br><span class="line"><span class="keyword">Module</span> <span class="keyword">compiled</span> <span class="keyword">with</span> <span class="keyword">build</span> <span class="keyword">ID</span>=API20160303,NTS</span><br><span class="line">PHP    <span class="keyword">compiled</span> <span class="keyword">with</span> <span class="keyword">build</span> <span class="keyword">ID</span>=API20160303,NTS,debug</span><br><span class="line">These options need <span class="keyword">to</span> <span class="keyword">match</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>网上搜是需要重新安装编译</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew reinstall &lt;formulaname&gt; --build-<span class="keyword">from</span>-<span class="keyword">source</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%A7%A3%E5%86%B3%E4%BD%BF%E7%94%A8JWT%E6%97%B6%E6%8A%A5Cannot-handle-token-prior-to%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%A7%A3%E5%86%B3%E4%BD%BF%E7%94%A8JWT%E6%97%B6%E6%8A%A5Cannot-handle-token-prior-to%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决使用JWT时报Cannot handle token prior to的问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-01-12 13:28:56" itemprop="dateCreated datePublished" datetime="2018-01-12T13:28:56+08:00">2018-01-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%A7%A3%E5%86%B3%E4%BD%BF%E7%94%A8JWT%E6%97%B6%E6%8A%A5Cannot-handle-token-prior-to%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="解决使用JWT时报Cannot handle token prior to的问题" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>使用JWT时，因为本地时间和服务器上的时间不一致，导致的请求发送失败</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>在<code>vendor\firebase\php-jwt\src\JWT.php</code>中的第113行左右添加如下的代码</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">&#x27;&lt;br /&gt; payload-&gt;iat = &#x27;</span>. <span class="variable">$payload</span>-&gt;iat . <span class="string">&#x27;&lt;br /&gt;and time() = &#x27;</span>.time() . <span class="string">&quot;&lt;br /&gt;leeway= &quot;</span>. <span class="keyword">self</span>::<span class="variable">$leeway</span>;</span><br></pre></td></tr></table></figure>
+<p>会打印出</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">payload-&gt;iat = <span class="number">1447702275</span>  </span><br><span class="line"><span class="keyword">and</span> time() = <span class="number">1447702211</span>  </span><br><span class="line">leeway= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>通过时间差计算出和服务器的差值，并调整本地的时间</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8F%96%E8%B0%B7%E6%AD%8Cchrome%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84crx%E6%8F%92%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8F%96%E8%B0%B7%E6%AD%8Cchrome%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84crx%E6%8F%92%E4%BB%B6/" class="post-title-link" itemprop="url">如何提取谷歌chrome浏览器的crx插件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-01-12 09:29:21" itemprop="dateCreated datePublished" datetime="2018-01-12T09:29:21+08:00">2018-01-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
+      </span>
+
+  
+    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8F%96%E8%B0%B7%E6%AD%8Cchrome%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84crx%E6%8F%92%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="如何提取谷歌chrome浏览器的crx插件" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>自己有翻墙工具，而其他人没有，无法获取到插件</p>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><pre><code>访问Chrome扩展商店
+
+搜索需要提取的扩展
+
+点击进入扩展详情
+
+复制地址栏连接
+
+打开chrome-extension-downloader.com
+
+粘贴地址
+
+点击下载即可</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -728,508 +1210,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/GitBash%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E4%B9%8B%E5%90%8E%E7%9A%84%E8%B7%AF%E5%BE%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/GitBash%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E4%B9%8B%E5%90%8E%E7%9A%84%E8%B7%AF%E5%BE%84/" class="post-title-link" itemprop="url">GitBash修改默认打开之后的路径</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-03 08:58:26" itemprop="dateCreated datePublished" datetime="2017-11-03T08:58:26+08:00">2017-11-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/GitBash%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E4%B9%8B%E5%90%8E%E7%9A%84%E8%B7%AF%E5%BE%84/" class="post-meta-item leancloud_visitors" data-flag-title="GitBash修改默认打开之后的路径" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>在公司windows下用gitbash，每次打开都要切换到D盘指定目录，非常费时，网上搜了一下果真有对应方法</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/zzfenglin/article/details/54646541">http://blog.csdn.net/zzfenglin/article/details/54646541</a></p>
-<h4 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h4><p>在“Git Bash”快捷方式上点击鼠标右键，然后选择“属性”，会弹出如下截图的提示框：</p>
-<img src="http://img.blog.csdn.net/20170121165353158">
-
-<p>我们可以看到在“目标”后面的输入框中有操作的命令，在命令的最后是“–cd-to-home”，就是这条命令在快捷方式打开的时候切换到“/c/Users/Administrator”路径了。</p>
-<p>假如，我们想把默认路径修改为“D:\android_workspace”，那我们需要操作两步：</p>
-<p>1.将“目录”后面输入框中命令结尾部分去掉，即删掉“–cd-to-home”。</p>
-<p>2.将“起始位置”后面的输入框中的内容修改为我们想要的默认路径“D:\android_workspace”（注意：这个路径是根据你自己代码工程的位置而定的）</p>
-<p>修改之后的操作截图如下：</p>
-<img src="http://img.blog.csdn.net/20170121165423783">
-
-<p>修改之后，点击“确定”，然后重新打开“Git Bash”，就会自动切换到我们想要的路径</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/git%E6%8F%90%E4%BA%A4%E8%AF%B7%E6%B1%82%E5%85%8D%E8%BE%93%E5%85%A5git%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%86%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/git%E6%8F%90%E4%BA%A4%E8%AF%B7%E6%B1%82%E5%85%8D%E8%BE%93%E5%85%A5git%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%86%E7%A0%81/" class="post-title-link" itemprop="url">git提交请求免输入git服务器密码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-01 08:50:58" itemprop="dateCreated datePublished" datetime="2017-11-01T08:50:58+08:00">2017-11-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/git%E6%8F%90%E4%BA%A4%E8%AF%B7%E6%B1%82%E5%85%8D%E8%BE%93%E5%85%A5git%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%86%E7%A0%81/" class="post-meta-item leancloud_visitors" data-flag-title="git提交请求免输入git服务器密码" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>每次百度这内容，都要花费我不少时间</p>
-<h4 id="客户端初始化"><a href="#客户端初始化" class="headerlink" title="客户端初始化"></a>客户端初始化</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global user.name <span class="string">&quot;yourname&quot;</span>  </span><br><span class="line">git<span class="built_in"> config </span>--global user.email <span class="string">&quot;your@email.com&quot;</span>  </span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -<span class="built_in">t</span> rsa -C <span class="string">&quot;XXX@company.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>在git服务器下的git主目录下面的.ssh文件下添加（修改）</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">authorized_keys</span></span><br></pre></td></tr></table></figure>
-
-<p>重新启动sshd</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">service sshd restart</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9C%A8vue%E4%B8%AD%E4%BD%BF%E7%94%A8axios%EF%BC%8C%E5%8F%82%E6%95%B0%E6%B2%A1%E6%9C%89%E5%BA%8F%E5%88%97%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9C%A8vue%E4%B8%AD%E4%BD%BF%E7%94%A8axios%EF%BC%8C%E5%8F%82%E6%95%B0%E6%B2%A1%E6%9C%89%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">记一次在vue中使用axios，参数没有序列化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-01 07:22:16" itemprop="dateCreated datePublished" datetime="2017-11-01T07:22:16+08:00">2017-11-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E8%B7%B3%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9C%A8vue%E4%B8%AD%E4%BD%BF%E7%94%A8axios%EF%BC%8C%E5%8F%82%E6%95%B0%E6%B2%A1%E6%9C%89%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="记一次在vue中使用axios，参数没有序列化" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>开始用vue写项目，可是用axios进行get操作没问题，进行post操作时，post的值始终没有传过来</p>
-<p>直到搜索到“qs序列化”关键词，才发现其中的缘由</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>Kouss博客 <a target="_blank" rel="noopener" href="http://kouss.com/3884.html">http://kouss.com/3884.html</a></p>
-<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>设置了headers中Content-Type为application/x-www-form-urlencoded数据格式，post发起的请求仍为json类型，并没有序列化。<br>郁闷的是用JSON.stringify无效。</p>
-<img src="http://s.kouss.com/wp-content/uploads/2017/01/f413b81288.png">
-
-<p>这个Form Data后台取不到数据，正常的Form Data数据应该是key：val<br>最终解决方法：使用qs</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> qs = <span class="keyword">require</span>(<span class="string">&#x27;qs&#x27;</span>)</span><br><span class="line">Vue.prototype.$http = axios.create(&#123;</span><br><span class="line">    baseURL: <span class="string">&#x27;http://chaozhi.hk&#x27;</span>,</span><br><span class="line">    timeout: <span class="number">10000</span>,</span><br><span class="line">    headers: &#123;<span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>&#125;,</span><br><span class="line">    transformRequest: <span class="meta">[</span>function (<span class="built_in">data</span>) &#123;</span><br><span class="line">        <span class="built_in">data</span> = qs.stringify(<span class="built_in">data</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">data</span></span><br><span class="line">    &#125;<span class="meta">]</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/ab%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/ab%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">ab性能测试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-10-25 15:19:00" itemprop="dateCreated datePublished" datetime="2017-10-25T15:19:00+08:00">2017-10-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/ab%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="ab性能测试" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>早先在CPK项目时，因为有用户反应页面打不开，后来采用了CDN和静态页，那段时间也用ab测试工具测试过速度,但用了之后就没深入了解（主要是没写笔记做记录，忘记了）<br>之后因为离职去应聘时，一个面试官问过ab测试，且对我当时的一个开源项目进行了简单的压力测试。因为采用了pjax，没用静态页，首页的测试并不理想，之后打算着将TP的静态页部分改进下，满足pjax时也能调用。<br>在laravel，TP5，YII2等框架性能据说都有不错的提升时，自己用TP3.2开源的项目就显得十分的老旧。如何对比速度上的差异，也就只能先记录下TP3.2时的速度，用新框架的速度来进行对比。</p>
-<h3 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a>参考地址</h3><p>作者：橙子酱<br>链接：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/43d04d8baaf7">http://www.jianshu.com/p/43d04d8baaf7</a><br>來源：简书</p>
-<h3 id="关于压力测试的概念"><a href="#关于压力测试的概念" class="headerlink" title="关于压力测试的概念"></a>关于压力测试的概念</h3><h4 id="吞吐率（Requests-per-second）"><a href="#吞吐率（Requests-per-second）" class="headerlink" title="吞吐率（Requests per second）"></a>吞吐率（Requests per second）</h4><p>概念：服务器并发处理能力的量化描述，单位是reqs/s，指的是某个并发用户数下单位时间内处理的请求数。某个并发用户数下单位时间内能处理的最大请求数，称之为最大吞吐率。<br>计算公式：总请求数 / 处理完成这些请求数所花费的时间，即</p>
-<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Request</span> per <span class="built_in">second</span> = Complete requests / <span class="built_in">Time</span> taken <span class="keyword">for</span> tests</span><br></pre></td></tr></table></figure>
-<p>以100并发 100次请求，各大网站的对比(20171025)</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">百度(www.baidu.com)   <span class="number">80</span>~<span class="number">88</span></span><br><span class="line">知乎(www.zhihu.com)   <span class="number">75</span>~<span class="number">85</span></span><br><span class="line">QQ(www.qq.com)        <span class="number">25</span>~<span class="number">35</span></span><br><span class="line">微博（www.weibo.com） <span class="number">20</span>~<span class="number">25</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="并发连接数（The-number-of-concurrent-connections）"><a href="#并发连接数（The-number-of-concurrent-connections）" class="headerlink" title="并发连接数（The number of concurrent connections）"></a>并发连接数（The number of concurrent connections）</h4><p>概念：某个时刻服务器所接受的请求数目，简单的讲，就是一个会话。</p>
-<h4 id="并发用户数（The-number-of-concurrent-users，Concurrency-Level）"><a href="#并发用户数（The-number-of-concurrent-users，Concurrency-Level）" class="headerlink" title="并发用户数（The number of concurrent users，Concurrency Level）"></a>并发用户数（The number of concurrent users，Concurrency Level）</h4><p>概念：要注意区分这个概念和并发连接数之间的区别，一个用户可能同时会产生多个会话，也即连接数。</p>
-<h4 id="用户平均请求等待时间（Time-per-request）"><a href="#用户平均请求等待时间（Time-per-request）" class="headerlink" title="用户平均请求等待时间（Time per request）"></a>用户平均请求等待时间（Time per request）</h4><p>计算公式：处理完成所有请求数所花费的时间/ （总请求数 / 并发用户数），即</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Time</span> per request = <span class="type">Time</span> taken <span class="keyword">for</span> tests /（ Complete requests / Concurrency <span class="keyword">Level</span>）</span><br></pre></td></tr></table></figure>
-
-<h4 id="服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）"><a href="#服务器平均请求等待时间（Time-per-request-across-all-concurrent-requests）" class="headerlink" title="服务器平均请求等待时间（Time per request: across all concurrent requests）"></a>服务器平均请求等待时间（Time per request: across all concurrent requests）</h4><p>计算公式：处理完成所有请求数所花费的时间 / 总请求数，即</p>
-<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Time</span> taken <span class="keyword">for</span> / testsComplete requests</span><br></pre></td></tr></table></figure>
-<p>可以看到，它是吞吐率的倒数。<br>同时，它也 等于 用户平均请求等待时间/并发用户数，即</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Time</span> per request / Concurrency <span class="keyword">Level</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">百度(www.baidu.com)   <span class="number">1100</span>~<span class="number">1300</span>  <span class="number">11.00</span>~<span class="number">13.00</span></span><br><span class="line">知乎(www.zhihu.com)   <span class="number">1100</span>~<span class="number">1300</span>  <span class="number">11.00</span>~<span class="number">13.00</span></span><br><span class="line">QQ(www.qq.com)        <span class="number">3200</span>~<span class="number">3500</span>  <span class="number">32.00</span>~<span class="number">35.00</span></span><br><span class="line">微博（www.weibo.com）  <span class="number">4000</span>~<span class="number">5000</span>  <span class="number">40.00</span>~<span class="number">50.00</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h3 id="单次测试结果的说明"><a href="#单次测试结果的说明" class="headerlink" title="单次测试结果的说明"></a>单次测试结果的说明</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Concurrency Level:</span> <span class="number">100</span>                 <span class="string">//并发请求数</span></span><br><span class="line"><span class="attr">Time taken for tests:</span> <span class="number">50.872</span> <span class="string">seconds</span>   <span class="string">//整个测试持续的时间</span></span><br><span class="line"><span class="attr">Complete requests:</span> <span class="number">1000</span>                <span class="string">//完成的请求数</span></span><br><span class="line"><span class="attr">Failed requests:</span> <span class="number">0</span>                     <span class="string">//失败的请求数</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Total transferred:</span> <span class="number">13701482</span> <span class="string">bytes</span>      <span class="string">//整个场景中的网络传输量</span></span><br><span class="line"><span class="attr">HTML transferred:</span> <span class="number">13197000</span> <span class="string">bytes</span>       <span class="string">//整个场景中的HTML内容传输量</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Requests per second:</span> <span class="number">19.66</span> [<span class="comment">#/sec] (mean)   //吞吐率，大家最关心的指标之一，相当于 LR 中的每秒事务数，后面括号中的 mean 表示这是一个平均值</span></span><br><span class="line"><span class="attr">Time per request:</span> <span class="number">5087.180</span> [<span class="string">ms</span>] <span class="string">(mean)</span>      <span class="string">//用户平均请求等待时间，大家最关心的指标之二，相当于</span> <span class="string">LR</span> <span class="string">中的平均事务响应时间，后面括号中的</span> <span class="string">mean</span> <span class="string">表示这是一个平均值</span></span><br><span class="line"><span class="attr">Time per request:</span> <span class="number">50.872</span> [<span class="string">ms</span>] <span class="string">(mean</span>, <span class="string">across</span> <span class="string">all</span> <span class="string">concurrent</span> <span class="string">requests)</span>   <span class="string">//服务器平均请求处理时间，大家最关心的指标之三</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Transfer rate:</span> <span class="number">263.02</span> [<span class="string">Kbytes/sec</span>] <span class="string">received</span>   <span class="string">//平均每秒网络上的流量，可以帮助排除是否存在网络流量过大导致响应时间延长的问题</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="关于登录的问题"><a href="#关于登录的问题" class="headerlink" title="关于登录的问题"></a>关于登录的问题</h3><p>有时候进行压力测试需要用户登录，怎么办？<br>请参考以下步骤：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先用账户和密码登录后，用开发者工具找到标识这个会话的Cookie值（<span class="keyword">Session</span> ID）记下来</span><br></pre></td></tr></table></figure>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果只用到一个Cookie，那么只需键入命令：</span><br><span class="line">ab －n <span class="number">100</span> －C <span class="built_in">key</span>＝<span class="built_in">value</span> http:<span class="comment">//test.com/</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果需要多个Cookie，就直接设Header：</span><br><span class="line">ab -n <span class="number">100</span> -H “<span class="attr">Cookie:</span> Key1=Value1; Key2=Value2” <span class="attr">http:</span><span class="comment">//test.com/</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="如何防止别人用ab之类的测试软件恶意请求自己的网站"><a href="#如何防止别人用ab之类的测试软件恶意请求自己的网站" class="headerlink" title="如何防止别人用ab之类的测试软件恶意请求自己的网站"></a>如何防止别人用ab之类的测试软件恶意请求自己的网站</h3><p>网友回答：</p>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">目前此类软件可以很真实的模拟浏览器请求，所以在少量的请求下，基本上是屏蔽不了的。</span><br><span class="line">但是，使用此类软件请求你的网站通常都有其他目的，会产生大量重复的请求。</span><br><span class="line">可以通过单位时间的请求次数进行控制，相同<span class="built_in">IP</span>或者相同的userAgint产生的异常请求通过程序判断来禁止。</span><br><span class="line">但是即便程序做了判断，请求已经进入处理阶段依然会影响性能，所以还要配合其他的处理方式，重复响应最好用缓存的方式来实现，避免过多的消耗<span class="meta">CPU</span>；确诊的问题<span class="built_in">IP</span>应该在防火墙端就进行屏蔽。</span><br></pre></td></tr></table></figure>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">nginx</span>的话可以用HttpLimitReqModule</span><br><span class="line">此模块能通过特定的客户端标识（如<span class="built_in">IP</span>，UA等）来限制客户端在一定时间内的访问频次，比你在程序里控制要省资源得多。</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/mysql%E4%B8%AD%E7%9A%84%E8%A7%86%E5%9B%BE%EF%BC%88%E8%BD%AC%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hottredpen">
-      <meta itemprop="description" content="直观层">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="简客-记忆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/mysql%E4%B8%AD%E7%9A%84%E8%A7%86%E5%9B%BE%EF%BC%88%E8%BD%AC%EF%BC%89/" class="post-title-link" itemprop="url">mysql中的视图（转）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-10-24 09:22:05" itemprop="dateCreated datePublished" datetime="2017-10-24T09:22:05+08:00">2017-10-24</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 20:29:21" itemprop="dateModified" datetime="2020-11-12T20:29:21+08:00">2020-11-12</time>
-      </span>
-
-  
-    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/mysql%E4%B8%AD%E7%9A%84%E8%A7%86%E5%9B%BE%EF%BC%88%E8%BD%AC%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="mysql中的视图（转）" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>上一个项目接手后，在转移数据庫的时候，数据庫的转移失败，那是我第一次接触mysql视图。但是那时没去研究啥是视图。</p>
-<p>今天查看另一个项目时，又发现了mysql视图的存在，需要充电一下了！</p>
-<h4 id="文章来源"><a href="#文章来源" class="headerlink" title="文章来源"></a>文章来源</h4><p>作者：风一样的码农<br>原文地址：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/chenpi/p/5133648.html">http://www.cnblogs.com/chenpi/p/5133648.html</a></p>
-<h4 id="什么是视图"><a href="#什么是视图" class="headerlink" title="什么是视图"></a>什么是视图</h4><p>通俗的讲，视图就是一条SELECT语句执行后返回的结果集。所以我们在创建视图的时候，主要的工作就落在创建这条SQL查询语句上。</p>
-<h4 id="视图的特性"><a href="#视图的特性" class="headerlink" title="视图的特性"></a>视图的特性</h4><p>视图是对若干张基本表的引用，一张虚表，查询语句执行的结果，不存储具体的数据（基本表数据发生了改变，视图也会跟着改变）；</p>
-<p>可以跟基本表一样，进行增删改查操作(ps:增删改操作有条件限制)；</p>
-<h4 id="视图的作用"><a href="#视图的作用" class="headerlink" title="视图的作用"></a>视图的作用</h4><p>方便操作，特别是查询操作，减少复杂的SQL语句，增强可读性；</p>
-<p>更加安全，数据库授权命令不能限定到特定行和特定列，但是通过合理创建视图，可以把权限限定到行列级别；</p>
-<h4 id="使用场合"><a href="#使用场合" class="headerlink" title="使用场合"></a>使用场合</h4><p>权限控制的时候，不希望用户访问表中某些含敏感信息的列，比如salary…</p>
-<p>关键信息来源于多个复杂关联表，可以创建视图提取我们需要的信息，简化操作；</p>
-<h4 id="视图实例1-创建视图及查询数据操作"><a href="#视图实例1-创建视图及查询数据操作" class="headerlink" title="视图实例1-创建视图及查询数据操作"></a>视图实例1-创建视图及查询数据操作</h4><p>现有三张表：用户(user)、课程(course)、用户课程中间表(user_course)，表结构及数据如下：</p>
-<p>表定义：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Table structure for `course`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`course`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`course`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`description`</span> <span class="built_in">varchar</span>(<span class="number">500</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Records of course</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;JAVA&#x27;</span>, <span class="string">&#x27;JAVA课程&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;C++&#x27;</span>, <span class="string">&#x27;C++课程&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;C语言&#x27;</span>, <span class="string">&#x27;C语言课程&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Table structure for `user`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`account`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`others`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`others2`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Records of user</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;user1&#x27;</span>, <span class="string">&#x27;小陈&#x27;</span>, <span class="string">&#x27;美国&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;1&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;user2&#x27;</span>, <span class="string">&#x27;小张&#x27;</span>, <span class="string">&#x27;日本&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;user3&#x27;</span>, <span class="string">&#x27;小王&#x27;</span>, <span class="string">&#x27;中国&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Table structure for `user_course`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user_course`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user_course`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`userid`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`courseid`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">7</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Records of user_course</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;1&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user_course`</span> <span class="keyword">VALUES</span> (<span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;2&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-
-<p>这时，当我们想要查询小张上的所以课程相关信息的时候，需要这样写一条长长的SQL语句，如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="string">`uc`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</span><br><span class="line">    <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span>,</span><br><span class="line">    <span class="string">`c`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`coursename`</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    <span class="string">`user`</span> <span class="string">`u`</span></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`user_course`</span> <span class="string">`uc`</span> <span class="keyword">ON</span> ((<span class="string">`u`</span>.<span class="string">`id`</span> = <span class="string">`uc`</span>.<span class="string">`userid`</span>))</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`course`</span> <span class="string">`c`</span> <span class="keyword">ON</span> ((<span class="string">`uc`</span>.<span class="string">`courseid`</span> = <span class="string">`c`</span>.<span class="string">`id`</span>))</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    u.<span class="string">`name`</span> = <span class="string">&#x27;小张&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>但是我们可以通过视图简化操作，例如我们创建视图view_user_course如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- View structure for `view_user_course`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span></span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`view_user_course`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> ALGORITHM = UNDEFINED </span><br><span class="line">DEFINER = <span class="string">`root`</span>@<span class="string">`localhost`</span> </span><br><span class="line"><span class="keyword">SQL</span> <span class="keyword">SECURITY</span> DEFINER </span><br><span class="line"><span class="keyword">VIEW</span> <span class="string">`view_user_course`</span> <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span></span><br><span class="line">        <span class="string">`uc`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</span><br><span class="line">        <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span>,</span><br><span class="line">        <span class="string">`c`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`coursename`</span></span><br><span class="line">    <span class="keyword">FROM</span></span><br><span class="line">        (</span><br><span class="line">            (</span><br><span class="line">                <span class="string">`user`</span> <span class="string">`u`</span></span><br><span class="line">                <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`user_course`</span> <span class="string">`uc`</span> <span class="keyword">ON</span> ((<span class="string">`u`</span>.<span class="string">`id`</span> = <span class="string">`uc`</span>.<span class="string">`userid`</span>))</span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="string">`course`</span> <span class="string">`c`</span> <span class="keyword">ON</span> ((<span class="string">`uc`</span>.<span class="string">`courseid`</span> = <span class="string">`c`</span>.<span class="string">`id`</span>))</span><br><span class="line">        )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>几点说明（MySQL中的视图在标准SQL的基础之上做了扩展）：</p>
-<p>ALGORITHM=UNDEFINED：指定视图的处理算法；</p>
-<p>DEFINER=<code>root</code>@<code>localhost</code>：指定视图创建者；</p>
-<p>SQL SECURITY DEFINER：指定视图查询数据时的安全验证方式；</p>
-<p>创建好视图之后，我们可以直接用以下SQL语句在视图上查询小张上的所以课程相关信息，同样可以得到所需结果：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    vuc.username,</span><br><span class="line">    vuc.coursename</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    view_user_course vuc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">     vuc.username = <span class="string">&#x27;小张&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="视图实例2-增删改数据操作"><a href="#视图实例2-增删改数据操作" class="headerlink" title="视图实例2-增删改数据操作"></a>视图实例2-增删改数据操作</h4><p>继续，我们可以尝试在视图view_user_course上做增删改数据操作，如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> username=<span class="string">&#x27;test&#x27;</span>,coursename=<span class="string">&#x27;JAVASCRIPT&#x27;</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span></span><br></pre></td></tr></table></figure>
-<p>遗憾的是操作失败，提示错误信息如下：</p>
-<p>[SQL] update view_user_course set username=’test’,coursename=’JAVASCRIPT’ where id=3</p>
-<p>[Err] 1393 - Can not modify more than one base table through a join view ‘demo.view_user_course’</p>
-<p>因为不能在一张由多张关联表连接而成的视图上做同时修改两张表的操作；</p>
-<p>那么哪些操作可以在视图上进行呢？</p>
-<p>视图与表是一对一关系情况：如果没有其它约束（如视图中没有的字段，在基本表中是必填字段情况），是可以进行增删改数据操作；</p>
-<p>如我们创建用户关键信息视图view_user_keyinfo，如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- View structure for `view_user_keyinfo`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span></span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`view_user_keyinfo`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> ALGORITHM = UNDEFINED DEFINER = <span class="string">`root`</span>@<span class="string">`localhost`</span> <span class="keyword">SQL</span> <span class="keyword">SECURITY</span> DEFINER <span class="keyword">VIEW</span> <span class="string">`view_user_keyinfo`</span> <span class="keyword">AS</span> <span class="keyword">SELECT</span></span><br><span class="line">    <span class="string">`u`</span>.<span class="string">`id`</span> <span class="keyword">AS</span> <span class="string">`id`</span>,</span><br><span class="line">    <span class="string">`u`</span>.<span class="string">`account`</span> <span class="keyword">AS</span> <span class="string">`account`</span>,</span><br><span class="line">    <span class="string">`u`</span>.<span class="string">`name`</span> <span class="keyword">AS</span> <span class="string">`username`</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    <span class="string">`user`</span> <span class="string">`u`</span>;</span><br></pre></td></tr></table></figure>
-
-<p>进行增删改操作如下，操作成功（注意user表中的其它字段要允许为空，否则操作失败）：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> view_user_keyinfo (<span class="keyword">account</span>, username)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">    (<span class="string">&#x27;test1&#x27;</span>, <span class="string">&#x27;test1&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    view_user_keyinfo</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    username = <span class="string">&#x27;test1&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> view_user_keyinfo</span><br><span class="line"><span class="keyword">SET</span> username = <span class="string">&#x27;updateuser&#x27;</span></span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    <span class="keyword">id</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p>视图与表是一对多关系情况：如果只修改一张表的数据，且没有其它约束（如视图中没有的字段，在基本表中是必填字段情况），是可以进行改数据操作，如以下语句，操作成功；</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> coursename=<span class="string">&#x27;JAVA&#x27;</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">update</span> view_user_course <span class="keyword">set</span> username=<span class="string">&#x27;test2&#x27;</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
-
-<p>以下操作失败：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> view_user_course <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> view_user_course(username, coursename) <span class="keyword">VALUES</span>(<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><p>视图中的查询语句性能要调到最优；<br>修改操作时要小心，不经意间你已经修改了基本表里的多条数据；</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
