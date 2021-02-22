@@ -3,7 +3,8 @@
 [TOC]
 
 ### 定义结构体
-在src/server/msg/lobby.proto下定义结构体
+// 在src/server/msg/lobby.proto下定义结构体
+在script/protocol/lobby.proto下定义结构体
 ChatREQ // 消息发送
 ChatACK // 消息送达
 ```go
