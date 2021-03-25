@@ -22,8 +22,8 @@ proxy_send_timeout;
 
         proxy_http_version 1.1;
         proxy_connect_timeout 4s; #配置点1
-        proxy_read_timeout 600s; #配置点2，这段时间内没有任何发送也不断掉
-        proxy_send_timeout 12s; #配置点3
+        proxy_read_timeout 600s; #配置点2，这段时间内没有任何读也不断掉
+        proxy_send_timeout 600s; #配置点3，这段时间内没有任何发送也不断掉
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
     }
