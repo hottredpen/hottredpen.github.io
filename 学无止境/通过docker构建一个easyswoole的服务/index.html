@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.jk-kj.com","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="开始新建easyswooletest目录，并在里面新建Dockerfile Dockerfile 123456789101112131415161718192021222324252627282930313233343536373839404142434445FROM centos:8#version definedENV SWOOLE_VERSION 4.4.26ENV EASYSWOOLE_V">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过docker构建一个easyswoole的服务">
+<meta property="og:url" content="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E9%80%9A%E8%BF%87docker%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AAeasyswoole%E7%9A%84%E6%9C%8D%E5%8A%A1/index.html">
+<meta property="og:site_name" content="简客-记忆">
+<meta property="og:description" content="开始新建easyswooletest目录，并在里面新建Dockerfile Dockerfile 123456789101112131415161718192021222324252627282930313233343536373839404142434445FROM centos:8#version definedENV SWOOLE_VERSION 4.4.26ENV EASYSWOOLE_V">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-06T02:15:53.000Z">
+<meta property="article:modified_time" content="2021-07-06T05:22:39.533Z">
+<meta property="article:author" content="hottredpen">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E9%80%9A%E8%BF%87docker%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AAeasyswoole%E7%9A%84%E6%9C%8D%E5%8A%A1/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>通过docker构建一个easyswoole的服务 | 简客-记忆</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">简客-记忆</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">抽象的才是永恒的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%B7%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">数据卷的作用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">进入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%AE%B9%E5%99%A8%E7%94%9F%E6%88%90%E9%95%9C%E5%83%8F"><span class="nav-number">4.</span> <span class="nav-text">通过容器生成镜像</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hottredpen"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">hottredpen</p>
+  <div class="site-description" itemprop="description">直观层</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jk-kj.com/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E9%80%9A%E8%BF%87docker%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AAeasyswoole%E7%9A%84%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hottredpen">
+      <meta itemprop="description" content="直观层">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简客-记忆">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          通过docker构建一个easyswoole的服务
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-07-06 10:15:53 / 修改时间：13:22:39" itemprop="dateCreated datePublished" datetime="2021-07-06T10:15:53+08:00">2021-07-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">学无止境</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/%E9%80%9A%E8%BF%87docker%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AAeasyswoole%E7%9A%84%E6%9C%8D%E5%8A%A1/" class="post-meta-item leancloud_visitors" data-flag-title="通过docker构建一个easyswoole的服务" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>新建easyswooletest目录，并在里面新建Dockerfile</p>
+<p>Dockerfile</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">FROM centos:<span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#version defined</span></span><br><span class="line">ENV SWOOLE_VERSION <span class="number">4.4</span>.<span class="number">26</span></span><br><span class="line">ENV EASYSWOOLE_VERSION <span class="number">3.4</span>.x</span><br><span class="line"></span><br><span class="line"><span class="comment">#install libs</span></span><br><span class="line">RUN yum install -y curl zip unzip  wget openssl-devel gcc-c++ make autoconf git epel-release</span><br><span class="line">RUN dnf -y install https:<span class="regexp">//</span>rpms.remirepo.net<span class="regexp">/enterprise/</span>remi-release-<span class="number">8</span>.rpm</span><br><span class="line"><span class="comment">#install php</span></span><br><span class="line">RUN yum --enablerepo=remi install -y php74-php php74-php-devel php74-php-mbstring php74-php-json php74-php-simplexml php74-php-gd</span><br><span class="line"></span><br><span class="line">RUN ln -s <span class="regexp">/opt/</span>remi<span class="regexp">/php74/</span>root<span class="regexp">/usr/</span>bin<span class="regexp">/php /u</span>sr<span class="regexp">/bin/</span>php \</span><br><span class="line">    &amp;&amp; ln -s <span class="regexp">/opt/</span>remi<span class="regexp">/php74/</span>root<span class="regexp">/usr/</span>bin<span class="regexp">/phpize /u</span>sr<span class="regexp">/bin/</span>phpize \</span><br><span class="line">    &amp;&amp; ln -s <span class="regexp">/opt/</span>remi<span class="regexp">/php74/</span>root<span class="regexp">/usr/</span>bin<span class="regexp">/php-config /u</span>sr<span class="regexp">/bin/</span>php-config</span><br><span class="line"></span><br><span class="line"><span class="comment"># composer</span></span><br><span class="line">RUN curl -sS https:<span class="regexp">//g</span>etcomposer.org/installer | php \</span><br><span class="line">    &amp;&amp; mv composer.phar <span class="regexp">/usr/</span>bin<span class="regexp">/composer &amp;&amp; chmod +x /u</span>sr<span class="regexp">/bin/</span>composer</span><br><span class="line"><span class="comment"># use aliyun composer 由于最近阿里云镜像不稳定，废弃使用</span></span><br><span class="line"><span class="comment"># RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># swoole ext</span></span><br><span class="line">RUN wget https:<span class="regexp">//gi</span>thub.com<span class="regexp">/swoole/</span>swoole-src<span class="regexp">/archive/</span>v<span class="variable">$&#123;SWOOLE_VERSION&#125;</span>.tar.gz -O swoole.tar.gz \</span><br><span class="line">    &amp;&amp; mkdir -p swoole \</span><br><span class="line">    &amp;&amp; tar -xf swoole.tar.gz -C swoole --strip-components=<span class="number">1</span> \</span><br><span class="line">    &amp;&amp; rm swoole.tar.gz \</span><br><span class="line">    &amp;&amp; ( \</span><br><span class="line">    cd swoole \</span><br><span class="line">    &amp;&amp; phpize \</span><br><span class="line">    &amp;&amp; ./configure --enable-openssl \</span><br><span class="line">    &amp;&amp; make \</span><br><span class="line">    &amp;&amp; make install \</span><br><span class="line">    ) \</span><br><span class="line">    &amp;&amp; sed -i <span class="string">&quot;2i extension=swoole.so&quot;</span> <span class="regexp">/etc/</span>opt<span class="regexp">/remi/</span>php74/php.ini \</span><br><span class="line">    &amp;&amp; rm -r swoole</span><br><span class="line"></span><br><span class="line"><span class="comment"># Dir</span></span><br><span class="line">WORKDIR /easyswoole</span><br><span class="line"><span class="comment"># install easyswoole</span></span><br><span class="line">RUN cd /easyswoole \</span><br><span class="line">    &amp;&amp; composer require easyswoole/easyswoole=<span class="variable">$&#123;EASYSWOOLE_VERSION&#125;</span> \</span><br><span class="line">    &amp;&amp; php vendor<span class="regexp">/easyswoole/</span>easyswoole<span class="regexp">/bin/</span>easyswoole install</span><br><span class="line"></span><br><span class="line">EXPOSE <span class="number">9501</span></span><br></pre></td></tr></table></figure>
+
+<p>以上面Dockerfile创建一个myeasyswooletest镜像</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t myeasyswooletest .</span><br></pre></td></tr></table></figure>
+
+
+<p>安装完毕后,新建一个容器</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> <span class="attribute">--name</span>=mytest -ti -p 9501:9501 myeasyswooletest</span><br></pre></td></tr></table></figure>
+<p>-ti 启动容器后直接进入容器终端<br>-p 容器端口映射到外部端口</p>
+<p>此时发现容器根目录中存在easyswoole项目目录，为了方便开发，需要做目录映射，由于直接映射会覆盖掉容器中对应目录的内容，需要在宿主机安装easyswoole再进行映射，因此这里先将容器中项目目录拷贝出来，再重新创建容器并映射目录</p>
+<p>拷贝文件目录到宿主机中</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker cp &#123;dockerId&#125;:<span class="regexp">/easyswoole /</span>www<span class="regexp">/wwwroot/my</span>easyswoolestest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>关闭并删除容器</p>
+<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">stop</span> &#123;dockerId&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">docker</span> <span class="keyword">rm</span> &#123;dockerId&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动容器并映射目录</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -ti -p <span class="number">9501</span>:<span class="number">9501</span> --restart=always  -v <span class="regexp">/www/</span>wwwroot<span class="regexp">/myeasyswooletest:/</span>easyswoole myeasyswooletest7</span><br></pre></td></tr></table></figure>
+<p>-t:在新容器内指定一个伪终端或终端。</p>
+<p>-i:允许你对容器内的标准输入 (STDIN) 进行交互。</p>
+<p>-d:让容器在后台运行。</p>
+<p>-P:将容器内部使用的网络端口映射到我们使用的主机上。</p>
+<p>-p : 是容器内部端口绑定到指定的主机端口</p>
+<p>-v：参数用于数据卷映射，/home/vpaas 是宿主机卷标，/usr/local/vpaas_file 是容器卷标</p>
+<p>–name:  容器名称</p>
+<p>vpaas:latest： 创建的镜像名</p>
+<h3 id="数据卷的作用："><a href="#数据卷的作用：" class="headerlink" title="数据卷的作用："></a>数据卷的作用：</h3><p>docker 镜像启动的容器和宿主机可以看成两个不同的Linux系统，这两个文件系统之间传输文件就是用数据卷进行传输的。</p>
+<p>宿主机将文件放入到 /home/vpaas 中，通过容器卷标  /usr/local/vpaas_file  就可以看到放入的文件，类似于文件夹共享。</p>
+<h3 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it &#123;dockerId&#125; <span class="regexp">/bin/</span>bash</span><br></pre></td></tr></table></figure>
+
+<p>在容器内安装—为了word转pdf</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> -y libreoffice </span><br><span class="line">yum <span class="keyword">install</span> -y unoconv</span><br><span class="line">yum <span class="keyword">install</span> -y ImageMagick</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过容器生成镜像"><a href="#通过容器生成镜像" class="headerlink" title="通过容器生成镜像"></a>通过容器生成镜像</h3><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m <span class="string">&quot;安装word转pdf的依赖&quot;</span> &#123;dockerId&#125; <span class="keyword">new</span><span class="type">server</span>```</span><br><span class="line">-m:<span class="type"></span>提交的描述信息</span><br><span class="line"></span><br><span class="line">-a: <span class="type"></span>指定镜像作者</span><br><span class="line"></span><br><span class="line">e218edb10161：容器ID </span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span><span class="type">server</span>:  指定要创建的目标镜像名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">### 重新新建容器</span></span><br></pre></td></tr></table></figure>
+<p>docker run -ti -p 9501:9501 –restart=always  -v /www/wwwroot/myeasyswooletest:/easyswoole newserver</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 拷贝一个docx文件到容器内试试</span><br></pre></td></tr></table></figure>
+<p>docker cp /www/kkjj.docx {dockerId}:/www/</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 转换一下</span><br></pre></td></tr></table></figure>
+<p>soffice –headless –invisible –convert-to pdf kkjj.docx –outdir ./</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">发现有乱码（不支持中文）</span><br><span class="line"></span><br><span class="line">### 将本地的中文字体放到一起，一起拷贝过去</span><br></pre></td></tr></table></figure>
+<p>docker cp /usr/share/fonts/chinese ae4c6f7a8b6d:/usr/share/fonts</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">中文可以显示了</span><br><span class="line"></span><br><span class="line">### 将pdf转图片</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>convert  kkjj.pdf -resize 500% -quality 100 -sharpen 0x1.0 kkjj.png</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 将镜像发布出去</span><br></pre></td></tr></table></figure>
+<p>docker login</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p>docker images</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 重命名镜像tag</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>docker tag 94998885c9d4 hottredpen/newserver</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### 推送到自己的仓库</span><br></pre></td></tr></table></figure>
+<p>docker push hottredpen/newserver</p>
+<pre><code></code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/linux%E5%AE%89%E8%A3%85libreOffice/" rel="prev" title="centos6安装libreOffice">
+                  <i class="fa fa-chevron-left"></i> centos6安装libreOffice
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备13033425号-2 </a>
+      <img src="/images/beianicon.png" style="display: inline-block;">
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hottredpen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+  <script src='http://image.jk-kj.com/mermaid-8.8.3.min.js'></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"nEwTBQU57TgvhE9HufRlxOgK-gzGzoHsz","app_key":"uOHoHWwCwvT2XGKFM33V4RXh","server_url":null,"security":false};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) === '-MdYXbMMI' ? `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com` : server_url;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
