@@ -164,3 +164,16 @@ netstat -anp | grep :443 | awk '{print $7}' | awk -F'[/]' '{print $1}' | grep -v
 netstat -anp | grep :23 | awk '{print $7}' | awk -F'[/]' '{print $1}' | grep -v "-" | xargs -I % kill -9 %
 netstat -anp | grep :443 | awk '{print $7}' | awk -F'[/]' '{print $1}' | grep -v "-" | xargs -I % kill -9 %
 ```
+    
+### 分析主要的过程
+
+
+开始逆向修复
+
+尝试将SELinux工作模式 切换成 宽容模式
+```
+setenforce 0 2>dev/null
+```
+参考：
+SELinux工作模式设置（getenforce、setenforce和sestatus命令）
+http://c.biancheng.net/view/3921.html
