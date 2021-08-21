@@ -5,7 +5,78 @@ tags: [ docker ]
 date: 2021-07-06 10:15:53
 ---
 
+### 安装docker
+
+```
+yum update
+```
+安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的
+```
+yum install -y yum-utils device-mapper-persistent-data lvm2
+```
+设置yum源
+```
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+```
+可以查看所有仓库中所有docker版本，并选择特定版本安装
+```
+yum list docker-ce --showduplicates | sort -r
+```
+安装指定版本或者最新版本
+```
+yum install docker-ce-17.12.1.ce
+```
+或者
+```
+yum install docker-ce
+```
+启动Docker，命令：systemctl start docker，然后加入开机启动，如下
+
+```
+systemctl start docker
+systemctl enable docker
+```
+
+
+
+```
+[root@ecs02-4c8g ~]# docker version
+Client: Docker Engine - Community
+ Version:           20.10.8
+ API version:       1.41
+ Go version:        go1.16.6
+ Git commit:        3967b7d
+ Built:             Fri Jul 30 19:55:49 2021
+ OS/Arch:           linux/amd64
+ Context:           default
+ Experimental:      true
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          20.10.8
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.16.6
+  Git commit:       75249d8
+  Built:            Fri Jul 30 19:54:13 2021
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.4.9
+  GitCommit:        e25210fe30a0a703442421b0f60afac609f950a3
+ runc:
+  Version:          1.0.1
+  GitCommit:        v1.0.1-0-g4144b63
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+```
+
+
 ### 开始
+
+    
+
+
 
 新建easyswooletest目录，并在里面新建Dockerfile
 
@@ -191,7 +262,19 @@ docker tag 94998885c9d4 hottredpen/newserver
 docker push hottredpen/newserver
 ```
 
+### 推送太慢，就打包到本地
+```
+docker save -o pdf.tar pdfserver1.4
+```
 
+### 另一台机器上安装本地包
+```
+docker load < pdf.tar
+```
+
+
+
+##其他
 ### pfdi添加中文字体
 ```
 https://github.com/DCgithub21/cd_FPDF/blob/master/chinese.php
